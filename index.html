@@ -1,0 +1,2331 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0d1b0f">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description" content="nazaha.dz - مبادرة شبابية لدعم مواهب الشباب وتعزيز التفكير النقدي والمشاركة المدنية">
+    <title>nazaha.dz</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%2334c759'/%3E%3Ctext x='50' y='68' font-size='50' text-anchor='middle' fill='white'%3E%D9%86%3C/text%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Kufi+Arabic:wght@300;400;500;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit, doc, updateDoc, increment, arrayUnion, arrayRemove, where, serverTimestamp, onSnapshot } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+        const firebaseConfig = {
+            apiKey: "AIzaSyBWGPKwCiEDVu4Qe_REnZUGc0w6cmxG9Xk",
+            authDomain: "nazaha-b1c97.firebaseapp.com",
+            projectId: "nazaha-b1c97",
+            storageBucket: "nazaha-b1c97.firebasestorage.app",
+            messagingSenderId: "718233504902",
+            appId: "1:718233504902:web:fa830f7f199d360be49507",
+            measurementId: "G-S1WE1ES684"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        window.firebaseDB = db;
+        window.firebaseApp = app;
+        window.FirestoreModules = {
+            collection, addDoc, getDocs, query, orderBy, limit, doc, updateDoc,
+            increment, arrayUnion, arrayRemove, where, serverTimestamp, onSnapshot
+        };
+        console.log("[Firebase] تم الاتصال بقاعدة البيانات بنجاح");
+    </script>
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --primary-light: #34c759;
+            --primary-dark: #1b5e20;
+            --accent: #c8a84e;
+            --bg: #fafbfc;
+            --surface: #ffffff;
+            --surface-alt: #f1f3f5;
+            --text: #1a1d20;
+            --text-secondary: #5f6b7a;
+            --text-muted: #8b95a5;
+            --border: #e2e6ea;
+            --border-light: #eef0f3;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.1);
+            --radius-sm: 10px;
+            --radius: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-arabic: 'Noto Kufi Arabic', 'Plus Jakarta Sans', sans-serif;
+            --font-latin: 'Inter', 'Plus Jakarta Sans', sans-serif;
+        }
+        body.dark {
+            --bg: #0d1117;
+            --surface: #161b22;
+            --surface-alt: #1c2330;
+            --text: #e6edf3;
+            --text-secondary: #b0b8c4;
+            --text-muted: #6e7a8a;
+            --border: #2d3540;
+            --border-light: #242c38;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.5);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+        body {
+            font-family: var(--font-arabic);
+            background-color: var(--bg);
+            color: var(--text);
+            transition: background 0.4s, color 0.4s;
+            line-height: 1.7;
+            overflow-x: hidden;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        body.lock-scroll {
+            overflow: hidden;
+        }
+
+        /* ========== HEADER ========== */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border-light);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            background: rgba(255, 255, 255, 0.82);
+            transition: all var(--transition);
+            padding: 0 20px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        body.dark .site-header {
+            background: rgba(22, 27, 34, 0.88);
+        }
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+        .brand-logo {
+            width: 48px;
+            height: 36px;
+            background: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.2);
+            flex-shrink: 0;
+        }
+        .brand-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .brand-name {
+            font-weight: 800;
+            font-size: 18px;
+            color: var(--primary);
+            letter-spacing: -0.3px;
+            font-family: var(--font-latin);
+            white-space: nowrap;
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        .btn-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: var(--surface-alt);
+            color: var(--text);
+            cursor: pointer;
+            font-size: 17px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition);
+            position: relative;
+        }
+        .btn-icon:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: scale(1.05);
+        }
+        .hamburger-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: var(--surface-alt);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            transition: all var(--transition);
+            z-index: 1001;
+        }
+        .hamburger-btn span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: all var(--transition);
+        }
+        .hamburger-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        .hamburger-btn:hover {
+            background: var(--primary);
+        }
+        .hamburger-btn:hover span {
+            background: #fff;
+        }
+
+        /* ========== SIDE NAVIGATION ========== */
+        .side-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.35s ease;
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+        }
+        .side-nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .side-nav {
+            position: fixed;
+            top: 0;
+            right: -340px;
+            width: 320px;
+            max-width: 85vw;
+            height: 100%;
+            background: var(--surface);
+            z-index: 1000;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 80px 24px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            box-shadow: var(--shadow-lg);
+            overflow-y: auto;
+            border-left: 1px solid var(--border);
+        }
+        .side-nav.active {
+            right: 0;
+        }
+        .side-nav a {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 18px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            font-size: 15px;
+            transition: all var(--transition);
+            border: 1px solid transparent;
+        }
+        .side-nav a i {
+            font-size: 18px;
+            width: 24px;
+            text-align: center;
+            color: var(--primary-light);
+            transition: all var(--transition);
+        }
+        .side-nav a:hover {
+            background: rgba(46, 125, 50, 0.08);
+            border-color: rgba(46, 125, 50, 0.2);
+            color: var(--primary);
+        }
+        .side-nav a:hover i {
+            color: var(--primary);
+        }
+        .side-nav .nav-divider {
+            height: 1px;
+            background: var(--border-light);
+            margin: 8px 0;
+        }
+        .side-nav .nav-social {
+            display: flex;
+            gap: 10px;
+            padding: 12px 18px;
+            flex-wrap: wrap;
+        }
+        .side-nav .nav-social a {
+            width: 38px;
+            height: 38px;
+            padding: 0;
+            border-radius: 50%;
+            justify-content: center;
+            background: var(--surface-alt);
+            border: 1px solid var(--border-light);
+        }
+        .side-nav .nav-social a:hover {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+        .side-nav .nav-social a:hover i {
+            color: #fff;
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg,
+                    rgba(13, 27, 15, 0.75) 0%,
+                    rgba(27, 94, 32, 0.6) 40%,
+                    rgba(13, 27, 15, 0.7) 100%),
+                url('https://images.unsplash.com/photo-1590073242678-70ee3fc28f8e?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            background-color: #1b5e20;
+            padding: 100px 24px 60px;
+            text-align: center;
+            color: #fff;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: linear-gradient(to top, var(--bg), transparent);
+            pointer-events: none;
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 750px;
+            animation: heroFadeIn 1s ease-out;
+        }
+        @keyframes heroFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .hero-logo-large {
+            width: 100px;
+            height: 75px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 14px;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        .hero-logo-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .hero-title {
+            font-size: clamp(28px, 6vw, 48px);
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+            line-height: 1.2;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+        }
+        .hero-subtitle {
+            font-size: clamp(15px, 3vw, 18px);
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 32px;
+            line-height: 1.7;
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            background: var(--primary-light);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all var(--transition);
+            box-shadow: 0 6px 20px rgba(52, 199, 89, 0.35);
+            font-family: var(--font-arabic);
+            white-space: nowrap;
+        }
+        .btn-primary:hover {
+            background: #28a745;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(52, 199, 89, 0.5);
+        }
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all var(--transition);
+            backdrop-filter: blur(6px);
+            font-family: var(--font-arabic);
+            white-space: nowrap;
+        }
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* ========== STATS STRIP ========== */
+        .stats-strip {
+            position: relative;
+            z-index: 3;
+            margin-top: -50px;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .stat-card {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: 22px 20px;
+            text-align: center;
+            flex: 1;
+            min-width: 110px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow);
+            transition: all var(--transition);
+        }
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        .stat-number {
+            font-size: clamp(30px, 5vw, 44px);
+            font-weight: 900;
+            color: var(--primary);
+            line-height: 1;
+            font-family: var(--font-latin);
+            letter-spacing: -1px;
+        }
+        .stat-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-top: 8px;
+        }
+        .stat-icon {
+            font-size: 22px;
+            color: var(--primary-light);
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        /* ========== CONTENT SECTIONS ========== */
+        .content-section {
+            padding: 60px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(46, 125, 50, 0.08);
+            color: var(--primary);
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .section-title {
+            font-size: clamp(22px, 4.5vw, 32px);
+            font-weight: 900;
+            color: var(--text);
+            margin-bottom: 10px;
+            letter-spacing: -0.3px;
+            line-height: 1.3;
+        }
+        .section-subtitle {
+            font-size: 15px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .section-divider {
+            width: 60px;
+            height: 3px;
+            background: var(--primary-light);
+            border-radius: 3px;
+            margin: 16px auto;
+        }
+
+        /* ========== CARDS & GRID ========== */
+        .card {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: 28px 24px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+            margin-bottom: 20px;
+        }
+        .card:hover {
+            box-shadow: var(--shadow);
+            border-color: var(--border);
+        }
+        .card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card h3 i {
+            font-size: 20px;
+            color: var(--primary-light);
+        }
+        .card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 14px;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 14px;
+        }
+
+        /* ========== FIELD CHIPS ========== */
+        .field-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: var(--surface-alt);
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            border: 1px solid var(--border-light);
+            transition: all var(--transition);
+            white-space: nowrap;
+        }
+        .field-chip i {
+            color: var(--primary-light);
+            font-size: 16px;
+        }
+        .field-chip:hover {
+            background: rgba(46, 125, 50, 0.06);
+            border-color: rgba(46, 125, 50, 0.3);
+            color: var(--primary);
+        }
+        .fields-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 16px;
+        }
+
+        /* ========== SPACE / FEED ========== */
+        .feed-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .feed-card {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+        .feed-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--border);
+        }
+        .feed-card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: var(--surface-alt);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: var(--text-muted);
+        }
+        .feed-card-body {
+            padding: 18px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .feed-card-title {
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: var(--text);
+            line-height: 1.4;
+        }
+        .feed-card-excerpt {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            line-height: 1.5;
+            flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .feed-card-meta {
+            display: flex;
+            gap: 14px;
+            font-size: 11px;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .feed-card-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .feed-card-meta i {
+            font-size: 13px;
+        }
+        .feed-card-actions {
+            display: flex;
+            gap: 6px;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-light);
+        }
+        .feed-action-btn {
+            flex: 1;
+            padding: 8px 10px;
+            border-radius: 50px;
+            border: 1px solid var(--border-light);
+            background: var(--surface-alt);
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-family: var(--font-arabic);
+        }
+        .feed-action-btn:hover {
+            background: rgba(46, 125, 50, 0.08);
+            color: var(--primary);
+            border-color: rgba(46, 125, 50, 0.3);
+        }
+        .feed-action-btn.liked {
+            background: rgba(255, 59, 48, 0.1);
+            color: #ff3b30;
+            border-color: rgba(255, 59, 48, 0.3);
+        }
+
+        /* ========== FORMS ========== */
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            margin-bottom: 14px;
+            border-radius: var(--radius-sm);
+            border: 2px solid var(--border-light);
+            background: var(--surface);
+            font-size: 14px;
+            font-family: var(--font-arabic);
+            transition: all var(--transition);
+            color: var(--text);
+            resize: vertical;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 4px rgba(52, 199, 89, 0.1);
+        }
+        .form-input.error {
+            border-color: #ff3b30 !important;
+            box-shadow: 0 0 0 4px rgba(255, 59, 48, 0.08);
+        }
+        textarea.form-input {
+            min-height: 100px;
+        }
+        .btn-submit {
+            background: var(--primary);
+            color: #fff;
+            padding: 14px 24px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 700;
+            width: 100%;
+            cursor: pointer;
+            transition: all var(--transition);
+            font-size: 15px;
+            font-family: var(--font-arabic);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 14px rgba(46, 125, 50, 0.3);
+        }
+        .btn-submit:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 22px rgba(46, 125, 50, 0.4);
+        }
+        .btn-submit:disabled {
+            background: #888;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        .btn-submit.disabled-btn {
+            background: #888;
+            cursor: not-allowed;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        /* ========== MODALS ========== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-container {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            max-width: 700px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 28px;
+            position: relative;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-lg);
+            animation: modalIn 0.35s ease;
+        }
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .modal-close {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: #ff3b30;
+            border: none;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            color: #fff;
+            cursor: pointer;
+            font-size: 14px;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition);
+        }
+        .modal-close:hover {
+            background: #d6332e;
+            transform: scale(1.08);
+        }
+        .modal-error-msg {
+            background: rgba(255, 59, 48, 0.9);
+            color: #fff;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 16px;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        /* ========== TOAST ========== */
+        .toast {
+            position: fixed;
+            top: 24px;
+            right: 20px;
+            left: 20px;
+            max-width: 440px;
+            padding: 14px 18px;
+            border-radius: var(--radius);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+            display: none;
+            align-items: center;
+            gap: 12px;
+            z-index: 9999;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            font-weight: 600;
+            font-size: 14px;
+            animation: toastIn 0.4s ease;
+            margin: 0 auto;
+        }
+        @keyframes toastIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .toast.success {
+            background: rgba(46, 125, 50, 0.95);
+            color: #fff;
+        }
+        .toast.error {
+            background: rgba(255, 59, 48, 0.95);
+            color: #fff;
+        }
+        .toast.info {
+            background: rgba(0, 122, 255, 0.95);
+            color: #fff;
+        }
+
+        /* ========== FOOTER ========== */
+        .site-footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border-light);
+            padding: 40px 20px 24px;
+            text-align: center;
+        }
+        .footer-logo {
+            width: 64px;
+            height: 48px;
+            background: var(--primary);
+            border-radius: 10px;
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .footer-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .footer-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto 20px;
+            line-height: 1.6;
+        }
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--surface-alt);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 18px;
+            transition: all var(--transition);
+            border: 1px solid var(--border-light);
+        }
+        .footer-social a:hover {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        .footer-legal {
+            font-size: 11px;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+        .footer-legal a {
+            color: var(--primary-light);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .footer-legal a:hover {
+            text-decoration: underline;
+        }
+        .footer-divider {
+            width: 40px;
+            height: 2px;
+            background: var(--border);
+            margin: 16px auto;
+            border-radius: 2px;
+        }
+
+        /* ========== CHATBOT ========== */
+        .chatbot-button {
+            position: fixed;
+            bottom: 28px;
+            right: 20px;
+            background: var(--primary-light);
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(52, 199, 89, 0.4);
+            z-index: 1500;
+            border: none;
+            color: #fff;
+            font-size: 22px;
+            transition: all var(--transition);
+        }
+        .chatbot-button:hover {
+            transform: scale(1.08);
+            box-shadow: 0 10px 28px rgba(52, 199, 89, 0.55);
+        }
+        .chat-window {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 360px;
+            max-width: calc(100vw - 32px);
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            z-index: 1500;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .chat-header {
+            background: var(--primary);
+            padding: 14px 18px;
+            color: #fff;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 15px;
+        }
+        .chat-messages {
+            height: 340px;
+            overflow-y: auto;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: var(--surface-alt);
+        }
+        .message {
+            max-width: 85%;
+            padding: 10px 14px;
+            border-radius: 18px;
+            font-size: 13px;
+            line-height: 1.5;
+            word-break: break-word;
+            animation: msgIn 0.3s ease;
+        }
+        @keyframes msgIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .user-message {
+            background: var(--primary-light);
+            color: #fff;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+        .bot-message {
+            background: var(--surface);
+            color: var(--text);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+            border: 1px solid var(--border-light);
+        }
+        .suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 12px;
+            border-top: 1px solid var(--border-light);
+            background: var(--surface);
+        }
+        .suggestion-chip {
+            background: rgba(46, 125, 50, 0.08);
+            padding: 8px 14px;
+            border-radius: 50px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+            border: 1px solid transparent;
+            color: var(--text);
+        }
+        .suggestion-chip:hover {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+        .follow-up {
+            margin-top: 8px;
+            font-size: 12px;
+            color: var(--primary-light);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+            align-self: flex-start;
+            padding: 6px 10px;
+            border-radius: 50px;
+            background: rgba(46, 125, 50, 0.06);
+            transition: all var(--transition);
+        }
+        .follow-up:hover {
+            background: rgba(46, 125, 50, 0.15);
+        }
+
+        /* ========== SHAKE ANIMATION ========== */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
+        }
+        .shake-field {
+            animation: shake 0.35s ease-in-out;
+            border-color: #ff3b30 !important;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .site-header { padding: 0 14px; height: 56px; }
+            .brand-name { font-size: 16px; }
+            .brand-logo { width: 40px; height: 30px; border-radius: 6px; }
+            .hero-section { min-height: 90vh; padding: 80px 16px 50px; }
+            .hero-logo-large { width: 70px; height: 52px; border-radius: 10px; }
+            .hero-title { font-size: 24px; }
+            .stats-strip { margin-top: -30px; gap: 10px; padding: 0 12px; }
+            .stat-card { padding: 16px 12px; min-width: 80px; border-radius: var(--radius); }
+            .stat-number { font-size: 26px; }
+            .stat-label { font-size: 11px; }
+            .content-section { padding: 40px 14px; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .grid-3 { grid-template-columns: repeat(2, 1fr); }
+            .grid-4 { grid-template-columns: repeat(2, 1fr); }
+            .feed-grid { grid-template-columns: 1fr; }
+            .chat-window { width: 290px; bottom: 90px; right: 8px; }
+            .modal-container { padding: 20px; border-radius: var(--radius-lg); }
+            .btn-primary, .btn-outline { padding: 12px 20px; font-size: 13px; }
+            .side-nav { width: 280px; }
+        }
+        @media (max-width: 400px) {
+            .hero-title { font-size: 20px; }
+            .hero-subtitle { font-size: 13px; }
+            .btn-primary, .btn-outline { padding: 10px 16px; font-size: 12px; gap: 6px; }
+            .stat-card { padding: 12px 8px; min-width: 65px; }
+            .stat-number { font-size: 22px; }
+            .grid-3 { grid-template-columns: 1fr 1fr; }
+            .section-title { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="site-header" id="siteHeader">
+        <a href="#home" class="header-brand" title="nazaha.dz">
+            <div class="brand-logo">
+                <img id="dynamic-logo" src="logo.png" alt="nazaha.dz"
+                onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2718%27 fill=%27%232e7d32%27/%3E%3Ctext x=%2750%27 y=%2768%27 font-size=%2750%27 text-anchor=%27middle%27 fill=%27white%27%3E%D9%86%3C/text%3E%3C/svg%3E'">
+            </div>
+            <span class="brand-name">nazaha.dz</span>
+        </a>
+        <div class="header-actions">
+            <button class="btn-icon" onclick="toggleTheme()" title="تغيير المظهر" aria-label="تغيير المظهر">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+            <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleSideNav()" aria-label="القائمة" title="القائمة">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ==================== SIDE NAVIGATION ==================== -->
+    <div class="side-nav-overlay" id="sideNavOverlay" onclick="toggleSideNav()"></div>
+    <nav class="side-nav" id="sideNav">
+        <a href="#home" onclick="toggleSideNav()"><i class="fas fa-home"></i> الرئيسية</a>
+        <a href="#about" onclick="toggleSideNav()"><i class="fas fa-info-circle"></i> تعرف علينا</a>
+        <a href="#space" onclick="toggleSideNav()"><i class="fas fa-newspaper"></i> الفضاء</a>
+        <a href="#register" onclick="toggleSideNav()"><i class="fas fa-user-plus"></i> التسجيل</a>
+        <a href="#contact" onclick="toggleSideNav()"><i class="fas fa-envelope"></i> تواصل معنا</a>
+        <div class="nav-divider"></div>
+        <a href="https://drive.google.com/file/d/1funjxkShUEfVJOQW90pTWyqtarnuMGQh/view?usp=drivesdk" target="_blank" rel="noopener">
+            <i class="fas fa-file-contract"></i> الاعتمادات القانونية
+        </a>
+        <div class="nav-divider"></div>
+        <div class="nav-social">
+            <a href="https://www.facebook.com/nazaha.36" target="_blank" rel="noopener" title="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/nazaha.36" target="_blank" rel="noopener" title="إنستغرام"><i class="fab fa-instagram"></i></a>
+            <a href="https://youtube.com/@nazaha.36" target="_blank" rel="noopener" title="يوتيوب"><i class="fab fa-youtube"></i></a>
+            <a href="mailto:nazahaa36.inf@gmail.com" title="بريد إلكتروني"><i class="fas fa-envelope"></i></a>
+        </div>
+    </nav>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="hero-section" id="home">
+        <div class="hero-content">
+            <div class="hero-logo-large">
+                <img src="logo.png" alt="nazaha.dz"
+                onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2718%27 fill=%27%232e7d32%27/%3E%3Ctext x=%2750%27 y=%2768%27 font-size=%2750%27 text-anchor=%27middle%27 fill=%27white%27%3E%D9%86%3C/text%3E%3C/svg%3E'">
+            </div>
+            <h1 class="hero-title">مبادرة شبابية من أجل جزائر واعية</h1>
+            <p class="hero-subtitle">دعم المواهب، تعزيز التفكير النقدي، إشراك الشباب في المجتمع المدني، وبناء جسور الثقة مع مؤسسات الدولة</p>
+            <div class="hero-buttons">
+                <a href="#about" class="btn-primary"><i class="fas fa-info-circle"></i> تعرف علينا</a>
+                <a href="#register" class="btn-outline"><i class="fas fa-user-plus"></i> انضم إلينا</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== STATS STRIP ==================== -->
+    <div class="stats-strip" id="statsContainer">
+        <div class="stat-card">
+            <i class="fas fa-users stat-icon"></i>
+            <div class="stat-number" id="statMembers">0</div>
+            <div class="stat-label">المنخرطين</div>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-hand-holding-heart stat-icon"></i>
+            <div class="stat-number" id="statVolunteers">0</div>
+            <div class="stat-label">المتطوعين</div>
+        </div>
+        <div class="stat-card">
+            <i class="fas fa-handshake stat-icon"></i>
+            <div class="stat-number" id="statPartners">0</div>
+            <div class="stat-label">الشركاء</div>
+        </div>
+    </div>
+
+    <!-- ==================== ABOUT SECTION ==================== -->
+    <section class="content-section" id="about">
+        <div class="section-header">
+            <span class="section-tag">تعرف علينا</span>
+            <h2 class="section-title">من نحن؟</h2>
+            <div class="section-divider"></div>
+            <p class="section-subtitle">المنتدى الشبابي للفكر والمشاركة المدنية مبادرة شبابية، تسعى إلى دعم مواهب الشباب، تعزيز التفكير النقدي، إخراط الشباب في المجتمع المدني، وبناء علاقات وثيقة بين الشباب ومؤسسات الدولة. كما تسعى لمحاربة والقضاء على التفكير السطحي، الآفات الاجتماعية، الجهل، والتفكير المتطرف.</p>
+        </div>
+
+        <div class="grid-2">
+            <div class="card">
+                <h3><i class="fas fa-eye"></i> رؤيتنا ورسالتنا</h3>
+                <p>نحن في المنتدى الشبابي للفكر والمشاركة المدنية، نحمل على عاتقنا مهمة استعادة الوعي للشباب الجزائري في عصر التشتت الرقمي؛ فنحن نؤمن أن مواجهة 'تعفن الدماغ' والتسطيح المعرفي هي معركة وجودية لصناعة المستقبل. نسعى من خلال مبادرتنا إلى انتشال الشباب من دوامة الإدمان السلبي على منصات التواصل لإعادة إحياء الشغف الكامن فيهم، وتحويله إلى طاقة بناءة تدعم المواهب وتعزز التفكير النقدي ضد الجهل والتطرف. إن رؤيتنا تنطلق من حقيقة واحدة: أن القيادة الحقيقية للجزائر غداً تبدأ من صناعة عقول اليوم؛ فبناء علاقات وثيقة بين الشباب ومؤسسات الدولة هو الضمان الوحيد لعدم ترك مصيرنا بين يدي قادة ضعاف. نحن هنا لنبني الجيل الذي لا يكتفي بالمشاركة، بل يقود الجزائر بكفاءة، فكر، وقوة.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-cogs"></i> كيف سنجسد هذه الرؤية والرسالة؟</h3>
+                <p>عبر مجموعة متكاملة من الأنشطة والبرامج:</p>
+                <ul style="margin-top:12px;padding-right:20px;color:var(--text-secondary);line-height:2.2;font-size:14px;">
+                    <li>ورشات تدريبية</li>
+                    <li>ندوات ومحاضرات فكرية</li>
+                    <li>نشاطات وفعاليات ميدانية</li>
+                    <li>مسابقات تنافسية</li>
+                    <li>لقاءات مع مسؤولين وكوادر في الدولة</li>
+                </ul>
+                <p style="margin-top:12px;">ولأننا نؤمن بالكفاءة، نوفر لفريقنا دورات تدريبية احترافية في الإدارة والقيادة، تتوج بشهادات إثبات جدارة تدعم مسارك المهني وتوثق خبراتك القيادية.</p>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top:20px;">
+            <h3><i class="fas fa-layer-group"></i> مجالات المنتدى</h3>
+            <div class="fields-wrapper">
+                <span class="field-chip"><i class="fas fa-book-open"></i> المجال الفكري والثقافي</span>
+                <span class="field-chip"><i class="fas fa-landmark"></i> المجال المدني</span>
+                <span class="field-chip"><i class="fas fa-heart"></i> المجال الإنساني والاجتماعي</span>
+                <span class="field-chip"><i class="fas fa-flask"></i> المجال العلمي</span>
+                <span class="field-chip"><i class="fas fa-microchip"></i> المجال التكنولوجي</span>
+                <span class="field-chip"><i class="fas fa-hand-holding-heart"></i> المجال الخيري</span>
+                <span class="field-chip"><i class="fas fa-lightbulb"></i> المجال الإبداعي والابتكاري</span>
+                <span class="field-chip"><i class="fas fa-leaf"></i> المجال البيئي</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SPACE SECTION ==================== -->
+    <section class="content-section" id="space">
+        <div class="section-header">
+            <span class="section-tag">الفضاء</span>
+            <h2 class="section-title">المبادرات والنشاطات والأخبار</h2>
+            <div class="section-divider"></div>
+            <p class="section-subtitle">آخر المستجدات والفعاليات من المنتدى</p>
+        </div>
+        <div style="text-align:center;margin-bottom:24px;">
+            <button class="btn-primary" onclick="openArticleSubmissionModal()" style="width:auto;padding:12px 24px;">
+                <i class="fas fa-pen"></i> كتابة مقال أو منشور
+            </button>
+        </div>
+        <div class="feed-grid" id="feedGrid">
+            <div class="feed-card" style="align-items:center;justify-content:center;padding:40px;text-align:center;color:var(--text-muted);">
+                <i class="fas fa-spinner fa-pulse" style="font-size:32px;margin-bottom:12px;display:block;"></i>
+                <span>جاري تحميل المنشورات...</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== REGISTRATION SECTION ==================== -->
+    <section class="content-section" id="register">
+        <div class="section-header">
+            <span class="section-tag">التسجيل</span>
+            <h2 class="section-title">انضم إلى المبادرة الآن</h2>
+            <div class="section-divider"></div>
+            <p class="section-subtitle">اختر نوع التسجيل المناسب لك وابدأ رحلتك معنا</p>
+        </div>
+        <div style="text-align:center;">
+            <button onclick="openRegistrationModalDirectly()" class="btn-primary" style="width:auto;padding:16px 36px;font-size:16px;">
+                <i class="fas fa-user-plus"></i> ابدأ التسجيل
+            </button>
+        </div>
+        <div class="grid-3" style="margin-top:32px;">
+            <div class="card" style="text-align:center;">
+                <i class="fas fa-user-check" style="font-size:32px;color:var(--primary-light);margin-bottom:10px;display:block;"></i>
+                <h4 style="font-size:16px;font-weight:700;">المنخرط</h4>
+                <p style="font-size:12px;color:var(--text-secondary);">المستفيد: ينضم للمنتدى ليشارك في النشاطات، يحضر الدورات، ويحمل بطاقة العضوية. دوره الأساسي هو المشاركة والتطوع عند الرغبة.</p>
+            </div>
+            <div class="card" style="text-align:center;">
+                <i class="fas fa-briefcase" style="font-size:32px;color:var(--primary-light);margin-bottom:10px;display:block;"></i>
+                <h4 style="font-size:16px;font-weight:700;">المتطوع / الكادر الإداري</h4>
+                <p style="font-size:12px;color:var(--text-secondary);">المسيّر: عضو مكلف بمهام محددة داخل خلايا المنتدى مثل الإعلام أو التنظيم. دوره هو التخطيط للنشاطات، إدارة الأعضاء، وضمان سير العمل اليومي.</p>
+            </div>
+            <div class="card" style="text-align:center;">
+                <i class="fas fa-calendar-alt" style="font-size:32px;color:var(--primary-light);margin-bottom:10px;display:block;"></i>
+                <h4 style="font-size:16px;font-weight:700;">المشاركة</h4>
+                <p style="font-size:12px;color:var(--text-secondary);">حضور الأنشطة والمسابقات بدون عضوية، برسوم رمزية لكل نشاط، دون الالتزام بحضور الدورات أو حمل البطاقة.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CONTACT SECTION ==================== -->
+    <section class="content-section" id="contact">
+        <div class="section-header">
+            <span class="section-tag">تواصل معنا</span>
+            <h2 class="section-title">نحن في انتظار رسالتك</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="grid-2">
+            <div class="card">
+                <form id="contactForm" onsubmit="sendContactMessage(event)">
+                    <input type="text" id="contactName" placeholder="الإسم واللقب *" class="form-input" required>
+                    <input type="email" id="contactEmail" placeholder="البريد الإلكتروني *" class="form-input" required>
+                    <input type="tel" id="contactPhone" placeholder="رقم الهاتف *" class="form-input" required pattern="^(05|06|07)[0-9]{8}$|^213[0-9]{9}$">
+                    <input type="text" id="contactAddress" placeholder="العنوان *" class="form-input" required>
+                    <textarea id="contactMessage" rows="4" placeholder="الرسالة *" class="form-input" required></textarea>
+                    <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> إرسال الرسالة</button>
+                </form>
+            </div>
+            <div class="card" style="text-align:center;">
+                <h3><i class="fas fa-share-alt"></i> وسائل التواصل</h3>
+                <div class="footer-social" style="margin-top:16px;">
+                    <a href="https://www.facebook.com/nazaha.36" target="_blank" rel="noopener" title="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/nazaha.36" target="_blank" rel="noopener" title="إنستغرام"><i class="fab fa-instagram"></i></a>
+                    <a href="https://youtube.com/@nazaha.36" target="_blank" rel="noopener" title="يوتيوب"><i class="fab fa-youtube"></i></a>
+                    <a href="mailto:nazahaa36.inf@gmail.com" title="بريد إلكتروني"><i class="fas fa-envelope"></i></a>
+                    <a href="https://drive.google.com/file/d/1funjxkShUEfVJOQW90pTWyqtarnuMGQh/view?usp=drivesdk" target="_blank" rel="noopener" title="النظام الداخلي"><i class="fas fa-file-alt"></i></a>
+                </div>
+                <div style="margin-top:20px;font-size:13px;color:var(--text-secondary);line-height:2;">
+                    <p><i class="fas fa-building" style="color:var(--primary-light);margin-left:8px;"></i> دار الشباب أحمد بتشين – الطارف</p>
+                    <p><i class="fas fa-building" style="color:var(--primary-light);margin-left:8px;"></i> المركب الرياضي الجواري – القالة</p>
+                    <p><i class="fas fa-envelope" style="color:var(--primary-light);margin-left:8px;"></i> nazahaa36.inf@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== MODALS ==================== -->
+    <!-- Registration type modal -->
+    <div id="registrationModal" class="modal-overlay">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeRegistrationModal()"><i class="fas fa-times"></i></button>
+            <div id="modalErrorMsg" class="modal-error-msg"><i class="fas fa-exclamation-triangle"></i> <span></span></div>
+            <h3 style="text-align:center;font-weight:700;">اختر نوع التسجيل</h3>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0;">
+                <button id="btnEnkharat" onclick="showTermsForType('انخراط')" class="btn-submit">طلب انخراط</button>
+                <button id="BtnTawzif" onclick="showTermsForType('تطوع')" class="btn-submit">التطوع للخلايا</button>
+                <button id="btnMusharaka" onclick="showTermsForType('مشاركة')" class="btn-submit" style="grid-column:1/-1;">مشاركة في أنشطة</button>
+            </div>
+            <button onclick="closeRegistrationModal()" class="btn-submit" style="background:#ff3b30;">إلغاء</button>
+        </div>
+    </div>
+
+    <!-- Terms modal -->
+    <div id="termsModal" class="modal-overlay">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeTermsModal()"><i class="fas fa-times"></i></button>
+            <div id="termsContent"></div>
+            <div style="margin:16px 0;"><label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+                    <input type="checkbox" id="termsAgreeCheckbox"> أوافق على الشروط والنظام الداخلي.
+            </label></div>
+            <button onclick="acceptTermsAndShowForm()" class="btn-submit">أوافق وأكمل</button>
+        </div>
+    </div>
+
+    <!-- Form modal -->
+    <div id="formModal" class="modal-overlay">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeFormModal()"><i class="fas fa-times"></i></button>
+            <div id="formModalErrorMsg" class="modal-error-msg"><i class="fas fa-exclamation-triangle"></i> <span></span></div>
+            <h3 id="formModalTitle" style="text-align:center;font-weight:700;">استمارة التسجيل</h3>
+            <form id="regFormModal" onsubmit="handleDynamicForm(event)">
+                <div id="dynamic-fields-modal"></div>
+                <button type="submit" class="btn-submit" id="submit-btn-modal">إرسال الطلب</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Feed detail modal -->
+    <div id="feedDetailModal" class="modal-overlay">
+        <div class="modal-container" id="feedDetailContent"></div>
+    </div>
+
+    <!-- Article submission modal -->
+    <div id="articleModal" class="modal-overlay">
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeArticleModal()"><i class="fas fa-times"></i></button>
+            <div id="articleModalErrorMsg" class="modal-error-msg"><i class="fas fa-exclamation-triangle"></i> <span></span></div>
+            <h3 style="text-align:center;font-weight:700;">كتابة مقال أو منشور</h3>
+            <p style="text-align:center;font-size:13px;color:var(--text-secondary);margin-bottom:16px;">سيتم مراجعة منشورك من قبل المسؤولين قبل النشر</p>
+            <form id="articleForm" onsubmit="submitArticle(event)">
+                <input type="text" id="articleTitle" placeholder="العنوان *" class="form-input" required>
+                <textarea id="articleContent" rows="5" placeholder="المحتوى *" class="form-input" required></textarea>
+                <input type="text" id="articleAuthor" placeholder="اسمك الكامل *" class="form-input" required>
+                <input type="url" id="articleImageUrl" placeholder="رابط الصورة (اختياري)" class="form-input">
+                <input type="text" id="articleLocation" placeholder="الموقع (اختياري)" class="form-input">
+                <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> إرسال للمراجعة</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast"><i id="toast-icon"></i><span id="toast-message"></span></div>
+
+    <!-- ==================== CHATBOT ==================== -->
+    <div class="chatbot-button" onclick="toggleChat()" title="Nazaha Ai"><i class="fas fa-comment-dots"></i></div>
+    <div id="chatWindow" class="chat-window">
+        <div class="chat-header">
+            <span><i class="fas fa-robot"></i> Nazaha Ai</span>
+            <i class="fas fa-times" onclick="toggleChat()" style="cursor:pointer;"></i>
+        </div>
+        <div id="chatMessages" class="chat-messages"></div>
+        <div id="suggestionsPanel" class="suggestions"></div>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="site-footer">
+        <div class="footer-logo">
+            <img src="logo.png" alt="nazaha.dz"
+            onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2718%27 fill=%27%232e7d32%27/%3E%3Ctext x=%2750%27 y=%2768%27 font-size=%2750%27 text-anchor=%27middle%27 fill=%27white%27%3E%D9%86%3C/text%3E%3C/svg%3E'">
+        </div>
+        <p class="footer-desc">مبادرة شبابية لدعم مواهب الشباب، تعزيز التفكير النقدي، إشراك الشباب في المجتمع المدني، وبناء جسور الثقة مع مؤسسات الدولة.</p>
+        <div class="footer-social">
+            <a href="https://www.facebook.com/nazaha.36" target="_blank" rel="noopener" title="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/nazaha.36" target="_blank" rel="noopener" title="إنستغرام"><i class="fab fa-instagram"></i></a>
+            <a href="https://youtube.com/@nazaha.36" target="_blank" rel="noopener" title="يوتيوب"><i class="fab fa-youtube"></i></a>
+            <a href="mailto:nazahaa36.inf@gmail.com" title="بريد إلكتروني"><i class="fas fa-envelope"></i></a>
+            <a href="https://drive.google.com/file/d/1funjxkShUEfVJOQW90pTWyqtarnuMGQh/view?usp=drivesdk" target="_blank" rel="noopener" title="النظام الداخلي"><i class="fas fa-file-alt"></i></a>
+        </div>
+        <div class="footer-divider"></div>
+        <div class="footer-legal">
+            <p>جميع الحقوق محفوظة &copy; 2026 - <strong>nazaha.dz</strong></p>
+            <p><a href="https://drive.google.com/file/d/1funjxkShUEfVJOQW90pTWyqtarnuMGQh/view?usp=drivesdk" target="_blank" rel="noopener">النظام الداخلي والاعتمادات القانونية</a></p>
+            <p style="margin-top:4px;">المنتدى الشبابي للفكر والمشاركة المدنية - دار الشباب أحمد بتشين – الطارف</p>
+        </div>
+    </footer>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script>
+        emailjs.init("POCtDAFV9CECAu9ow");
+
+        let currentType = '';
+        let statsAnimated = false;
+        let allQuestions = [];
+        let currentSuggestions = [];
+        let nextQuestionIndex = 0;
+        let sideNavOpen = false;
+
+        const fallbackQuestions = [
+            { id: "v_001", question: "ما هو منتدى نزاهة؟",
+                answer: "المنتدى الشبابي للفكر والمشاركة المدنية 'نزاهة' هو مبادرة شبابية غير ربحية تُعنى بتنمية الوعي الفكري والمدني لدى الشباب الجزائري من خلال أنشطة ثقافية وتوعوية منظمة.",
+                followUp: "v_002" },
+            { id: "v_002", question: "ما هي رؤية المنتدى؟",
+                answer: "أن يكون نموذجاً رائداً في تأهيل الشباب فكرياً ومدنياً، بحيث يصبح كل شاب جزائري سفيراً للنزاهة والمواطنة الفاعلة.",
+                followUp: "v_003" },
+            { id: "v_003", question: "ما هي رسالة المنتدى؟",
+                answer: "فكر يحرر، مشاركة تبني. نعمل على تأطير الشباب عبر برامج توعوية عميقة وندوات فكرية ومشاريع ميدانية تعزز قيم الشفافية والحوار.",
+                followUp: "v_004" },
+            { id: "v_004", question: "هل المنتدى تابع لحزب سياسي؟",
+                answer: "لا، المنتدى مستقل تماماً ولا يتبع أي حزب سياسي أو تنظيم أيديولوجي. يلتزم بالحياد التام ويرتكز نشاطه على الثوابت الوطنية.",
+                followUp: "v_005" },
+            { id: "v_005", question: "ما هي مجالات عمل المنتدى؟",
+                answer: "الشأن المدني، الفكر، الفنون، الإبداع، الأعمال الخيرية، الشأن المجتمعي، التكنولوجيا، والعلوم.", followUp: "v_006" },
+            { id: "v_006", question: "ما الفرق بين الانخراط والتطوع؟",
+                answer: "الانخراط هو عضوية عامة تتيح لك المشاركة في الأنشطة والاستفادة من التكوين. أما التطوع (الانضمام للفرق) فهو انضمام للكادر الإداري والتنظيمي للمنتدى لإدارة العمل اليومي والنشاطات.",
+                followUp: "v_007" },
+            { id: "v_007", question: "كيف يمكنني الانخراط في المنتدى؟",
+                answer: "يمكنك التسجيل عبر الموقع الإلكتروني الرسمي أو تقديم طلب انخراط ورقي. يجب أن يكون عمرك بين 14 و 30 سنة وجزائري الجنسية.",
+                followUp: "v_008" },
+            { id: "v_008", question: "ما هي شروط الانخراط؟",
+                answer: "أن تكون جزائري الجنسية، بين 14 و 30 سنة (موافقة الولي إلزامية للفئة 14-17)، ملء البيانات بصدق، والموافقة على النظام الداخلي.",
+                followUp: "v_009" },
+            { id: "v_009", question: "ما هو مبلغ الاشتراك السنوي؟",
+                answer: "الاشتراك السنوي 500 دج، مع إمكانية الإعفاء للحالات غير القادرة بقرار من الإدارة.", followUp: "v_010" },
+            { id: "v_010", question: "ما هي حقوق العضو المنخرط؟",
+                answer: "المشاركة في الأنشطة، الاستفادة من التكوين، تقديم الاقتراحات، والحصول على بطاقة عضوية إلكترونية فريدة.",
+                followUp: "v_011" },
+            { id: "v_011", question: "ما هي واجبات العضو المنخرط؟",
+                answer: "احترام النظام الداخلي، المحافظة على سمعة المنتدى وهويته، والمساهمة الفعالة في تحقيق أهدافه.", followUp: "v_012" },
+            { id: "v_012", question: "هل يمكنني المشاركة في الأنشطة بدون انخراط؟",
+                answer: "نعم، يمكن المشاركة في الأنشطة والمسابقات بدون عضوية برسوم رمزية لكل نشاط، دون الالتزام بحضور الدورات أو حمل البطاقة.",
+                followUp: "v_013" },
+            { id: "v_013", question: "ما الفرق بين العضوية والمشاركة العادية؟",
+                answer: "الانخراط يغنيك عن دفع الرسوم كل مرة وعن التسجيل المتكرر، ويمنحك حقوقاً إضافية كالترشح والتصويت وأولوية في المشاركات وفرص التطوع.",
+                followUp: "v_014" },
+            { id: "v_014", question: "ما هو التطوع في المنتدى؟",
+                answer: "التطوع هو الانضمام للكادر الإداري والتنظيمي للمنتدى (الفرق) للمساهمة في تسيير العمل اليومي وتخطيط النشاطات وإدارة الأعضاء.",
+                followUp: "v_015" },
+            { id: "v_015", question: "ما هي شروط الانضمام للفرق (التطوع)؟",
+                answer: "أن تكون من سن 17 فما فوق، تتمتع بالجدية والالتزام، تملك مهارات أو خبرات في مجال معين، والموافقة على النظام الداخلي.",
+                followUp: "v_016" },
+            { id: "v_016", question: "هل يجب أن أكون منخرطاً للتطوع؟",
+                answer: "يفضل أن تكون منخرطاً، لكن يمكن التطوع مباشرة عبر تقديم طلب عبر المنصة الإلكترونية الرسمية وتخضع جميع الطلبات لفترة تجريبية وتدريبية.",
+                followUp: "v_017" },
+            { id: "v_017", question: "ما هي الفرق/الخلايا المتاحة للتطوع؟",
+                answer: "أمانة السر، خلية التنظيم وشؤون المنخرطين، خلية الإعلام والاتصال، خلية الشؤون القانونية، ومستشارو مجلس الإدارة.",
+                followUp: "v_018" },
+            { id: "v_018", question: "ما الفرق بين العضو والمتطوع (الكادر الإداري)؟",
+                answer: "العضو/المنخرط هو المستفيد الذي يشارك في النشاطات ويحضر الدورات. أما المتطوع/الكادر الإداري فهو المسيّر المكلف بمهام محددة داخل خلايا المنتدى مثل الإعلام أو التنظيم.",
+                followUp: "v_019" },
+            { id: "v_019", question: "هل التطوع مدفوع الأجر؟",
+                answer: "لا، التطوع في المنتدى غير مدفوع الأجر. يتمتع المتطوع بحق التوجيه والتكوين والحصول على شهادات إثبات الخبرة مقابل التزامه بواجبات الانضباط.",
+                followUp: "v_020" },
+            { id: "v_020", question: "ما هي أنواع الأنشطة التي تنظمونها؟",
+                answer: "ورشات عمل، ندوات، لقاءات شبابية، مخيمات تكوينية، محاضرات، مسابقات، ومبادرات ميدانية.", followUp: "v_021" },
+            { id: "v_021", question: "ما هي المجالات المتاحة للمشاركة؟",
+                answer: "الفكري، المدني، الاجتماعي، البيئي، الإبداعي، التكنولوجي، الديني، والعلمي.", followUp: "v_022" },
+            { id: "v_022", question: "هل يمكنني اقتراح نشاط أو مبادرة؟", answer: "نعم، يحق للمنخرطين تقديم الاقتراحات والمبادرات وفق النظام الداخلي للمنتدى.",
+                followUp: "v_023" },
+            { id: "v_023", question: "من يدير المنتدى؟",
+                answer: "يتولى إدارة المنتدى مجلس إدارة يتكون من رئيس المنتدى (المؤسس) ورؤساء الخلايا التنظيمية.", followUp: "v_024" },
+            { id: "v_024", question: "من هو رئيس المنتدى؟",
+                answer: "السيد نزيه عبدالله بومهني، ناشط شبابي وناشط سياسي وباحث في الشؤون الدولية والعربية، ورئيس إتحادية التلاميذ الجزائريين.",
+                followUp: "v_025" },
+            { id: "v_025", question: "ما هي خلايا المنتدى؟",
+                answer: "أمانة السر، خلية التنظيم وشؤون المنخرطين، خلية الإعلام والاتصال، خلية الشؤون القانونية، ومستشارو مجلس الإدارة.",
+                followUp: "v_026" },
+            { id: "v_026", question: "ما هو دور أمين السر؟",
+                answer: "المسؤول الأول عن ضبط الإدارة وتوثيق الاجتماعات والمخرجات، وهو النائب الإداري لرئيس المنتدى والقناة الرسمية للتواصل.",
+                followUp: "v_027" },
+            { id: "v_027", question: "كيف يمكنني التواصل مع المنتدى؟",
+                answer: "عبر البريد الإلكتروني nazahaa36.inf@gmail.com أو صفحات التواصل الاجتماعي (فيسبوك، إنستغرام، يوتيوب).",
+                followUp: "v_028" },
+            { id: "v_028", question: "هل يمكن للجهات الخارجية التعاون مع المنتدى؟",
+                answer: "نعم، يسعى المنتدى للحصول على تمويل المؤسسات الشبابية الرسمية ودعم الشركاء الاقتصاديين والاجتماعيين في إطار اتفاقيات رعاية.",
+                followUp: "v_029" },
+            { id: "v_029", question: "أين يقع مقر المنتدى؟", answer: "دار الشباب أحمد بتشين – الطارف + المركب الرياضي الجواري – القالة.",
+            followUp: "v_030" },
+            { id: "v_030", question: "هل لديكم تطبيق للهاتف؟", answer: "نعم، يمكن تحميل تطبيق NA-Space للأندرويد عبر الرابط المتاح في الموقع.",
+                followUp: "v_001" }
+        ];
+
+        function playSound(type) {
+            try {
+                let audio = new Audio();
+                if (type === 'error')
+                    audio.src =
+                    'data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACAf39/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4';
+                else
+                    audio.src =
+                    'data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACAf39/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4';
+                audio.play().catch(e => console.log);
+            } catch (e) {}
+        }
+
+        function shakeField(field) {
+            if (field) { field.classList.add('shake-field');
+                setTimeout(() => field.classList.remove('shake-field'), 500); }
+        }
+        function showModalError(modalId, message) {
+            let container = document.getElementById(modalId);
+            if (container) {
+                let errDiv = container.querySelector('.modal-error-msg');
+                if (errDiv) { errDiv.querySelector('span').innerText = message;
+                    errDiv.style.display = 'flex';
+                    setTimeout(() => errDiv.style.display = 'none', 4000); }
+            }
+            playSound('error');
+        }
+        function showToast(type, msg) {
+            let t = document.getElementById('toast'),
+                ic = document.getElementById('toast-icon');
+            t.className = `toast ${type}`;
+            ic.className = type === 'success' ? 'fas fa-check-circle' : type === 'error' ? 'fas fa-exclamation-triangle' :
+                'fas fa-info-circle';
+            document.getElementById('toast-message').textContent = msg;
+            t.style.display = 'flex';
+            setTimeout(() => t.style.display = 'none', 4000);
+            if (type === 'success') playSound('success');
+            else if (type === 'error') playSound('error');
+        }
+        function validateArabicNameStrict(name) {
+            let trimmed = name.trim();
+            if (trimmed.length < 4) return false;
+            if (!/^[\u0600-\u06FF\s]+$/.test(trimmed)) return false;
+            let firstChar = trimmed[0];
+            if (trimmed.split('').every(c => c === firstChar)) return false;
+            return true;
+        }
+        function calculateAge(b) {
+            let t = new Date(),
+                bd = new Date(b);
+            let a = t.getFullYear() - bd.getFullYear();
+            if (t.getMonth() < bd.getMonth() || (t.getMonth() === bd.getMonth() && t.getDate() < bd.getDate())) a--;
+            return a;
+        }
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+            document.getElementById('theme-icon').className = document.body.classList.contains('dark') ? 'fas fa-sun' :
+                'fas fa-moon';
+        }
+        function toggleSideNav() {
+            sideNavOpen = !sideNavOpen;
+            document.getElementById('sideNav').classList.toggle('active', sideNavOpen);
+            document.getElementById('sideNavOverlay').classList.toggle('active', sideNavOpen);
+            document.getElementById('hamburgerBtn').classList.toggle('active', sideNavOpen);
+            document.body.classList.toggle('lock-scroll', sideNavOpen);
+        }
+        function disableAllTypeButtons() {
+            ['btnEnkharat', 'BtnTawzif', 'btnMusharaka'].forEach(id => {
+                let b = document.getElementById(id);
+                if (b) { b.classList.add('disabled-btn');
+                    b.disabled = true;
+                    b.textContent = 'تم التسجيل مسبقاً'; }
+            });
+            localStorage.setItem('nazaha_registered', 'true');
+        }
+        function checkIfAlreadyRegistered() {
+            if (localStorage.getItem('nazaha_registered') === 'true') disableAllTypeButtons();
+        }
+
+        // ========== الإحصائيات ==========
+        async function loadStats() {
+            try {
+                let res = await fetch('stats.json');
+                if (!res.ok) throw new Error();
+                let data = await res.json();
+                return { members: data.members || 0, volunteers: data.volunteers || 0, partners: data.partners || 0 };
+            } catch (e) {
+                console.warn("تعذر تحميل stats.json، عرض 0");
+                return { members: 0, volunteers: 0, partners: 0 };
+            }
+        }
+        function animateNumber(el, target) {
+            let cur = 0,
+                inc = target / 40;
+            let t = setInterval(() => {
+                cur += inc;
+                if (cur >= target) { el.innerText = Math.round(target);
+                    clearInterval(t); } else el.innerText = Math.floor(cur);
+            }, 20);
+        }
+        async function observeStats() {
+            let obs = new IntersectionObserver(async (e) => {
+                if (e[0].isIntersecting && !statsAnimated) {
+                    statsAnimated = true;
+                    let s = await loadStats();
+                    animateNumber(document.getElementById('statMembers'), s.members);
+                    animateNumber(document.getElementById('statVolunteers'), s.volunteers);
+                    animateNumber(document.getElementById('statPartners'), s.partners);
+                    obs.disconnect();
+                }
+            }, { threshold: 0.5 });
+            let c = document.getElementById('statsContainer');
+            if (c) obs.observe(c);
+        }
+
+        // ========== البوت (Nazaha Ai) ==========
+        async function loadQuestions() {
+            try {
+                let res = await fetch('ai.json');
+                if (!res.ok) throw new Error();
+                let data = await res.json();
+                if (data.qa_pairs && data.qa_pairs.length) allQuestions = data.qa_pairs;
+                else throw new Error();
+            } catch (e) { console.warn("فشل تحميل ai.json، استخدام البيانات الاحتياطية");
+                allQuestions = fallbackQuestions; }
+            nextQuestionIndex = 3;
+            currentSuggestions = allQuestions.slice(0, 3);
+            renderSuggestions();
+        }
+        function getNextQuestion() {
+            if (nextQuestionIndex < allQuestions.length) return allQuestions[nextQuestionIndex++];
+            else if (allQuestions.length) { nextQuestionIndex = 0; return allQuestions[nextQuestionIndex++]; }
+            return null;
+        }
+        function replaceQuestion(answeredId) {
+            let newQ = getNextQuestion();
+            if (newQ) {
+                currentSuggestions = currentSuggestions.filter(q => q.id !== answeredId);
+                currentSuggestions.push(newQ);
+                renderSuggestions();
+            } else {
+                currentSuggestions = currentSuggestions.filter(q => q.id !== answeredId);
+                renderSuggestions();
+            }
+        }
+        function renderSuggestions() {
+            let panel = document.getElementById('suggestionsPanel');
+            if (!panel) return;
+            panel.innerHTML = '';
+            currentSuggestions.forEach(q => {
+                let chip = document.createElement('div');
+                chip.className = 'suggestion-chip';
+                chip.innerHTML = `<i class="fas fa-question-circle"></i> ${q.question}`;
+                chip.onclick = () => askQuestion(q);
+                panel.appendChild(chip);
+            });
+        }
+        function toggleChat() {
+            let w = document.getElementById('chatWindow');
+            w.style.display = w.style.display === 'flex' ? 'none' : 'flex';
+            if (w.style.display === 'flex' && !document.getElementById('chatMessages').children.length) {
+                addBotMessage("مرحباً! أنا Nazaha Ai، كيف يمكنني مساعدتك؟");
+            }
+        }
+        function addBotMessage(t) {
+            let d = document.getElementById('chatMessages'),
+                div = document.createElement('div');
+            div.className = 'message bot-message';
+            div.innerText = t;
+            d.appendChild(div);
+            d.scrollTop = d.scrollHeight;
+        }
+        function addUserMessage(t) {
+            let d = document.getElementById('chatMessages'),
+                div = document.createElement('div');
+            div.className = 'message user-message';
+            div.innerText = t;
+            d.appendChild(div);
+            d.scrollTop = d.scrollHeight;
+        }
+        function askQuestion(qItem) {
+            addUserMessage(qItem.question);
+            addBotMessage(qItem.answer);
+            if (qItem.followUp) {
+                let followObj = allQuestions.find(q => q.id === qItem.followUp);
+                if (followObj) {
+                    let followDiv = document.createElement('div');
+                    followDiv.className = 'follow-up';
+                    followDiv.innerHTML = `<i class="fas fa-question-circle"></i> ${followObj.question}`;
+                    followDiv.onclick = () => askQuestion(followObj);
+                    document.getElementById('chatMessages').appendChild(followDiv);
+                }
+            }
+            replaceQuestion(qItem.id);
+        }
+
+        // ========== دوال المودالات (التسجيل) ==========
+        function openRegistrationModalDirectly() {
+            document.getElementById('registrationModal').style.display = 'flex';
+            document.getElementById('modalErrorMsg').style.display = 'none';
+        }
+        function closeRegistrationModal() {
+            document.getElementById('registrationModal').style.display = 'none';
+            document.getElementById('termsModal').style.display = 'none';
+            document.getElementById('formModal').style.display = 'none';
+            currentType = '';
+        }
+        function closeTermsModal() {
+            document.getElementById('termsModal').style.display = 'none';
+            document.getElementById('registrationModal').style.display = 'flex';
+        }
+        function closeFormModal() {
+            document.getElementById('formModal').style.display = 'none';
+            document.getElementById('registrationModal').style.display = 'flex';
+        }
+        function showTermsForType(type) {
+            currentType = type;
+            let c = '';
+            if (type === 'انخراط')
+                c =
+                '<h3 style="font-weight:700;">شروط الانخراط</h3><ul style="line-height:2.2;padding-right:20px;"><li>العمر المناسب</li><li>الموافقة على النظام الداخلي</li><li>دفع الاشتراك (إعفاء للمعسرين)</li></ul><p><a href="https://drive.google.com/file/d/1funjxkShUEfVJOQW90pTWyqtarnuMGQh/view" target="_blank" rel="noopener" style="color:var(--primary-light);"><i class="fas fa-file-alt"></i> تحميل النظام الداخلي</a></p>';
+            else if (type === 'تطوع')
+                c =
+                '<h3 style="font-weight:700;">شروط التطوع في الخلايا</h3><ul style="line-height:2.2;padding-right:20px;"><li>العمر المناسب</li><li>اختيار الخلية والمنصب</li><li>الجدية والالتزام</li></ul><p><a href="https://drive.google.com/file/d/1funjxkShUEfVJOQW90pTWyqtarnuMGQh/view" target="_blank" rel="noopener" style="color:var(--primary-light);"><i class="fas fa-file-alt"></i> تحميل النظام الداخلي</a></p>';
+            else
+                c =
+                '<h3 style="font-weight:700;">شروط المشاركة</h3><ul style="line-height:2.2;padding-right:20px;"><li>دفع رسوم المشاركة</li><li>الالتزام بالقوانين</li></ul><p><a href="https://drive.google.com/file/d/1funjxkShUEfVJOQW90pTWyqtarnuMGQh/view" target="_blank" rel="noopener" style="color:var(--primary-light);"><i class="fas fa-file-alt"></i> تحميل النظام الداخلي</a></p>';
+            document.getElementById('termsContent').innerHTML = c;
+            document.getElementById('termsModal').style.display = 'flex';
+            document.getElementById('registrationModal').style.display = 'none';
+            document.getElementById('termsAgreeCheckbox').checked = false;
+        }
+        function acceptTermsAndShowForm() {
+            if (!document.getElementById('termsAgreeCheckbox').checked) { showModalError('termsModal',
+                    'يجب الموافقة على الشروط'); return; }
+            document.getElementById('termsModal').style.display = 'none';
+            renderDynamicFormModal();
+            document.getElementById('formModal').style.display = 'flex';
+            document.getElementById('formModalErrorMsg').style.display = 'none';
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(async (pos) => {
+                    try {
+                        let res = await fetch(
+                            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&accept-language=ar`
+                            );
+                        let data = await res.json();
+                        if (data.address) {
+                            if (document.getElementById('address-hay')) document.getElementById('address-hay')
+                                .value = data.address.suburb || data.address.neighbourhood || '';
+                            if (document.getElementById('address-baladia')) document.getElementById(
+                                'address-baladia').value = data.address.city || data.address.town || '';
+                            if (document.getElementById('address-wilaya')) document.getElementById('address-wilaya')
+                                .value = data.address.state || data.address.country || '';
+                        }
+                    } catch (e) {}
+                }, () => showModalError('formModal', 'لم نتمكن من تحديد موقعك، يرجى إدخال العنوان يدوياً'));
+            }
+        }
+
+        function renderDynamicFormModal() {
+            let container = document.getElementById('dynamic-fields-modal');
+            if (!container) return;
+            let commonFields = `
+            <div><input type="text" id="full-name" placeholder="الإسم واللقب" class="form-input" required onblur="validateFullNameModal()"><div id="name-error" style="color:#ff3b30;font-size:12px;display:none;">الاسم يجب أن يكون عربياً و4 أحرف على الأقل</div></div>
+            <div><input type="date" id="birth-date" class="form-input" required onchange="checkAgeForGuardianModal()"></div>
+            <div><input type="text" id="address-hay" placeholder="الحي / الشارع" class="form-input" required></div>
+            <div><input type="text" id="address-wilaya" placeholder="الولاية" class="form-input" required></div>
+            <div><input type="text" id="address-baladia" placeholder="البلدية" class="form-input" required></div>
+            <div><input type="tel" id="phone" placeholder="رقم الهاتف مرتبط بالواتساب" class="form-input" required pattern="^(05|06|07)[0-9]{8}$|^213[0-9]{9}$"><small style="color:var(--text-muted);">يجب ربط الرقم بالواتساب</small></div>
+            <div><input type="email" id="email" placeholder="البريد الإلكتروني" class="form-input" required></div>
+        `;
+            let specificFields = '';
+            let motivationField =
+                `<textarea id="motivation" rows="3" placeholder="الدافع وراء ${currentType === 'انخراط' ? 'الانخراط' : (currentType === 'تطوع' ? 'التطوع' : 'المشاركة')}" class="form-input" required></textarea>`;
+
+            if (currentType === 'انخراط') {
+                specificFields = `<select id="education-level" class="form-input" required><option value="">المستوى الدراسي</option><option>ابتدائي</option><option>متوسط</option><option>ثانوي</option><option>جامعي ليسانس</option><option>ماستر</option><option>دكتوراه</option></select>
+            <select id="youth-institution" class="form-input" required><option value="">الانخراط في المؤسسات الشبانية</option><option>منخرط في دار الشباب</option><option>منخرط في المركب الرياضي الجواري</option><option>ليس منخرط</option></select>
+            <select id="interest-field" class="form-input" required><option value="">المجال المهتم به</option><option>فكري</option><option>مدني</option><option>اجتماعي</option><option>بيئي</option><option>إبداعي</option><option>تكنولوجي</option><option>ديني</option><option>علمي</option></select>
+            <input id="specialization" placeholder="التخصص الدقيق اختياري" class="form-input">
+            <div style="background:rgba(46,125,50,0.04);border-radius:var(--radius-sm);padding:14px;margin-top:10px;"><h4 style="font-size:14px;margin-bottom:8px;">الاشتراك المالي</h4>
+            <label style="display:block;margin-bottom:6px;"><input type="radio" name="paymentAbility" value="able" onchange="toggleAmountField()" required> أنا قادر على الدفع</label>
+            <label style="display:block;margin-bottom:6px;"><input type="radio" name="paymentAbility" value="unable" onchange="toggleAmountField()" required> غير قادر على الدفع</label>
+            <div id="amount-field" style="display:none;"><input type="number" id="payment-amount" placeholder="المبلغ 300 دج كحد أدنى" class="form-input" min="300"></div>
+            <div id="reason-field" style="display:none;"><textarea id="inability-reason" rows="2" placeholder="سبب عدم القدرة على الدفع" class="form-input"></textarea></div>
+            </div>`;
+            } else if (currentType === 'تطوع') {
+                specificFields = `<select id="education-level" class="form-input" required><option value="">المستوى الدراسي</option><option>ابتدائي</option><option>متوسط</option><option>ثانوي</option><option>جامعي ليسانس</option><option>ماستر</option><option>دكتوراه</option></select>
+            <textarea id="experience" rows="3" placeholder="الخبرات أو المهارات" class="form-input" required></textarea>
+            <select id="cell" class="form-input" required onchange="updatePositions()"><option value="">اختر الخلية</option>
+            <option value="تنظيم">خلية التنظيم وشؤون المنخرطين</option><option value="أمانة">أمانة السر</option><option value="إعلام">خلية الإعلام والرقمنة</option><option value="علاقات">خلية العلاقات العامة</option><option value="موارد">خلية الموارد البشرية</option><option value="مستشارية">المستشارية</option></select>
+            <select id="positionSelect" class="form-input" required><option value="">اختر المنصب</option></select>`;
+            } else if (currentType === 'مشاركة') {
+                specificFields = `<div style="margin-bottom:10px;"><label style="margin-left:16px;"><input type="radio" name="participationType" value="event" onchange="toggleParticipationFieldsModal()" required> مشاركة في فعالية</label><label><input type="radio" name="participationType" value="competition" onchange="toggleParticipationFieldsModal()" required> مشاركة في مسابقة</label></div>
+            <input type="text" id="activity-name" placeholder="اسم المسابقة أو الفعالية" class="form-input" required>
+            <input type="url" id="announcement-link" placeholder="رابط الإعلان" class="form-input" required>
+            <div id="event-fields" style="display:none;"></div>
+            <div id="competition-fields" style="display:none;"><input type="file" id="work-file" accept=".pdf,.docx,image/*,video/*" class="form-input"></div>`;
+            }
+            container.innerHTML = commonFields + specificFields + motivationField +
+                `<div id="guardian-field-container"></div><label style="display:flex;align-items:center;gap:8px;margin-top:10px;cursor:pointer;"><input type="checkbox" id="legal-approval" required> أوافق على جميع الشروط والنظام الداخلي للمنتدى</label>`;
+            window.validateFullNameModal = function() {
+                let n = document.getElementById('full-name'),
+                    e = document.getElementById('name-error');
+                if (n && !validateArabicNameStrict(n.value)) { e.style.display = 'block';
+                    n.style.borderColor = '#ff3b30'; return false; } else { if (e) e.style.display = 'none'; if (n) n.style
+                        .borderColor = ''; return true; }
+            };
+            window.toggleParticipationFieldsModal = function() {
+                let sel = document.querySelector('input[name="participationType"]:checked');
+                let ev = document.getElementById('event-fields'),
+                    comp = document.getElementById('competition-fields');
+                if (sel && sel.value === 'event') { ev.style.display = 'block';
+                    comp.style.display = 'none';
+                    ev.innerHTML = ''; } else if (sel && sel.value === 'competition') { ev.style.display = 'none';
+                    comp.style.display = 'block'; }
+            };
+            window.toggleAmountField = function() {
+                let able = document.querySelector('input[name="paymentAbility"]:checked');
+                let amountDiv = document.getElementById('amount-field');
+                let reasonDiv = document.getElementById('reason-field');
+                if (able && able.value === 'able') { amountDiv.style.display = 'block';
+                    reasonDiv.style.display = 'none'; } else if (able && able.value === 'unable') { amountDiv.style
+                        .display = 'none';
+                    reasonDiv.style.display = 'block'; }
+            };
+            window.checkAgeForGuardianModal = function() {
+                let birth = document.getElementById('birth-date').value;
+                if (!birth) return;
+                let age = calculateAge(birth);
+                let guardianContainer = document.getElementById('guardian-field-container');
+                if (currentType === 'مشاركة' && age < 18) {
+                    guardianContainer.innerHTML =
+                        `<div style="background:rgba(46,125,50,0.04);border-radius:var(--radius-sm);padding:14px;margin-top:10px;"><h4 style="font-size:14px;">موافقة الولي</h4><input type="text" id="guardian-name" placeholder="اسم الولي إجباري" class="form-input" required><input type="text" id="guardian-id" placeholder="رقم بطاقة الولي اختياري" class="form-input"><label style="display:flex;align-items:center;gap:6px;cursor:pointer;"><input type="checkbox" id="guardian-consent" required> أقر بأن ولي أمري موافق على تسجيلي</label></div>`;
+                } else { guardianContainer.innerHTML = ''; }
+            };
+            if (currentType === 'تطوع') updatePositions();
+        }
+
+        window.updatePositions = function() {
+            let cell = document.getElementById('cell').value;
+            let posSelect = document.getElementById('positionSelect');
+            let opts = [];
+            if (cell === 'تنظيم') opts = [
+                'رئيس الخلية: (المسؤول المباشر والحصري عن قاعدة بيانات المنخرطين وضمان سريتها، والمشرف العام على الأنشطة)',
+                'مدير الفعاليات: المكلف بتحضير النشاطات والمبادرات ميدانياً',
+                'منسق المسابقات: المسؤول عن إدارة المسابقات (الرياضية، الفكرية، إلخ)',
+                'مسؤول اللوجستيك: المكلف بتجهيز المعدات والوسائل للفعاليات',
+                'لجنة الشؤون القانونية: (تتبع الخلية تنظيمياً ولها استقلالية في القرار) وتضم: المحامي / المستشار القانوني للدعم القانوني، ومسؤول الانضباط'
+            ];
+            else if (cell === 'أمانة') opts = ['أمين السر العام: المسؤول عن كتابة محاضر الاجتماعات، تدوين الحضور، وتنظيم سجلات الإدارة العليا',
+                'المدقق اللغوي: مراجعة البيانات والمراسلات الرسمية'
+            ];
+            else if (cell === 'إعلام') opts = ['رئيس الخلية: المشرف على الفريق الإعلامي', 'مبرمج: لإدارة الموقع والتطبيقات',
+                'ممنتج: لتحرير الفيديوهات', 'مصور: لتوثيق الفعاليات', 'مصمم جرافيك: للهوية البصرية والبوسترات',
+                'صحفي: لصياغة الأخبار والتقارير', 'منشط: مقدم الفعاليات والبودكاست'
+            ];
+            else if (cell === 'علاقات') opts = ['رئيس الخلية: المشرف على لجان الاتصال', 'سفير / ممثل: لتمثيل المنتدى في الولاية او دولياً',
+                'منسق العلاقات (الوطنية/الولائية): لفتح سبل التعاون مع المؤسسات',
+                'مسؤول البروتوكول: لإدارة المراسيم والاستقبالات الرسمية'
+            ];
+            else if (cell === 'موارد') opts = ['رئيس الخلية: المشرف على التوظيف والتطوير', 'محاضر: لتقديم الندوات الفكرية',
+                'مدرب: لتطوير مهارات الأعضاء', 'أخصائي استقطاب: لإجراء المقابلات واختيار الكفاءات'
+            ];
+            else if (cell === 'مستشارية') opts = ['مستشار رئيسي: المنسق العام للمستشارين',
+                'مستشار (سياسي / استراتيجي / قانوني): لتقديم الدراسات والمشورة للرئاسة'
+            ];
+            posSelect.innerHTML = '<option value="">اختر المنصب</option>' + opts.map(o => `<option>${o}</option>`).join(
+            '');
+        };
+
+        async function handleDynamicForm(e) {
+            e.preventDefault();
+            if (!validateArabicNameStrict(document.getElementById('full-name').value)) { showModalError('formModal',
+                    'الاسم غير صحيح، يرجى إدخال اسمك الحقيقي'); return; }
+            let name = document.getElementById('full-name').value.trim(),
+                birth = document.getElementById('birth-date').value,
+                phone = document.getElementById('phone').value.trim(),
+                email = document.getElementById('email').value.trim(),
+                motivation = document.getElementById('motivation').value.trim();
+            if (!motivation) { showModalError('formModal', 'يرجى كتابة الدافع'); return; }
+            if (!document.getElementById('legal-approval')?.checked) { showModalError('formModal',
+                'يجب الموافقة على الشروط'); return; }
+            let age = calculateAge(birth);
+            if (age < 14) { showModalError('formModal', 'عمرك أقل من 14 سنة'); return; }
+            if (currentType === 'انخراط' && age > 30) { showModalError('formModal', 'عمرك يتجاوز 30 سنة للعضوية'); return; }
+            let wilaya = document.getElementById('address-wilaya').value.trim(),
+                baladia = document.getElementById('address-baladia').value.trim();
+            let params = {
+                full_name: name,
+                phone: phone,
+                email: email,
+                birth_date: birth,
+                age: age,
+                address: `${document.getElementById('address-hay').value} - ${baladia} - ${wilaya}`,
+                motivation: motivation,
+                type: currentType,
+                submission_date: new Date().toLocaleString('ar-EG'),
+                user_agent: navigator.userAgent
+            };
+            if (currentType === 'انخراط') {
+                params.education_level = document.getElementById('education-level').value;
+                params.youth_institution = document.getElementById('youth-institution').value;
+                params.interest_field = document.getElementById('interest-field').value;
+                params.specialization = document.getElementById('specialization').value;
+                let paymentAble = document.querySelector('input[name="paymentAbility"]:checked')?.value;
+                if (paymentAble === 'able') {
+                    let amount = document.getElementById('payment-amount').value;
+                    if (amount && parseInt(amount) < 300) { showModalError('formModal', 'المبلغ لا يمكن أن يقل عن 300 دج'); return; }
+                    params.amount = amount;
+                    params.inability_reason = '';
+                } else if (paymentAble === 'unable') { params.amount = '';
+                    params.inability_reason = document.getElementById('inability-reason')?.value || ''; } else {
+                    showModalError('formModal', 'يرجى تحديد القدرة على الدفع'); return; }
+            } else if (currentType === 'تطوع') {
+                params.education_level = document.getElementById('education-level').value;
+                params.experience = document.getElementById('experience').value;
+                params.cell = document.getElementById('cell').value;
+                params.position = document.getElementById('positionSelect').value;
+            } else if (currentType === 'مشاركة') {
+                let partType = document.querySelector('input[name="participationType"]:checked')?.value;
+                if (!partType) { showModalError('formModal', 'يرجى تحديد نوع المشاركة'); return; }
+                params.participation_type = partType;
+                params.activity_name = document.getElementById('activity-name').value;
+                params.announcement_link = document.getElementById('announcement-link').value;
+                if (partType === 'competition') {
+                    let fileInput = document.getElementById('work-file');
+                    if (fileInput && fileInput.files.length > 0) params.work_file = fileInput.files[0].name +
+                        ' يرسل يدوياً';
+                    else params.work_file = 'لم يتم رفع ملف';
+                }
+                let guardianName = document.getElementById('guardian-name')?.value;
+                if (guardianName) params.guardian_name = guardianName;
+                let guardianId = document.getElementById('guardian-id')?.value;
+                if (guardianId) params.guardian_id = guardianId;
+                let guardianConsent = document.getElementById('guardian-consent')?.checked;
+                if (guardianConsent !== undefined) params.guardian_consent = guardianConsent ? 'نعم' : 'لا';
+            }
+            let btn = document.getElementById('submit-btn-modal'),
+                orig = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> جاري الإرسال...';
+            btn.disabled = true;
+            try {
+                if (window.firebaseDB) {
+                    const db = window.firebaseDB;
+                    const { collection, addDoc, serverTimestamp } = window.FirestoreModules;
+                    await addDoc(collection(db, 'registrations'), {
+                        ...params,
+                        createdAt: serverTimestamp(),
+                        status: 'new'
+                    });
+                    console.log("[Firebase] تم حفظ التسجيل في قاعدة البيانات");
+                }
+                await emailjs.send('service_kbbvwbh', 'template_m1zojd7', {
+                    full_name: name,
+                    phone: phone,
+                    type: currentType,
+                    message: `طلب ${currentType} جديد من ${name} - ${phone}`
+                });
+                showToast('success', 'تم إرسال طلبك بنجاح! سنتواصل معك قريباً.');
+                closeFormModal();
+                disableAllTypeButtons();
+                currentType = '';
+            } catch (err) {
+                console.error(err);
+                showModalError('formModal', 'فشل الإرسال، سيتم فتح بريدك لإرسال الطلب يدوياً');
+                let body = Object.entries(params).map(([k, v]) => `${k}: ${v}`).join('\n');
+                window.location.href =
+                    `mailto:nazahaa36.inf@gmail.com?subject=طلب تسجيل - ${currentType}&body=${encodeURIComponent(body)}`;
+            } finally { btn.innerHTML = orig;
+                btn.disabled = false; }
+        }
+
+        async function sendContactMessage(e) {
+            e.preventDefault();
+            let name = document.getElementById('contactName').value,
+                email = document.getElementById('contactEmail').value,
+                phone = document.getElementById('contactPhone').value,
+                address = document.getElementById('contactAddress').value,
+                msg = document.getElementById('contactMessage').value;
+            let btn = e.target.querySelector('button[type="submit"]'),
+                orig = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> جاري...';
+            btn.disabled = true;
+            try {
+                if (window.firebaseDB) {
+                    const db = window.firebaseDB;
+                    const { collection, addDoc, serverTimestamp } = window.FirestoreModules;
+                    await addDoc(collection(db, 'contact_messages'), {
+                        full_name: name,
+                        email: email,
+                        phone: phone,
+                        address: address,
+                        message: msg,
+                        createdAt: serverTimestamp(),
+                        status: 'new'
+                    });
+                }
+                await emailjs.send('service_kbbvwbh', 'template_m1zojd7', {
+                    full_name: name,
+                    phone: phone,
+                    email: email,
+                    message: msg,
+                    type: "تواصل"
+                });
+                showToast('success', 'شكراً لتواصلك! سنرد عليك قريباً.');
+                e.target.reset();
+            } catch (err) { showToast('error', 'حدث خطأ، حاول مرة أخرى'); } finally { btn.innerHTML = orig;
+                btn.disabled = false; }
+        }
+
+        // ========== الفضاء (Space/Feed) ==========
+        async function loadFeedItems() {
+            const feedGrid = document.getElementById('feedGrid');
+            if (!feedGrid) return;
+            feedGrid.innerHTML = '<div class="feed-card" style="align-items:center;justify-content:center;padding:40px;text-align:center;color:var(--text-muted);"><i class="fas fa-spinner fa-pulse" style="font-size:32px;margin-bottom:12px;display:block;"></i><span>جاري تحميل المنشورات...</span></div>';
+            try {
+                if (window.firebaseDB) {
+                    const db = window.firebaseDB;
+                    const { collection, getDocs, query, orderBy, limit: flimit } = window.FirestoreModules;
+                    const q = query(collection(db, 'activities'), orderBy('createdAt', 'desc'), flimit(20));
+                    const snapshot = await getDocs(q);
+                    if (!snapshot.empty) {
+                        let items = [];
+                        snapshot.forEach(doc => items.push({ id: doc.id, ...doc.data() }));
+                        renderFeedItems(items);
+                        return;
+                    }
+                }
+                renderFeedItems([]);
+            } catch (e) {
+                console.error("فشل تحميل المنشورات:", e);
+                renderFeedItems([]);
+            }
+        }
+
+        function renderFeedItems(items) {
+            const feedGrid = document.getElementById('feedGrid');
+            if (!feedGrid) return;
+            if (!items.length) {
+                feedGrid.innerHTML = '<div class="feed-card" style="align-items:center;justify-content:center;padding:40px;text-align:center;color:var(--text-muted);grid-column:1/-1;"><i class="fas fa-inbox" style="font-size:40px;margin-bottom:12px;display:block;"></i><span>لا توجد منشورات حالياً</span></div>';
+                return;
+            }
+            feedGrid.innerHTML = items.map(item => `
+            <div class="feed-card" onclick="openFeedDetail('${item.id}')">
+              <div class="feed-card-image">
+                ${item.imageUrl ? `<img src="${item.imageUrl}" alt="${item.title}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\\'fas fa-image\\'></i>'">` : '<i class="fas fa-newspaper"></i>'}
+              </div>
+              <div class="feed-card-body">
+                <div class="feed-card-title">${item.title}</div>
+                <div class="feed-card-excerpt">${item.content.substring(0, 100)}...</div>
+                <div class="feed-card-meta">
+                  <span><i class="fas fa-map-marker-alt"></i> ${item.location || 'غير محدد'}</span>
+                  <span><i class="fas fa-calendar"></i> ${item.date || ''}</span>
+                  <span><i class="fas fa-user"></i> ${item.author || 'مجهول'}</span>
+                </div>
+                <div class="feed-card-actions" onclick="event.stopPropagation()">
+                  <button class="feed-action-btn ${isItemLiked(item.id) ? 'liked' : ''}" onclick="toggleLike('${item.id}')"><i class="fas fa-heart"></i> <span id="like-count-${item.id}">${item.likes || 0}</span></button>
+                  <button class="feed-action-btn" onclick="openFeedDetail('${item.id}')"><i class="fas fa-comment"></i> تعليق</button>
+                  <button class="feed-action-btn" onclick="shareItem('${item.id}')"><i class="fas fa-share"></i> مشاركة</button>
+                </div>
+              </div>
+            </div>
+          `).join('');
+        }
+
+        function isItemLiked(itemId) {
+            let liked = localStorage.getItem('nazaha_liked');
+            if (!liked) return false;
+            return JSON.parse(liked).includes(itemId);
+        }
+
+        function toggleLike(itemId) {
+            let liked = localStorage.getItem('nazaha_liked');
+            let likedArr = liked ? JSON.parse(liked) : [];
+            let countEl = document.getElementById('like-count-' + itemId);
+            let btn = countEl?.closest('.feed-action-btn');
+            if (likedArr.includes(itemId)) {
+                likedArr = likedArr.filter(id => id !== itemId);
+                if (countEl) countEl.innerText = Math.max(0, parseInt(countEl.innerText) - 1);
+                if (btn) btn.classList.remove('liked');
+            } else {
+                likedArr.push(itemId);
+                if (countEl) countEl.innerText = parseInt(countEl.innerText) + 1;
+                if (btn) btn.classList.add('liked');
+                playSound('success');
+            }
+            localStorage.setItem('nazaha_liked', JSON.stringify(likedArr));
+            if (window.firebaseDB) {
+                try {
+                    const db = window.firebaseDB;
+                    const { doc, updateDoc, increment } = window.FirestoreModules;
+                    updateDoc(doc(db, 'activities', itemId), { likes: increment(likedArr.includes(itemId) ? 1 : -1) })
+                        .catch(() => {});
+                } catch (e) {}
+            }
+        }
+
+        function openFeedDetail(itemId) {
+            const modal = document.getElementById('feedDetailModal');
+            const content = document.getElementById('feedDetailContent');
+            let item = null;
+            document.querySelectorAll('.feed-card').forEach(card => {
+                let title = card.querySelector('.feed-card-title')?.innerText;
+                let excerpt = card.querySelector('.feed-card-excerpt')?.innerText;
+                let meta = card.querySelector('.feed-card-meta')?.innerHTML;
+                if (title) item = { id: itemId, title, content: excerpt, meta };
+            });
+            if (!item) item = { id: itemId, title: 'تفاصيل المنشور', content: 'جاري التحميل...', meta: '' };
+            content.innerHTML = `
+            <button class="modal-close" onclick="document.getElementById('feedDetailModal').style.display='none'"><i class="fas fa-times"></i></button>
+            <h3 style="font-weight:700;margin-bottom:12px;">${item.title}</h3>
+            <div style="font-size:13px;color:var(--text-muted);margin-bottom:16px;display:flex;gap:14px;flex-wrap:wrap;">${item.meta || ''}</div>
+            <p style="line-height:1.8;color:var(--text-secondary);">${item.content}</p>
+            <div style="display:flex;gap:10px;margin-top:20px;padding-top:16px;border-top:1px solid var(--border-light);">
+              <button class="feed-action-btn ${isItemLiked(itemId) ? 'liked' : ''}" onclick="toggleLike('${itemId}')"><i class="fas fa-heart"></i> <span id="like-count-detail-${itemId}">${document.getElementById('like-count-'+itemId)?.innerText || 0}</span></button>
+              <button class="feed-action-btn" onclick="shareItem('${itemId}')"><i class="fas fa-share"></i> مشاركة</button>
+            </div>
+            <div style="margin-top:16px;">
+              <h4 style="font-weight:600;margin-bottom:8px;"><i class="fas fa-comments"></i> التعليقات</h4>
+              <div id="comments-section-${itemId}" style="font-size:13px;color:var(--text-muted);">لا توجد تعليقات بعد</div>
+              <textarea id="comment-input-${itemId}" rows="2" placeholder="أضف تعليقاً..." class="form-input" style="margin-top:8px;"></textarea>
+              <button class="btn-submit" onclick="addComment('${itemId}')" style="margin-top:6px;">إرسال تعليق</button>
+            </div>
+          `;
+            modal.style.display = 'flex';
+            loadComments(itemId);
+        }
+
+        async function loadComments(itemId) {
+            const section = document.getElementById('comments-section-' + itemId);
+            if (!section) return;
+            try {
+                if (window.firebaseDB) {
+                    const db = window.firebaseDB;
+                    const { collection, getDocs, query, orderBy } = window.FirestoreModules;
+                    const q = query(collection(db, 'activities', itemId, 'comments'), orderBy('createdAt', 'desc'));
+                    const snapshot = await getDocs(q);
+                    if (!snapshot.empty) {
+                        let html = '';
+                        snapshot.forEach(doc => {
+                            let c = doc.data();
+                            html +=
+                                `<div style="padding:8px 0;border-bottom:1px solid var(--border-light);"><strong>${c.author || 'مجهول'}</strong>: ${c.text}</div>`;
+                        });
+                        section.innerHTML = html;
+                        return;
+                    }
+                }
+            } catch (e) {}
+            section.innerHTML = '<span>لا توجد تعليقات بعد</span>';
+        }
+
+        async function addComment(itemId) {
+            let input = document.getElementById('comment-input-' + itemId);
+            if (!input || !input.value.trim()) return;
+            let text = input.value.trim();
+            let author = 'زائر';
+            try {
+                if (window.firebaseDB) {
+                    const db = window.firebaseDB;
+                    const { collection, addDoc, serverTimestamp } = window.FirestoreModules;
+                    await addDoc(collection(db, 'activities', itemId, 'comments'), {
+                        text,
+                        author,
+                        createdAt: serverTimestamp()
+                    });
+                }
+                input.value = '';
+                showToast('success', 'تم إضافة التعليق');
+                loadComments(itemId);
+            } catch (e) { showToast('error', 'فشل إضافة التعليق'); }
+        }
+
+        function shareItem(itemId) {
+            if (navigator.share) {
+                navigator.share({ title: 'nazaha.dz', url: window.location.href + '#space' }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(window.location.href + '#space').then(() => showToast('info',
+                    'تم نسخ الرابط للمشاركة'));
+            }
+        }
+
+        function openArticleSubmissionModal() {
+            document.getElementById('articleModal').style.display = 'flex';
+            document.getElementById('articleModalErrorMsg').style.display = 'none';
+        }
+
+        function closeArticleModal() {
+            document.getElementById('articleModal').style.display = 'none';
+        }
+
+        async function submitArticle(e) {
+            e.preventDefault();
+            let title = document.getElementById('articleTitle').value.trim();
+            let content = document.getElementById('articleContent').value.trim();
+            let author = document.getElementById('articleAuthor').value.trim();
+            let imageUrl = document.getElementById('articleImageUrl').value.trim();
+            let location = document.getElementById('articleLocation').value.trim();
+            if (!title || !content || !author) {
+                document.getElementById('articleModalErrorMsg').querySelector('span').innerText = 'يرجى ملء الحقول الإجبارية';
+                document.getElementById('articleModalErrorMsg').style.display = 'flex';
+                setTimeout(() => document.getElementById('articleModalErrorMsg').style.display = 'none', 4000);
+                return;
+            }
+            let btn = document.getElementById('articleForm').querySelector('button[type="submit"]');
+            let orig = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> جاري...';
+            btn.disabled = true;
+            try {
+                if (window.firebaseDB) {
+                    const db = window.firebaseDB;
+                    const { collection, addDoc, serverTimestamp } = window.FirestoreModules;
+                    await addDoc(collection(db, 'articles'), {
+                        title,
+                        content,
+                        author,
+                        imageUrl,
+                        location,
+                        status: 'pending',
+                        createdAt: serverTimestamp(),
+                        likes: 0
+                    });
+                }
+                showToast('success', 'تم إرسال مقالك للمراجعة، سيتم نشره بعد موافقة المسؤولين');
+                closeArticleModal();
+                document.getElementById('articleForm').reset();
+            } catch (e) { showToast('error', 'فشل الإرسال، حاول مرة أخرى'); } finally { btn.innerHTML = orig;
+                btn.disabled = false; }
+        }
+
+        // ========== تهيئة الصفحة ==========
+        window.addEventListener('load', async () => {
+            await loadQuestions();
+            observeStats();
+            checkIfAlreadyRegistered();
+            loadFeedItems();
+        });
+
+        window.onclick = function(event) {
+            document.querySelectorAll('.modal-overlay').forEach(modal => {
+                if (event.target === modal) modal.style.display = 'none';
+            });
+        };
+
+        document.querySelectorAll('.side-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (sideNavOpen) toggleSideNav();
+            });
+        });
+    </script>
+</body>
+</html>
+```
