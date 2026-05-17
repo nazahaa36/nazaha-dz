@@ -244,17 +244,28 @@ body.dark .topbar{background:rgba(16,26,18,.92);}
 .notif-time{font-size:10px;color:var(--text-muted);white-space:nowrap;margin-top:1px;}
 .notif-dot-s{width:6px;height:6px;border-radius:50%;background:var(--primary-light);flex-shrink:0;margin-top:4px;}
 
-/* MEMBERSHIP CARD */
-.mem-card{background:linear-gradient(135deg,#1a6b2f 0%,#0f4a1e 60%,#1a6b2f 100%);border-radius:18px;padding:22px 24px;color:#fff;max-width:370px;margin:0 auto;position:relative;overflow:hidden;}
-.mem-card::before{content:'';position:absolute;top:-50px;right:-50px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.06);}
-.mem-card::after{content:'';position:absolute;bottom:-60px;left:-20px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.04);}
-.mc-org{font-size:10px;font-weight:700;opacity:.65;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:14px;position:relative;z-index:1;}
-.mc-name{font-size:19px;font-weight:900;margin-bottom:4px;position:relative;z-index:1;}
-.mc-id{font-family:var(--mono);font-size:14px;font-weight:700;background:rgba(255,255,255,.14);display:inline-block;padding:3px 11px;border-radius:6px;margin-bottom:9px;letter-spacing:2px;position:relative;z-index:1;}
-.mc-line{font-size:11.5px;opacity:.75;margin-bottom:2px;position:relative;z-index:1;}
-.mc-bottom{display:flex;justify-content:space-between;align-items:flex-end;margin-top:16px;border-top:1px solid rgba(255,255,255,.18);padding-top:12px;position:relative;z-index:1;}
-.mc-type{background:rgba(255,255,255,.16);padding:4px 11px;border-radius:50px;font-size:10.5px;font-weight:800;}
-.mc-year{font-size:10px;opacity:.6;}
+/* MEMBERSHIP CARD — بطاقة هوية احترافية بيضاء */
+.id-card-wrap{width:340px;margin:0 auto;}
+.id-card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.18);border:1px solid #e0e0e0;font-family:'Cairo',sans-serif;color:#111;}
+.id-card-header{background:linear-gradient(135deg,#1a6b2f 0%,#0f4a1e 100%);padding:14px 18px 12px;display:flex;align-items:center;gap:12px;position:relative;}
+.id-card-header::after{content:'';position:absolute;bottom:-12px;left:0;right:0;height:12px;background:#fff;border-radius:0 0 0 0;}
+.id-card-logo{width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:22px;border:1.5px solid rgba(255,255,255,.3);}
+.id-card-org{color:rgba(255,255,255,.9);font-size:11px;font-weight:700;line-height:1.4;}
+.id-card-org strong{display:block;font-size:13px;color:#fff;}
+.id-card-body{padding:16px 18px 10px;}
+.id-card-avatar{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#2ecc5a,#1a6b2f);display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;font-weight:900;float:left;margin-left:12px;margin-bottom:4px;border:3px solid #e8f5e9;flex-shrink:0;}
+.id-card-name{font-size:16px;font-weight:900;color:#111;margin-bottom:3px;}
+.id-card-type{display:inline-block;background:#e8f5e9;color:#1a6b2f;font-size:10px;font-weight:800;padding:2px 10px;border-radius:50px;margin-bottom:8px;}
+.id-card-fields{clear:both;display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;}
+.id-card-field{background:#f8f9fa;border-radius:6px;padding:6px 9px;}
+.id-card-field-label{font-size:9px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:1px;}
+.id-card-field-val{font-size:11.5px;font-weight:700;color:#222;}
+.id-card-id{font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:900;color:#1a6b2f;letter-spacing:2px;text-align:center;margin-bottom:8px;}
+.id-card-barcode{background:#fff;text-align:center;padding:8px 0 4px;}
+.id-card-barcode svg{max-width:100%;}
+.id-card-footer{background:#f8f9fa;padding:8px 18px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #eee;}
+.id-card-footer-org{font-size:9px;color:#888;font-weight:700;}
+.id-card-footer-year{font-size:9px;color:#aaa;}
 
 /* MESSAGING */
 .msg-layout{display:flex;height:calc(100vh - 108px);border-radius:var(--r);overflow:hidden;border:1px solid var(--border-light);background:var(--surface);}
@@ -309,8 +320,10 @@ body.dark .topbar{background:rgba(16,26,18,.92);}
 .settings-card h4{font-weight:900;font-size:14px;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
 
 /* CHARTS */
-.chart-container{background:var(--surface);border-radius:var(--r);padding:20px;border:1px solid var(--border-light);box-shadow:var(--shadow-sm);margin-bottom:15px;position:relative;}
+.chart-container{background:var(--surface);border-radius:var(--r);padding:20px;border:1px solid var(--border-light);box-shadow:var(--shadow-sm);margin-bottom:15px;position:relative;overflow:hidden;}
+.chart-container canvas{display:block;max-width:100%;}
 .chart-title{font-weight:900;font-size:14px;margin-bottom:14px;color:var(--text);}
+.chart-wrap{position:relative;width:100%;height:220px;}
 
 /* BARCODE / QR */
 .barcode-wrap{background:#fff;padding:10px;border-radius:var(--r-sm);display:inline-block;}
@@ -484,22 +497,22 @@ body.dark .topbar{background:rgba(16,26,18,.92);}
         <div style="display:grid;grid-template-columns:2fr 1fr;gap:15px;margin-bottom:15px;">
           <div class="chart-container">
             <div class="chart-title"><i class="fas fa-chart-bar" style="color:var(--primary-light);margin-left:8px;"></i>إحصائيات النمو الشهري</div>
-            <canvas id="growthChart" height="220"></canvas>
+            <div class="chart-wrap"><canvas id="growthChart"></canvas></div>
           </div>
           <div class="chart-container">
             <div class="chart-title"><i class="fas fa-users" style="color:var(--primary-light);margin-left:8px;"></i>التوزيع العمري</div>
-            <canvas id="ageChart" height="220"></canvas>
+            <div class="chart-wrap"><canvas id="ageChart"></canvas></div>
           </div>
         </div>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-bottom:15px;">
           <div class="chart-container">
             <div class="chart-title"><i class="fas fa-project-diagram" style="color:var(--primary-light);margin-left:8px;"></i>المجالات والتخصصات</div>
-            <canvas id="fieldChart" height="200"></canvas>
+            <div class="chart-wrap"><canvas id="fieldChart"></canvas></div>
           </div>
           <div class="chart-container">
             <div class="chart-title"><i class="fas fa-venus-mars" style="color:var(--primary-light);margin-left:8px;"></i>التوزيع حسب الجنس</div>
-            <canvas id="genderChart" height="200"></canvas>
+            <div class="chart-wrap"><canvas id="genderChart"></canvas></div>
           </div>
         </div>
 
@@ -523,7 +536,7 @@ body.dark .topbar{background:rgba(16,26,18,.92);}
         </div>
         <div class="filters-bar">
           <div class="search-box"><i class="fas fa-search"></i><input type="text" id="reqQ" placeholder="بحث بالاسم، الهاتف، الولاية، البريد، رقم التعريف..." oninput="renderReqs()"></div>
-          <div class="search-box" style="min-width:140px;flex:0 1 200px;"><i class="fas fa-barcode"></i><input type="text" id="reqBarcode" placeholder="مسح الباركود..." onkeydown="handleBarcodeSearch(event,'req')"></div>
+          <div class="search-box" style="min-width:140px;flex:0 1 200px;"><i class="fas fa-barcode"></i><input type="text" id="reqBarcode" placeholder="مسح الباركود..." oninput="handleBarcodeInput(this.value,'req')" onkeydown="if(event.key==='Enter'){event.preventDefault();handleBarcodeSearch(event,'req');}"></div>
           <select class="filter-sel" id="reqSF" onchange="renderReqs()">
             <option value="all">جميع الحالات</option>
             <option value="pending">قيد الانتظار</option>
@@ -552,7 +565,7 @@ body.dark .topbar{background:rgba(16,26,18,.92);}
         </div>
         <div class="filters-bar">
           <div class="search-box"><i class="fas fa-search"></i><input type="text" id="memQ" placeholder="بحث بالاسم، رقم العضوية، الهاتف..." oninput="renderMembers()"></div>
-          <div class="search-box" style="min-width:140px;flex:0 1 200px;"><i class="fas fa-barcode"></i><input type="text" id="memBarcode" placeholder="مسح الباركود..." onkeydown="handleBarcodeSearch(event,'member')"></div>
+          <div class="search-box" style="min-width:140px;flex:0 1 200px;"><i class="fas fa-barcode"></i><input type="text" id="memBarcode" placeholder="مسح الباركود..." oninput="handleBarcodeInput(this.value,'member')" onkeydown="if(event.key==='Enter'){event.preventDefault();handleBarcodeSearch(event,'member');}"></div>
           <select class="filter-sel" id="memFF" onchange="renderMembers()">
             <option value="all">جميع المجالات</option>
             <option>الفكري والثقافي</option><option>المدني</option><option>الإنساني والاجتماعي</option>
@@ -581,7 +594,7 @@ body.dark .topbar{background:rgba(16,26,18,.92);}
         </div>
         <div class="filters-bar">
           <div class="search-box"><i class="fas fa-search"></i><input type="text" id="volQ" placeholder="بحث بالاسم، رقم التطوع، الخلية..." oninput="renderVolunteers()"></div>
-          <div class="search-box" style="min-width:140px;flex:0 1 200px;"><i class="fas fa-barcode"></i><input type="text" id="volBarcode" placeholder="مسح الباركود..." onkeydown="handleBarcodeSearch(event,'volunteer')"></div>
+          <div class="search-box" style="min-width:140px;flex:0 1 200px;"><i class="fas fa-barcode"></i><input type="text" id="volBarcode" placeholder="مسح الباركود..." oninput="handleBarcodeInput(this.value,'volunteer')" onkeydown="if(event.key==='Enter'){event.preventDefault();handleBarcodeSearch(event,'volunteer');}"></div>
           <select class="filter-sel" id="volCF" onchange="renderVolunteers()">
             <option value="all">جميع الخلايا</option>
             <option>أمانة السر</option><option>الموارد البشرية</option>
@@ -650,38 +663,118 @@ body.dark .topbar{background:rgba(16,26,18,.92);}
       <!-- HUMAN EVALUATION -->
       <div id="section-evaluations" class="section">
         <div class="tabs">
-          <button class="tab active" onclick="filterEval('all',this)">الكل</button>
-          <button class="tab" onclick="filterEval('member',this)">منخرطين</button>
-          <button class="tab" onclick="filterEval('volunteer',this)">متطوعين</button>
+          <button class="tab active" id="evalTab_list" onclick="switchEvalTab('list',this)">قائمة التقييمات</button>
+          <button class="tab" id="evalTab_sheet" onclick="switchEvalTab('sheet',this)">كشف النقاط</button>
+          <button class="tab" id="evalTab_settings" onclick="switchEvalTab('settings',this)"><i class="fas fa-cog" style="font-size:11px;"></i> إعدادات التقييم</button>
         </div>
-        <div class="section-hdr">
-          <h2 class="section-title">التقييم البشري والأداء</h2>
-          <div class="section-acts">
-            <button class="btn btn-success" onclick="openModal('evalModal')"><i class="fas fa-plus"></i> تقييم جديد</button>
-            <button class="btn btn-outline btn-sm" onclick="runAutoEval('weekly')"><i class="fas fa-magic"></i> تقييم أسبوعي تلقائي</button>
-            <button class="btn btn-outline btn-sm" onclick="runAutoEval('monthly')"><i class="fas fa-magic"></i> تقييم شهري تلقائي</button>
+
+        <!-- LIST TAB -->
+        <div id="evalPane_list">
+          <div class="tabs" style="margin-top:0;">
+            <button class="tab active" onclick="filterEval('all',this)">الكل</button>
+            <button class="tab" onclick="filterEval('member',this)">منخرطين</button>
+            <button class="tab" onclick="filterEval('volunteer',this)">متطوعين</button>
+          </div>
+          <div class="section-hdr">
+            <h2 class="section-title">التقييم البشري والأداء</h2>
+            <div class="section-acts">
+              <button class="btn btn-success" onclick="openModal('evalModal')"><i class="fas fa-plus"></i> تقييم جديد</button>
+              <button class="btn btn-outline btn-sm" onclick="runAutoEvalWithCalc('weekly')"><i class="fas fa-magic"></i> تقييم أسبوعي تلقائي</button>
+              <button class="btn btn-outline btn-sm" onclick="runAutoEvalWithCalc('monthly')"><i class="fas fa-magic"></i> تقييم شهري تلقائي</button>
+            </div>
+          </div>
+          <div class="filters-bar">
+            <div class="search-box"><i class="fas fa-search"></i><input type="text" id="evalQ" placeholder="بحث بالاسم..." oninput="renderEvaluations()"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:2fr 1fr;gap:15px;margin-bottom:15px;">
+            <div class="chart-container">
+              <div class="chart-title"><i class="fas fa-chart-line" style="color:var(--primary-light);margin-left:8px;"></i>مؤشر الأداء KPI</div>
+              <div class="chart-wrap"><canvas id="evalChart"></canvas></div>
+            </div>
+            <div class="chart-container">
+              <div class="chart-title"><i class="fas fa-trophy" style="color:var(--primary-light);margin-left:8px;"></i>أفضل الأداء</div>
+              <div id="topPerformers" style="max-height:220px;overflow-y:auto;"></div>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead><tr><th>الشخص</th><th>النوع</th><th>الدورة</th><th id="evalCriteriaTh">المعايير</th><th>المجموع /20</th><th>التاريخ</th><th>الإجراءات</th></tr></thead>
+              <tbody id="evalBody"></tbody>
+            </table>
           </div>
         </div>
-        <div class="filters-bar">
-          <div class="search-box"><i class="fas fa-search"></i><input type="text" id="evalQ" placeholder="بحث بالاسم..." oninput="renderEvaluations()"></div>
-        </div>
-        <div style="display:grid;grid-template-columns:2fr 1fr;gap:15px;margin-bottom:15px;">
-          <div class="chart-container">
-            <div class="chart-title"><i class="fas fa-chart-line" style="color:var(--primary-light);margin-left:8px;"></i>مؤشر الأداء KPI</div>
-            <canvas id="evalChart" height="220"></canvas>
+
+        <!-- SCORE SHEET TAB -->
+        <div id="evalPane_sheet" style="display:none;">
+          <div class="section-hdr">
+            <h2 class="section-title">كشف النقاط التفصيلي</h2>
+            <div class="section-acts">
+              <select id="sheetPersonFilter" class="filter-sel" onchange="renderScoreSheet()">
+                <option value="all">جميع الأشخاص</option>
+              </select>
+              <select id="sheetPeriodFilter" class="filter-sel" onchange="renderScoreSheet()">
+                <option value="all">جميع الفترات</option>
+                <option value="daily">يومي</option>
+                <option value="weekly">أسبوعي</option>
+                <option value="monthly">شهري</option>
+              </select>
+            </div>
           </div>
-          <div class="chart-container">
-            <div class="chart-title"><i class="fas fa-trophy" style="color:var(--primary-light);margin-left:8px;"></i>أفضل الأداء</div>
-            <div id="topPerformers" style="max-height:220px;overflow-y:auto;"></div>
-          </div>
+          <div id="scoreSheetContainer"></div>
         </div>
-        <div class="table-wrap">
-          <table class="data-table">
-            <thead><tr><th>الشخص</th><th>النوع</th><th>الدورة</th><th>المعايير</th><th>المجموع /20</th><th>المقيّم</th><th>التاريخ</th><th>الإجراءات</th></tr></thead>
-            <tbody id="evalBody"></tbody>
-          </table>
+
+        <!-- SETTINGS TAB -->
+        <div id="evalPane_settings" style="display:none;">
+          <div class="section-hdr"><h2 class="section-title">إعدادات معايير التقييم</h2></div>
+          <div class="settings-grid">
+            <div class="settings-card">
+              <h4><i class="fas fa-sliders-h" style="color:var(--primary-light);"></i>تسمية معايير التقييم</h4>
+              <p style="font-size:11px;color:var(--text-muted);margin-bottom:14px;">قم بتخصيص أسماء الحقول ونطاق كل معيار (المجموع الكلي = 20)</p>
+              <div class="form-group" style="margin-bottom:10px;">
+                <label class="form-label">المعيار الأول (0 إلى <input type="number" id="ec1max" class="form-input" style="width:60px;display:inline-block;padding:4px 8px;" value="5" min="1" max="10" onchange="saveEvalSettings()">)</label>
+                <input type="text" id="ec1name" class="form-input" value="الحضور والانضباط" oninput="saveEvalSettings()">
+              </div>
+              <div class="form-group" style="margin-bottom:10px;">
+                <label class="form-label">المعيار الثاني (0 إلى <input type="number" id="ec2max" class="form-input" style="width:60px;display:inline-block;padding:4px 8px;" value="5" min="1" max="10" onchange="saveEvalSettings()">)</label>
+                <input type="text" id="ec2name" class="form-input" value="جودة العمل" oninput="saveEvalSettings()">
+              </div>
+              <div class="form-group" style="margin-bottom:10px;">
+                <label class="form-label">المعيار الثالث (0 إلى <input type="number" id="ec3max" class="form-input" style="width:60px;display:inline-block;padding:4px 8px;" value="5" min="1" max="10" onchange="saveEvalSettings()">)</label>
+                <input type="text" id="ec3name" class="form-input" value="التعاون والفريق" oninput="saveEvalSettings()">
+              </div>
+              <div class="form-group" style="margin-bottom:14px;">
+                <label class="form-label">المعيار الرابع (0 إلى <input type="number" id="ec4max" class="form-input" style="width:60px;display:inline-block;padding:4px 8px;" value="5" min="1" max="10" onchange="saveEvalSettings()">)</label>
+                <input type="text" id="ec4name" class="form-input" value="المبادرة والإبداع" oninput="saveEvalSettings()">
+              </div>
+              <div style="background:rgba(46,204,90,.08);border-radius:var(--r-sm);padding:10px 14px;font-size:12px;color:var(--text-secondary);">
+                <strong>طريقة الحساب التلقائي:</strong><br>
+                • التقييم الأسبوعي = مجموع تقييمات الأيام السبعة ÷ 7<br>
+                • التقييم الشهري = مجموع التقييمات الأسبوعية ÷ عدد الأسابيع<br>
+                • المجموع الكلي: /20 (مجموع الأربعة معايير)
+              </div>
+            </div>
+            <div class="settings-card">
+              <h4><i class="fas fa-calculator" style="color:var(--primary-light);"></i>آلية الحساب التلقائي</h4>
+              <div style="font-size:12.5px;color:var(--text-secondary);line-height:2;">
+                <div style="padding:10px;background:var(--bg);border-radius:var(--r-sm);margin-bottom:10px;border:1px solid var(--border-light);">
+                  <strong style="color:var(--primary);">التقييم اليومي:</strong><br>يُدخَل مباشرة من المدير
+                </div>
+                <div style="padding:10px;background:var(--bg);border-radius:var(--r-sm);margin-bottom:10px;border:1px solid var(--border-light);">
+                  <strong style="color:var(--primary);">التقييم الأسبوعي (تلقائي):</strong><br>(يوم₁ + يوم₂ + ... + يوم₇) ÷ 7
+                </div>
+                <div style="padding:10px;background:var(--bg);border-radius:var(--r-sm);border:1px solid var(--border-light);">
+                  <strong style="color:var(--primary);">التقييم الشهري (تلقائي):</strong><br>(أسبوع₁ + أسبوع₂ + أسبوع₃ + أسبوع₄) ÷ 4
+                </div>
+                <div style="margin-top:12px;padding:10px;background:rgba(229,57,53,.06);border-radius:var(--r-sm);border:1px solid rgba(229,57,53,.15);font-size:11.5px;">
+                  <i class="fas fa-lock" style="color:var(--danger);margin-left:5px;"></i>
+                  <strong>الخصوصية:</strong> التقييمات التي يضعها المدير لا يمكن الاطلاع عليها من الألواح الأخرى ولا من قِبل الأشخاص المُقيَّمين.
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
 
       <!-- PENALTIES -->
       <div id="section-penalties" class="section">
@@ -794,16 +887,28 @@ body.dark .topbar{background:rgba(16,26,18,.92);}
       <div id="section-adminChat" class="section">
         <div class="section-hdr">
           <h2 class="section-title">المراسلة الداخلية — المسؤولين فقط</h2>
-          <button class="btn btn-success btn-sm" onclick="openModal('newAdminChatModal')"><i class="fas fa-edit"></i> محادثة جديدة</button>
+          <div class="section-acts">
+            <button class="btn btn-success btn-sm" onclick="openModal('newAdminChatModal')"><i class="fas fa-edit"></i> محادثة جديدة</button>
+            <button class="btn btn-outline btn-sm" onclick="showMyMessagingId()"><i class="fas fa-id-badge"></i> معرّف المراسلة</button>
+            <button class="btn btn-outline btn-sm" onclick="searchByMessagingId()"><i class="fas fa-search"></i> بحث بمعرّف</button>
+          </div>
+        </div>
+        <div id="myMessagingIdBanner" style="display:none;background:rgba(46,204,90,.08);border:1px solid var(--primary-light);border-radius:var(--r-sm);padding:10px 16px;margin-bottom:14px;display:none;align-items:center;gap:12px;">
+          <i class="fas fa-id-badge" style="color:var(--primary-light);font-size:18px;"></i>
+          <div>
+            <div style="font-size:11px;color:var(--text-muted);">معرّف مراسلتك — شاركه مع الآخرين لكي يجدوك</div>
+            <div id="myMessagingIdVal" style="font-family:var(--mono);font-weight:900;font-size:17px;color:var(--primary);letter-spacing:2px;"></div>
+          </div>
+          <button class="btn btn-outline btn-sm" onclick="copyMessagingId()"><i class="fas fa-copy"></i> نسخ</button>
         </div>
         <div class="msg-layout">
           <div class="msg-sb" id="adminChatSb">
             <div class="msg-sb-hdr"><h3>المسؤولين</h3><button class="btn-icon" onclick="openModal('newAdminChatModal')" style="width:28px;height:28px;font-size:13px;"><i class="fas fa-plus"></i></button></div>
-            <div class="msg-sb-search"><input type="text" placeholder="بحث..." id="adminChatQ" oninput="filterAdminChats()"></div>
+            <div class="msg-sb-search"><input type="text" placeholder="بحث أو أدخل معرّف #..." id="adminChatQ" oninput="filterAdminChats()"></div>
             <div class="msg-contacts" id="adminChatContacts"><div class="loading-row"><i class="fas fa-spinner fa-pulse" style="font-size:18px;color:var(--primary-light);"></i></div></div>
           </div>
           <div class="msg-main" id="adminChatMain">
-            <div class="msg-empty"><i class="fas fa-comments"></i><p>اختر مسؤولاً للمحادثة</p></div>
+            <div class="msg-empty"><i class="fas fa-comments"></i><p>اختر مسؤولاً للمحادثة</p><p style="font-size:11px;margin-top:8px;">أو ابحث بمعرّف المراسلة <strong>#XXXXXXXX</strong></p></div>
           </div>
         </div>
       </div>
@@ -1048,10 +1153,11 @@ body.dark .topbar{background:rgba(16,26,18,.92);}
         <div class="form-group"><label class="form-label">الشخص *</label><select id="evalPerson" class="form-select"><option value="">-- اختر --</option></select></div>
         <div class="form-group"><label class="form-label">النوع</label><select id="evalType" class="form-select"><option value="member">منخرط</option><option value="volunteer">متطوع</option></select></div>
         <div class="form-group"><label class="form-label">الدورة التقييمية</label><select id="evalPeriod" class="form-select"><option value="daily">يومي</option><option value="weekly">أسبوعي</option><option value="monthly">شهري</option></select></div>
-        <div class="form-group"><label class="form-label">الحضور والانضباط (0-5)</label><input type="number" id="evalC1" class="form-input" min="0" max="5" value="0"></div>
-        <div class="form-group"><label class="form-label">جودة العمل (0-5)</label><input type="number" id="evalC2" class="form-input" min="0" max="5" value="0"></div>
-        <div class="form-group"><label class="form-label">التعاون والفريق (0-5)</label><input type="number" id="evalC3" class="form-input" min="0" max="5" value="0"></div>
-        <div class="form-group"><label class="form-label">المبادرة والإبداع (0-5)</label><input type="number" id="evalC4" class="form-input" min="0" max="5" value="0"></div>
+        <div class="form-group"><label class="form-label" id="evalC1Label">الحضور والانضباط (0-5)</label><input type="number" id="evalC1" class="form-input" min="0" max="5" value="0"></div>
+        <div class="form-group"><label class="form-label" id="evalC2Label">جودة العمل (0-5)</label><input type="number" id="evalC2" class="form-input" min="0" max="5" value="0"></div>
+        <div class="form-group"><label class="form-label" id="evalC3Label">التعاون والفريق (0-5)</label><input type="number" id="evalC3" class="form-input" min="0" max="5" value="0"></div>
+        <div class="form-group"><label class="form-label" id="evalC4Label">المبادرة والإبداع (0-5)</label><input type="number" id="evalC4" class="form-input" min="0" max="5" value="0"></div>
+        <div class="form-group"><label class="form-label">المجموع (تلقائي)</label><input type="text" id="evalTotalDisplay" class="form-input" readonly style="font-weight:900;color:var(--primary);font-size:16px;" value="0 / 20"></div>
         <div class="form-group full"><label class="form-label">ملاحظات</label><textarea id="evalNotes" class="form-textarea" rows="2"></textarea></div>
       </div>
     </div>
@@ -1723,8 +1829,17 @@ async function loadStats() {
    CHARTS — رسوم بيانية تفاعلية
    ════════════════════════════════════════════════════════════════ */
 let growthChart, ageChart, fieldChart, genderChart, evalChart;
+const CHART_DEFAULTS = {
+  responsive: true,
+  maintainAspectRatio: false,
+  animation: { duration: 400 },
+  plugins: { legend: { rtl: true } },
+  resizeDelay: 0
+};
 function initCharts() {
-  // Growth chart
+  // Destroy existing charts first
+  [growthChart, ageChart, fieldChart, genderChart].forEach(c => { try { if(c) c.destroy(); } catch(_){} });
+
   const ctx1 = document.getElementById('growthChart');
   if(ctx1) {
     growthChart = new Chart(ctx1, {
@@ -1739,11 +1854,10 @@ function initCharts() {
           borderColor: '#1565c0', backgroundColor: 'rgba(21,101,192,0.1)', tension: 0.4, fill: true
         }]
       },
-      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top', rtl: true } } }
+      options: { ...CHART_DEFAULTS, plugins: { legend: { position: 'top', rtl: true } } }
     });
   }
 
-  // Age distribution
   const ctx2 = document.getElementById('ageChart');
   if(ctx2) {
     const ageData = calculateAgeDistribution();
@@ -1753,11 +1867,10 @@ function initCharts() {
         labels: ['18-24','25-30','31-40','40+'],
         datasets: [{ data: ageData, backgroundColor: ['#2ecc5a','#1565c0','#f57c00','#6a1b9a'] }]
       },
-      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', rtl: true } } }
+      options: { ...CHART_DEFAULTS, plugins: { legend: { position: 'bottom', rtl: true } } }
     });
   }
 
-  // Field distribution
   const ctx3 = document.getElementById('fieldChart');
   if(ctx3) {
     const fieldData = calculateFieldDistribution();
@@ -1767,11 +1880,10 @@ function initCharts() {
         labels: Object.keys(fieldData),
         datasets: [{ label: 'العدد', data: Object.values(fieldData), backgroundColor: '#2ecc5a', borderRadius: 6 }]
       },
-      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+      options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } }
     });
   }
 
-  // Gender distribution
   const ctx4 = document.getElementById('genderChart');
   if(ctx4) {
     genderChart = new Chart(ctx4, {
@@ -1780,7 +1892,7 @@ function initCharts() {
         labels: ['ذكور','إناث'],
         datasets: [{ data: [65, 35], backgroundColor: ['#1565c0','#e53935'] }]
       },
-      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', rtl: true } } }
+      options: { ...CHART_DEFAULTS, plugins: { legend: { position: 'bottom', rtl: true } } }
     });
   }
 }
@@ -1805,32 +1917,41 @@ function calculateFieldDistribution() {
 }
 
 /* ════════════════════════════════════════════════════════════════
-   BARCODE SEARCH — بحث بالباركود
+   BARCODE SEARCH — بحث بالباركود (تلقائي بدون Enter)
    ════════════════════════════════════════════════════════════════ */
+let barcodeTimer = {};
+window.handleBarcodeInput = function(value, type) {
+  // Barcode scanners type fast and often add Enter at end
+  // Detect when input looks like a scanned barcode (7+ chars, no spaces)
+  const clean = value.trim().replace(/\n|\r/g, '');
+  if(!clean) return;
+
+  clearTimeout(barcodeTimer[type]);
+  barcodeTimer[type] = setTimeout(() => {
+    // Auto-open after short delay (barcode scanner finishes quickly)
+    const list = type === 'member' ? allMembers : type === 'volunteer' ? allVolunteers : allReqs;
+    const field = type === 'member' ? 'membershipNumber' : type === 'volunteer' ? 'volunteerNumber' : null;
+    
+    if(field) {
+      const found = list.find(x => x[field] === clean || x[field]?.includes(clean));
+      if(found) {
+        if(type === 'member') { viewMember(found.id); document.getElementById('memBarcode').value = ''; }
+        else if(type === 'volunteer') { viewVolunteer(found.id); document.getElementById('volBarcode').value = ''; }
+      }
+    } else if(type === 'req') {
+      // Search in requests by ID or name
+      const found = allReqs.find(r => r.phone === clean || r.fullName?.includes(clean) || r.membershipNumber === clean || r.volunteerNumber === clean);
+      if(found) { viewReq(found.id); document.getElementById('reqBarcode').value = ''; }
+    }
+  }, 80); // 80ms — fast enough to catch scanner, slow enough to not fire on partial typing
+};
+
 window.handleBarcodeSearch = function(event, type) {
   if(event.key === 'Enter') {
     event.preventDefault();
     const code = event.target.value.trim();
     if(!code) return;
-
-    if(type === 'member' || type === 'volunteer') {
-      // Search by membership/volunteer number
-      const list = type === 'member' ? allMembers : allVolunteers;
-      const field = type === 'member' ? 'membershipNumber' : 'volunteerNumber';
-      const found = list.find(x => x[field] === code);
-      if(found) {
-        if(type === 'member') viewMember(found.id);
-        else viewVolunteer(found.id);
-        event.target.value = '';
-      } else {
-        showToast('لم يتم العثور على رقم التعريف','warning');
-      }
-    } else if(type === 'req') {
-      // Search in requests
-      const found = allReqs.find(r => r.phone === code || r.fullName?.includes(code));
-      if(found) viewReq(found.id);
-      else showToast('لم يتم العثور','warning');
-    }
+    window.handleBarcodeInput(code, type);
   }
 };
 
@@ -2220,37 +2341,71 @@ window.viewVolunteer = function(id) {
 };
 
 /* ════════════════════════════════════════════════════════════════
-   MEMBERSHIP CARD — بطاقة العضوية مع باركود
+   MEMBERSHIP CARD — بطاقة هوية احترافية بيضاء مع باركود داخلها
    ════════════════════════════════════════════════════════════════ */
 window.showCard = function(id) {
   const r = allMembers.find(x => x.id === id) || allVolunteers.find(x => x.id === id);
   if(!r) return;
-  const isVol = r.type === 'تطوع';
+  const isVol = r.type === 'تطوع' || r.volunteerNumber;
   const idNum = r.membershipNumber || r.volunteerNumber || '—';
-  const barcodeId = 'barcode_' + id;
+  const barcodeId = 'barcode_' + id.replace(/[^a-z0-9]/gi,'_');
+  const initials = (r.fullName || '?').split(' ').map(w => w.charAt(0)).slice(0,2).join('');
 
   document.getElementById('cardPreview').innerHTML = `
-    <div class="mem-card">
-      <div class="mc-org">nazaha.dz — المنتدى الشبابي للفكر والمشاركة المدنية</div>
-      <div class="mc-name">${esc(r.fullName)}</div>
-      <div class="mc-id">${idNum}</div>
-      <div class="mc-line"><i class="fas fa-map-marker-alt" style="margin-left:5px;opacity:.7;"></i>${esc(r.addressWilaya)} — ${esc(r.addressBaladia)}</div>
-      <div class="mc-line"><i class="fas fa-${isVol?'layer-group':'book-open'}" style="margin-left:5px;opacity:.7;"></i>${esc(isVol?`${r.cell} / ${r.position}`:r.interestField)}</div>
-      <div class="mc-line"><i class="fas fa-phone" style="margin-left:5px;opacity:.7;"></i>${esc(r.phone)}</div>
-      <div class="mc-line"><i class="fas fa-calendar" style="margin-left:5px;opacity:.7;"></i>تاريخ الإصدار: ${fmt(r.approvedAt || r.timestamp)}</div>
-      <div class="mc-bottom"><span class="mc-type">${isVol?'متطوع':'منخرط'}</span><span class="mc-year">2026 — الجزائر</span></div>
-    </div>
-    <div style="text-align:center;margin-top:15px;">
-      <svg id="${barcodeId}"></svg>
+    <div class="id-card-wrap">
+      <div class="id-card">
+        <div class="id-card-header">
+          <div class="id-card-logo">ن</div>
+          <div class="id-card-org">
+            <strong>نزاهة — المنتدى الشبابي</strong>
+            للفكر والمشاركة المدنية
+          </div>
+        </div>
+        <div class="id-card-body">
+          <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;">
+            <div class="id-card-avatar">${esc(initials)}</div>
+            <div style="flex:1;min-width:0;">
+              <div class="id-card-name">${esc(r.fullName)}</div>
+              <span class="id-card-type">${isVol ? '🤝 متطوع' : '📋 منخرط'}</span>
+            </div>
+          </div>
+          <div class="id-card-fields">
+            <div class="id-card-field">
+              <div class="id-card-field-label">${isVol ? 'الخلية' : 'المجال'}</div>
+              <div class="id-card-field-val" style="font-size:10.5px;">${esc(isVol ? (r.cell || '—') : (r.interestField || '—'))}</div>
+            </div>
+            <div class="id-card-field">
+              <div class="id-card-field-label">الولاية</div>
+              <div class="id-card-field-val" style="font-size:10.5px;">${esc(r.addressWilaya || '—')}</div>
+            </div>
+            <div class="id-card-field">
+              <div class="id-card-field-label">الهاتف</div>
+              <div class="id-card-field-val" style="font-size:10.5px;">${esc(r.phone || '—')}</div>
+            </div>
+            <div class="id-card-field">
+              <div class="id-card-field-label">تاريخ الإصدار</div>
+              <div class="id-card-field-val" style="font-size:10px;">${fmt(r.approvedAt || r.timestamp)}</div>
+            </div>
+          </div>
+          <div class="id-card-id">${esc(idNum)}</div>
+          <div class="id-card-barcode">
+            <svg id="${barcodeId}"></svg>
+          </div>
+        </div>
+        <div class="id-card-footer">
+          <span class="id-card-footer-org">nazaha.dz — الجزائر</span>
+          <span class="id-card-footer-year">2026</span>
+        </div>
+      </div>
     </div>`;
 
   openModal('cardModal');
-  // Generate barcode after modal opens
   setTimeout(() => {
     try {
       JsBarcode('#' + barcodeId, idNum, {
-        format: 'CODE128', width: 2, height: 50, displayValue: true,
-        fontSize: 12, textMargin: 5
+        format: 'CODE128', width: 1.8, height: 44, displayValue: true,
+        fontSize: 11, textMargin: 4, margin: 4,
+        lineColor: '#1a6b2f', background: '#ffffff'
       });
     } catch(e) { console.warn('Barcode error:', e); }
   }, 300);
@@ -2265,59 +2420,124 @@ window.doPrint = function() {
 };
 
 /* ════════════════════════════════════════════════════════════════
-   VOLUNTEER CERTIFICATE — شهادة المتطوع مع QR
+   VOLUNTEER CERTIFICATE — شهادة تطوع احترافية مزخرفة A4 عربية
    ════════════════════════════════════════════════════════════════ */
 window.showCert = function(id) {
   const v = allVolunteers.find(x => x.id === id);
   if(!v) return;
 
-  // Get evaluations for this volunteer
   const volEvals = allEvaluations.filter(e => e.personId === id && e.personType === 'volunteer');
-  const avgScore = volEvals.length ? (volEvals.reduce((a,e) => a + (e.total || 0), 0) / volEvals.length).toFixed(1) : '0.0';
+  const avgScore = volEvals.length ? (volEvals.reduce((a,e) => a + (e.total || 0), 0) / volEvals.length).toFixed(1) : '—';
+  const today = new Date().toLocaleDateString('ar-DZ', {year:'numeric', month:'long', day:'numeric'});
 
   const qrData = JSON.stringify({
     name: v.fullName, position: v.position, cell: v.cell,
-    presidentialPosition: v.presidentialPosition, volunteerNumber: v.volunteerNumber,
-    score: avgScore, date: new Date().toISOString()
+    volunteerNumber: v.volunteerNumber, date: new Date().toISOString()
   });
 
   document.getElementById('certPreview').innerHTML = `
-    <div style="background:linear-gradient(135deg,#1a6b2f 0%,#0f4a1e 100%);border-radius:18px;padding:40px;color:#fff;text-align:center;position:relative;overflow:hidden;max-width:500px;margin:0 auto;">
-      <div style="position:absolute;top:-40px;right:-40px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.08);"></div>
-      <div style="position:absolute;bottom:-50px;left:-30px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.05);"></div>
-      <div style="font-size:12px;font-weight:700;opacity:.7;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;position:relative;z-index:1;">شهادة تقدير</div>
-      <div style="font-size:24px;font-weight:900;margin-bottom:8px;position:relative;z-index:1;">${esc(v.fullName)}</div>
-      <div style="font-size:14px;opacity:.8;margin-bottom:20px;position:relative;z-index:1;">متطوع معتمد في نزاهة.دز</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;text-align:right;margin-bottom:20px;position:relative;z-index:1;">
-        <div style="background:rgba(255,255,255,.12);padding:10px 14px;border-radius:10px;">
-          <div style="font-size:10px;opacity:.7;">الخلية</div>
-          <div style="font-weight:800;font-size:13px;">${esc(v.cell || '—')}</div>
+    <div id="certPrintArea" style="width:794px;min-height:1123px;background:#fff;margin:0 auto;padding:60px 70px;box-sizing:border-box;direction:rtl;font-family:'Cairo',sans-serif;position:relative;overflow:hidden;">
+      
+      <!-- Decorative corners -->
+      <div style="position:absolute;top:0;right:0;width:120px;height:120px;background:linear-gradient(225deg,#1a6b2f 0%,transparent 60%);opacity:.12;"></div>
+      <div style="position:absolute;top:0;left:0;width:120px;height:120px;background:linear-gradient(315deg,#1a6b2f 0%,transparent 60%);opacity:.12;"></div>
+      <div style="position:absolute;bottom:0;right:0;width:120px;height:120px;background:linear-gradient(135deg,#1a6b2f 0%,transparent 60%);opacity:.12;"></div>
+      <div style="position:absolute;bottom:0;left:0;width:120px;height:120px;background:linear-gradient(45deg,#1a6b2f 0%,transparent 60%);opacity:.12;"></div>
+      
+      <!-- Outer border -->
+      <div style="position:absolute;inset:18px;border:3px double #c8a84e;border-radius:4px;pointer-events:none;"></div>
+      <div style="position:absolute;inset:24px;border:1px solid rgba(200,168,78,.4);border-radius:2px;pointer-events:none;"></div>
+
+      <!-- Header -->
+      <div style="text-align:center;margin-bottom:30px;position:relative;">
+        <div style="font-size:11px;letter-spacing:5px;color:#888;font-weight:700;margin-bottom:10px;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+        <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:12px;">
+          <div style="flex:1;height:1px;background:linear-gradient(to left,#c8a84e,transparent);"></div>
+          <div style="width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,#1a6b2f,#0f4a1e);display:flex;align-items:center;justify-content:center;color:#fff;font-size:32px;font-weight:900;box-shadow:0 6px 20px rgba(26,107,47,.3);">ن</div>
+          <div style="flex:1;height:1px;background:linear-gradient(to right,#c8a84e,transparent);"></div>
         </div>
-        <div style="background:rgba(255,255,255,.12);padding:10px 14px;border-radius:10px;">
-          <div style="font-size:10px;opacity:.7;">المنصب</div>
-          <div style="font-weight:800;font-size:13px;">${esc(v.position || '—')}</div>
-        </div>
-        <div style="background:rgba(255,255,255,.12);padding:10px 14px;border-radius:10px;">
-          <div style="font-size:10px;opacity:.7;">المنصب الرئاسي</div>
-          <div style="font-weight:800;font-size:13px;">${esc(v.presidentialPosition || '—')}</div>
-        </div>
-        <div style="background:rgba(255,255,255,.12);padding:10px 14px;border-radius:10px;">
-          <div style="font-size:10px;opacity:.7;">علامة الأداء /20</div>
-          <div style="font-weight:800;font-size:16px;color:#c8a84e;">${avgScore}</div>
+        <div style="font-size:13px;color:#555;font-weight:700;letter-spacing:1px;">المنتدى الشبابي للفكر والمشاركة المدنية</div>
+        <div style="font-size:11px;color:#888;margin-top:3px;">nazaha.dz — الجزائر</div>
+      </div>
+
+      <!-- Certificate title -->
+      <div style="text-align:center;margin-bottom:32px;">
+        <div style="display:inline-block;position:relative;">
+          <div style="font-size:32px;font-weight:900;color:#1a6b2f;letter-spacing:3px;text-shadow:0 2px 8px rgba(26,107,47,.15);">شـهادة تطوع</div>
+          <div style="position:absolute;bottom:-6px;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#c8a84e,transparent);border-radius:2px;"></div>
         </div>
       </div>
-      <div style="margin-bottom:15px;position:relative;z-index:1;">
-        <canvas id="certQR"></canvas>
+
+      <!-- Main text -->
+      <div style="text-align:center;margin-bottom:28px;line-height:2;">
+        <p style="font-size:14px;color:#444;">تشهد إدارة المنتدى الشبابي للفكر والمشاركة المدنية <strong style="color:#1a6b2f;">نزاهة</strong> بأن:</p>
+        <p style="font-size:26px;font-weight:900;color:#111;margin:12px 0;font-variant:small-caps;">${esc(v.fullName)}</p>
+        <p style="font-size:14px;color:#444;">قد أدّى خدمته التطوعية بإخلاص وتفانٍ، وأسهم في نشاطات المنتدى خلال الفترة المحددة.</p>
       </div>
-      <div style="font-size:11px;opacity:.6;position:relative;z-index:1;">رقم التطوع: ${esc(v.volunteerNumber || '—')} | ${fmt(v.timestamp)}</div>
+
+      <!-- Details grid -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:30px;">
+        <div style="background:#f8fdf9;border:1px solid #d4edda;border-radius:10px;padding:14px;text-align:center;">
+          <div style="font-size:10px;color:#888;font-weight:700;margin-bottom:6px;letter-spacing:.5px;">رقم التطوع</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-weight:900;color:#1a6b2f;font-size:15px;letter-spacing:1px;">${esc(v.volunteerNumber || '—')}</div>
+        </div>
+        <div style="background:#f8fdf9;border:1px solid #d4edda;border-radius:10px;padding:14px;text-align:center;">
+          <div style="font-size:10px;color:#888;font-weight:700;margin-bottom:6px;letter-spacing:.5px;">الخلية</div>
+          <div style="font-weight:800;color:#222;font-size:13px;">${esc(v.cell || '—')}</div>
+        </div>
+        <div style="background:#f8fdf9;border:1px solid #d4edda;border-radius:10px;padding:14px;text-align:center;">
+          <div style="font-size:10px;color:#888;font-weight:700;margin-bottom:6px;letter-spacing:.5px;">المنصب</div>
+          <div style="font-weight:800;color:#222;font-size:13px;">${esc(v.position || '—')}</div>
+        </div>
+        ${v.presidentialPosition ? `<div style="background:#fffbf0;border:1px solid #f5e6a3;border-radius:10px;padding:14px;text-align:center;">
+          <div style="font-size:10px;color:#888;font-weight:700;margin-bottom:6px;letter-spacing:.5px;">المنصب الرئاسي</div>
+          <div style="font-weight:800;color:#222;font-size:13px;">${esc(v.presidentialPosition)}</div>
+        </div>` : ''}
+        ${avgScore !== '—' ? `<div style="background:#fffbf0;border:1px solid #f5e6a3;border-radius:10px;padding:14px;text-align:center;">
+          <div style="font-size:10px;color:#888;font-weight:700;margin-bottom:6px;letter-spacing:.5px;">معدل الأداء /20</div>
+          <div style="font-weight:900;color:#c8a84e;font-size:20px;font-family:'IBM Plex Mono',monospace;">${avgScore}</div>
+        </div>` : ''}
+        <div style="background:#f8fdf9;border:1px solid #d4edda;border-radius:10px;padding:14px;text-align:center;">
+          <div style="font-size:10px;color:#888;font-weight:700;margin-bottom:6px;letter-spacing:.5px;">تاريخ الانضمام</div>
+          <div style="font-weight:800;color:#222;font-size:12px;">${fmt(v.timestamp)}</div>
+        </div>
+      </div>
+
+      <!-- QR + Signature area -->
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-top:20px;">
+        <div style="text-align:center;">
+          <canvas id="certQR" style="border-radius:8px;border:2px solid #d4edda;"></canvas>
+          <div style="font-size:9px;color:#aaa;margin-top:4px;">للتحقق من الشهادة</div>
+        </div>
+        <div style="text-align:center;flex:1;padding:0 40px;">
+          <div style="font-size:13px;color:#444;margin-bottom:40px;">صدرت هذه الشهادة بتاريخ</div>
+          <div style="font-size:14px;font-weight:700;color:#1a6b2f;">${today}</div>
+        </div>
+        <div style="text-align:center;min-width:140px;">
+          <div style="border-top:2px solid #1a6b2f;padding-top:8px;margin-top:60px;">
+            <div style="font-size:11px;font-weight:700;color:#1a6b2f;">توقيع رئيس المنتدى</div>
+            <div style="font-size:10px;color:#888;margin-top:3px;">nazaha.dz</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer ornament -->
+      <div style="text-align:center;margin-top:24px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="flex:1;height:1px;background:linear-gradient(to left,#c8a84e,transparent);"></div>
+          <div style="font-size:10px;color:#bbb;letter-spacing:3px;">✦ ✦ ✦</div>
+          <div style="flex:1;height:1px;background:linear-gradient(to right,#c8a84e,transparent);"></div>
+        </div>
+        <div style="font-size:10px;color:#ccc;margin-top:8px;">هذه الشهادة تُمنح تقديراً للجهود المبذولة في خدمة المجتمع</div>
+      </div>
     </div>`;
 
   openModal('certModal');
   setTimeout(() => {
     try {
-      QRCode.toCanvas(document.getElementById('certQR'), qrData, {width: 120, margin: 2});
+      QRCode.toCanvas(document.getElementById('certQR'), qrData, {width: 100, margin: 1});
     } catch(e) { console.warn('QR error:', e); }
-  }, 300);
+  }, 350);
 };
 
 window.printCert = function() {
@@ -2651,26 +2871,32 @@ function updateTopPerformers() {
 function updateEvalChart() {
   const ctx = document.getElementById('evalChart');
   if(!ctx) return;
-  if(evalChart) evalChart.destroy();
+  if(evalChart) { try { evalChart.destroy(); } catch(_){} evalChart = null; }
 
-  // Group by month
   const monthly = {};
   allEvaluations.forEach(e => {
-    const d = e.timestamp?.toDate ? e.timestamp.toDate() : new Date(e.timestamp);
-    const key = d.toLocaleDateString('ar-DZ', {month:'short', year:'numeric'});
-    monthly[key] = (monthly[key] || 0) + 1;
+    try {
+      const d = e.timestamp?.toDate ? e.timestamp.toDate() : new Date(e.timestamp);
+      if(isNaN(d.getTime())) return;
+      const key = d.toLocaleDateString('ar-DZ', {month:'short', year:'numeric'});
+      monthly[key] = (monthly[key] || 0) + 1;
+    } catch(_) {}
   });
+
+  const labels = Object.keys(monthly);
+  const data = Object.values(monthly);
+  if(!labels.length) return;
 
   evalChart = new Chart(ctx, {
     type: 'line',
     data: {
-      labels: Object.keys(monthly),
+      labels,
       datasets: [{
-        label: 'عدد التقييمات', data: Object.values(monthly),
+        label: 'عدد التقييمات', data,
         borderColor: '#2ecc5a', backgroundColor: 'rgba(46,204,90,0.1)', tension: 0.3, fill: true
       }]
     },
-    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+    options: { ...CHART_DEFAULTS, plugins: { legend: { display: false } } }
   });
 }
 
@@ -2742,15 +2968,14 @@ window.runAutoEval = async function(period) {
   const targets = [...allMembers, ...allVolunteers];
   let count = 0;
   for(const person of targets) {
-    // Skip if already evaluated this period
     const existing = allEvaluations.find(e => e.personId === person.id && e.period === period && 
       e.timestamp?.toDate && (new Date() - e.timestamp.toDate()) < (period === 'weekly' ? 7 : 30) * 86400000);
     if(existing) continue;
 
-    const c1 = Math.floor(Math.random() * 2) + 3; // 3-5
+    const c1 = Math.floor(Math.random() * 2) + 3;
     const c2 = Math.floor(Math.random() * 2) + 3;
     const c3 = Math.floor(Math.random() * 2) + 3;
-    const c4 = Math.floor(Math.random() * 2) + 2; // 2-4
+    const c4 = Math.floor(Math.random() * 2) + 2;
     const total = c1 + c2 + c3 + c4;
 
     const data = {
@@ -2768,6 +2993,207 @@ window.runAutoEval = async function(period) {
   playSound('success');
   logActivity('create', `تقييم تلقائي ${period}: ${count} تقييم`);
   await loadEvaluations();
+};
+
+/* ════ EVALUATION SETTINGS ════ */
+function getEvalSettings() {
+  const s = JSON.parse(localStorage.getItem('nzh_eval_settings') || '{}');
+  return {
+    c1name: s.c1name || 'الحضور والانضباط', c1max: s.c1max || 5,
+    c2name: s.c2name || 'جودة العمل', c2max: s.c2max || 5,
+    c3name: s.c3name || 'التعاون والفريق', c3max: s.c3max || 5,
+    c4name: s.c4name || 'المبادرة والإبداع', c4max: s.c4max || 5
+  };
+}
+window.saveEvalSettings = function() {
+  const s = {
+    c1name: document.getElementById('ec1name')?.value || 'الحضور والانضباط',
+    c1max: parseInt(document.getElementById('ec1max')?.value) || 5,
+    c2name: document.getElementById('ec2name')?.value || 'جودة العمل',
+    c2max: parseInt(document.getElementById('ec2max')?.value) || 5,
+    c3name: document.getElementById('ec3name')?.value || 'التعاون والفريق',
+    c3max: parseInt(document.getElementById('ec3max')?.value) || 5,
+    c4name: document.getElementById('ec4name')?.value || 'المبادرة والإبداع',
+    c4max: parseInt(document.getElementById('ec4max')?.value) || 5
+  };
+  localStorage.setItem('nzh_eval_settings', JSON.stringify(s));
+  // Update modal labels
+  const es = getEvalSettings();
+  const l1 = document.querySelector('label[for="evalC1"]') || [...document.querySelectorAll('.form-label')].find(l => l.textContent.includes('الحضور'));
+  if(l1) l1.textContent = `${es.c1name} (0-${es.c1max})`;
+  showToast('تم حفظ إعدادات التقييم','success');
+};
+function loadEvalSettingsUI() {
+  const s = getEvalSettings();
+  ['1','2','3','4'].forEach(i => {
+    const n = document.getElementById('ec'+i+'name'); if(n) n.value = s['c'+i+'name'];
+    const m = document.getElementById('ec'+i+'max'); if(m) m.value = s['c'+i+'max'];
+  });
+}
+
+window.switchEvalTab = function(tab, el) {
+  ['list','sheet','settings'].forEach(t => {
+    const pane = document.getElementById('evalPane_' + t);
+    if(pane) pane.style.display = t === tab ? 'block' : 'none';
+  });
+  document.querySelectorAll('#section-evaluations > .tabs > .tab').forEach(t => t.classList.remove('active'));
+  if(el) el.classList.add('active');
+  if(tab === 'sheet') { populateSheetFilter(); renderScoreSheet(); }
+  if(tab === 'settings') loadEvalSettingsUI();
+};
+
+/* Auto calculation: weekly = avg of daily, monthly = avg of weekly */
+window.runAutoEvalWithCalc = async function(period) {
+  const targets = [...allMembers, ...allVolunteers];
+  let count = 0;
+  const now = new Date();
+
+  for(const person of targets) {
+    let c1, c2, c3, c4, total, notes;
+
+    if(period === 'weekly') {
+      // Average of up to 7 daily evaluations
+      const dailyEvals = allEvaluations.filter(e => 
+        e.personId === person.id && e.period === 'daily' &&
+        e.timestamp?.toDate && (now - e.timestamp.toDate()) < 7 * 86400000
+      );
+      if(dailyEvals.length > 0) {
+        c1 = Math.round(dailyEvals.reduce((a,e)=>a+(e.c1||0),0)/dailyEvals.length);
+        c2 = Math.round(dailyEvals.reduce((a,e)=>a+(e.c2||0),0)/dailyEvals.length);
+        c3 = Math.round(dailyEvals.reduce((a,e)=>a+(e.c3||0),0)/dailyEvals.length);
+        c4 = Math.round(dailyEvals.reduce((a,e)=>a+(e.c4||0),0)/dailyEvals.length);
+        notes = `محسوب تلقائياً من ${dailyEvals.length} تقييم يومي`;
+      } else {
+        c1=Math.floor(Math.random()*2)+3; c2=Math.floor(Math.random()*2)+3;
+        c3=Math.floor(Math.random()*2)+3; c4=Math.floor(Math.random()*2)+2;
+        notes = 'تقييم تلقائي (لا توجد تقييمات يومية)';
+      }
+    } else {
+      // Average of weekly evaluations
+      const weeklyEvals = allEvaluations.filter(e =>
+        e.personId === person.id && e.period === 'weekly' &&
+        e.timestamp?.toDate && (now - e.timestamp.toDate()) < 30 * 86400000
+      );
+      if(weeklyEvals.length > 0) {
+        c1 = Math.round(weeklyEvals.reduce((a,e)=>a+(e.c1||0),0)/weeklyEvals.length);
+        c2 = Math.round(weeklyEvals.reduce((a,e)=>a+(e.c2||0),0)/weeklyEvals.length);
+        c3 = Math.round(weeklyEvals.reduce((a,e)=>a+(e.c3||0),0)/weeklyEvals.length);
+        c4 = Math.round(weeklyEvals.reduce((a,e)=>a+(e.c4||0),0)/weeklyEvals.length);
+        notes = `محسوب تلقائياً من ${weeklyEvals.length} تقييم أسبوعي`;
+      } else {
+        c1=Math.floor(Math.random()*2)+3; c2=Math.floor(Math.random()*2)+3;
+        c3=Math.floor(Math.random()*2)+3; c4=Math.floor(Math.random()*2)+2;
+        notes = 'تقييم تلقائي (لا توجد تقييمات أسبوعية)';
+      }
+    }
+    total = c1 + c2 + c3 + c4;
+
+    const data = {
+      personId: person.id,
+      personType: person.volunteerNumber ? 'volunteer' : 'member',
+      personName: person.fullName,
+      period, c1, c2, c3, c4, total,
+      evaluator: `نظام تلقائي — ${period === 'weekly' ? 'أسبوعي' : 'شهري'}`,
+      notes,
+      timestamp: serverTimestamp()
+    };
+    try { await addDoc(collection(db, 'evaluations'), data); count++; } catch(e) {}
+  }
+  showToast(`تم إنشاء ${count} تقييم ${period === 'weekly' ? 'أسبوعي' : 'شهري'} محسوب تلقائياً`, 'success');
+  playSound('success');
+  logActivity('create', `تقييم تلقائي محسوب ${period}: ${count}`);
+  await loadEvaluations();
+};
+
+/* Score Sheet */
+function populateSheetFilter() {
+  const sel = document.getElementById('sheetPersonFilter');
+  if(!sel) return;
+  const persons = {};
+  allEvaluations.forEach(e => { if(e.personId && e.personName) persons[e.personId] = e.personName; });
+  let h = '<option value="all">جميع الأشخاص</option>';
+  Object.entries(persons).forEach(([id, name]) => h += `<option value="${id}">${esc(name)}</option>`);
+  sel.innerHTML = h;
+}
+window.renderScoreSheet = function() {
+  const personF = document.getElementById('sheetPersonFilter')?.value || 'all';
+  const periodF = document.getElementById('sheetPeriodFilter')?.value || 'all';
+  const es = getEvalSettings();
+  
+  let evals = allEvaluations.filter(e => {
+    if(personF !== 'all' && e.personId !== personF) return false;
+    if(periodF !== 'all' && e.period !== periodF) return false;
+    return true;
+  });
+  evals.sort((a,b) => {
+    const da = a.timestamp?.toDate ? a.timestamp.toDate() : new Date(0);
+    const db2 = b.timestamp?.toDate ? b.timestamp.toDate() : new Date(0);
+    return db2 - da;
+  });
+
+  const container = document.getElementById('scoreSheetContainer');
+  if(!evals.length){ container.innerHTML = '<div class="empty-state"><i class="fas fa-chart-bar"></i><h4>لا توجد تقييمات</h4></div>'; return; }
+
+  const periodLabel = {daily:'يومي', weekly:'أسبوعي', monthly:'شهري'};
+  container.innerHTML = `<div class="table-wrap"><table class="data-table">
+    <thead><tr>
+      <th>الشخص</th><th>النوع</th><th>الفترة</th>
+      <th>${esc(es.c1name)} /${es.c1max}</th>
+      <th>${esc(es.c2name)} /${es.c2max}</th>
+      <th>${esc(es.c3name)} /${es.c3max}</th>
+      <th>${esc(es.c4name)} /${es.c4max}</th>
+      <th>المجموع /20</th><th>التاريخ</th><th>ملاحظات</th>
+    </tr></thead>
+    <tbody>${evals.map(e => {
+      const pct = Math.round((e.total/20)*100);
+      const color = pct >= 75 ? 'var(--primary-light)' : pct >= 50 ? 'var(--warning)' : 'var(--danger)';
+      return `<tr>
+        <td><div class="ucell"><div class="uav">${(e.personName||'?').charAt(0)}</div><div class="uname">${esc(e.personName)}</div></div></td>
+        <td>${e.personType === 'member' ? 'منخرط' : 'متطوع'}</td>
+        <td><span class="badge b-approved">${periodLabel[e.period] || esc(e.period)}</span></td>
+        <td style="text-align:center;font-weight:700;">${e.c1 ?? '—'}</td>
+        <td style="text-align:center;font-weight:700;">${e.c2 ?? '—'}</td>
+        <td style="text-align:center;font-weight:700;">${e.c3 ?? '—'}</td>
+        <td style="text-align:center;font-weight:700;">${e.c4 ?? '—'}</td>
+        <td><span style="font-family:var(--mono);font-size:15px;font-weight:900;color:${color};">${e.total ?? '—'}/20</span></td>
+        <td style="font-size:11px;">${fmt(e.timestamp)}</td>
+        <td style="font-size:11px;color:var(--text-muted);max-width:150px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${esc(e.notes || '—')}</td>
+      </tr>`;
+    }).join('')}</tbody>
+  </table></div>`;
+};
+
+/* ════ MESSAGING ID SYSTEM ════ */
+function getMyMessagingId() {
+  let mid = localStorage.getItem('nzh_messaging_id');
+  if(!mid) {
+    mid = '#' + Math.random().toString(36).substr(2,8).toUpperCase();
+    localStorage.setItem('nzh_messaging_id', mid);
+  }
+  return mid;
+}
+window.showMyMessagingId = function() {
+  const mid = getMyMessagingId();
+  const banner = document.getElementById('myMessagingIdBanner');
+  document.getElementById('myMessagingIdVal').textContent = mid;
+  banner.style.display = banner.style.display === 'flex' ? 'none' : 'flex';
+};
+window.copyMessagingId = function() {
+  const mid = getMyMessagingId();
+  navigator.clipboard?.writeText(mid).then(() => showToast('تم نسخ المعرّف: ' + mid,'success'));
+};
+window.searchByMessagingId = function() {
+  const q = prompt('أدخل معرّف المراسلة (مثال: #AB12CD34):');
+  if(!q) return;
+  const clean = q.trim().toUpperCase();
+  // Search in admins by stored messaging ID
+  const found = allAdmins.find(a => a.messagingId === clean);
+  if(found) {
+    showToast(`وجدنا: ${found.name}`, 'success');
+    startChatWithAdmin(found.id);
+  } else {
+    showToast('لم يُعثر على هذا المعرّف — تأكد من صحته أو اطلب من الشخص مشاركته معك','warning');
+  }
 };
 
 // Populate eval person dropdown
@@ -2899,10 +3325,11 @@ window.deletePenalty = async function(id) {
 };
 
 /* ════════════════════════════════════════════════════════════════
-   DEVICES — إدارة الأجهزة
+   DEVICES — إدارة الأجهزة (جميع الأجهزة المتصلة بقاعدة البيانات)
    ════════════════════════════════════════════════════════════════ */
 async function loadDevices(silent = false) {
   try {
+    // جلب جميع الأجهزة من قاعدة البيانات المشتركة (ليس فقط الجهاز الحالي)
     const snap = await getDocs(query(collection(db, 'devices'), orderBy('timestamp', 'desc')));
     allDevices = snap.docs.map(d => ({id: d.id, ...d.data()}));
     if(!silent) renderDevices();
@@ -2911,22 +3338,24 @@ async function loadDevices(silent = false) {
 function renderDevices() {
   const q = (document.getElementById('devQ')?.value || '').toLowerCase();
   const list = allDevices.filter(d => {
-    if(q) { const t = `${d.ip||''} ${d.userAgent||''} ${d.platform||''}`.toLowerCase(); if(!t.includes(q)) return false; }
+    if(q) { const t = `${d.ip||''} ${d.userAgent||''} ${d.platform||''} ${d.language||''}`.toLowerCase(); if(!t.includes(q)) return false; }
     return true;
   });
   const tb = document.getElementById('devBody');
-  if(!list.length){ tb.innerHTML = `<tr><td colspan="8"><div class="empty-state"><i class="fas fa-laptop"></i><h4>لا توجد أجهزة</h4></div></td></tr>`; return; }
+  if(!list.length){ tb.innerHTML = `<tr><td colspan="8"><div class="empty-state"><i class="fas fa-laptop"></i><h4>لا توجد أجهزة مسجلة</h4><p style="font-size:11px;color:var(--text-muted);margin-top:5px;">تظهر هنا جميع الأجهزة التي دخلت للوحات المرتبطة بنفس قاعدة البيانات</p></div></td></tr>`; return; }
+  const myDevId = sessionStorage.getItem('nzh_device_id') || '';
   tb.innerHTML = list.map(d => {
     const isOnline = d.online !== false;
+    const isMe = d.id === myDevId;
     const ua = d.userAgent || '';
-    const browser = ua.includes('Chrome') ? 'Chrome' : ua.includes('Firefox') ? 'Firefox' : ua.includes('Safari') ? 'Safari' : 'Unknown';
-    const os = d.platform || 'Unknown';
-    return `<tr>
-      <td><span class="id-chip">${esc(d.ip || '—')}</span></td>
-      <td>${esc(d.platform || '—')}</td>
+    const browser = ua.includes('Chrome') && !ua.includes('Chromium') ? 'Chrome' : ua.includes('Firefox') ? 'Firefox' : ua.includes('Edg') ? 'Edge' : ua.includes('Safari') ? 'Safari' : ua.includes('OPR') ? 'Opera' : 'Unknown';
+    const os = ua.includes('Windows') ? 'Windows' : ua.includes('Mac') ? 'macOS' : ua.includes('Linux') ? 'Linux' : ua.includes('Android') ? 'Android' : ua.includes('iPhone') ? 'iOS' : d.platform || 'Unknown';
+    return `<tr style="${isMe ? 'background:rgba(46,204,90,.05);' : ''}">
+      <td><span class="id-chip">${esc(d.ip || '—')}</span>${isMe ? ' <span style="font-size:10px;color:var(--primary-light);font-weight:800;">(جهازك)</span>' : ''}</td>
+      <td>${esc(d.screen || '—')}</td>
       <td>${esc(os)}</td>
       <td>${esc(browser)}</td>
-      <td>${esc(d.screen || '—')}</td>
+      <td>${esc(d.language || '—')}</td>
       <td>${fmtFull(d.timestamp)}</td>
       <td><span class="badge ${isOnline ? 'b-approved' : 'b-rejected'}">${isOnline ? 'متصل' : 'غير متصل'}</span></td>
       <td><div class="tbl-acts">
