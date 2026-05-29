@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /mzone/
+Sitemap: https://nazaha-dz.vercel.app/sitemap.xml
