@@ -15952,7 +15952,8 @@ window.registerForActivity = async function(activityId, btn) {
             btn.innerHTML = '<i class="fas fa-check" style="margin-left:4px;"></i>تم التسجيل';
         }
         showToast('تم تسجيلك في النشاط بنجاح!', 'success');
-        NazahaSound.success();
+        var NS = window.NazahaSound;
+        if (NS && typeof NS.success === 'function') NS.success();
         if (typeof window.printActivityTicket === 'function') {
             setTimeout(() => window.printActivityTicket({
                 activityTitle, name: user.fullName || user.name || '', role: roleLabel,
@@ -20977,34 +20978,50 @@ window._headerNotifCache = [];
 window._startHeaderNotifListener = function() {
     if (window._notifListenerActive) return;
     var uid = window.mzoneCurrentUser && window.mzoneCurrentUser.id;
-    if (!uid || !window.FirestoreAPI || !window.firebaseDB) return;
+    if (!uid) return;
+    // إذا لم تكن FirestoreAPI/firebaseDB جاهزة بعد، أعد المحاولة بعد ثانية
+    if (!window.FirestoreAPI || !window.firebaseDB) {
+        setTimeout(function(){ window._startHeaderNotifListener(); }, 1000);
+        return;
+    }
+
+    function _applySnap(snap) {
+        var items = [];
+        snap.forEach(function(d) { items.push({id:d.id, ...d.data()}); });
+        // ترتيب بالـ timestamp تنازلياً في JS (يتجنب الحاجة لـ index)
+        items.sort(function(a,b){ var ta = a.timestamp?.seconds||a.timestamp||0, tb = b.timestamp?.seconds||b.timestamp||0; return tb - ta; });
+        window._headerNotifCache = items;
+        var unread = items.filter(function(n){ return !n.read; }).length;
+        var dot = document.getElementById('headerNotifDot');
+        var btn = document.getElementById('headerNotifBtn');
+        if (dot) dot.style.display = unread > 0 ? 'block' : 'none';
+        if (btn) { if (unread > 0) btn.classList.add('has-notif'); else btn.classList.remove('has-notif'); }
+        if (unread > 0 && window._lastNotifUnread !== undefined && unread > window._lastNotifUnread) {
+            var NS = window.NazahaSound;
+            if (NS && typeof NS.notification === 'function') NS.notification();
+        }
+        window._lastNotifUnread = unread;
+        var dropdown = document.getElementById('headerNotifDropdown');
+        if (dropdown && dropdown.classList.contains('open')) window._renderNotifDropdown();
+    }
+
+    function _errorHandler(err) {
+        console.warn('[notifListener]', err);
+        window._notifListenerActive = false;
+    }
+
     try {
-        var { collection, query, where, orderBy, limit, onSnapshot } = window.FirestoreAPI;
+        var { collection, query, where, limit, onSnapshot, getDocs } = window.FirestoreAPI;
         var db = window.firebaseDB;
-        var q = query(collection(db,'mzoneNotifications'), where('userId','==',uid), orderBy('timestamp','desc'), limit(30));
+        // استعلام بسيط بدون orderBy — يتجنب متطلبات الـ index المركّب
+        var q = query(collection(db,'mzoneNotifications'), where('userId','==',uid), limit(30));
         window._notifListenerActive = true;
-        window._notifUnsubscribe = onSnapshot(q, function(snap) {
-            var items = [];
-            snap.forEach(function(d) { items.push({id:d.id, ...d.data()}); });
-            window._headerNotifCache = items;
-            var unread = items.filter(function(n){ return !n.read; }).length;
-            // تحديث الشارة
-            var dot = document.getElementById('headerNotifDot');
-            var btn = document.getElementById('headerNotifBtn');
-            if (dot) dot.style.display = unread > 0 ? 'block' : 'none';
-            if (btn) {
-                if (unread > 0) btn.classList.add('has-notif');
-                else btn.classList.remove('has-notif');
-            }
-            // صوت عند وصول إشعار جديد
-            if (unread > 0 && window._lastNotifUnread !== undefined && unread > window._lastNotifUnread) {
-                if (typeof NazahaSound !== 'undefined' && NazahaSound.notification) NazahaSound.notification();
-            }
-            window._lastNotifUnread = unread;
-            // تحديث القائمة المفتوحة إن كانت مفتوحة
-            var dropdown = document.getElementById('headerNotifDropdown');
-            if (dropdown && dropdown.classList.contains('open')) window._renderNotifDropdown();
-        }, function(err){ console.warn('[notifListener]', err); });
+        window._notifUnsubscribe = onSnapshot(q, _applySnap, function(err) {
+            // fallback: قراءة لمرة واحدة إذا فشل onSnapshot
+            console.warn('[notifListener] onSnapshot failed, falling back to getDocs:', err);
+            window._notifListenerActive = false;
+            getDocs(q).then(function(snap){ _applySnap(snap); }).catch(_errorHandler);
+        });
     } catch(e) { window._notifListenerActive = false; console.warn('[startHeaderNotifListener]', e); }
 };
 
@@ -26241,30 +26258,33 @@ document.addEventListener('click', function(e) {
 }, true);
 
 /* ------------------------------------------------------------------ */
-/*  2. إصلاح البحث — تثبيت موضع dropdown لتجنب الخروج من الشاشة     */
+/*  2. إصلاح البحث — تثبيت موضع dropdown بقراءة موضع الزر مباشرة     */
 /* ------------------------------------------------------------------ */
 (function fixSearchDropdownPosition() {
     const orig = window.toggleUserSearchBox;
     window.toggleUserSearchBox = function() {
         if (typeof orig === 'function') orig();
-        // إعادة ضبط الموضع بعد الفتح
         requestAnimationFrame(function() {
             const box = document.getElementById('userSearchDropdown');
             if (!box || box.style.display === 'none') return;
-            // على الشاشات الصغيرة: تثبيت relative على العنصر الأب
-            const wrapper = document.getElementById('headerSearchWrapper');
-            if (!wrapper) return;
-            const wRect = wrapper.getBoundingClientRect();
-            // حساب الموضع الأمثل: لا يخرج عن حافة الشاشة
+            // استخدام موضع الزر نفسه بدلاً من الـ wrapper
+            const btn = document.getElementById('headerSearchBtn');
+            const ref = btn || document.getElementById('headerSearchWrapper');
+            if (!ref) return;
+            const r = ref.getBoundingClientRect();
             const vw = window.innerWidth;
-            const boxW = 300;
-            let left = wRect.left + wRect.width / 2 - boxW / 2;
+            const boxW = Math.min(320, vw - 16);
+            let left = r.left + r.width / 2 - boxW / 2;
             if (left < 8) left = 8;
             if (left + boxW > vw - 8) left = vw - boxW - 8;
-            box.style.left = left + 'px';
-            box.style.transform = 'none';
-            box.style.position = 'fixed';
-            box.style.top = (wRect.bottom + 8) + 'px';
+            const top = r.bottom + 8;
+            box.style.cssText = box.style.cssText
+                .replace(/position:[^;]+;?/g,'')
+                .replace(/top:[^;]+;?/g,'')
+                .replace(/left:[^;]+;?/g,'')
+                .replace(/transform:[^;]+;?/g,'')
+                .replace(/width:[^;]+;?/g,'')
+                + `;position:fixed!important;top:${top}px!important;left:${left}px!important;width:${boxW}px!important;transform:none!important;z-index:99999!important;`;
         });
     };
 })();
@@ -30239,20 +30259,64 @@ console.log('[MEGA-PATCH v8] ✅ جميع التحسينات النهائية م
    إصلاحات نهائية — نسخة نظيفة
 ══════════════════════════════════════════════════════════ */
 
-/* 1. مساعد سجّل الآن للزوار */
+/* 1. مساعد سجّل الآن للزوار — مع fallback مدمج */
 window._guestReg = function(btn) {
     var aid    = btn ? btn.getAttribute('data-aid')    : '';
     var atitle = btn ? btn.getAttribute('data-atitle') : '';
+
+    // المسار الأول: دالة الموديل الكاملة
     if (typeof window.openGuestActivityRegister === 'function') {
-        window.openGuestActivityRegister(aid, atitle);
-    } else if (typeof window.openJoinModal === 'function') {
-        window.openJoinModal();
-    } else if (typeof window.openRegistrationModalDirectly === 'function') {
-        window.openRegistrationModalDirectly();
+        try { window.openGuestActivityRegister(aid, atitle); return; } catch(e) { console.warn('_guestReg openGuestActivityRegister failed', e); }
+    }
+
+    // fallback: موديل بسيط مضمّن إذا فشلت الدالة الأصلية أو لم تُعرَّف بعد
+    var existing = document.getElementById('_guestActRegModal');
+    if (existing) existing.remove();
+    var eH = window.escapeHtml || function(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); };
+    var modal = document.createElement('div');
+    modal.id = '_guestActRegModal';
+    modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:10100;display:flex;align-items:center;justify-content:center;padding:16px;';
+    modal.innerHTML = '<div style="background:var(--surface,#fff);border-radius:20px;padding:24px 20px;max-width:360px;width:100%;font-family:var(--font-arabic,Arial);direction:rtl;max-height:90vh;overflow-y:auto;">'
+        + '<div style="text-align:center;margin-bottom:14px;">'
+        + '<i class="fas fa-user-plus" style="font-size:26px;color:var(--primary,#1a6b2f);margin-bottom:8px;display:block;"></i>'
+        + '<div style="font-size:15px;font-weight:900;">التسجيل في: ' + eH(atitle||'النشاط') + '</div>'
+        + '<div style="font-size:12px;color:var(--text-muted,#888);margin-top:4px;">عبّئ بياناتك للتسجيل</div></div>'
+        + '<div style="display:flex;flex-direction:column;gap:10px;">'
+        + '<input id="_gar_name" type="text" class="form-input" placeholder="الاسم الكامل *" style="padding:10px 12px;">'
+        + '<input id="_gar_phone" type="tel" class="form-input" placeholder="رقم الهاتف *" style="padding:10px 12px;">'
+        + '<div id="_gar_msg" style="font-size:12px;font-weight:700;display:none;padding:8px;border-radius:8px;"></div>'
+        + '<button onclick="window._fbGuestRegSubmit(\'' + eH(aid) + '\',\'' + eH(atitle||'').replace(/'/g,"&#39;") + '\')" style="background:var(--primary,#1a6b2f);color:#fff;border:none;padding:11px;border-radius:12px;cursor:pointer;font-size:13px;font-weight:800;font-family:inherit;"><i class="fas fa-check"></i> سجّلني الآن</button>'
+        + '<button onclick="document.getElementById(\'_guestActRegModal\').remove()" style="padding:10px;border-radius:12px;background:var(--surface-alt,#f5f5f5);border:1px solid var(--border-light,#ddd);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;">إلغاء</button>'
+        + '</div></div>';
+    document.body.appendChild(modal);
+    modal.addEventListener('click', function(e){ if (e.target===modal) modal.remove(); });
+    setTimeout(function(){ var n=document.getElementById('_gar_name'); if(n) n.focus(); }, 80);
+};
+
+/* مساعد submit للـ fallback */
+window._fbGuestRegSubmit = async function(activityId, activityTitle) {
+    var name  = (document.getElementById('_gar_name')?.value||'').trim();
+    var phone = (document.getElementById('_gar_phone')?.value||'').trim();
+    var msg   = document.getElementById('_gar_msg');
+    function showMsg(t,ok){ if(!msg)return; msg.style.display='block'; msg.style.background=ok?'rgba(46,204,90,0.1)':'rgba(255,59,48,0.1)'; msg.style.color=ok?'var(--primary,#1a6b2f)':'#e33'; msg.textContent=t; }
+    if (!name) { showMsg('الاسم مطلوب',false); return; }
+    if (!phone || phone.length < 9) { showMsg('رقم الهاتف غير صحيح',false); return; }
+    if (!window.FirestoreAPI || !window.firebaseDB) { showMsg('الاتصال غير متاح حالياً',false); return; }
+    try {
+        var { collection, addDoc, serverTimestamp } = window.FirestoreAPI;
+        await addDoc(collection(window.firebaseDB,'activityRegistrations'),{
+            activityId, activityTitle, fullName:name, phone, userType:'guest',
+            registeredAt: serverTimestamp()
+        });
+        showMsg('✓ تم تسجيلك بنجاح!', true);
+        setTimeout(function(){ var m=document.getElementById('_guestActRegModal'); if(m) m.remove(); }, 1800);
+        if (typeof window.showToast==='function') window.showToast('تم التسجيل في النشاط بنجاح!','success');
+    } catch(e) {
+        showMsg('تعذّر الحفظ — تحقق من الاتصال',false);
     }
 };
 
-/* 2. ضبط رؤية أزرار الهيدر عند تغيير حالة الدخول */
+/* 2. ضبط رؤية أزرار الهيدر عند تغيير حالة الدخول + تفعيل الإشعارات */
 function _syncHeaderBtns() {
     var isLoggedIn = !!(window.mzoneCurrentUser && window.mzoneCurrentUser.id);
     var nw = document.getElementById('headerNotifWrapper');
@@ -30260,6 +30324,10 @@ function _syncHeaderBtns() {
     var display = isLoggedIn ? 'block' : 'none';
     if (nw) nw.style.display = display;
     if (sw) sw.style.display = display;
+    // تفعيل مستمع الإشعارات عند الدخول
+    if (isLoggedIn && typeof window._startHeaderNotifListener === 'function') {
+        window._startHeaderNotifListener();
+    }
 }
 document.addEventListener('mzoneUserReady', function(){ setTimeout(_syncHeaderBtns, 200); });
 document.addEventListener('mzoneLogout',    function(){
