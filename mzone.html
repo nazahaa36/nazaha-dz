@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>M-Zone — فضاء الأعضاء | منتدى نزاهة</title>
+<meta name="description" content="فضاء الأعضاء الخاص بالمنتدى الشبابي للفكر والمشاركة المدنية">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+            --primary: #1a6b2f;
+            --primary-light: #2ecc5a;
+            --primary-dark: #0f4a1e;
+            --primary-glow: rgba(46,204,90,0.18);
+            --accent: #c8a84e;
+            --accent-light: #e4c876;
+            --danger: #e53935;
+            --bg: #f4f6f8;
+            --surface: #ffffff;
+            --surface-alt: #f0f4f1;
+            --surface-glass: rgba(255,255,255,0.82);
+            --text: #111a14;
+            --text-secondary: #4a5c52;
+            --text-muted: #8a9e92;
+            --border: #d8e4db;
+            --border-light: #eaf2ec;
+            --shadow-xs: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+            --shadow: 0 6px 24px rgba(0,0,0,0.08);
+            --shadow-lg: 0 16px 48px rgba(0,0,0,0.12);
+            --shadow-xl: 0 28px 80px rgba(0,0,0,0.18);
+            --radius-xs: 6px;
+            --radius-sm: 12px;
+            --radius: 18px;
+            --radius-lg: 26px;
+            --radius-xl: 36px;
+            --transition: 0.28s cubic-bezier(0.4,0,0.2,1);
+            --transition-bounce: 0.5s cubic-bezier(0.68,-0.55,0.265,1.55);
+            --font-arabic: 'IBM Plex Sans Arabic', 'IBM Plex Sans', Arial, sans-serif;
+            --font-mono: 'IBM Plex Mono', monospace;
+        }
+body.dark {
+            --bg: #0a0f0c;
+            --surface: #111a14;
+            --surface-alt: #172019;
+            --surface-glass: rgba(17,26,20,0.88);
+            --text: #e8f0ea;
+            --text-secondary: #9ab5a0;
+            --text-muted: #5a7a62;
+            --border: #243029;
+            --border-light: #1c2820;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
+            --shadow: 0 6px 24px rgba(0,0,0,0.45);
+            --shadow-lg: 0 16px 48px rgba(0,0,0,0.6);
+            --shadow-xl: 0 28px 80px rgba(0,0,0,0.75);
+        }
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--bg,#fff);color:var(--text,#111);line-height:1.7}
+.form-group{margin-bottom:14px;position:relative;text-align:right}
+.form-group label{display:block;font-size:12px;font-weight:600;margin-bottom:6px;color:var(--text-secondary,#555)}
+.form-group input,.form-input{width:100%;padding:12px 14px;border:1.5px solid var(--border,#ddd);border-radius:12px;font-family:inherit;font-size:14px;background:var(--surface,#fff);color:var(--text);outline:none}
+.form-group input:focus{border-color:var(--primary-light,#2ECC5A)}
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border:none;border-radius:50px;background:linear-gradient(135deg,var(--primary-light,#2ECC5A),var(--primary,#1a6b2f));color:#fff;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit}
+.btn-outline,.btn-outline-dark{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;border:1.5px solid var(--border,#ddd);border-radius:50px;background:transparent;color:var(--text);font-weight:600;font-size:13px;cursor:pointer;font-family:inherit}
+#toast-wrap{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:99999;display:flex;flex-direction:column;gap:8px;width:min(400px,92vw)}
+.toast{background:var(--surface,#fff);border:1px solid var(--border,#ddd);border-radius:12px;padding:12px 16px;box-shadow:0 8px 24px rgba(0,0,0,.12);font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px}
+.toast.success{border-color:rgba(46,204,90,.4)}
+.toast.error{border-color:rgba(229,57,53,.4)}
+.site-header-m{position:sticky;top:0;z-index:200;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:rgba(255,255,255,.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.06)}
+body.dark .site-header-m{background:rgba(15,30,20,.9);border-bottom-color:rgba(255,255,255,.08)}
+.site-header-m img.logo{height:48px;width:auto;object-fit:contain;border:none}
+
+/*  M-ZONE SPACE  */
+        .mzone-container { min-height:100vh; padding-top:64px; }
+        /*  iOS-style M-Zone enhancements  */
+        .mzone-ios-card { background:var(--surface); border-radius:var(--radius-lg); padding:0; border:1.5px solid rgba(26,107,47,0.15); overflow:hidden; margin-bottom:16px; box-shadow:0 2px 12px rgba(26,107,47,0.08); }
+        .mzone-ios-row { display:flex; align-items:center; gap:14px; padding:15px 18px; border-bottom:1px solid rgba(26,107,47,0.08); cursor:pointer; transition:background var(--transition); -webkit-tap-highlight-color:transparent; }
+        .mzone-ios-row:last-child { border-bottom:none; }
+        .mzone-ios-row:active, .mzone-ios-row:hover { background:rgba(26,107,47,0.05); }
+        .mzone-ios-row-icon { width:36px; height:36px; border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:16px; color:#fff; flex-shrink:0; }
+        .mzone-ios-row-text { flex:1; }
+        .mzone-ios-row-label { font-size:14px; font-weight:700; color:var(--text); }
+        .mzone-ios-row-desc { font-size:11px; color:var(--text-muted); margin-top:1px; }
+        .mzone-ios-row-arrow { color:var(--text-muted); font-size:13px; }
+        .mzone-ios-badge { background:var(--danger); color:#fff; border-radius:50px; font-size:10px; font-weight:800; padding:2px 7px; min-width:18px; text-align:center; }
+        /* iOS toggle switch */
+        .mzone-toggle { position:relative; display:inline-flex; align-items:center; width:48px; height:28px; flex-shrink:0; cursor:pointer; }
+        .mzone-toggle input { opacity:0; width:0; height:0; position:absolute; }
+        .mzone-toggle-slider { position:absolute; inset:0; background:rgba(120,120,128,0.3); border-radius:50px; transition:background 0.25s; }
+        .mzone-toggle-slider::after { content:""; position:absolute; top:3px; right:3px; width:22px; height:22px; border-radius:50%; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,0.25); transition:transform 0.25s; }
+        .mzone-toggle input:checked ~ .mzone-toggle-slider { background:var(--primary); }
+        .mzone-toggle input:checked ~ .mzone-toggle-slider::after { transform:translateX(-20px); }
+        /* Multi-step progress */
+        .mzone-step-bar { display:flex; align-items:center; gap:0; margin-bottom:24px; }
+        .mzone-step { flex:1; display:flex; flex-direction:column; align-items:center; gap:5px; position:relative; }
+        .mzone-step::after { content:''; position:absolute; top:14px; right:-50%; width:100%; height:2px; background:var(--border-light); z-index:0; }
+        .mzone-step:last-child::after { display:none; }
+        .mzone-step.done::after { background:var(--primary-light); }
+        .mzone-step-dot { width:28px; height:28px; border-radius:50%; background:var(--surface-alt); border:2px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; color:var(--text-muted); z-index:1; transition:all var(--transition); }
+        .mzone-step.active .mzone-step-dot { background:var(--primary-light); border-color:var(--primary-light); color:#fff; box-shadow:0 0 0 4px rgba(46,204,90,0.18); }
+        .mzone-step.done .mzone-step-dot { background:var(--primary); border-color:var(--primary); color:#fff; }
+        .mzone-step-label { font-size:10px; font-weight:700; color:var(--text-muted); text-align:center; }
+        .mzone-step.active .mzone-step-label { color:var(--primary); }
+        .mzone-login-screen { display:flex; align-items:center; justify-content:center; min-height:calc(100vh - 64px); padding:20px; }
+        .mzone-login-card { background:var(--surface); border-radius:var(--radius-lg); padding:40px 32px; max-width:440px; width:100%; border:1px solid var(--border-light); box-shadow:var(--shadow-lg); text-align:center; }
+        .mzone-login-icon { width:80px; height:80px; border-radius:50%; background:linear-gradient(135deg,var(--primary-light),var(--primary-dark)); display:flex; align-items:center; justify-content:center; margin:0 auto 20px; }
+        .mzone-login-icon i { font-size:34px; color:#fff; }
+        .mzone-login-title { font-size:22px; font-weight:600; margin-bottom:8px; }
+        .mzone-login-desc { font-size:13px; color:var(--text-secondary); margin-bottom:24px; line-height:1.8; }
+        .mzone-id-types { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin-bottom:20px; }
+        .mzone-id-type { padding:6px 14px; border-radius:50px; border:1.5px solid var(--border-light); font-size:12px; font-weight:700; color:var(--text-secondary); cursor:pointer; transition:all var(--transition); }
+        .mzone-id-type.active { border-color:var(--primary-light); color:var(--primary); background:rgba(46,204,90,0.08); }
+
+        /*  M-ZONE DASHBOARD  */
+        .mzone-dash { max-width:800px; margin:0 auto; padding:20px 16px 80px; }
+        .mzone-welcome-card { background:linear-gradient(135deg,var(--primary-dark),var(--primary)); border-radius:var(--radius-lg); padding:24px; color:#fff; margin-bottom:20px; position:relative; overflow:hidden; }
+        .mzone-welcome-card::after { content:''; position:absolute; left:-40px; top:-40px; width:200px; height:200px; background:rgba(255,255,255,0.06); border-radius:50%; }
+        .mzone-welcome-name { font-size:22px; font-weight:900; margin-bottom:4px; }
+        .mzone-welcome-type { font-size:13px; opacity:0.8; }
+        .mzone-stats-row { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:20px; }
+        .mzone-stat { background:var(--surface); border-radius:var(--radius); padding:16px; border:1px solid var(--border-light); text-align:center; }
+        .mzone-stat-number { font-size:26px; font-weight:900; color:var(--primary); font-family:var(--font-mono); }
+        .mzone-stat-label { font-size:11px; color:var(--text-muted); margin-top:4px; font-weight:700; }
+        .mzone-menu-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-bottom:20px; }
+        .mzone-menu-item { background:var(--surface); border:1px solid var(--border-light); border-radius:var(--radius); padding:18px 16px; cursor:pointer; transition:all var(--transition); display:flex; align-items:center; gap:12px; }
+        .mzone-menu-item:hover { border-color:var(--primary-light); background:var(--primary-glow); transform:translateY(-2px); box-shadow:var(--shadow); }
+        .mzone-menu-icon { width:44px; height:44px; border-radius:var(--radius-sm); background:rgba(46,204,90,0.1); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:18px; color:var(--primary-light); }
+        .mzone-menu-label { font-size:14px; font-weight:800; color:var(--text); }
+        .mzone-menu-desc { font-size:11px; color:var(--text-muted); margin-top:2px; }
+        .mzone-section-title { font-size:17px; font-weight:600; color:var(--text); margin:24px 0 12px; display:flex; align-items:center; gap:10px; }
+        .mzone-section-title i { color:var(--primary-light); }
+        .mzone-badge { display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:50px; font-size:11px; font-weight:800; }
+        .mzone-badge-notif { background:rgba(229,57,53,0.1); color:var(--danger); border:1px solid rgba(229,57,53,0.2); }
+        .mzone-notif-item { background:var(--surface); border-radius:var(--radius-sm); padding:14px 16px; border:1px solid var(--border-light); margin-bottom:10px; display:flex; align-items:flex-start; gap:12px; }
+        .mzone-notif-icon { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0; }
+        .mzone-notif-icon.info { background:rgba(0,122,255,0.1); color:#007aff; }
+        .mzone-notif-icon.success { background:rgba(46,204,90,0.1); color:var(--primary); }
+        .mzone-notif-icon.warning { background:rgba(255,149,0,0.1); color:#e07800; }
+        .mzone-notif-text { font-size:13px; color:var(--text); line-height:1.6; }
+        .mzone-notif-time { font-size:11px; color:var(--text-muted); margin-top:3px; }
+        .mzone-task-item { background:var(--surface); border-radius:var(--radius-sm); padding:16px; border:1px solid var(--border-light); margin-bottom:10px; }
+        .mzone-task-title { font-size:14px; font-weight:600; margin-bottom:4px; }
+        .mzone-task-desc { font-size:12px; color:var(--text-secondary); margin-bottom:10px; }
+        .mzone-task-footer { display:flex; align-items:center; justify-content:space-between; }
+        .mzone-pts { display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:50px; background:rgba(200,168,78,0.12); color:var(--accent); font-size:12px; font-weight:800; border:1px solid rgba(200,168,78,0.2); }
+        .mzone-complete-btn { padding:7px 18px; border-radius:50px; border:none; background:var(--primary); color:#fff; font-family:var(--font-arabic); font-weight:700; font-size:12px; cursor:pointer; transition:all var(--transition); }
+        .mzone-complete-btn:hover { background:var(--primary-dark); }
+        .mzone-complete-btn:disabled { opacity:0.5; cursor:not-allowed; }
+        .mzone-back-btn { display:flex; align-items:center; gap:8px; font-size:14px; font-weight:700; color:var(--primary); cursor:pointer; margin-bottom:20px; padding:8px 0; }
+        .mzone-form-section { background:var(--surface); border-radius:var(--radius); padding:24px; border:1px solid var(--border-light); margin-bottom:16px; }
+        .mzone-form-section h4 { font-size:16px; font-weight:900; margin-bottom:16px; color:var(--text); display:flex; align-items:center; gap:8px; }
+        .mzone-form-section h4 i { color:var(--primary-light); }
+        @media(max-width:600px) {
+            .mzone-stats-row { grid-template-columns:repeat(2,1fr); }
+            .mzone-menu-grid { grid-template-columns:1fr; }
+        }
+
+        
+</style>
+</head>
+<body>
+<header class="site-header-m">
+  <a href="https://nazaha-dz.vercel.app/" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)">
+    <img class="logo" src="https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/logo-2.png" alt="نزاهة" onerror="this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/logo-3.png'">
+    <span style="font-weight:800;font-size:15px">نـ<span style="color:var(--primary-light)">زاهة</span></span>
+  </a>
+  <div style="display:flex;gap:8px;align-items:center">
+    <button type="button" onclick="document.body.classList.toggle('dark');localStorage.setItem('nazaha_dark',document.body.classList.contains('dark')?'1':'0')" style="width:40px;height:40px;border-radius:50%;border:1px solid var(--border-light);background:var(--surface-alt);cursor:pointer;color:var(--text)"><i class="fas fa-moon"></i></button>
+    <a href="https://nazaha-dz.vercel.app/" style="font-size:13px;font-weight:700;color:var(--primary);text-decoration:none"><i class="fas fa-home"></i> الرئيسية</a>
+  </div>
+</header>
+
+<div id="mzoneRoot"></div>
+<div id="toast-wrap"></div>
+
+<script src="https://www.gstatic.com/firebasejs/12.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore-compat.js"></script>
+<script>
+(function(){
+  var firebaseConfig = {
+    apiKey: "AIzaSyBWGPKwCiEDVu4Qe_REnZUGc0w6cmxG9Xk",
+    authDomain: "nazaha-b1c97.firebaseapp.com",
+    projectId: "nazaha-b1c97",
+    storageBucket: "nazaha-b1c97.firebasestorage.app",
+    messagingSenderId: "718233504902",
+    appId: "1:718233504902:web:fa830f7f199d360be49507",
+    measurementId: "G-S1WE1ES684"
+  };
+  try {
+    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+    window.firebaseDB = firebase.firestore();
+    // Modular-style API used by original mzone code
+    window.FirestoreAPI = {
+      collection: function(db, path){ return db.collection(path); },
+      doc: function(db, path, id){ return db.collection(path).doc(id); },
+      getDoc: function(ref){
+        return ref.get().then(function(s){
+          return {
+            id: s.id,
+            exists: function(){ return s.exists; },
+            data: function(){ return s.data(); }
+          };
+        });
+      },
+      getDocs: function(q){
+        return q.get().then(function(snap){
+          return {
+            empty: snap.empty,
+            size: snap.size,
+            docs: snap.docs.map(function(d){
+              return { id: d.id, data: function(){ return d.data(); }, exists: function(){ return true; } };
+            }),
+            forEach: function(fn){ snap.forEach(fn); }
+          };
+        });
+      },
+      query: function(colRef){
+        var q = colRef;
+        for (var i=1;i<arguments.length;i++){
+          if (typeof arguments[i]==='function') q = arguments[i](q);
+        }
+        return q;
+      },
+      where: function(field, op, val){ return function(q){ return q.where(field, op, val); }; },
+      orderBy: function(field, dir){ return function(q){ return q.orderBy(field, dir||'asc'); }; },
+      limit: function(n){ return function(q){ return q.limit(n); }; },
+      addDoc: function(colRef, data){ return colRef.add(data); },
+      updateDoc: function(ref, data){ return ref.update(data); },
+      serverTimestamp: function(){ return firebase.firestore.FieldValue.serverTimestamp(); }
+    };
+    window.dispatchEvent(new Event('firebaseReady'));
+  } catch(e){ console.error(e); }
+})();
+</script>
+<script>
+
+function showToast(msg, type){
+  type = type || 'info';
+  var wrap = document.getElementById('toast-wrap');
+  if (!wrap) return;
+  var t = document.createElement('div');
+  t.className = 'toast ' + type;
+  t.innerHTML = '<i class="fas fa-info-circle" style="color:var(--primary-light)"></i> ' + String(msg||'');
+  wrap.appendChild(t);
+  setTimeout(function(){ t.remove(); }, 3500);
+}
+function triggerErrorFeedback(){
+  try{ if(navigator.vibrate) navigator.vibrate([60,40,60]); }catch(e){}
+}
+function escapeHtml(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+// Stubs for optional original dependencies so dashboard does not crash
+window.updateAdminNavVisibility = window.updateAdminNavVisibility || function(){};
+window.startNotifListener = window.startNotifListener || function(){};
+window.loadMZoneSection = window.loadMZoneSection || function(sectionId){
+  showToast('هذه الخدمة متاحة في النسخة الكاملة من فضاء الأعضاء', 'info');
+};
+window.NazahaSound = window.NazahaSound || { success:function(){}, error:function(){} };
+let mzoneCurrentUser = null;
+window.mzoneCurrentUser = null;
+
+// ----- from original site -----
+window.toggleMzonePassword = function() {
+    const input = document.getElementById('mzonePasswordInput');
+    const toggle = document.getElementById('mzonePassToggle');
+    if (!input || !toggle) return;
+    const isVisible = input.type === 'text';
+    input.type = isVisible ? 'password' : 'text';
+    toggle.innerHTML = isVisible
+        ? '<i class="fas fa-eye"></i>'
+        : '<i class="fas fa-eye-slash"></i>';
+}
+
+function renderMZoneLogin(root) {
+    // إخفاء رابط الإدارة عند الخروج
+    if (typeof window.updateAdminNavVisibility === 'function') window.updateAdminNavVisibility();
+
+    root.innerHTML = `
+    <div class="mzone-container">
+        <div class="mzone-login-screen">
+            <div class="mzone-login-card">
+                <div class="mzone-login-icon"><i class="fas fa-user-shield"></i></div>
+                <h2 class="mzone-login-title">M-Zone — فضاء الأعضاء</h2>
+                <p class="mzone-login-desc">هذا الفضاء خاص بأعضاء المنتدى المقبولين رسمياً فقط.</p>
+
+                <!-- تنبيه طريقة الدخول -->
+                <div style="background:rgba(46,204,90,0.07);border:1px solid rgba(46,204,90,0.22);border-radius:10px;padding:10px 14px;margin-bottom:16px;text-align:right;">
+                    <div style="font-size:12px;color:var(--primary);font-weight:700;display:flex;align-items:flex-start;gap:7px;">
+                        <i class="fas fa-info-circle" style="flex-shrink:0;margin-top:2px;"></i>
+                        <span>الدخول بـ <strong>رقم التعريف</strong> (العضوية / التطوع / التمثيل) وكلمة المرور المسلّمة لك من الإدارة.</span>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom:12px;">
+                    <input type="text" id="mzoneIdInput" class="form-input" placeholder=" "
+                        inputmode="numeric" pattern="[0-9]*"
+                        style="font-family:var(--font-mono);letter-spacing:1px;"
+                        autocomplete="username"
+                        oninput="this.value=this.value.replace(/[^0-9]/g,'')"
+                        onkeydown="if(event.key==='Enter')document.getElementById('mzonePasswordInput')?.focus()">
+                    <label>رقم التعريف (أرقام فقط)</label>
+                </div>
+                <div class="form-group" style="margin-bottom:10px;position:relative;">
+                    <input type="password" id="mzonePasswordInput" class="form-input" placeholder=" "
+                        autocomplete="current-password"
+                        onkeydown="if(event.key==='Enter')enterMZone()">
+                    <label>كلمة المرور</label>
+                    <span id="mzonePassToggle" onclick="toggleMzonePassword()" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);cursor:pointer;color:var(--text-muted);font-size:15px;"><i class="fas fa-eye"></i></span>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;padding:0 2px;">
+                    <input type="checkbox" id="mzoneRememberMe" checked style="width:16px;height:16px;accent-color:var(--primary);cursor:pointer;">
+                    <label for="mzoneRememberMe" style="font-size:13px;font-weight:700;cursor:pointer;color:var(--text-secondary);">تذكّرني (ابقَ مسجلاً)</label>
+                </div>
+                <button onclick="enterMZone()" class="btn-primary" style="width:100%;padding:14px;font-size:15px;">
+                    <i class="fas fa-sign-in-alt"></i> الدخول إلى فضائي
+                </button>
+                <p style="font-size:12px;color:var(--text-muted);margin-top:14px;text-align:center;">
+                    <a href="#" onclick="showForgotPassword();return false;" style="color:var(--primary);font-weight:700;">
+                        <i class="fas fa-question-circle" style="margin-left:4px;"></i>نسيت كلمة المرور؟
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>`;
+    // التركيز التلقائي على حقل رقم التعريف
+    setTimeout(() => document.getElementById('mzoneIdInput')?.focus(), 100);
+}
+
+window.enterMZone = async function() {
+    //  قراءة المدخلات 
+    const idRaw  = document.getElementById('mzoneIdInput')?.value   || '';
+    const pwRaw  = document.getElementById('mzonePasswordInput')?.value || '';
+    const idVal  = idRaw.trim();
+    const pwVal  = pwRaw.trim();
+
+    if (!idVal)  { showToast('يرجى إدخال رقم التعريف', 'error');  triggerErrorFeedback(); return; }
+    if (!pwVal)  { showToast('يرجى إدخال كلمة المرور', 'error');  triggerErrorFeedback(); return; }
+    if (!/^\d+$/.test(idVal)) { showToast('رقم التعريف يجب أن يحتوي على أرقام فقط', 'error'); triggerErrorFeedback(); return; }
+
+    const root = document.getElementById('mzoneRoot');
+    if (!root) return;
+
+    //  شاشة التحميل 
+    root.innerHTML = `<div class="mzone-container"><div class="mzone-login-screen">
+        <div style="text-align:center;padding:60px 20px;">
+            <div style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--primary-light),var(--primary-dark));display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 8px 28px rgba(46,204,90,0.3);">
+                <i class="fas fa-user-shield" style="font-size:28px;color:#fff;"></i>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;">
+                <i class="fas fa-circle-notch fa-spin" style="font-size:18px;color:var(--primary-light);"></i>
+                <p style="font-size:16px;font-weight:800;color:var(--text);margin:0;">جاري التحقق من بياناتك</p>
+            </div>
+            <p style="font-size:13px;color:var(--text-muted);">يرجى الانتظار...</p>
+        </div></div></div>`;
+
+    //  التحقق من Firebase 
+    if (!window.firebaseDB || !window.FirestoreAPI) {
+        // انتظار تهيئة Firebase (حد أقصى 6 ثوانٍ)
+        let waited = 0;
+        while ((!window.firebaseDB || !window.FirestoreAPI) && waited < 60) {
+            await new Promise(r => setTimeout(r, 100));
+            waited++;
+        }
+        if (!window.firebaseDB || !window.FirestoreAPI) {
+            renderMZoneLogin(root);
+            showToast('قاعدة البيانات غير جاهزة — أعد تحميل الصفحة', 'error');
+            return;
+        }
+    }
+
+    const db = window.firebaseDB;
+    const { collection, getDocs, getDoc, doc, query, where } = window.FirestoreAPI;
+
+    let lastErr = null;
+
+    // دالة جلب وثيقة بالمعرف المباشر
+    const _tryGet = async (colName, docId) => {
+        try {
+            const s = await getDoc(doc(db, colName, docId));
+            if (s.exists()) return { id: s.id, _col: colName, ...s.data() };
+        } catch(e) { lastErr = e; }
+        return null;
+    };
+
+    // دالة البحث بحقل+قيمة (نص + رقم)
+    const _tryQuery = async (colName, field, value) => {
+        try {
+            const s = await getDocs(query(collection(db, colName), where(field, '==', value)));
+            if (!s.empty) return { id: s.docs[0].id, _col: colName, ...s.docs[0].data() };
+        } catch(e) { lastErr = e; }
+        const numVal = Number(value);
+        if (!isNaN(numVal) && String(numVal) === value) {
+            try {
+                const s2 = await getDocs(query(collection(db, colName), where(field, '==', numVal)));
+                if (!s2.empty) return { id: s2.docs[0].id, _col: colName, ...s2.docs[0].data() };
+            } catch(e) { lastErr = e; }
+        }
+        return null;
+    };
+
+    // 
+    // المرحلة 1: بحث شامل في جميع المجموعات دون استثناء
+    // الترتيب: mzoneAccounts → members → volunteers → ambassadors → registrations
+    // 
+    let found = null;
+
+    // حقول البحث لكل نوع
+    const idFields = [
+        'membershipNumber','volunteerNumber','ambassadorNumber',
+        'memberId','volunteerId','ambassadorId',
+        'idNumber','numAdherent','numBenevole','numAmbassadeur',
+        'phone','email','forumId','userId','username'
+    ];
+
+    // 1أ) مزون أكونتس أولاً
+    for (const field of idFields) {
+        if (found) break;
+        found = await _tryQuery('mzoneAccounts', field, idVal);
+    }
+    if (!found) found = await _tryGet('mzoneAccounts', idVal);
+    if (!found) found = await _tryGet('mzoneAccounts', 'forum' + idVal);
+
+    // 1ب) المنخرطون
+    if (!found) {
+        const memberFields = ['membershipNumber','memberId','phone','email','idNumber','numAdherent'];
+        for (const field of memberFields) {
+            if (found) break;
+            found = await _tryQuery('members', field, idVal);
+        }
+        if (!found) found = await _tryGet('members', idVal);
+    }
+
+    // 1ج) المتطوعون
+    if (!found) {
+        const volFields = ['volunteerNumber','volunteerId','phone','email','idNumber','numBenevole','membershipNumber'];
+        for (const field of volFields) {
+            if (found) break;
+            found = await _tryQuery('volunteers', field, idVal);
+        }
+        if (!found) found = await _tryGet('volunteers', idVal);
+    }
+
+    // 1د) السفراء
+    if (!found) {
+        const ambFields = ['ambassadorNumber','ambassadorId','phone','email','idNumber','numAmbassadeur','membershipNumber'];
+        for (const field of ambFields) {
+            if (found) break;
+            found = await _tryQuery('ambassadors', field, idVal);
+        }
+        if (!found) found = await _tryGet('ambassadors', idVal);
+    }
+
+    // 1هـ) الطلبات المقبولة
+    if (!found) {
+        const regFields = ['membershipNumber','volunteerNumber','ambassadorNumber','phone','email','idNumber'];
+        for (const field of regFields) {
+            if (found) break;
+            try {
+                const s = await getDocs(query(
+                    collection(db, 'registrations'),
+                    where(field, '==', idVal),
+                    where('status', 'in', ['accepted','approved','active','مقبول'])
+                ));
+                if (!s.empty) found = { id: s.docs[0].id, _col: 'registrations', ...s.docs[0].data() };
+            } catch(e) {}
+        }
+        if (!found) found = await _tryGet('registrations', idVal);
+    }
+
+    //  لم يُوجد في أي مجموعة 
+    if (!found) {
+        renderMZoneLogin(root);
+        if (lastErr?.code === 'permission-denied') {
+            showToast(' خطأ في الصلاحيات — تواصل مع الإدارة', 'error');
+        } else if (!navigator.onLine || lastErr?.code === 'unavailable') {
+            showToast('لا يوجد اتصال بالإنترنت. تحقق من شبكتك وأعد المحاولة.', 'error');
+        } else {
+            showToast('رقم التعريف غير موجود. تأكد من الرقم أو تواصل مع الإدارة.', 'error');
+        }
+        triggerErrorFeedback(); return;
+    }
+
+    const authDocId = found.id;
+    const authData  = found;
+    const foundCol  = found._col || 'mzoneAccounts';
+
+    // 
+    // المرحلة 2: تحديد الدور من مصدر البيانات
+    // 
+    const _typeNormLogin = {
+        'volunteer':'تطوع',   'volunteers':'تطوع',   'تطوع':'تطوع',   'متطوع':'تطوع',
+        'member':'انخراط',    'members':'انخراط',    'انخراط':'انخراط','منخرط':'انخراط',
+        'ambassador':'تمثيل', 'ambassadors':'تمثيل', 'تمثيل':'تمثيل', 'سفير':'تمثيل',
+        'admin':'admin',      'إداري':'admin',        'مشرف':'admin'
+    };
+    // استنتاج الدور من اسم المجموعة إذا لم يكن في البيانات
+    const _colToRole = { members:'انخراط', volunteers:'تطوع', ambassadors:'تمثيل', mzoneAccounts:'', registrations:'' };
+    const _rawTypeOrig = String(authData.type || authData.role || '').trim();
+    const _rawTypeNorm = _typeNormLogin[_rawTypeOrig] || _typeNormLogin[_rawTypeOrig.toLowerCase()] || '';
+    const _resolvedRole = _rawTypeNorm || _colToRole[foundCol] || 'انخراط';
+
+    const isAdmin = authData.role === 'admin'
+                    || authData.type === 'admin'
+                    || authData.type === 'إداري'
+                    || authData.type === 'مشرف'
+                    || String(authData.membershipNumber || authDocId).includes('2008123')
+                    || String(authDocId).startsWith('forum2008123');
+
+    // 
+    // المرحلة 3: التحقق من كلمة المرور
+    // 
+    const storedRaw = authData.password ?? authData.mzonePassword ?? authData.pin ?? authData.passwd ?? authData.pass ?? '';
+    const storedPw  = String(storedRaw).trim();
+
+    if (storedPw) {
+        const pwMatch = pwVal === storedPw
+                     || pwVal.toLowerCase() === storedPw.toLowerCase()
+                     || (String(Number(pwVal)) === pwVal && Number(pwVal) === Number(storedPw));
+        if (!pwMatch) {
+            renderMZoneLogin(root);
+            showToast('كلمة المرور غير صحيحة. تواصل مع الإدارة لاسترجاعها.', 'error');
+            triggerErrorFeedback(); return;
+        }
+    } else {
+        // لا توجد كلمة مرور مسجّلة: الإداري يُقبَل دائماً، غيره يُبلَّغ
+        if (!isAdmin) {
+            renderMZoneLogin(root);
+            showToast('لا توجد كلمة مرور مُسجَّلة لهذا الحساب. تواصل مع الإدارة لتعيين كلمة مرور.', 'warning');
+            triggerErrorFeedback(); return;
+        }
+    }
+
+    // 
+    // المرحلة 4: التحقق من الحالة
+    // 
+    const statusVal = String(authData.status || '').toLowerCase().trim();
+    const statusOk  = !statusVal ||
+        ['','accepted','approved','active','مقبول','نشط','enabled','true','1','done','confirmed','verified','valid'].includes(statusVal);
+
+    //  استعادة الحساب المحذوف عند تطابق البيانات 
+    if (statusVal === 'deleted' && !isAdmin) {
+        try {
+            const { doc: _doc, updateDoc: _upd } = window.FirestoreAPI;
+            await _upd(_doc(db, foundCol, authDocId), { status: 'active', deletedAt: null, restoredAt: new Date().toISOString() });
+            authData.status = 'active';
+            showToast('تم استعادة حسابك القديم بنجاح ', 'success');
+        } catch(e) { /* استمر حتى لو فشل التحديث */ }
+    } else if (!statusOk && !isAdmin) {
+        // banned / suspended
+        if (statusVal === 'banned' || statusVal === 'suspended' || statusVal === 'محظور' || statusVal === 'موقوف') {
+            renderMZoneLogin(root);
+            showToast(' حسابك موقوف أو محظور. تواصل مع الإدارة.', 'error');
+            return;
+        }
+        renderMZoneLogin(root);
+        showToast('حسابك لم يُقبَل بعد أو تم تعليقه. تواصل مع الإدارة.', 'warning');
+        return;
+    }
+
+    // 
+    // المرحلة 5: بناء كائن الجلسة الكامل
+    // 
+    const base = {
+        id:            authDocId,
+        _source:       foundCol,
+        _officialCol:  foundCol,
+        _officialId:   authDocId,
+        _isAdmin:      isAdmin,
+        _resolvedRole: isAdmin ? 'admin' : _resolvedRole,
+        _rawType:      authData.type || authData.role || '',
+        ...authData
+    };
+    // تصحيح الدور إن استُنتج من اسم المجموعة
+    if (!base.type && _colToRole[foundCol]) base.type = _colToRole[foundCol];
+
+    // إثراء من مجموعة مقابلة عند وجودها (فقط لغير الإداريين)
+    if (!isAdmin) {
+        const enrichMap = {
+            'تطوع':['volunteers','volunteerNumber'], 'volunteer':['volunteers','volunteerNumber'], 'متطوع':['volunteers','volunteerNumber'],
+            'انخراط':['members','membershipNumber'],  'member':['members','membershipNumber'],      'منخرط':['members','membershipNumber'],
+            'تمثيل':['ambassadors','ambassadorNumber'],'ambassador':['ambassadors','ambassadorNumber'],'سفير':['ambassadors','ambassadorNumber']
+        };
+        const resolvedTypeKey = base._resolvedRole || base.type || '';
+        const [tCol, tField] = enrichMap[resolvedTypeKey] || enrichMap[String(resolvedTypeKey).toLowerCase()] || [];
+
+        if (tCol && tField && foundCol !== tCol) {
+            const tVal = (base[tField]) ? String(base[tField]) : idVal;
+            const skip = new Set(['password','mzonePassword','pin','role','type','status','id','_isAdmin','_resolvedRole','_source','_officialCol','_officialId','_col']);
+            const enriched = await _tryQuery(tCol, tField, tVal) || await _tryGet(tCol, authDocId);
+            if (enriched) {
+                for (const k of Object.keys(enriched)) {
+                    if (skip.has(k)) continue;
+                    if (base[k] == null || base[k] === '' || base[k] === '—') base[k] = enriched[k];
+                }
+            }
+        }
+    }
+    // حذف خاصية _col الداخلية من الجلسة
+    delete base._col;
+
+    //  تحويل أرقام التعريف إلى أعداد صحيحة (numbers) 
+    // تحويل أرقام التعريف إلى أرقام صحيحة فقط (تنظيف الحروف)
+    ['membershipNumber','volunteerNumber','ambassadorNumber'].forEach(f => {
+        if (base[f] !== undefined && base[f] !== null && base[f] !== '') {
+            const n = Number(base[f]);
+            if (!isNaN(n)) base[f] = n;
+        }
+    });
+
+    // 
+    // المرحلة 6: حفظ الجلسة وعرض اللوحة
+    // 
+    mzoneCurrentUser = window.mzoneCurrentUser = base;
+    const sessionStr = JSON.stringify(base);
+    try { sessionStorage.setItem('nazaha_mzone_session', sessionStr); } catch(e) {}
+    const rem = document.getElementById('mzoneRememberMe');
+    if (!rem || rem.checked) try { localStorage.setItem('nazaha_mzone_session', sessionStr); } catch(e) {}
+
+    NazahaSound.success();
+    try { if (base.id) startNotifListener(base.id); } catch(e) {}
+    try { window.dispatchEvent(new CustomEvent('mzoneLogin', { detail: base })); } catch(e) {}
+    // تحديث ظهور أزرار الإدارة بعد تسجيل الدخول مباشرةً
+    if (typeof window.updateAdminNavVisibility === 'function') window.updateAdminNavVisibility();
+    renderMZoneDashboard(root, base);
+}
+
+function renderMZoneDashboard(root, data) {
+    if (!data) { renderMZoneLogin(root); return; }
+
+    //  تحديث شريط التنقل (إظهار/إخفاء رابط الإدارة) 
+    if (typeof window.updateAdminNavVisibility === 'function') window.updateAdminNavVisibility();
+
+    //  كشف الإداري 
+    // الأولوية 1: حقل _isAdmin المثبَّت في الجلسة
+    // الأولوية 2: _resolvedRole === 'admin'
+    // الأولوية 3: role/type === 'admin'
+    // الأولوية 4: رقم العضوية أو معرّف الوثيقة يتضمّن '2008123'
+    const _adminNumStr = String(data.membershipNumber || data.memberId || data.id || '');
+    const isAdmin = data._isAdmin === true
+        || data._resolvedRole === 'admin'
+        || data.role  === 'admin'
+        || data.type  === 'admin'
+        || _adminNumStr === '2008123'
+        || _adminNumStr.includes('forum2008123')
+        || String(data.id || '').includes('forum2008123');
+
+    if (isAdmin) {
+        const _doRender = (attempt) => {
+            const _fn = window.renderAdminDashboard || (typeof renderAdminDashboard === 'function' ? renderAdminDashboard : null);
+            if (_fn) {
+                _fn(root, data).catch(e => {
+                    console.error('[Admin Dashboard Error]', e);
+                    root.innerHTML = `<div style="text-align:center;padding:40px;color:var(--danger);">
+                        <i class="fas fa-exclamation-triangle" style="font-size:36px;display:block;margin-bottom:12px;"></i>
+                        <p style="font-weight:700;">خطأ في تحميل لوحة الإدارة</p>
+                        <p style="font-size:12px;margin-top:8px;color:var(--text-secondary);">${e.message||''}</p>
+                        <button onclick="renderMZoneDashboard(document.getElementById('mzoneRoot'), window.mzoneCurrentUser)" class="btn-primary" style="margin-top:16px;padding:10px 24px;">إعادة المحاولة</button>
+                    </div>`;
+                });
+            } else if ((attempt||0) < 200) {
+                // الانتظار حتى يكتمل تحميل الـ module الثاني (أقصى 10 ثوانٍ)
+                setTimeout(() => _doRender((attempt||0) + 1), 50);
+            } else {
+                root.innerHTML = `<div style="text-align:center;padding:40px;color:var(--danger);">
+                    <i class="fas fa-exclamation-triangle" style="font-size:36px;display:block;margin-bottom:12px;"></i>
+                    <p style="font-weight:700;">تعذّر تحميل لوحة الإدارة</p>
+                    <p style="font-size:12px;margin-top:8px;color:var(--text-secondary);">يرجى إعادة تحميل الصفحة والمحاولة مجدداً.</p>
+                    <button onclick="window.location.reload()" class="btn-primary" style="margin-top:16px;padding:10px 24px;">إعادة تحميل الصفحة</button>
+                </div>`;
+            }
+        };
+        _doRender(0);
+        return;
+    }
+
+    //  تحديد دور العضو العادي 
+    // الأولوية 1: _resolvedRole المثبَّت في الجلسة
+    // الأولوية 2: data.type (مع تطبيع الإنجليزية)
+    // الأولوية 3: افتراضي = منخرط
+    const typeMap = {
+        'تطوع':       { label: 'متطوع',       color: '#34c759', icon: 'fa-hands-helping', numField: 'volunteerNumber',  numLabel: 'رقم التطوع'  },
+        'انخراط':     { label: 'منخرط',        color: '#ffd60a', icon: 'fa-id-card',        numField: 'membershipNumber', numLabel: 'رقم العضوية' },
+        'تمثيل':      { label: 'سفير',  color: '#007aff', icon: 'fa-globe-africa',   numField: 'ambassadorNumber', numLabel: 'رقم التمثيل' },
+        'volunteer':  { label: 'متطوع',       color: '#34c759', icon: 'fa-hands-helping', numField: 'volunteerNumber',  numLabel: 'رقم التطوع'  },
+        'member':     { label: 'منخرط',        color: '#ffd60a', icon: 'fa-id-card',        numField: 'membershipNumber', numLabel: 'رقم العضوية' },
+        'ambassador': { label: 'سفير',  color: '#007aff', icon: 'fa-globe-africa',   numField: 'ambassadorNumber', numLabel: 'رقم التمثيل' },
+        'admin':      { label: 'مشرف إداري',   color: '#c8a84e', icon: 'fa-shield-alt',     numField: 'membershipNumber', numLabel: 'رقم التعريف' }
+    };
+    const _typeNorm = {
+        'volunteer':'تطوع',   'volunteers':'تطوع',   'متطوع':'تطوع',
+        'member':'انخراط',    'members':'انخراط',    'منخرط':'انخراط',
+        'ambassador':'تمثيل', 'ambassadors':'تمثيل', 'سفير':'تمثيل',
+        'admin':'admin',      'إداري':'admin',        'مشرف':'admin'
+    };
+    const _pinnedRole = data._resolvedRole;
+    const _rawFallback = data.type || data.role || '';
+    const resolvedType = (_pinnedRole && typeMap[_pinnedRole])
+        ? _pinnedRole
+        : (typeMap[_rawFallback]
+            ? _rawFallback
+            : (_typeNorm[_rawFallback] || _typeNorm[String(_rawFallback).toLowerCase()] || 'انخراط'));
+    const memberInfo = typeMap[resolvedType] || typeMap['انخراط'];
+
+    // كل من وصل إلى هنا هو عضو مقبول ← لا حاجة لفحوصات الحالة
+    const _rawMemberNum = data[memberInfo.numField] || data.membershipNumber || data.volunteerNumber || data.ambassadorNumber || data.memberId || data.volunteerId || data.id || '';
+    // ضمان عرض رقم التعريف كأرقام فقط (بدون حروف أو معرفات نصية)
+    const memberNum = _rawMemberNum ? (typeof ensureNumericId === 'function' ? ensureNumericId(String(_rawMemberNum)) : String(_rawMemberNum).replace(/\D/g,'') || String(_rawMemberNum)) : 'غير محدد';
+    const fullName  = data.fullName || data.name || data.nom || data.prenom || 'العضو';
+    const wilaya    = data.wilaya || data.wilayaName || data.region || '';
+    const phone     = data.phone || data.telephone || data.mobile || '';
+    const email     = data.email || data.mail || '';
+    const birthDate = data.birthDate || data.dateNaissance || data.dob || '';
+    const commune   = data.commune || data.addressBaladia || data.municipality || '';
+    const gender    = data.gender || data.sexe || '';
+    const education = data.educationLevel || data.education || data.niveau || '';
+    const specialization = data.specialization || data.studySpecialization || data.specialite || '';
+    const interestField  = data.interestField || data.interest || data.domaine || '';
+    const cell      = data.cell || data.cellule || '';
+    const position  = data.position || data.poste || '';
+    const trackNum  = data.trackingNumber || '';
+    const regDate   = data.registrationDate || data.createdAt || data.dateInscription || '';
+    const nationalId = data.nationalId || data.idNumber || data.nin || '';
+
+    //  العد التنازلي للعضوية 
+    function _buildCountdown() {
+        // تاريخ انتهاء العضوية من البيانات أو افتراضياً نهاية السنة الحالية
+        let expiry = null;
+        if (data.membershipExpiry || data.expiryDate || data.dateExpiration) {
+            const raw = data.membershipExpiry || data.expiryDate || data.dateExpiration;
+            expiry = raw?.toDate ? raw.toDate() : new Date(raw);
+        }
+        if (!expiry || isNaN(expiry.getTime())) {
+            // افتراضي: نهاية السنة الحالية
+            expiry = new Date(new Date().getFullYear(), 11, 31, 23, 59, 59);
+        }
+        const now = new Date();
+        const diff = expiry - now;
+        if (diff <= 0) return `<div style="background:rgba(229,57,53,0.1);border:1px solid rgba(229,57,53,0.3);border-radius:10px;padding:10px 14px;margin-bottom:14px;text-align:center;font-size:12px;font-weight:700;color:var(--danger);"><i class="fas fa-exclamation-circle" style="margin-left:6px;"></i>انتهت صلاحية العضوية — يرجى التجديد</div>`;
+        const days = Math.floor(diff / 86400000);
+        const hours = Math.floor((diff % 86400000) / 3600000);
+        const expDate = expiry.toLocaleDateString('ar-DZ', { year:'numeric', month:'long', day:'numeric' });
+        const urgency = days <= 30 ? 'rgba(255,149,0,0.12)' : 'rgba(52,199,89,0.08)';
+        const urgencyBorder = days <= 30 ? 'rgba(255,149,0,0.35)' : 'rgba(52,199,89,0.25)';
+        const urgencyColor  = days <= 30 ? '#ff9500' : 'var(--primary-light)';
+        return `<div style="background:${urgency};border:1px solid ${urgencyBorder};border-radius:10px;padding:10px 16px;margin-bottom:14px;display:flex;align-items:center;gap:12px;">
+            <i class="fas fa-hourglass-half" style="color:${urgencyColor};font-size:22px;flex-shrink:0;"></i>
+            <div>
+                <div style="font-size:11px;color:var(--text-muted);margin-bottom:2px;">العد التنازلي للعضوية</div>
+                <div style="font-size:14px;font-weight:900;color:${urgencyColor};">${days} يوم و ${hours} ساعة</div>
+                <div style="font-size:10.5px;color:var(--text-muted);">تنتهي في ${expDate}</div>
+            </div>
+        </div>`;
+    }
+
+    // بناء شبكة المعلومات — فقط الحقول غير الفارغة
+    function _val(v) { return v && String(v).trim() && String(v).trim() !== '—' ? String(v).trim() : null; }
+    const infoGrid = [
+        { label: memberInfo.numLabel,  val: _val(memberNum),       icon: 'fa-hashtag',       mono: true  },
+        { label: 'الاسم الكامل',       val: _val(fullName),        icon: 'fa-user',          mono: false },
+        { label: 'الولاية',            val: _val(wilaya),          icon: 'fa-map-marker-alt',mono: false },
+        { label: 'البلدية',            val: _val(commune),         icon: 'fa-map-pin',       mono: false },
+        { label: 'رقم الهاتف',         val: _val(phone),           icon: 'fa-phone',         mono: true  },
+        { label: 'البريد الإلكتروني',  val: _val(email),           icon: 'fa-envelope',      mono: false },
+        { label: 'تاريخ الميلاد',      val: _val(birthDate),       icon: 'fa-calendar',      mono: true  },
+        { label: 'الجنس',              val: _val(gender),          icon: 'fa-venus-mars',    mono: false },
+        { label: 'رقم الهوية',         val: _val(nationalId),      icon: 'fa-id-card',       mono: true  },
+        { label: 'المستوى الدراسي',    val: _val(education),       icon: 'fa-graduation-cap',mono: false },
+        { label: 'التخصص',             val: _val(specialization),  icon: 'fa-book',          mono: false },
+        { label: 'مجال الاهتمام',      val: _val(interestField),   icon: 'fa-layer-group',   mono: false },
+        { label: 'الخلية',             val: _val(cell),            icon: 'fa-sitemap',       mono: false },
+        { label: 'المنصب',             val: _val(position),        icon: 'fa-briefcase',     mono: false },
+        { label: 'رقم التتبع',         val: _val(trackNum),        icon: 'fa-search',        mono: true  },
+        { label: 'تاريخ الانتساب',     val: _val(regDate?.toDate ? new Date(regDate.toDate()).toLocaleDateString('ar-DZ') : regDate), icon: 'fa-calendar-check', mono: true },
+    ].filter(i => i.val);
+
+    const menuItems = getMZoneMenuItems(resolvedType);
+    const iconColors = {
+        'update':'#007aff','tasks':'#ff9500','rewards':'#ffd60a','ratings':'#ff375f',
+        'voting':'#30d158','suggestions':'#5856d6','notifications':'#ff3b30','resign':'#8e8e93',
+        'courses':'#34aadc','appeal':'#ff6b35','transfer':'#5856d6','certificate':'#ffd60a',
+        'volunteerResign':'#8e8e93','renewal':'#30d158','volunteerRequest':'#007aff',
+        'disciplinaryAppeal':'#ff6b35','activityApproval':'#34c759','adminServices':'#007aff',
+        'ambassadorCertificate':'#ffd60a','ambassadorResign':'#8e8e93',
+        'memberCard':'#ffd60a','volunteerCard':'#34c759','ambassadorCard':'#007aff',
+        'profile':'#34c759','settings':'#636366','adminDashboard':'#c8a84e',
+        'attendance':'#30d158'
+    };
+
+    const mainServices  = menuItems.filter(i => !['profile','settings','notifications','resign','volunteerResign','ambassadorResign'].includes(i.id));
+    const acctServices  = menuItems.filter(i => ['profile','settings','notifications','resign','volunteerResign','ambassadorResign'].includes(i.id));
+
+    // الحروف الأولى للاسم (Avatar fallback)
+    const avatarLetters = fullName.split(' ').slice(0,2).map(w=>w[0]||'').join('').toUpperCase() || '؟';
+    // حساب المشرف يستخدم شعار الموقع دائماً
+    const _userIsAdmin = data._isAdmin === true || data._resolvedRole === 'admin' || data.role === 'admin' || data.type === 'admin';
+    const photoSrc = _userIsAdmin ? 'logo.png' : (data.photoUrl || data.photo || '');
+    const avatarHtml = photoSrc
+        ? `<img src="${escapeHtml(photoSrc)}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+           <span style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:20px;font-weight:900;">${avatarLetters}</span>`
+        : `<span style="font-size:20px;font-weight:900;">${avatarLetters}</span>`;
+
+    root.innerHTML = `
+    <div class="mzone-container" style="padding-bottom:60px;">
+
+      <!--  رأس بطاقة العضوية  -->
+      <div style="background:linear-gradient(135deg,#0d3d1a 0%,#1a6b2f 55%,#0d4a1f 100%);color:#fff;margin-bottom:14px;overflow:hidden;">
+        <!-- صورة الغلاف -->
+        <div id="mzoneCoverArea" style="width:100%;height:90px;background:linear-gradient(135deg,#0d3d1a,#1a6b2f);position:relative;overflow:hidden;cursor:pointer;" onclick="openProfileCustomModal()">
+          <div id="mzoneCoverImg" style="width:100%;height:100%;background-size:cover;background-position:center;"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,0.45));"></div>
+          <div style="position:absolute;bottom:7px;left:10px;font-size:10px;opacity:0.65;"><i class="fas fa-camera" style="margin-left:4px;"></i>غيّر الغلاف</div>
+        </div>
+        <div style="padding:0 18px 18px;">
+          ${_buildCountdown()}
+          <div style="display:flex;align-items:flex-start;gap:14px;margin-bottom:14px;margin-top:-30px;">
+            <!-- الصورة الشخصية فوق الغلاف -->
+            <div onclick="openProfileCustomModal()" style="width:62px;height:62px;border-radius:50%;background:rgba(255,255,255,0.15);border:3px solid rgba(13,61,26,1);display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer;flex-shrink:0;position:relative;">
+              ${avatarHtml}
+            </div>
+            <div style="flex:1;min-width:0;padding-top:32px;">
+              <div style="font-size:17px;font-weight:900;display:flex;align-items:center;gap:7px;flex-wrap:wrap;">
+                ${escapeHtml(fullName.split(' ').slice(0,2).join(' '))}
+                ${data.verified
+                  ? `<span style="background:#30d158;color:#fff;border-radius:50%;width:17px;height:17px;display:inline-flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0;" title="موثّق"><i class="fas fa-check"></i></span>`
+                  : `<span onclick="requestAccountVerification()" style="background:rgba(255,255,255,0.18);color:rgba(255,255,255,0.75);border-radius:50%;width:17px;height:17px;display:inline-flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0;cursor:pointer;" title="طلب التوثيق"><i class="fas fa-check"></i></span>`}
+              </div>
+              <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:5px;">
+                <span style="background:${memberInfo.color}22;padding:2px 10px;border-radius:50px;font-size:11px;font-weight:800;border:1px solid ${memberInfo.color}55;color:${memberInfo.color};">
+                  <i class="fas ${memberInfo.icon}" style="font-size:9px;margin-left:3px;"></i>${memberInfo.label}
+                </span>
+                <span style="background:rgba(52,199,89,0.2);padding:2px 10px;border-radius:50px;font-size:11px;font-weight:700;border:1px solid rgba(52,199,89,0.3);">
+                  <i class="fas fa-check-circle" style="font-size:9px;margin-left:3px;"></i>فاعل
+                </span>
+                ${wilaya ? `<span style="background:rgba(255,255,255,0.1);padding:2px 10px;border-radius:50px;font-size:11px;border:1px solid rgba(255,255,255,0.15);"><i class="fas fa-map-marker-alt" style="font-size:9px;margin-left:3px;"></i>${escapeHtml(wilaya)}</span>` : ''}
+              </div>
+            </div>
+            <button onclick="logoutMZone()" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.85);padding:7px 10px;border-radius:9px;font-family:var(--font-arabic);font-size:11px;font-weight:700;cursor:pointer;flex-shrink:0;margin-top:32px;">
+              <i class="fas fa-sign-out-alt"></i><br><span style="font-size:9px;">خروج</span>
+            </button>
+          </div>
+          <!-- بيو العضو -->
+          <div id="mzoneBioArea" style="display:none;font-size:12px;color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:12px;padding:8px 12px;background:rgba(255,255,255,0.07);border-radius:9px;border:1px solid rgba(255,255,255,0.1);"></div>
+
+          <!-- ملخص البيانات الأساسية -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:14px;">
+            ${infoGrid.slice(0,4).map(i=>`
+            <div style="background:rgba(255,255,255,0.1);border-radius:9px;padding:8px 11px;min-width:0;border:1px solid rgba(255,255,255,0.1);">
+              <div style="font-size:9px;opacity:0.6;margin-bottom:2px;"><i class="fas ${i.icon}" style="font-size:8px;margin-left:3px;"></i>${i.label}</div>
+              <div style="font-size:12px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;${i.mono?'font-family:var(--font-mono);':''}">${escapeHtml(i.val)}</div>
+            </div>`).join('')}
+          </div>
+
+          <!-- إحصائيات العضو -->
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px;">
+            <div onclick="loadMZoneSection('tasks')" style="background:rgba(0,122,255,0.12);border:1px solid rgba(0,122,255,0.25);border-radius:10px;padding:9px 4px;text-align:center;cursor:pointer;">
+              <div style="font-size:18px;font-weight:900;color:#6eb5ff;" id="mzoneTasks">0</div>
+              <div style="font-size:9px;opacity:0.7;margin-top:2px;"><i class="fas fa-tasks" style="margin-left:2px;"></i>مهمة</div>
+            </div>
+            <div onclick="loadMZoneSection('notifications')" style="background:rgba(255,59,48,0.12);border:1px solid rgba(255,59,48,0.25);border-radius:10px;padding:9px 4px;text-align:center;cursor:pointer;position:relative;">
+              <div style="font-size:18px;font-weight:900;color:#ff6b6b;" id="mzoneNotifs">0</div>
+              <div style="font-size:9px;opacity:0.7;margin-top:2px;"><i class="fas fa-bell" style="margin-left:2px;"></i>إشعار
+                <span class="mzone-badge mzone-badge-notif" id="mzoneNotifBadge" style="display:none;position:absolute;top:4px;left:4px;"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--  خدمات العضو  -->
+      <div style="padding:0 12px;">
+        <div class="mzone-section-title" style="margin-bottom:8px;">
+          <i class="fas ${memberInfo.icon}" style="margin-left:6px;color:${memberInfo.color};"></i> خدمات ${memberInfo.label}
+        </div>
+        <div class="mzone-ios-card" style="margin-bottom:16px;">
+          ${mainServices.map(item => `
+          <div class="mzone-ios-row" onclick="loadMZoneSection('${item.id}')">
+            <div class="mzone-ios-row-icon" style="background:${iconColors[item.id]||'#636366'};"><i class="fas ${item.icon}"></i></div>
+            <div class="mzone-ios-row-text">
+              <div class="mzone-ios-row-label">${item.label}</div>
+              <div class="mzone-ios-row-desc">${item.desc}</div>
+            </div>
+            <i class="fas fa-chevron-left mzone-ios-row-arrow"></i>
+          </div>`).join('')}
+        </div>
+
+        <!--  الحساب والإعدادات  -->
+        <div class="mzone-section-title" style="margin-bottom:8px;">
+          <i class="fas fa-cog" style="margin-left:6px;color:var(--text-muted);"></i> الحساب والإعدادات
+        </div>
+        <div class="mzone-ios-card" style="margin-bottom:16px;">
+          ${acctServices.map(item => `
+          <div class="mzone-ios-row" onclick="loadMZoneSection('${item.id}')">
+            <div class="mzone-ios-row-icon" style="background:${iconColors[item.id]||'#636366'};"><i class="fas ${item.icon}"></i></div>
+            <div class="mzone-ios-row-text">
+              <div class="mzone-ios-row-label">${item.label}</div>
+              <div class="mzone-ios-row-desc">${item.desc}</div>
+            </div>
+            <i class="fas fa-chevron-left mzone-ios-row-arrow"></i>
+          </div>`).join('')}
+        </div>
+
+        <!--  آخر الإشعارات  -->
+        <div class="mzone-section-title" style="margin-bottom:8px;">
+          <i class="fas fa-bell" style="margin-left:6px;color:#ff3b30;"></i> آخر الإشعارات
+        </div>
+        <div id="mzoneNotifPreview" style="margin-bottom:24px;">
+          <div style="text-align:center;padding:20px;color:var(--text-muted);font-size:13px;">
+            <i class="fas fa-spinner fa-spin"></i> جاري التحميل...
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+    // تحميل البيانات الحية
+    loadMZoneNotifications(data);
+    loadMZoneStats(data);
+    _startMZoneStatsListeners(data);
+    try { if (data.id) startNotifListener(data.id); } catch(e) {}
+
+    // تحميل الغلاف والبيو من userProfiles
+    _loadMZoneProfileMedia(data.id);
+}
+
+window.initMZone = function() {
+    // تحقق من اكتمال الملف الشخصي قبل عرض M-Zone
+    window._mzoneProfileCheck = async function(userData) {
+        if (!userData) return true; // غير مسجل - عرض صفحة تسجيل الدخول
+        const required = ['fullName','wilaya'];
+        const missing = required.filter(f => !userData[f] || String(userData[f]).trim() === '');
+        return missing.length === 0;
+    };
+    const root = document.getElementById('mzoneRoot');
+    if (!root) return;
+    // تحديث رابط الإدارة في التنقل
+    if (typeof window.updateAdminNavVisibility === 'function') window.updateAdminNavVisibility();
+
+    // إذا كان المستخدم مسجلاً مسبقاً في هذه الجلسة، أعرض لوحته مباشرةً دون إعادة تسجيل دخول
+    if (window.mzoneCurrentUser && window.mzoneCurrentUser.id) {
+        renderMZoneDashboard(root, window.mzoneCurrentUser);
+        return;
+    }
+    const saved = sessionStorage.getItem('nazaha_mzone_session') || localStorage.getItem('nazaha_mzone_session');
+    if (saved) {
+        try {
+            const parsed = JSON.parse(saved);
+            if (parsed && parsed.id) {
+                mzoneCurrentUser = parsed;
+                window.mzoneCurrentUser = parsed;
+                // تحديث أزرار الإدارة فور استعادة الجلسة
+                if (typeof window.updateAdminNavVisibility === 'function') window.updateAdminNavVisibility();
+                renderMZoneDashboard(root, parsed);
+                _refreshMZoneSession(parsed, root);
+                return;
+            }
+        } catch(e) {
+            sessionStorage.removeItem('nazaha_mzone_session');
+            localStorage.removeItem('nazaha_mzone_session');
+        }
+    }
+    mzoneCurrentUser = null;
+    renderMZoneLogin(root);
+}
+
+async function _refreshMZoneSession(parsed, root) {
+    if (!window.FirestoreAPI || !window.firebaseDB) return;
+    const cacheKey = 'nazaha_refresh_ts_' + (parsed._officialId || parsed.id);
+    const lastRefresh = parseInt(sessionStorage.getItem(cacheKey) || '0');
+    if (Date.now() - lastRefresh < 5 * 60 * 1000) return;
+    try { sessionStorage.setItem(cacheKey, String(Date.now())); } catch(e) {}
+
+    const docId   = parsed._officialId || parsed.id;
+    const srcCol  = parsed._officialCol || parsed._source || 'mzoneAccounts';
+    if (!docId) return;
+
+    try {
+        const { getDoc, doc } = window.FirestoreAPI;
+        // محاولة الجلب من المجموعة الأصلية أولاً
+        let snap = await getDoc(doc(window.firebaseDB, srcCol, docId)).catch(() => null);
+        // احتياطي: جرّب mzoneAccounts إذا لم يُجد في المصدر الأصلي
+        if (!snap || !snap.exists()) {
+            if (srcCol !== 'mzoneAccounts') {
+                snap = await getDoc(doc(window.firebaseDB, 'mzoneAccounts', docId)).catch(() => null);
+            }
+        }
+        if (!snap || !snap.exists()) return;
+
+        const snapData = snap.data();
+
+        // تحديد حالة الإداري
+        const _adminNumStr = String(parsed.membershipNumber || parsed.memberId || parsed.id || '');
+        const _isAdmin = parsed._isAdmin === true
+            || parsed._resolvedRole === 'admin'
+            || parsed.role === 'admin'
+            || parsed.type === 'admin'
+            || parsed.type === 'إداري'
+            || parsed.type === 'مشرف'
+            || _adminNumStr === '2008123'
+            || _adminNumStr.includes('forum2008123')
+            || String(parsed.id || '').includes('forum2008123');
+
+        const _sessionTypeNorm = {
+            'volunteer':'تطوع',   'volunteers':'تطوع',   'متطوع':'تطوع',
+            'member':'انخراط',    'members':'انخراط',    'منخرط':'انخراط',
+            'ambassador':'تمثيل', 'ambassadors':'تمثيل', 'سفير':'تمثيل',
+            'admin':'admin',      'إداري':'admin',        'مشرف':'admin'
+        };
+        const _colToRole = { members:'انخراط', volunteers:'تطوع', ambassadors:'تمثيل' };
+        const _rawSnapType = snapData.type || snapData.role || parsed._resolvedRole || _colToRole[srcCol] || '';
+        const _normalizedRole = _sessionTypeNorm[_rawSnapType] || _sessionTypeNorm[String(_rawSnapType).toLowerCase()] || _colToRole[srcCol] || 'انخراط';
+
+        const fresh = {
+            id:            snap.id,
+            _source:       srcCol,
+            _officialCol:  srcCol,
+            _officialId:   snap.id,
+            _isAdmin:      _isAdmin,
+            _resolvedRole: _isAdmin ? 'admin' : _normalizedRole,
+            _rawType:      _rawSnapType,
+            ...snapData
+        };
+
+        // الاحتفاظ بالحقول الإثرائية من الجلسة القديمة
+        const skipFields = new Set(['password','mzonePassword','pin','role','type','status',
+                                    '_isAdmin','_resolvedRole','_col']);
+        for (const k of Object.keys(parsed)) {
+            if (!skipFields.has(k) && (fresh[k] == null || fresh[k] === '') && parsed[k] != null) {
+                fresh[k] = parsed[k];
+            }
+        }
+
+        // إعادة تثبيت الحقول المحمية دائماً
+        fresh._isAdmin      = _isAdmin;
+        fresh._resolvedRole = _isAdmin ? 'admin' : _normalizedRole;
+        fresh._rawType      = _rawSnapType || fresh._rawType || '';
+        if (!fresh.type && _colToRole[srcCol]) fresh.type = _colToRole[srcCol];
+
+        mzoneCurrentUser = window.mzoneCurrentUser = fresh;
+        try { sessionStorage.setItem('nazaha_mzone_session', JSON.stringify(fresh)); } catch(e) {}
+
+        // توليد اسم مستخدم تلقائي إذا لم يكن للمستخدم اسم مستخدم
+        if (!fresh.username && fresh.fullName) {
+            try {
+                const { collection, query, where, getDocs, limit, doc, updateDoc } = window.FirestoreAPI;
+                const db = window.firebaseDB;
+                // بناء اسم مستخدم من الاسم الأول + رقم عشوائي
+                const base = (fresh.fullName || '').split(' ')[0].toLowerCase()
+                    .replace(/[^a-z0-9\u0600-\u06ff]/g, '')
+                    .replace(/[\u0600-\u06ff]/g, c => String.fromCharCode(c.charCodeAt(0) - 0x0600 + 97).slice(0,1))
+                    .slice(0, 10) || 'user';
+                const rand = Math.floor(1000 + Math.random() * 9000);
+                let candidate = `${base}${rand}`;
+                // التحقق من التكرار
+                const cols = ['mzoneAccounts','members','volunteers','ambassadors'];
+                let taken = false;
+                for (const col of cols) {
+                    const snap = await getDocs(query(collection(db, col), where('username','==',candidate), limit(1)));
+                    if (!snap.empty) { taken = true; break; }
+                }
+                if (taken) candidate = `${base}${Math.floor(10000 + Math.random() * 90000)}`;
+                // حفظ الاسم تلقائياً
+                const docRef = doc(db, srcCol, docId);
+                await updateDoc(docRef, { username: candidate }).catch(() => {});
+                fresh.username = candidate;
+                mzoneCurrentUser = window.mzoneCurrentUser = fresh;
+                try { sessionStorage.setItem('nazaha_mzone_session', JSON.stringify(fresh)); } catch(e) {}
+            } catch(e) { /* صامت — لا يوقف التحميل */ }
+        }
+
+        const currentRoot = document.getElementById('mzoneRoot');
+        if (currentRoot) renderMZoneDashboard(currentRoot, fresh);
+    } catch(e) {
+        // تجاهل أخطاء الشبكة — الجلسة المحلية لا تزال صالحة
+    }
+}
+
+
+window.logoutMZone = function() {
+    mzoneCurrentUser = null;
+    window.mzoneCurrentUser = null;
+    try { sessionStorage.removeItem('nazaha_mzone_session'); localStorage.removeItem('nazaha_mzone_session'); } catch(e){}
+    const root = document.getElementById('mzoneRoot');
+    if (root) renderMZoneLogin(root);
+    if (typeof showToast === 'function') showToast('تم تسجيل الخروج', 'info');
+};
+
+// dark prefer
+(function(){
+  var s=localStorage.getItem('nazaha_dark');
+  if(s==='1'||(s===null&&window.matchMedia('(prefers-color-scheme: dark)').matches))
+    document.body.classList.add('dark');
+})();
+
+// boot
+function boot(){
+  if(typeof window.initMZone==='function') window.initMZone();
+  else {
+    var root=document.getElementById('mzoneRoot');
+    if(root&&typeof renderMZoneLogin==='function') renderMZoneLogin(root);
+  }
+}
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', boot);
+else boot();
+window.addEventListener('firebaseReady', function(){
+  // if still on login and session exists, init will handle
+});
+</script>
+</body>
+</html>
