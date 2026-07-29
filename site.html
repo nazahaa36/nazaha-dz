@@ -67,7 +67,7 @@ button,input,select,textarea{font-family:var(--font)}::-webkit-scrollbar{width:6
 .stat-card::before{content:'';position:absolute;top:0;inset-inline:0;height:3px;background:linear-gradient(90deg,var(--primary-light),var(--accent))}
 .stat-number{font-size:clamp(24px,4vw,36px);font-weight:800;color:var(--primary);font-family:var(--font-mono)}.stat-label{font-size:12px;font-weight:600;color:var(--text-secondary);margin-top:6px}.stat-icon{font-size:20px;color:var(--primary-light);margin-bottom:6px}
 .partners-wrap{overflow:hidden;padding:32px 0;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.partners-track{display:flex;gap:48px;width:max-content;animation:marquee 18s linear infinite;will-change:transform}.partners-track:hover{animation-play-state:paused}
+.partners-track{display:flex;gap:36px;width:max-content;animation:marquee 9s linear infinite;will-change:transform}.partners-track:hover{animation-play-state:paused}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .partner-logo{height:48px;width:auto;max-width:140px;object-fit:contain;filter:grayscale(.3);opacity:.85;transition:.25s;cursor:pointer}.partner-logo:hover{filter:none;opacity:1;transform:scale(1.05)}
 .form-group{margin-bottom:16px}.form-group label{display:block;font-size:12px;font-weight:600;color:var(--text-secondary);margin-bottom:6px}
@@ -469,7 +469,8 @@ onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/1hyQKv3
     <div class="section-header"><div class="section-tag">مشاريعنا</div><h1 class="section-title">المبادرات والمشاريع</h1><div class="section-divider"></div></div>
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px">
       <input class="form-input" id="projSearch" placeholder="بحث..." style="flex:1;min-width:160px" oninput="filterProjects()">
-      <select class="form-select" id="projFilter" style="width:auto;min-width:140px" onchange="filterProjects()"><option value="">الكل</option><option value="active">قيد التنفيذ</option><option value="completed">مكتمل</option></select>
+      <select class="form-select" id="projFilter" style="width:auto;min-width:140px" onchange="filterProjects()"><option value="">كل التصنيفات</option></select>
+      <select class="form-select" id="projStatusFilter" style="width:auto;min-width:120px" onchange="filterProjects()"><option value="">كل الحالات</option><option value="active">قيد التنفيذ</option><option value="completed">مكتمل</option><option value="planned">مخطط</option></select>
     </div>
     <h3 style="margin-bottom:12px;font-size:16px">المشاريع النشطة</h3>
     <div class="cards-grid" id="projectsActive"></div>
@@ -510,11 +511,60 @@ onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/1hyQKv3
         <div class="person-avatar" id="profileAvatar" style="margin:0 auto 10px"><i class="fas fa-user"></i></div>
         <h2 id="profileName" style="font-size:18px"></h2>
         <div id="profileRole" class="badge badge-accepted" style="margin-top:6px"></div>
+        <div id="profileBioPreview" style="font-size:13px;color:var(--text-secondary);margin-top:8px;line-height:1.6"></div>
       </div>
       <div id="profileInfo" style="font-size:13px;color:var(--text-secondary);line-height:2"></div>
       <div style="display:flex;flex-direction:column;gap:8px;margin-top:20px">
+        <button class="btn-primary" style="justify-content:center" onclick="openProfileCustomModal()"><i class="fas fa-user-edit"></i> تخصيص الملف الشخصي</button>
         <button class="btn-outline-dark" style="justify-content:center" onclick="window.open('https://nazaha-dz.vercel.app/mzone.html','_blank')"><i class="fas fa-th-large"></i> المزيد من الخدمات</button>
         <button class="btn-outline-dark" style="justify-content:center;color:var(--danger);border-color:var(--danger)" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button>
+      </div>
+    </div>
+    <!-- Profile Customization Modal -->
+    <div id="profileCustomModal" class="modal-overlay" style="display:none" onclick="if(event.target===this)closeProfileCustomModal()">
+      <div class="modal-box wide" style="max-height:90vh;overflow-y:auto;text-align:right" onclick="event.stopPropagation()">
+        <button class="modal-close" onclick="closeProfileCustomModal()"><i class="fas fa-times"></i></button>
+        <h2 style="font-size:17px;margin-bottom:16px"><i class="fas fa-user-edit" style="color:var(--primary-light);margin-left:8px"></i>تخصيص الملف الشخصي</h2>
+        <div class="form-group"><label>اسم المستخدم (لاتيني)</label><input class="form-input" id="profileUsername" placeholder="username" maxlength="20"><div id="usernameStatusMsg" style="font-size:11px;margin-top:4px"></div></div>
+        <div class="form-group"><label>نبذة تعريفية</label><textarea class="form-textarea" id="profileBio" rows="3" maxlength="500" placeholder="عرّف بنفسك بإيجاز..."></textarea></div>
+        <div class="form-row">
+          <div class="form-group"><label>العمل / المنصب</label><input class="form-input" id="profileWork" placeholder="مثال: طالب، موظف..."></div>
+          <div class="form-group"><label>الدراسة</label><input class="form-input" id="profileStudy" placeholder="التخصص أو المستوى"></div>
+        </div>
+        <div class="form-group"><label>الولاية</label><select class="form-select" id="profileCity"><option value="">اختر الولاية</option></select></div>
+        <div class="form-group"><label>رابط موقع / محفظة</label><input class="form-input" id="profileWebsite" placeholder="https://"></div>
+        <div class="form-row">
+          <div class="form-group"><label>فيسبوك</label><input class="form-input" id="profileFacebook" placeholder="https://facebook.com/..."></div>
+          <div class="form-group"><label>إنستغرام</label><input class="form-input" id="profileInstagram" placeholder="https://instagram.com/..."></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>تويتر / X</label><input class="form-input" id="profileTwitter" placeholder="https://x.com/..."></div>
+          <div class="form-group"><label>واتساب</label><input class="form-input" id="profileWhatsapp" placeholder="2135XXXXXXXX"></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+          <div style="text-align:center">
+            <div id="profilePhotoPreview" style="width:88px;height:88px;border-radius:50%;margin:0 auto 8px;background:linear-gradient(135deg,var(--primary-light),var(--primary));display:flex;align-items:center;justify-content:center;overflow:hidden;border:3px solid rgba(46,204,90,.25)"><i class="fas fa-user" style="color:#fff;font-size:28px"></i></div>
+            <label class="btn-outline-dark" style="font-size:11px;cursor:pointer;padding:6px 12px;display:inline-flex;align-items:center;gap:6px">
+              <i class="fas fa-camera"></i> صورة الملف
+              <input type="file" id="profilePhotoFile" accept="image/*" style="display:none" onchange="previewProfileImage(this,'profilePhotoPreview','profilePhotoUrl')">
+            </label>
+            <input type="hidden" id="profilePhotoUrl">
+          </div>
+          <div style="text-align:center">
+            <div id="profileCoverPreview" style="width:100%;height:88px;border-radius:12px;margin:0 auto 8px;background:linear-gradient(135deg,#0d3d1a,#1a6b2f);display:flex;align-items:center;justify-content:center;overflow:hidden;border:1.5px solid var(--border-light)"><i class="fas fa-image" style="color:rgba(255,255,255,.5);font-size:24px"></i></div>
+            <label class="btn-outline-dark" style="font-size:11px;cursor:pointer;padding:6px 12px;display:inline-flex;align-items:center;gap:6px">
+              <i class="fas fa-image"></i> صورة الغلاف
+              <input type="file" id="profileCoverFile" accept="image/*" style="display:none" onchange="previewProfileImage(this,'profileCoverPreview','profileCoverUrl')">
+            </label>
+            <input type="hidden" id="profileCoverUrl">
+          </div>
+        </div>
+        <div class="form-group"><label>أو رابط صورة الملف</label><input class="form-input" id="profilePhotoUrlText" placeholder="https://..." oninput="document.getElementById('profilePhotoUrl').value=this.value;updatePreviewFromUrl(this.value,'profilePhotoPreview')"></div>
+        <div class="form-group"><label>أو رابط صورة الغلاف</label><input class="form-input" id="profileCoverUrlText" placeholder="https://..." oninput="document.getElementById('profileCoverUrl').value=this.value;updatePreviewFromUrl(this.value,'profileCoverPreview',true)"></div>
+        <div style="display:flex;gap:10px;margin-top:8px">
+          <button class="btn-primary" style="flex:1;justify-content:center" onclick="saveProfileCustomization()"><i class="fas fa-save"></i> حفظ</button>
+          <button class="btn-outline-dark" style="flex:1;justify-content:center" onclick="closeProfileCustomModal()">إلغاء</button>
+        </div>
       </div>
     </div>
   </div>
@@ -802,6 +852,9 @@ onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/1hyQKv3
 <script>
 const ROUTES={'/':'home','/about':'about','/team':'team','/ambassadors':'ambassadors','/join':'join','/activities':'activities','/news':'news','/projects':'projects','/library':'library','/mzone':'mzone','/reviews':'reviews','/contact':'contact','/legal':'legal','/tracking':'tracking'};
 const WILAYAS=['أدرار','الشلف','الأغواط','أم البواقي','باتنة','بجاية','بسكرة','بشار','البليدة','البويرة','تمنراست','تبسة','تلمسان','تيارت','تيزي وزو','الجزائر','الجلفة','جيجل','سطيف','سعيدة','سكيكدة','سيدي بلعباس','عنابة','قالمة','قسنطينة','المدية','مستغانم','المسيلة','معسكر','ورقلة','وهران','البيض','إليزي','برج بوعريريج','بومرداس','الطارف','تندوف','تيسمسيلت','الوادي','خنشلة','سوق أهراس','تيبازة','ميلة','عين الدفلى','النعامة','عين تموشنت','غرداية','غليزان','تيميمون','برج باجي مختار','أولاد جلال','بني عباس','عين صالح','عين قزام','تقرت','جانت','المغير','المنيعة'];
+const GENDER_OPTIONS=['ذكر','أنثى'];
+const EDUCATION_LEVELS=['ابتدائي','متوسط','ثانوي','جامعي (ليسانس)','ماستر','دكتوراه','تكوين مهني','أخرى'];
+const MEMBERSHIP_FIELDS=['التطوع الميداني','القيادة والتمثيل','التدريب والتأطير','المبادرات والمشاريع','الإعلام والمحتوى','التنظيم والإدارة'];
 const ACTIVITY_TYPES=['الدورات التدريبية والورشات التكوينية','الندوات والملتقيات والمؤتمرات','الحوارات الفكرية والطاولات المستديرة','المحاضرات واللقاءات الحوارية','المسابقات والتحديات الشبابية','المبادرات والحملات المجتمعية والتوعوية','الأعمال والبرامج التطوعية','المشاريع الشبابية وبرامج الاحتضان','المخيمات والملتقيات الشبابية','الزيارات الميدانية والاستكشافية','الزيارات الرسمية والمؤسساتية','برامج التبادل المعرفي والثقافي','الزيارات الدراسية والتكوينية','المعارض والصالونات والملتقيات المتخصصة','الهاكاثونات ومعسكرات الابتكار','برامج ريادة الأعمال والابتكار الاجتماعي','برامج القيادة والتأهيل المهني','جلسات الإرشاد والتوجيه والتوجيه المهني','جلسات النقاش وصناعة السياسات الشبابية','الأنشطة الثقافية والفنية والإبداعية','الأنشطة الرياضية والترفيهية','الرحلات والخرجات التعليمية','برامج السفر والتبادل الشبابي','اللقاءات مع الخبراء وصناع القرار','المنتديات والملتقيات الوطنية والدولية','المشاريع البحثية والدراسات والاستطلاعات','البرامج الرقمية والتعليم الإلكتروني'];
 const TYPEWRITER_PHRASES=['نحو جزائر يقودها الشباب','أكبر مبادرة شبابية في الجزائر','نزاهة.. بك ومعك','تمكين · مشاركة · نزاهة'];
 const CLOUDINARY_CLOUD='dlb1tvpms',CLOUDINARY_PRESET='nazaha_unsigned',IMGBB_API_KEY='2495c2f02cb55d8de7ce909d5b63b044';
@@ -868,7 +921,33 @@ function pageGo(pageKey,dir){
 function formatNumber(n){n=Number(n)||0;if(n>=1e6)return(n/1e6).toFixed(1).replace(/\.0$/,'')+'M';if(n>=1e3)return(n/1e3).toFixed(1).replace(/\.0$/,'')+'K';return String(n)}
 function showToast(msg,type){type=type||'info';var wrap=document.getElementById('toast-wrap');var t=document.createElement('div');t.className='toast '+type;var icons={success:'fa-check-circle',error:'fa-times-circle',warning:'fa-exclamation-triangle',info:'fa-info-circle'};t.innerHTML='<i class="fas '+(icons[type]||icons.info)+'" style="color:var(--primary-light)"></i> '+escapeHtml(msg);wrap.appendChild(t);setTimeout(function(){t.style.opacity='0';setTimeout(function(){t.remove()},300)},3500)}
 function generateTrackingCode(){var y=new Date().getFullYear(),chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789',code='';for(var i=0;i<8;i++)code+=chars[Math.floor(Math.random()*chars.length)];return 'NZ-'+y+'-'+code}
-function fillWilayaSelects(){document.querySelectorAll('select[id^="wilaya-"],select[name="wilaya"]').forEach(function(sel){if(sel.options.length>1)return;sel.innerHTML='<option value="">اختر الولاية</option>';WILAYAS.forEach(function(w){var o=document.createElement('option');o.value=w;o.textContent=w;sel.appendChild(o)})})}
+function fillWilayaSelects(){
+  var sels=document.querySelectorAll('select[id^="wilaya-"],select[name="wilaya"],select#extWilaya,select#joinWilayaSelect,select[id*="Wilaya"],select[id*="wilaya"],select[name*="Wilaya"],select[name*="wilaya"]');
+  sels.forEach(function(sel){
+    if(!sel) return;
+    var prev=sel.value;
+    /* أعد الملء دائماً إن كانت القائمة فارغة أو تحتوي خياراً واحداً فقط */
+    var needFill = sel.options.length<=1 || sel.dataset.wilayaFilled!=='1';
+    if(!needFill){
+      /* تأكد أن القيم موجودة */
+      var hasWilayas=false;
+      for(var i=0;i<sel.options.length;i++){ if(WILAYAS.indexOf(sel.options[i].value)>=0){ hasWilayas=true; break; } }
+      if(hasWilayas) return;
+    }
+    var html='<option value="">اختر الولاية</option>';
+    WILAYAS.forEach(function(w){ html+='<option value="'+w+'">'+w+'</option>'; });
+    sel.innerHTML=html;
+    sel.dataset.wilayaFilled='1';
+    if(prev){ try{ sel.value=prev; }catch(_){} }
+  });
+}
+function getWilayaOptionsHtml(selected){
+  var html='<option value="">اختر الولاية</option>';
+  WILAYAS.forEach(function(w){
+    html+='<option value="'+w+'"'+(selected&&selected===w?' selected':'')+'>'+w+'</option>';
+  });
+  return html;
+}
 
 function toggleDark(){document.body.classList.toggle('dark');var isDark=document.body.classList.contains('dark');localStorage.setItem('nazaha_dark',isDark?'1':'0');var icon=document.querySelector('#darkToggle i');if(icon)icon.className=isDark?'fas fa-sun':'fas fa-moon'}
 function initDark(){var saved=localStorage.getItem('nazaha_dark'),prefers=window.matchMedia('(prefers-color-scheme: dark)').matches;if(saved==='1'||(saved===null&&prefers)){document.body.classList.add('dark');var icon=document.querySelector('#darkToggle i');if(icon)icon.className='fas fa-sun';var lab=document.getElementById('darkToggleLabel');if(lab)lab.textContent='الوضع الفاتح'}}
@@ -902,7 +981,39 @@ function updateContactFields(type){var box=document.getElementById('dynamicConta
 async function submitContact(e){e.preventDefault();var form=e.target,fd=new FormData(form),data={status:'new'};fd.forEach(function(v,k){data[k]=sanitizeInput(v)});try{if(window.FirestoreAPI&&window.firebaseDB){var FA=window.FirestoreAPI;await FA.addDoc(FA.collection(window.firebaseDB,'contactMessages'),Object.assign({},data,{createdAt:FA.serverTimestamp()}))}showToast('تم إرسال رسالتك بنجاح','success');form.reset();document.getElementById('dynamicContactFields').innerHTML=''}catch(err){showToast('تعذّر الإرسال','error')}return false}
 
 document.addEventListener('click',function(e){if(e.target.classList.contains('star')&&e.target.closest('#reviewStars')){selectedRating=Number(e.target.dataset.v);document.getElementById('ratingValue').value=selectedRating;document.querySelectorAll('#reviewStars .star').forEach(function(s){s.classList.toggle('on',Number(s.dataset.v)<=selectedRating)})}});
-async function submitReview(e){e.preventDefault();var form=e.target,fd=new FormData(form),rating=Number(fd.get('rating'));if(!rating){showToast('اختر التقييم بالنجوم','warning');return false}var data={name:sanitizeInput(fd.get('name')),wilaya:sanitizeInput(fd.get('wilaya')),rating:rating,comment:sanitizeInput(fd.get('comment'))};try{if(window.FirestoreAPI&&window.firebaseDB){var FA=window.FirestoreAPI;await FA.addDoc(FA.collection(window.firebaseDB,'reviews'),Object.assign({},data,{createdAt:FA.serverTimestamp()}))}showToast('شكراً لتقييمك!','success');form.reset();selectedRating=0;document.querySelectorAll('#reviewStars .star').forEach(function(s){s.classList.remove('on')});loadReviews()}catch(err){showToast('تعذّر الإرسال','error')}return false}
+async function submitReview(e){
+  e.preventDefault();
+  var form=e.target, fd=new FormData(form), rating=Number(fd.get('rating'));
+  if(!rating || rating<1 || rating>5){ showToast('اختر التقييم بالنجوم (1-5)','warning'); return false; }
+  var name=sanitizeInput(fd.get('name'));
+  var wilaya=sanitizeInput(fd.get('wilaya'));
+  var comment=sanitizeInput(fd.get('comment'));
+  if(!name || name.length<2){ showToast('أدخل الاسم الكامل','error'); return false; }
+  if(!wilaya){ showToast('اختر الولاية','error'); return false; }
+  if(!comment || comment.length<5){ showToast('اكتب رأيك (5 أحرف على الأقل)','error'); return false; }
+  if(comment.length>1000){ showToast('التعليق طويل جداً','error'); return false; }
+  if(!rateLimit('review_submit', 1)){ showToast('يمكنك إرسال تقييم واحد كل ساعة','warning'); return false; }
+  var data={name:name, wilaya:wilaya, rating:rating, comment:comment, status:'published'};
+  var btn=form.querySelector('[type="submit"]');
+  if(btn){ btn.disabled=true; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> جاري الإرسال...'; }
+  try{
+    if(window.FirestoreAPI&&window.firebaseDB){
+      var FA=window.FirestoreAPI;
+      await FA.addDoc(FA.collection(window.firebaseDB,'reviews'), Object.assign({},data,{createdAt:FA.serverTimestamp()}));
+    } else {
+      var local=JSON.parse(localStorage.getItem('nazaha_reviews')||'[]');
+      local.unshift(Object.assign({},data,{createdAt:new Date().toISOString()}));
+      localStorage.setItem('nazaha_reviews', JSON.stringify(local.slice(0,100)));
+    }
+    showToast('شكراً لتقييمك!','success');
+    form.reset(); selectedRating=0;
+    document.querySelectorAll('#reviewStars .star').forEach(function(s){ s.classList.remove('on'); });
+    document.getElementById('ratingValue').value='0';
+    loadReviews();
+  }catch(err){ console.error(err); showToast('تعذّر الإرسال','error'); }
+  finally{ if(btn){ btn.disabled=false; btn.innerHTML='<i class="fas fa-paper-plane"></i> إرسال'; } }
+  return false;
+}
 
 
 async function loadHomeStats(){try{if(window.FirestoreAPI&&window.firebaseDB){var FA=window.FirestoreAPI;var snap=await FA.getDocs(FA.collection(window.firebaseDB,'siteStats'));if(!snap.empty){var d=snap.docs[0].data();setStat('statMembers',d.members||d.totalMembers||0);setStat('statWilayas',d.wilayas||d.coverage||0);setStat('statActivities',d.activities||d.totalActivities||0);setStat('statAge',d.avgAge||22)}else{setStat('statMembers',0);setStat('statWilayas',0);setStat('statActivities',0);setStat('statAge',0)}try{var pSnap=await FA.getDocs(FA.collection(window.firebaseDB,'link'));renderPartners(pSnap.docs.map(function(d){return d.data()}).filter(function(p){return p.logo||p.image}))}catch(_){renderPartners([])}}else{setStat('statMembers',0);setStat('statWilayas',0);setStat('statActivities',0);setStat('statAge',0);renderPartners([])}}catch(_){setStat('statMembers',0);setStat('statWilayas',0);setStat('statActivities',0);setStat('statAge',0)}observeStats()}
@@ -1113,7 +1224,34 @@ function filterNews(){var q=(document.getElementById('newsSearch').value||'').to
 
 function renderProjects(list){var active=list.filter(function(p){return p.status!=='completed'&&p.status!=='مكتمل'});var done=list.filter(function(p){return p.status==='completed'||p.status==='مكتمل'});window._paginatedRenderers.projActive=function(){renderPaginated('projectsActive','projectsActivePagination',active,projectCard,'لا توجد مشاريع نشطة','projActive')};window._paginatedRenderers.projDone=function(){renderPaginated('projectsCompleted','projectsCompletedPagination',done,projectCard,'لا توجد مشاريع مكتملة','projDone')};window._paginatedRenderers.projActive();window._paginatedRenderers.projDone()}
 function projectCard(p){var img=p.image||p.cover;var st=(p.status==='completed'||p.status==='مكتمل')?'مكتمل':'قيد التنفيذ';var participants=p.participantsCount!=null?p.participantsCount:(p.participants!=null?p.participants:null);var id=p.id||'';return '<div class="person-card" style="text-align:right;padding:0;overflow:hidden;cursor:pointer" onclick="openProjectDetail(\''+escapeHtml(id)+'\')"><div style="height:120px;background:linear-gradient(135deg,#0d3d1a,#1a6b2f);overflow:hidden">'+(img?'<img src="'+escapeHtml(img)+'" style="width:100%;height:100%;object-fit:cover">':'')+'</div><div style="padding:14px"><span class="item-tag">'+escapeHtml(p.category||'')+'</span> <span class="badge '+(st==='مكتمل'?'badge-accepted':'badge-review')+'" style="margin-right:6px">'+st+'</span><div class="item-title" style="margin-top:6px">'+escapeHtml(p.title||p.name||'')+'</div>'+(p.description?'<div class="item-desc" style="margin-top:4px">'+escapeHtml((p.description||'').slice(0,90))+'</div>':'')+(participants!=null?'<div class="item-meta" style="margin-top:6px"><i class="fas fa-users"></i> '+participants+' مشارك</div>':'')+'<button type="button" class="btn-outline-dark" style="margin-top:10px;font-size:11px" onclick="event.stopPropagation();openProjectDetail(\''+escapeHtml(id)+'\')">تفاصيل <i class="fas fa-arrow-left"></i></button></div></div>'}
-function filterProjects(){var q=(document.getElementById('projSearch').value||'').toLowerCase(),t=document.getElementById('projFilter').value;var list=projectsCache;if(t==='active')list=list.filter(function(p){return p.status!=='completed'&&p.status!=='مكتمل'});if(t==='completed')list=list.filter(function(p){return p.status==='completed'||p.status==='مكتمل'});if(q)list=list.filter(function(p){return (p.title||p.name||'').toLowerCase().indexOf(q)>=0});_pageState.projActive=0;_pageState.projDone=0;renderProjects(list)}
+function filterProjects(){
+  var q=(document.getElementById('projSearch').value||'').toLowerCase();
+  var catEl=document.getElementById('projFilter');
+  var stEl=document.getElementById('projStatusFilter');
+  var cat=catEl?catEl.value:'';
+  var st=stEl?stEl.value:'';
+  var list=projectsCache.slice();
+  if(cat) list=list.filter(function(p){ return (p.category||p.type||'')===cat; });
+  if(st==='active') list=list.filter(function(p){ return p.status!=='completed'&&p.status!=='مكتمل'&&p.status!=='planned'&&p.status!=='مخطط'; });
+  else if(st==='completed') list=list.filter(function(p){ return p.status==='completed'||p.status==='مكتمل'; });
+  else if(st==='planned') list=list.filter(function(p){ return p.status==='planned'||p.status==='مخطط'; });
+  if(q) list=list.filter(function(p){ return ((p.title||p.name||'')+(p.description||'')).toLowerCase().indexOf(q)>=0; });
+  _pageState.projActive=0; _pageState.projDone=0;
+  renderProjects(list);
+}
+function fillProjectCategoryFilter(){
+  var sel=document.getElementById('projFilter'); if(!sel) return;
+  var cur=sel.value;
+  var set={};
+  (projectsCache||[]).forEach(function(p){ var c=p.category||p.type; if(c) set[c]=1; });
+  /* تصنيفات افتراضية إن لم توجد بيانات */
+  var defaults=['تنمية','تعليم','بيئة','ثقافة','رياضة','تكنولوجيا','اجتماعي','قيادي'];
+  defaults.forEach(function(d){ set[d]=set[d]||0; });
+  var opts=['<option value="">كل التصنيفات</option>'];
+  Object.keys(set).sort().forEach(function(c){ opts.push('<option value="'+escapeHtml(c)+'">'+escapeHtml(c)+'</option>'); });
+  sel.innerHTML=opts.join('');
+  if(cur) try{ sel.value=cur; }catch(_){}
+}
 
 
 var _libCache={posts:[],books:[],links:[]};
@@ -1247,7 +1385,7 @@ window.openPostDetail=async function(id){
     '</div>'+
     '<h3 style="font-size:14px;margin-bottom:10px">التعليقات</h3>'+
     '<div id="postCommentsList" style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px"><span class="op-spinner"></span></div>'+
-    (currentUser?'<div style="display:flex;gap:8px"><input class="form-input" id="newCommentInput" placeholder="اكتب تعليقاً... (استخدم @ للإشارة)" style="flex:1"><button class="btn-primary" onclick="submitLibraryComment(\''+escapeHtml(id)+'\')"><i class="fas fa-paper-plane"></i></button></div>':
+    ((currentUser||window.mzoneCurrentUser)?'<div style="display:flex;gap:8px"><input class="form-input" id="newCommentInput" placeholder="اكتب تعليقاً... (استخدم @ للإشارة)" style="flex:1"><button class="btn-primary" onclick="submitLibraryComment(\''+escapeHtml(id)+'\')"><i class="fas fa-paper-plane"></i></button></div>':
       '<div class="empty-state" style="padding:10px"><i class="fas fa-lock"></i> سجّل الدخول من صفحة "حسابي" لإضافة تعليق</div>')+
     '</div>';
   document.body.appendChild(overlay);
@@ -1273,14 +1411,16 @@ async function loadPostComments(postId){
   }catch(e){ console.warn(e); el.innerHTML='<div class="empty-state">تعذّر تحميل التعليقات</div>'; }
 }
 window.submitLibraryComment=async function(postId){
-  if(!currentUser){ showToast('سجّل الدخول أولاً','warning'); return; }
+  var _cu=currentUser||window.mzoneCurrentUser;
+  if(!_cu){ showToast('سجّل الدخول أولاً','warning'); return; }
   var input=document.getElementById('newCommentInput');
   var text=sanitizeInput(input.value.trim());
   if(!text) return;
+  if(text.length>1000){ showToast('التعليق طويل جداً','warning'); return; }
   input.disabled=true;
   try{
     var FA=window.FirestoreAPI, db=window.firebaseDB;
-    await FA.addDoc(FA.collection(db,'comments'),{postId:postId,text:text,authorName:currentUser.fullName||currentUser.name||'عضو',authorId:currentUser.id||'',createdAt:FA.serverTimestamp()});
+    await FA.addDoc(FA.collection(db,'comments'),{postId:postId,text:text,authorName:_cu.fullName||_cu.name||'عضو',authorId:_cu.id||'',createdAt:FA.serverTimestamp()});
     var postRef=FA.doc(db,'posts',postId);
     try{ await FA.updateDoc(postRef,{commentsCount:FA.increment(1)}); }catch(_){}
     var p=(_libCache.posts||[]).find(function(x){return x.id===postId;});
@@ -1291,10 +1431,11 @@ window.submitLibraryComment=async function(postId){
   finally{ input.disabled=false; }
 };
 window.toggleLibraryPostLike=async function(postId){
-  if(!currentUser){ showToast('سجّل الدخول لإضافة إعجاب','warning'); return; }
+  var _cu=currentUser||window.mzoneCurrentUser;
+  if(!_cu){ showToast('سجّل الدخول لإضافة إعجاب','warning'); return; }
   var p=(_libCache.posts||[]).find(function(x){return x.id===postId;});
   if(!p) return;
-  var uid=currentUser.id||currentUser.membershipNumber||currentUser.email||'';
+  var uid=_cu.id||_cu.membershipNumber||_cu.volunteerNumber||_cu.ambassadorNumber||_cu.email||'';
   p.likedBy=p.likedBy||[];
   var liked=p.likedBy.indexOf(uid)>=0;
   try{
@@ -1308,68 +1449,406 @@ window.toggleLibraryPostLike=async function(postId){
 };
 
 async function doLogin(){
-  var id=sanitizeInput(document.getElementById('loginId').value);
-  var pass=document.getElementById('loginPass').value;
-  if(!id||!pass){showToast('أدخل رقم التعريف وكلمة المرور','warning');return;}
+  var idEl=document.getElementById('loginId');
+  var passEl=document.getElementById('loginPass');
+  var id=sanitizeInput(idEl?idEl.value:'');
+  var pass=(passEl?passEl.value:'').trim();
+  if(!id){showToast('يرجى إدخال رقم التعريف','error');return;}
+  if(!pass){showToast('يرجى إدخال كلمة المرور','error');return;}
+  /* رقم التعريف: أرقام أو معرف نصي (username/email) */
   var btn=document.querySelector('#mzoneLoginBox .btn-primary');
   if(btn){btn.disabled=true;btn.innerHTML='<span class="op-spinner"></span> جاري التحقق...';}
   try{
-    if(!window.FirestoreAPI||!window.firebaseDB){showToast('تعذّر الاتصال بقاعدة البيانات','error');return;}
+    if(!window.FirestoreAPI||!window.firebaseDB){
+      var waited=0;
+      while((!window.FirestoreAPI||!window.firebaseDB)&&waited<50){await new Promise(function(r){setTimeout(r,100)});waited++;}
+      if(!window.FirestoreAPI||!window.firebaseDB){showToast('قاعدة البيانات غير جاهزة — أعد تحميل الصفحة','error');return;}
+    }
     var FA=window.FirestoreAPI, db=window.firebaseDB;
-    var cols=['users','mzoneAccounts','members','volunteers','ambassadors'];
-    var fields=['membershipNumber','memberId','username','email','phone','id','uid'];
-    var found=null, foundCol=null;
-    for(var ci=0;ci<cols.length && !found;ci++){
-      for(var fi=0;fi<fields.length && !found;fi++){
+
+    async function tryQuery(col, field, val){
+      try{
+        var snap=await FA.getDocs(FA.query(FA.collection(db,col),FA.where(field,'==',val),FA.limit(1)));
+        if(snap&&!snap.empty) return Object.assign({id:snap.docs[0].id,_source:col},snap.docs[0].data());
+        /* محاولة كرقم إن كان رقمياً */
+        if(/^\d+$/.test(String(val))){
+          var numVal=Number(val);
+          snap=await FA.getDocs(FA.query(FA.collection(db,col),FA.where(field,'==',numVal),FA.limit(1)));
+          if(snap&&!snap.empty) return Object.assign({id:snap.docs[0].id,_source:col},snap.docs[0].data());
+        }
+      }catch(_){}
+      return null;
+    }
+    async function tryGet(col, docId){
+      try{
+        var ds=await FA.getDoc(FA.doc(db,col,docId));
+        if(ds&&ds.exists&&(typeof ds.exists==='function'?ds.exists():ds.exists))
+          return Object.assign({id:docId,_source:col},ds.data());
+      }catch(_){}
+      return null;
+    }
+
+    var found=null;
+    /* حقول رقم التعريف حسب النوع — من index */
+    var idFields=['membershipNumber','volunteerNumber','ambassadorNumber','memberId','volunteerId','ambassadorId','idNumber','numAdherent','numBenevole','numAmbassadeur','phone','email','forumId','userId','username'];
+    var memberFields=['membershipNumber','memberId','phone','email','idNumber','numAdherent'];
+    var volFields=['volunteerNumber','volunteerId','phone','email','idNumber','numBenevole','membershipNumber'];
+    var ambFields=['ambassadorNumber','ambassadorId','phone','email','idNumber','numAmbassadeur','membershipNumber'];
+    var regFields=['membershipNumber','volunteerNumber','ambassadorNumber','phone','email','idNumber'];
+
+    /* 1) mzoneAccounts */
+    for(var i=0;i<idFields.length&&!found;i++) found=await tryQuery('mzoneAccounts',idFields[i],id);
+    if(!found) found=await tryGet('mzoneAccounts',id);
+    if(!found) found=await tryGet('mzoneAccounts','forum'+id);
+    /* 2) members */
+    if(!found){ for(var i=0;i<memberFields.length&&!found;i++) found=await tryQuery('members',memberFields[i],id); if(!found) found=await tryGet('members',id); }
+    /* 3) volunteers */
+    if(!found){ for(var i=0;i<volFields.length&&!found;i++) found=await tryQuery('volunteers',volFields[i],id); if(!found) found=await tryGet('volunteers',id); }
+    /* 4) ambassadors */
+    if(!found){ for(var i=0;i<ambFields.length&&!found;i++) found=await tryQuery('ambassadors',ambFields[i],id); if(!found) found=await tryGet('ambassadors',id); }
+    /* 5) users */
+    if(!found){ for(var i=0;i<idFields.length&&!found;i++) found=await tryQuery('users',idFields[i],id); if(!found) found=await tryGet('users',id); }
+    /* 6) registrations (مقبولة) */
+    if(!found){
+      for(var i=0;i<regFields.length&&!found;i++){
         try{
-          var snap=await FA.getDocs(FA.query(FA.collection(db,cols[ci]),FA.where(fields[fi],'==',id),FA.limit(1)));
-          if(snap && !snap.empty){ found=Object.assign({id:snap.docs[0].id},snap.docs[0].data()); foundCol=cols[ci]; }
-        }catch(_){}
-      }
-      // also try doc id direct
-      if(!found){
-        try{
-          var ds=await FA.getDoc(FA.doc(db,cols[ci],id));
-          if(ds && ds.exists && ds.exists()){ found=Object.assign({id:id},ds.data()); foundCol=cols[ci]; }
+          var snap=await FA.getDocs(FA.query(FA.collection(db,'registrations'),FA.where(regFields[i],'==',id),FA.limit(3)));
+          if(snap&&!snap.empty){
+            for(var d=0;d<snap.docs.length;d++){
+              var rd=snap.docs[d].data();
+              var st=String(rd.status||'').toLowerCase();
+              if(['accepted','approved','active','مقبول','نشط','confirmed'].indexOf(st)>=0 || !st){
+                found=Object.assign({id:snap.docs[d].id,_source:'registrations'},rd); break;
+              }
+            }
+          }
         }catch(_){}
       }
     }
-    if(found){
-      var ok = (found.password===pass || found.pass===pass || found.passwordHash===pass || String(found.password||'')===String(pass));
-      if(ok){
-        found._source=foundCol;
-        currentUser=found;
-        sessionStorage.setItem('nazaha_user',JSON.stringify(currentUser));
-        showToast('مرحباً '+(found.fullName||found.name||''),'success');
-        refreshMzone();
+
+    if(!found){
+      showToast('لم يتم العثور على حساب بهذا الرقم. تحقق من رقم التعريف.','error');
+      return;
+    }
+
+    var authData=found;
+    var foundCol=found._source||'members';
+    var authDocId=found.id;
+
+    /* استنتاج الدور */
+    var typeNorm={'تطوع':'تطوع','volunteer':'تطوع','متطوع':'تطوع','انخراط':'انخراط','member':'انخراط','منخرط':'انخراط','تمثيل':'تمثيل','ambassador':'تمثيل','سفير':'تمثيل','admin':'admin','إداري':'admin','مشرف':'admin'};
+    var colToRole={members:'انخراط',volunteers:'تطوع',ambassadors:'تمثيل',mzoneAccounts:'',users:'',registrations:''};
+    var rawType=String(authData.type||authData.role||'').trim();
+    var resolvedRole=typeNorm[rawType]||typeNorm[rawType.toLowerCase()]||colToRole[foundCol]||'انخراط';
+
+    var isAdmin = authData.role==='admin'||authData.type==='admin'||authData.type==='إداري'||authData.type==='مشرف'
+      || String(authData.membershipNumber||authDocId).indexOf('2008123')>=0
+      || String(authDocId).indexOf('forum2008123')===0;
+
+    /* التحقق من كلمة المرور */
+    var storedRaw=authData.password??authData.mzonePassword??authData.pin??authData.passwd??authData.pass??'';
+    var storedPw=String(storedRaw).trim();
+    if(storedPw){
+      var pwMatch=pass===storedPw || pass.toLowerCase()===storedPw.toLowerCase()
+        || (String(Number(pass))===pass && Number(pass)===Number(storedPw));
+      if(!pwMatch){
+        showToast('كلمة المرور غير صحيحة. تواصل مع الإدارة لاسترجاعها.','error');
         return;
       }
+    } else if(!isAdmin){
+      showToast('لا توجد كلمة مرور مُسجَّلة لهذا الحساب. تواصل مع الإدارة لتعيين كلمة مرور.','warning');
+      return;
     }
-    showToast('بيانات الدخول غير صحيحة','error');
-  }catch(e){console.error(e);showToast('خطأ في الاتصال','error');}
-  finally{ if(btn){btn.disabled=false;btn.innerHTML='<i class="fas fa-sign-in-alt"></i> دخول';} }
+
+    /* التحقق من الحالة */
+    var statusVal=String(authData.status||'').toLowerCase().trim();
+    var statusOk=!statusVal || ['','accepted','approved','active','مقبول','نشط','enabled','true','1','done','confirmed','verified','valid'].indexOf(statusVal)>=0;
+    if(statusVal==='deleted' && !isAdmin){
+      try{ await FA.updateDoc(FA.doc(db,foundCol,authDocId),{status:'active',deletedAt:null,restoredAt:new Date().toISOString()}); statusOk=true; showToast('تم استعادة حسابك بنجاح','success'); }catch(_){}
+    }
+    if(!statusOk && !isAdmin){
+      if(['banned','suspended','محظور','موقوف'].indexOf(statusVal)>=0){
+        showToast('حسابك موقوف أو محظور. تواصل مع الإدارة.','error');
+        return;
+      }
+      showToast('حسابك لم يُقبَل بعد أو تم تعليقه. تواصل مع الإدارة.','warning');
+      return;
+    }
+
+    /* إثراء من المجموعة الرسمية */
+    var enrichMap={'تطوع':['volunteers','volunteerNumber'],'انخراط':['members','membershipNumber'],'تمثيل':['ambassadors','ambassadorNumber']};
+    var pair=enrichMap[resolvedRole];
+    if(pair && foundCol!==pair[0]){
+      var tVal=authData[pair[1]]!=null?String(authData[pair[1]]):id;
+      var enriched=await tryQuery(pair[0],pair[1],tVal) || await tryGet(pair[0],authDocId);
+      if(enriched){
+        var skip={password:1,mzonePassword:1,pin:1,role:1,type:1,status:1,id:1,_source:1};
+        Object.keys(enriched).forEach(function(k){ if(!skip[k] && (authData[k]==null||authData[k]===''||authData[k]==='—')) authData[k]=enriched[k]; });
+      }
+    }
+
+    /* تنظيف أرقام التعريف */
+    ['membershipNumber','volunteerNumber','ambassadorNumber'].forEach(function(f){
+      if(authData[f]!=null && authData[f]!==''){ var n=Number(authData[f]); if(!isNaN(n)) authData[f]=n; }
+    });
+
+    var sessionUser=Object.assign({},authData,{
+      id:authDocId,
+      _source:foundCol,
+      _officialCol:foundCol,
+      _officialId:authDocId,
+      _isAdmin:isAdmin,
+      _resolvedRole:isAdmin?'admin':resolvedRole,
+      type:authData.type||colToRole[foundCol]||resolvedRole
+    });
+
+    currentUser=sessionUser;
+    window.mzoneCurrentUser=sessionUser;
+    try{ sessionStorage.setItem('nazaha_user',JSON.stringify(sessionUser)); }catch(_){}
+    try{ sessionStorage.setItem('nazaha_mzone_session',JSON.stringify(sessionUser)); }catch(_){}
+    try{ localStorage.setItem('nazaha_mzone_session',JSON.stringify(sessionUser)); }catch(_){}
+    showToast('مرحباً '+(sessionUser.fullName||sessionUser.name||''),'success');
+    refreshMzone();
+  }catch(e){
+    console.error('[doLogin]',e);
+    showToast('خطأ في الاتصال','error');
+  }finally{
+    if(btn){btn.disabled=false;btn.innerHTML='<i class="fas fa-sign-in-alt"></i> دخول';}
+  }
 }
-function doLogout(){currentUser=null;sessionStorage.removeItem('nazaha_user');refreshMzone();showToast('تم تسجيل الخروج','info')}
+function doLogout(){
+  currentUser=null;
+  window.mzoneCurrentUser=null;
+  try{ sessionStorage.removeItem('nazaha_user'); sessionStorage.removeItem('nazaha_mzone_session'); localStorage.removeItem('nazaha_mzone_session'); }catch(_){}
+  refreshMzone();
+  showToast('تم تسجيل الخروج','info');
+}
 function refreshMzone(){
   var loginBox=document.getElementById('mzoneLoginBox'), profBox=document.getElementById('mzoneProfileBox');
   if(!loginBox||!profBox) return;
   if(!currentUser){ loginBox.style.display='block'; profBox.style.display='none'; return; }
   loginBox.style.display='none'; profBox.style.display='block';
   var u=currentUser;
+  window.mzoneCurrentUser=u;
   var avatarEl=document.getElementById('profileAvatar');
   var img=u.photo||u.image||u.avatar||u.photoUrl||'';
-  avatarEl.innerHTML=img?'<img src="'+escapeHtml(img)+'" style="width:100%;height:100%;border-radius:50%;object-fit:cover" onerror="this.parentNode.innerHTML=\'<i class=\\\'fas fa-user\\\'></i>\'">':'<i class="fas fa-user"></i>';
-  document.getElementById('profileName').textContent=u.fullName||u.name||'';
-  var roleMap={users:'عضو',members:'منخرط',volunteers:'متطوع',ambassadors:'سفير',mzoneAccounts:'عضو'};
-  document.getElementById('profileRole').textContent=roleMap[u._source]||'عضو';
+  if(avatarEl) avatarEl.innerHTML=img?'<img src="'+escapeHtml(img)+'" style="width:100%;height:100%;border-radius:50%;object-fit:cover" onerror="this.parentNode.innerHTML=\'<i class=\\\'fas fa-user\\\'></i>\'">':'<i class="fas fa-user"></i>';
+  var nameEl=document.getElementById('profileName');
+  if(nameEl) nameEl.textContent=u.fullName||u.name||'';
+  var roleMap={users:'عضو',members:'منخرط',volunteers:'متطوع',ambassadors:'سفير',mzoneAccounts:'عضو',registrations:'عضو'};
+  var roleLabel=u._isAdmin?'إداري':(u._resolvedRole==='تطوع'?'متطوع':u._resolvedRole==='تمثيل'?'سفير':u._resolvedRole==='انخراط'?'منخرط':(roleMap[u._source]||'عضو'));
+  var roleEl=document.getElementById('profileRole');
+  if(roleEl) roleEl.textContent=roleLabel;
+  var bioPrev=document.getElementById('profileBioPreview');
+  if(bioPrev) bioPrev.textContent=u.bio||'';
   var rows=[];
-  if(u.membershipNumber||u.memberId||u.id) rows.push('<div><strong>رقم التعريف:</strong> '+escapeHtml(u.membershipNumber||u.memberId||u.id)+'</div>');
-  if(u.wilaya) rows.push('<div><strong>الولاية:</strong> '+escapeHtml(u.wilaya)+'</div>');
+  var numLabel='رقم التعريف', numVal=u.membershipNumber||u.volunteerNumber||u.ambassadorNumber||u.memberId||u.id||'';
+  if(u.volunteerNumber) { numLabel='رقم التطوع'; numVal=u.volunteerNumber; }
+  else if(u.ambassadorNumber) { numLabel='رقم التمثيل'; numVal=u.ambassadorNumber; }
+  else if(u.membershipNumber) { numLabel='رقم العضوية'; numVal=u.membershipNumber; }
+  rows.push('<div><strong>'+numLabel+':</strong> '+escapeHtml(String(numVal))+'</div>');
+  if(u.username) rows.push('<div><strong>اسم المستخدم:</strong> @'+escapeHtml(u.username)+'</div>');
+  if(u.wilaya||u.city) rows.push('<div><strong>الولاية:</strong> '+escapeHtml(u.wilaya||u.city)+'</div>');
+  if(u.work) rows.push('<div><strong>العمل:</strong> '+escapeHtml(u.work)+'</div>');
+  if(u.study) rows.push('<div><strong>الدراسة:</strong> '+escapeHtml(u.study)+'</div>');
   if(u.email) rows.push('<div><strong>البريد:</strong> '+escapeHtml(u.email)+'</div>');
   if(u.phone) rows.push('<div><strong>الهاتف:</strong> '+escapeHtml(u.phone)+'</div>');
-  if(u.createdAt){ var d=u.createdAt.toDate?u.createdAt.toDate():new Date(u.createdAt); rows.push('<div><strong>تاريخ الانضمام:</strong> '+d.toLocaleDateString('ar-DZ')+'</div>'); }
-  document.getElementById('profileInfo').innerHTML=rows.join('');
+  if(u.createdAt){ try{ var d=u.createdAt.toDate?u.createdAt.toDate():new Date(u.createdAt); if(!isNaN(d)) rows.push('<div><strong>تاريخ الانضمام:</strong> '+d.toLocaleDateString('ar-DZ')+'</div>'); }catch(_){} }
+  var infoEl=document.getElementById('profileInfo');
+  if(infoEl) infoEl.innerHTML=rows.join('');
 }
+
+/* ===== تخصيص الملف الشخصي ===== */
+window.closeProfileCustomModal=function(){
+  var m=document.getElementById('profileCustomModal');
+  if(m) m.style.display='none';
+};
+window.openProfileCustomModal=async function(){
+  if(!currentUser && !window.mzoneCurrentUser){ showToast('يجب تسجيل الدخول أولاً','error'); return; }
+  var u=Object.assign({}, currentUser||window.mzoneCurrentUser);
+  var modal=document.getElementById('profileCustomModal');
+  if(!modal) return;
+  modal.style.display='flex';
+  /* جلب أحدث بيانات من userProfiles */
+  try{
+    if(window.FirestoreAPI&&window.firebaseDB&&u.id){
+      var FA=window.FirestoreAPI, db=window.firebaseDB;
+      try{
+        var ps=await FA.getDoc(FA.doc(db,'userProfiles',u.id));
+        if(ps&&ps.exists&&(typeof ps.exists==='function'?ps.exists():ps.exists)) Object.assign(u,ps.data());
+      }catch(_){}
+      try{
+        var as=await FA.getDoc(FA.doc(db,'mzoneAccounts',u.id));
+        if(as&&as.exists&&(typeof as.exists==='function'?as.exists():as.exists)){
+          var acc=as.data();
+          ['photoUrl','photo','coverUrl','bio','work','study','city','website','fullName','name','username','facebook','instagram','twitter','whatsapp'].forEach(function(k){
+            if(!u[k]&&acc[k]) u[k]=acc[k];
+          });
+        }
+      }catch(_){}
+    }
+  }catch(e){ console.warn(e); }
+  function setV(id,val){ var el=document.getElementById(id); if(el) el.value=val||''; }
+  setV('profileBio',u.bio);
+  setV('profileWork',u.work||u.position);
+  setV('profileStudy',u.study||u.educationLevel);
+  var citySel=document.getElementById('profileCity');
+  if(citySel && citySel.tagName==='SELECT'){
+    if(citySel.options.length<=1){ citySel.innerHTML=getWilayaOptionsHtml(); citySel.dataset.wilayaFilled='1'; }
+    var cv=u.city||u.wilaya||'';
+    if(cv){ try{ citySel.value=cv; }catch(_){ citySel.value=''; } }
+  } else setV('profileCity',u.city||u.wilaya);
+  setV('profileWebsite',u.website||u.socialLink);
+  setV('profileFacebook',u.facebook);
+  setV('profileInstagram',u.instagram);
+  setV('profileTwitter',u.twitter||u.twitterX);
+  setV('profileWhatsapp',u.whatsapp);
+  var pUrl=u.photoUrl||u.photo||'';
+  var cUrl=u.coverUrl||'';
+  setV('profilePhotoUrl',pUrl);
+  setV('profileCoverUrl',cUrl);
+  setV('profilePhotoUrlText',pUrl);
+  setV('profileCoverUrlText',cUrl);
+  setV('profileUsername',u.username||'');
+  /* معاينة الصور عند توفر البيانات */
+  if(pUrl) updatePreviewFromUrl(pUrl,'profilePhotoPreview');
+  else {
+    var pp=document.getElementById('profilePhotoPreview');
+    if(pp) pp.innerHTML='<i class="fas fa-user" style="color:#fff;font-size:28px"></i>';
+  }
+  if(cUrl) updatePreviewFromUrl(cUrl,'profileCoverPreview',true);
+  else {
+    var cp=document.getElementById('profileCoverPreview');
+    if(cp) cp.innerHTML='<i class="fas fa-image" style="color:rgba(255,255,255,.5);font-size:24px"></i>';
+  }
+  window._pendingProfilePhotoFile=null;
+  window._pendingProfileCoverFile=null;
+  var st=document.getElementById('usernameStatusMsg'); if(st) st.textContent='';
+};
+window.previewProfileImage=function(input,previewId,hiddenId){
+  var file=input&&input.files&&input.files[0];
+  if(!file) return;
+  if(!/^image\//.test(file.type)){ showToast('الملف يجب أن يكون صورة','warning'); return; }
+  if(file.size>5*1024*1024){ showToast('حجم الصورة يجب ألا يتجاوز 5 ميجابايت','warning'); return; }
+  if(hiddenId==='profilePhotoUrl'||previewId==='profilePhotoPreview') window._pendingProfilePhotoFile=file;
+  if(hiddenId==='profileCoverUrl'||previewId==='profileCoverPreview') window._pendingProfileCoverFile=file;
+  var reader=new FileReader();
+  reader.onload=function(e){
+    var el=document.getElementById(previewId);
+    if(!el) return;
+    var isCover=previewId==='profileCoverPreview';
+    el.innerHTML='<img src="'+e.target.result+'" style="width:100%;height:100%;object-fit:cover'+(isCover?'':';border-radius:50%')+'">';
+  };
+  reader.readAsDataURL(file);
+};
+window.updatePreviewFromUrl=function(url,previewId,isCover){
+  var el=document.getElementById(previewId); if(!el||!url) return;
+  el.innerHTML='<img src="'+escapeHtml(url)+'" style="width:100%;height:100%;object-fit:cover'+(isCover?'':';border-radius:50%')+'" onerror="this.parentNode.innerHTML=\'<i class=\\\'fas fa-'+(isCover?'image':'user')+'\\\' style=\\\'color:rgba(255,255,255,.6);font-size:24px\\\'></i>\'">';
+};
+window.saveProfileCustomization=async function(){
+  var u=currentUser||window.mzoneCurrentUser;
+  if(!u||!u.id){ showToast('يجب تسجيل الدخول','error'); return; }
+  var username=sanitizeInput((document.getElementById('profileUsername')||{}).value||'').toLowerCase().replace(/[^a-z0-9_]/g,'');
+  var bio=sanitizeInput((document.getElementById('profileBio')||{}).value||'');
+  var work=sanitizeInput((document.getElementById('profileWork')||{}).value||'');
+  var study=sanitizeInput((document.getElementById('profileStudy')||{}).value||'');
+  var city=sanitizeInput((document.getElementById('profileCity')||{}).value||'');
+  var website=sanitizeInput((document.getElementById('profileWebsite')||{}).value||'');
+  var facebook=sanitizeInput((document.getElementById('profileFacebook')||{}).value||'');
+  var instagram=sanitizeInput((document.getElementById('profileInstagram')||{}).value||'');
+  var twitter=sanitizeInput((document.getElementById('profileTwitter')||{}).value||'');
+  var whatsapp=sanitizeInput((document.getElementById('profileWhatsapp')||{}).value||'');
+  var photoUrl=sanitizeInput((document.getElementById('profilePhotoUrl')||{}).value||(document.getElementById('profilePhotoUrlText')||{}).value||'');
+  var coverUrl=sanitizeInput((document.getElementById('profileCoverUrl')||{}).value||(document.getElementById('profileCoverUrlText')||{}).value||'');
+  /* رفع الصور إن وُجدت ملفات */
+  try{
+    if(window._pendingProfilePhotoFile){
+      showToast('جاري رفع صورة الملف...','info');
+      var up=await uploadImage(window._pendingProfilePhotoFile);
+      if(up) photoUrl=up;
+    }
+    if(window._pendingProfileCoverFile){
+      showToast('جاري رفع صورة الغلاف...','info');
+      var up2=await uploadImage(window._pendingProfileCoverFile);
+      if(up2) coverUrl=up2;
+    }
+  }catch(upErr){ console.warn(upErr); showToast('تعذّر رفع بعض الصور — سيتم حفظ الروابط إن وُجدت','warning'); }
+  if(username && !/^[a-z0-9_]{3,20}$/.test(username)){
+    showToast('اسم المستخدم: حروف لاتينية صغيرة وأرقام و _ فقط (3-20)','error'); return;
+  }
+  if(website && !/^https?:\/\//i.test(website) && website) website='https://'+website;
+  /* تحقق توفر اسم المستخدم */
+  if(username && window.FirestoreAPI&&window.firebaseDB){
+    try{
+      var FA=window.FirestoreAPI, db=window.firebaseDB;
+      var cols=['mzoneAccounts','members','volunteers','ambassadors','userProfiles'];
+      for(var ci=0;ci<cols.length;ci++){
+        var snap=await FA.getDocs(FA.query(FA.collection(db,cols[ci]),FA.where('username','==',username),FA.limit(1)));
+        if(snap&&!snap.empty && snap.docs[0].id!==u.id){
+          showToast('اسم المستخدم محجوز — اختر اسماً آخر','error'); return;
+        }
+      }
+    }catch(_){}
+  }
+  var payload={
+    bio:bio, work:work, study:study, city:city, website:website,
+    facebook:facebook, instagram:instagram, twitter:twitter, whatsapp:whatsapp,
+    photoUrl:photoUrl, coverUrl:coverUrl, username:username||u.username||'',
+    updatedAt: new Date().toISOString()
+  };
+  try{
+    if(window.FirestoreAPI&&window.firebaseDB){
+      var FA=window.FirestoreAPI, db=window.firebaseDB;
+      try{ await FA.setDoc(FA.doc(db,'userProfiles',u.id), Object.assign({},payload,{userId:u.id}), {merge:true}); }catch(e1){
+        try{ await FA.updateDoc(FA.doc(db,'userProfiles',u.id), payload); }catch(_){
+          await FA.addDoc(FA.collection(db,'userProfiles'), Object.assign({},payload,{userId:u.id,id:u.id}));
+        }
+      }
+      /* مزامنة مع المجموعة المصدر */
+      var src=u._officialCol||u._source||'mzoneAccounts';
+      try{ await FA.updateDoc(FA.doc(db,src,u.id), {bio:bio,photoUrl:photoUrl||u.photoUrl,username:username||u.username,city:city||u.city,work:work}); }catch(_){}
+    }
+    Object.assign(u, payload);
+    if(photoUrl){ u.photo=photoUrl; u.photoUrl=photoUrl; }
+    currentUser=u; window.mzoneCurrentUser=u;
+    try{ sessionStorage.setItem('nazaha_user',JSON.stringify(u)); sessionStorage.setItem('nazaha_mzone_session',JSON.stringify(u)); }catch(_){}
+    showToast('تم حفظ الملف الشخصي','success');
+    closeProfileCustomModal();
+    refreshMzone();
+  }catch(e){
+    console.error(e);
+    showToast('تعذّر حفظ الملف','error');
+  }
+};
+/* تحقق اسم المستخدم أثناء الكتابة */
+(function(){
+  var t=null;
+  document.addEventListener('input',function(e){
+    if(!e.target||e.target.id!=='profileUsername') return;
+    clearTimeout(t);
+    var val=e.target.value.trim().toLowerCase().replace(/[^a-z0-9_]/g,'');
+    e.target.value=val;
+    var st=document.getElementById('usernameStatusMsg');
+    if(!val){ if(st) st.textContent=''; return; }
+    if(val.length<3){ if(st){st.textContent='الحد الأدنى 3 أحرف';st.style.color='var(--text-muted)';} return; }
+    if(st){st.textContent='جارٍ التحقق...';st.style.color='var(--text-muted)';}
+    t=setTimeout(async function(){
+      if(!/^[a-z0-9_]{3,20}$/.test(val)){ if(st){st.textContent='يُسمح فقط بأحرف لاتينية صغيرة وأرقام و _';st.style.color='var(--danger)';} return; }
+      var cur=(currentUser&&currentUser.username||'').toLowerCase();
+      if(val===cur){ if(st){st.textContent='اسمك الحالي ✓';st.style.color='var(--primary)';} return; }
+      if(!window.FirestoreAPI||!window.firebaseDB) return;
+      try{
+        var FA=window.FirestoreAPI, db=window.firebaseDB, taken=false, uid=currentUser&&currentUser.id;
+        for(var col of ['mzoneAccounts','members','volunteers','ambassadors']){
+          var s=await FA.getDocs(FA.query(FA.collection(db,col),FA.where('username','==',val),FA.limit(1)));
+          if(s&&!s.empty&&s.docs[0].id!==uid){ taken=true; break; }
+        }
+        if(st){ st.textContent=taken?'محجوز — جرّب اسماً آخر':'متوفر ✓'; st.style.color=taken?'var(--danger)':'var(--primary)'; }
+      }catch(_){ if(st) st.textContent=''; }
+    },450);
+  });
+})();
+
 
 function renderActivityTypes(){var el=document.getElementById('activityTypes');if(!el)return;el.innerHTML=ACTIVITY_TYPES.map(function(t){return '<div class="type-chip"><i class="fas fa-circle" style="font-size:8px"></i>'+escapeHtml(t)+'</div>'}).join('')}
 document.addEventListener('change',function(e){if(e.target.name==='birthDate'&&e.target.closest('#form-membership')){var age=(Date.now()-new Date(e.target.value).getTime())/(365.25*86400000);document.getElementById('guardianFields').style.display=age<18?'block':'none'}});
@@ -2223,7 +2702,7 @@ function renderJoinSteps(type){
       '<div class="form-row"><div class="form-group"><label class="required">البريد</label><input class="form-input" type="email" name="email" required></div>'+
       '<div class="form-group"><label class="required">الهاتف</label><input class="form-input" type="tel" name="phone" required placeholder="05XXXXXXXX"></div></div>';
     if(type==='membership'){
-      step1 += '<div class="form-row"><div class="form-group"><label class="required">الصفة</label><input class="form-input" name="status" required></div><div class="form-group"><label>المستوى الدراسي</label><input class="form-input" name="education"></div></div>'+
+      step1 += '<div class="form-row"><div class="form-group"><label class="required">الصفة</label><select class="form-select" name="status" required><option value="">اختر</option><option>تلميذ</option><option>طالب جامعي</option><option>موظف</option><option>رائد أعمال</option><option>باحث عن عمل</option><option>أخرى</option></select></div><div class="form-group"><label>المستوى الدراسي</label><select class="form-select" name="education"><option value="">اختر</option><option>ابتدائي</option><option>متوسط</option><option>ثانوي</option><option>جامعي (ليسانس)</option><option>ماستر</option><option>دكتوراه</option><option>تكوين مهني</option><option>أخرى</option></select></div></div>'+
         '<div class="form-group"><label>التخصص</label><input class="form-input" name="specialty"></div>'+
         '<div class="form-row"><div class="form-group"><label>مجال الاهتمام</label><input class="form-input" name="interest"></div>'+
         '<div class="form-group"><label>المهارات (اختياري)</label><input class="form-input" name="skills"></div></div>'+
@@ -2244,7 +2723,7 @@ function renderJoinSteps(type){
         '<div class="form-group"><label class="required">رؤيتك لتمثيل المنتدى في ولايتك</label><textarea class="form-textarea" name="vision" required></textarea></div>'+
         '<div id="wilayaOccupiedWarn" style="display:none;padding:12px;background:rgba(229,57,53,.08);border:1px solid rgba(229,57,53,.3);border-radius:10px;color:var(--danger);font-size:13px;font-weight:600;margin-top:8px"><i class="fas fa-exclamation-triangle"></i> هذه الولاية لديها سفير معتمد بالفعل. لا يمكن تقديم طلب تمثيل لها.</div>';
     } else if(type==='training'){
-      step1 += '<div class="form-row"><div class="form-group"><label class="required">الصفة</label><input class="form-input" name="status" required></div><div class="form-group"><label>المستوى الدراسي</label><input class="form-input" name="education"></div></div>'+
+      step1 += '<div class="form-row"><div class="form-group"><label class="required">الصفة</label><select class="form-select" name="status" required><option value="">اختر</option><option>تلميذ</option><option>طالب جامعي</option><option>موظف</option><option>رائد أعمال</option><option>باحث عن عمل</option><option>أخرى</option></select></div><div class="form-group"><label>المستوى الدراسي</label><select class="form-select" name="education"><option value="">اختر</option><option>ابتدائي</option><option>متوسط</option><option>ثانوي</option><option>جامعي (ليسانس)</option><option>ماستر</option><option>دكتوراه</option><option>تكوين مهني</option><option>أخرى</option></select></div></div>'+
         '<div class="form-row"><div class="form-group"><label>التخصص</label><input class="form-input" name="specialty"></div>'+
         '<div class="form-group"><label>المهنة الحالية</label><input class="form-input" name="profession"></div></div>'+
         '<div class="form-row"><div class="form-group"><label class="required">مجال التأطير</label><input class="form-input" name="field" required></div>'+
@@ -2261,7 +2740,7 @@ function renderJoinSteps(type){
         '<div id="minorGuardianBox" style="display:none;background:var(--surface-alt);border-radius:12px;padding:14px;margin-bottom:14px;border:1px solid var(--border-light)">'+
           '<div style="font-weight:800;font-size:13px;color:var(--primary);margin-bottom:8px"><i class="fas fa-user-shield"></i> بيانات الولي الشرعي (للقُصّر دون 18 سنة)</div>'+
           '<div class="form-group"><label>اسم الولي الشرعي</label><input class="form-input" name="guardianName" id="guardianNameInput"></div>'+
-          '<div class="form-row"><div class="form-group"><label>صلة القرابة</label><input class="form-input" name="guardianRelation" id="guardianRelationInput"></div>'+
+          '<div class="form-row"><div class="form-group"><label>صلة القرابة</label><select class="form-select" name="guardianRelation" id="guardianRelationInput"><option value="">اختر</option><option>أب</option><option>أم</option><option>جد/جدة</option><option>عم/عمة</option><option>خال/خالة</option><option>أخ/أخت</option><option>وصي شرعي</option><option>أخرى</option></select></div>'+
           '<div class="form-group"><label>رقم هاتف الولي</label><input class="form-input" type="tel" name="guardianPhone" id="guardianPhoneInput"></div></div>'+
           '<div class="form-check"><input type="checkbox" id="guardianConsent" name="guardianConsent"><label for="guardianConsent">أوافق كولي شرعي على انخراط القاصر في المنتدى</label></div></div>'+
         '<div style="background:var(--surface-alt);border-radius:12px;padding:14px;margin-bottom:14px;border:1px solid var(--border-light)">'+
@@ -2570,6 +3049,7 @@ function fillNewsCategoryFilter(){
   var cur=sel.value;
   var set={};
   (newsCache||[]).forEach(function(n){ if(n.category) set[n.category]=1; });
+  ['أخبار عامة','فعاليات','إعلانات','إنجازات','شراكات','تغطيات'].forEach(function(d){ if(!set[d]) set[d]=0; });
   var opts=['<option value="">كل التصنيفات</option>'];
   Object.keys(set).sort().forEach(function(c){ opts.push('<option value="'+c+'">'+c+'</option>'); });
   sel.innerHTML=opts.join('');
@@ -2631,28 +3111,46 @@ async function loadAmbassadors(){
 }
 
 async function loadReviews(){
-  var list=document.getElementById('reviewsList');
   reviewsCache=[];
   try{
     if(window.FirestoreAPI&&window.firebaseDB){
-      var FA=window.FirestoreAPI, snap;
-      try{ snap=await FA.getDocs(FA.query(FA.collection(window.firebaseDB,'reviews'),FA.orderBy('createdAt','desc'),FA.limit(50))); }
-      catch(_){ snap=await FA.getDocs(FA.collection(window.firebaseDB,'reviews')); }
-      reviewsCache=snap.docs.map(function(d){return Object.assign({id:d.id},d.data());});
+      var FA=window.FirestoreAPI, db=window.firebaseDB, snap=null;
+      try{ snap=await FA.getDocs(FA.query(FA.collection(db,'reviews'),FA.orderBy('createdAt','desc'),FA.limit(100))); }
+      catch(_){ try{ snap=await FA.getDocs(FA.collection(db,'reviews')); }catch(__){} }
+      if(snap&&snap.docs) reviewsCache=snap.docs.map(function(d){return Object.assign({id:d.id},d.data());});
     }
-  }catch(_){}
+  }catch(e){ console.warn(e); }
   if(!reviewsCache.length){
-    list.innerHTML='<div class="empty-state"><i class="fas fa-star"></i>لا توجد تقييمات بعد</div>';
-    document.getElementById('avgRating').textContent='—';
-    document.getElementById('totalReviews').textContent='0 تقييم';
-    return;
+    try{ reviewsCache=JSON.parse(localStorage.getItem('nazaha_reviews')||'[]'); }catch(_){ reviewsCache=[]; }
   }
-  var avg=reviewsCache.reduce(function(s,r){return s+(Number(r.rating)||0);},0)/reviewsCache.length;
-  document.getElementById('avgRating').textContent=avg.toFixed(1);
-  document.getElementById('totalReviews').textContent=reviewsCache.length+' تقييم';
-  document.getElementById('avgStars').innerHTML=[1,2,3,4,5].map(function(i){return '<i class="fas fa-star star '+(i<=Math.round(avg)?'on':'')+'"></i>';}).join('');
-  window._paginatedRenderers.reviews=function(){ renderPaginated('reviewsList','reviewsPagination',reviewsCache,reviewCardTpl,'لا توجد تقييمات بعد','reviews'); };
-  window._paginatedRenderers.reviews();
+  /* متوسط التقييم */
+  var avg=0, n=reviewsCache.length;
+  if(n){ avg=reviewsCache.reduce(function(s,r){return s+(Number(r.rating)||0);},0)/n; }
+  var avgEl=document.getElementById('avgRating'); if(avgEl) avgEl.textContent=n?avg.toFixed(1):'—';
+  var totEl=document.getElementById('totalReviews'); if(totEl) totEl.textContent=n+' تقييم';
+  var starsEl=document.getElementById('avgStars');
+  if(starsEl){
+    var htmlS='';
+    for(var i=1;i<=5;i++) htmlS+='<i class="fas fa-star star'+(i<=Math.round(avg)?' on':'')+'" style="cursor:default"></i>';
+    starsEl.innerHTML=htmlS;
+  }
+  var list=document.getElementById('reviewsList');
+  if(!list) return;
+  if(!n){ list.innerHTML='<div class="empty-state"><i class="fas fa-star"></i>لا تقييمات بعد — كن أول من يقيّم</div>'; return; }
+  list.innerHTML=reviewsCache.map(function(r){
+    var stars='';
+    for(var i=1;i<=5;i++) stars+='<i class="fas fa-star'+(i<=(Number(r.rating)||0)?' on':'')+'" style="font-size:14px;cursor:default"></i>';
+    var dt='';
+    try{ var d=r.createdAt&&r.createdAt.toDate?r.createdAt.toDate():new Date(r.createdAt); if(d&&!isNaN(d)) dt=d.toLocaleDateString('ar-DZ'); }catch(_){}
+    return '<div class="card" style="margin-bottom:12px;padding:16px">'+
+      '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px">'+
+        '<div style="font-weight:800;font-size:14px">'+escapeHtml(r.name||'زائر')+(r.wilaya?' <span style="font-weight:600;color:var(--text-muted);font-size:12px">· '+escapeHtml(r.wilaya)+'</span>':'')+'</div>'+
+        '<div class="stars" style="direction:ltr">'+stars+'</div>'+
+      '</div>'+
+      '<div style="font-size:13px;color:var(--text-secondary);line-height:1.75">'+escapeHtml(r.comment||r.text||'')+'</div>'+
+      (dt?'<div style="font-size:11px;color:var(--text-muted);margin-top:8px"><i class="fas fa-clock"></i> '+dt+'</div>':'')+
+    '</div>';
+  }).join('');
 }
 function reviewCardTpl(r){
   var date=r.createdAt&&r.createdAt.toDate?r.createdAt.toDate():new Date(r.createdAt||Date.now());
@@ -2761,7 +3259,8 @@ function init(){
   startTypewriter();
   var yn=document.getElementById('yearNow'); if(yn) yn.textContent=new Date().getFullYear();
   var saved=sessionStorage.getItem('nazaha_user');
-  if(saved){ try{ currentUser=JSON.parse(saved); }catch(_){} }
+  if(saved){ try{ currentUser=JSON.parse(saved); window.mzoneCurrentUser=currentUser; }catch(_){} }
+  try{ var ms=sessionStorage.getItem('nazaha_mzone_session')||localStorage.getItem('nazaha_mzone_session'); if(ms&&!currentUser){ currentUser=JSON.parse(ms); window.mzoneCurrentUser=currentUser; } }catch(_){}
   var path=getPathFromLocation();
   navigate(path,true);
   initReveal();
@@ -3341,7 +3840,7 @@ window.openActivityRegistrationModal=function(activityId){
         '<div class="form-group"><label class="required">الاسم الكامل</label><input class="form-input" id="extName"></div>'+
         '<div class="form-group"><label>البريد الإلكتروني</label><input class="form-input" type="email" id="extEmail"></div>'+
         '<div class="form-group"><label class="required">رقم الهاتف</label><input class="form-input" id="extPhone"></div>'+
-        '<div class="form-group"><label class="required">الولاية</label><select class="form-select" id="extWilaya"></select></div>'+
+        '<div class="form-group"><label class="required">الولاية</label><select class="form-select" id="extWilaya" name="wilaya">'+getWilayaOptionsHtml()+'</select></div>'+
         '<div class="form-group"><label>تاريخ الميلاد</label><input class="form-input" type="date" id="extBirth"></div>'+
       '</div>'+
       '<div id="actRegPriceBox" style="margin:14px 0;padding:12px;background:var(--surface-alt);border-radius:10px;font-size:13px"></div>'+
@@ -3350,6 +3849,12 @@ window.openActivityRegistrationModal=function(activityId){
     '</form></div>';
   document.body.appendChild(overlay);
   overlay.addEventListener('click', function(e){ if(e.target===overlay) overlay.remove(); });
+  /* إصلاح قائمة الولايات: ملء فوري وموثوق */
+  var extW=document.getElementById('extWilaya');
+  if(extW){
+    extW.innerHTML=getWilayaOptionsHtml();
+    extW.dataset.wilayaFilled='1';
+  }
   fillWilayaSelects();
   window._actRegState={activityId:activityId, act:act, discountPct:0, memberData:null};
   updateActPriceBox();
