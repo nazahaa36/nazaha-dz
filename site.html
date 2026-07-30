@@ -67,7 +67,7 @@ button,input,select,textarea{font-family:var(--font)}::-webkit-scrollbar{width:6
 .stat-card::before{content:'';position:absolute;top:0;inset-inline:0;height:3px;background:linear-gradient(90deg,var(--primary-light),var(--accent))}
 .stat-number{font-size:clamp(24px,4vw,36px);font-weight:800;color:var(--primary);font-family:var(--font-mono)}.stat-label{font-size:12px;font-weight:600;color:var(--text-secondary);margin-top:6px}.stat-icon{font-size:20px;color:var(--primary-light);margin-bottom:6px}
 .partners-wrap{overflow:hidden;padding:32px 0;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.partners-track{display:flex;gap:36px;width:max-content;animation:marquee 9s linear infinite;will-change:transform}.partners-track:hover{animation-play-state:paused}
+.partners-track{display:flex;gap:36px;width:max-content;animation:marquee 5s linear infinite;will-change:transform}.partners-track:hover{animation-play-state:paused}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .partner-logo{height:48px;width:auto;max-width:140px;object-fit:contain;filter:grayscale(.3);opacity:.85;transition:.25s;cursor:pointer}.partner-logo:hover{filter:none;opacity:1;transform:scale(1.05)}
 .form-group{margin-bottom:16px}.form-group label{display:block;font-size:12px;font-weight:600;color:var(--text-secondary);margin-bottom:6px}
@@ -214,6 +214,16 @@ button,input,select,textarea{font-family:var(--font)}::-webkit-scrollbar{width:6
 .detail-actions{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
 #page-detail.page.active{display:block}
 
+
+/* Partners + profile polish */
+.partners-track{animation-duration:5s !important}
+.partner-logo{height:56px;max-width:160px;filter:grayscale(.25);opacity:.9}
+.partner-logo:hover{filter:none;opacity:1;transform:scale(1.08)}
+#fbProfileOverlay .btn-icon{width:40px;height:40px;border-radius:50%;background:var(--surface-alt);border:1px solid var(--border-light);display:inline-flex;align-items:center;justify-content:center}
+#fbProfileOverlay .btn-icon:hover{background:var(--primary);color:#fff}
+.toast.success{border-right:3px solid #2ECC5A}
+.toast.error{border-right:3px solid #e53935}
+.toast.warning{border-right:3px solid #ff9500}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -336,8 +346,8 @@ button,input,select,textarea{font-family:var(--font)}::-webkit-scrollbar{width:6
     <div class="section-header"><div class="section-tag">فريقنا</div><h1 class="section-title">القيادة والفريق</h1><div class="section-divider"></div></div>
     <div class="card reveal" style="margin-bottom:32px;display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start">
       <div style="flex-shrink:0;text-align:center"><div class="person-avatar" style="width:140px;height:140px;font-size:40px;overflow:hidden;border-radius:50%;border:3px solid var(--primary-light)">
-<img id="founderPhoto" src="https://drive.google.com/thumbnail?id=1hyQKv37AS1d3wEnY_YKwukJ8d2R7bx7y&amp;sz=w800" alt="المؤسس" style="width:100%;height:100%;object-fit:cover"
-onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/1hyQKv37AS1d3wEnY_YKwukJ8d2R7bx7y';this.onerror=function(){this.onerror=null;this.src='https://drive.google.com/uc?export=view&amp;id=1hyQKv37AS1d3wEnY_YKwukJ8d2R7bx7y';this.onerror=function(){this.style.display='none';this.parentElement.innerHTML='\u003ci class=\'fas fa-user\'\u003e\u003c/i\u003e';}}">
+<img id="founderPhoto" src="https://drive.google.com/thumbnail?id=1d3TuXwcX0kU6f3jKDBpilxboNC04F1hN&amp;sz=w800" alt="المؤسس" style="width:100%;height:100%;object-fit:cover"
+onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/1d3TuXwcX0kU6f3jKDBpilxboNC04F1hN';this.onerror=function(){this.onerror=null;this.src='https://drive.google.com/uc?export=view&amp;id=1d3TuXwcX0kU6f3jKDBpilxboNC04F1hN';this.onerror=function(){this.style.display='none';this.parentElement.innerHTML='\u003ci class=\'fas fa-user\'\u003e\u003c/i\u003e';}}">
 </div></div>
       <div style="flex:1;min-width:240px">
         <h2 style="font-size:20px;margin-bottom:4px">نزيه عبدالله بومهني</h2>
@@ -506,18 +516,23 @@ onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/1hyQKv3
       <button class="btn-outline-dark" style="width:100%;justify-content:center;margin-top:10px" onclick="window.location.href='mailto:nzaha.dz@gmail.com?subject=استعادة كلمة المرور'">نسيت كلمة المرور؟</button>
       <p style="text-align:center;margin-top:16px;font-size:13px;color:var(--text-muted)">لخدمات الأعضاء المتقدمة: <a href="https://nazaha-dz.vercel.app/mzone.html" target="_blank" style="color:var(--primary-light);font-weight:700">فضاء الأعضاء ←</a></p>
     </div>
-    <div id="mzoneProfileBox" class="card" style="display:none">
-      <div style="text-align:center;margin-bottom:20px">
-        <div class="person-avatar" id="profileAvatar" style="margin:0 auto 10px"><i class="fas fa-user"></i></div>
-        <h2 id="profileName" style="font-size:18px"></h2>
-        <div id="profileRole" class="badge badge-accepted" style="margin-top:6px"></div>
-        <div id="profileBioPreview" style="font-size:13px;color:var(--text-secondary);margin-top:8px;line-height:1.6"></div>
-      </div>
-      <div id="profileInfo" style="font-size:13px;color:var(--text-secondary);line-height:2"></div>
-      <div style="display:flex;flex-direction:column;gap:8px;margin-top:20px">
-        <button class="btn-primary" style="justify-content:center" onclick="openProfileCustomModal()"><i class="fas fa-user-edit"></i> تخصيص الملف الشخصي</button>
-        <button class="btn-outline-dark" style="justify-content:center" onclick="window.open('https://nazaha-dz.vercel.app/mzone.html','_blank')"><i class="fas fa-th-large"></i> المزيد من الخدمات</button>
-        <button class="btn-outline-dark" style="justify-content:center;color:var(--danger);border-color:var(--danger)" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button>
+    <div id="mzoneProfileBox" class="card" style="display:none;padding:0;overflow:hidden">
+      <div id="mzoneCover" style="height:120px;background:linear-gradient(135deg,#0d3d1a,#1a6b2f,#2ECC5A);position:relative"></div>
+      <div style="padding:0 20px 24px;position:relative">
+        <div class="person-avatar" id="profileAvatar" style="width:88px;height:88px;margin:-44px auto 10px;border:4px solid var(--surface);box-shadow:var(--shadow);font-size:32px"><i class="fas fa-user"></i></div>
+        <div style="text-align:center">
+          <h2 id="profileName" style="font-size:18px;margin:0"></h2>
+          <div id="profileUsernameLabel" style="font-size:12px;color:var(--text-muted);direction:ltr;margin-top:2px"></div>
+          <div id="profileRole" class="badge badge-accepted" style="margin-top:8px"></div>
+          <div id="profileBioPreview" style="font-size:13px;color:var(--text-secondary);margin-top:10px;line-height:1.6"></div>
+        </div>
+        <div id="profileInfo" style="font-size:13px;color:var(--text-secondary);line-height:2;margin-top:14px"></div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:20px">
+          <button class="btn-primary" style="justify-content:center" onclick="openProfileCustomModal()"><i class="fas fa-user-edit"></i> تخصيص الملف الشخصي</button>
+          <button class="btn-outline-dark" style="justify-content:center" onclick="var u=currentUser||window.mzoneCurrentUser;if(u)openProfile(u.username||u.id)"><i class="fas fa-eye"></i> معاينة ملفي كما يراه الآخرون</button>
+          <button class="btn-outline-dark" style="justify-content:center" onclick="window.open('https://nazaha-dz.vercel.app/mzone.html','_blank')"><i class="fas fa-th-large"></i> المزيد من الخدمات</button>
+          <button class="btn-outline-dark" style="justify-content:center;color:var(--danger);border-color:var(--danger)" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</button>
+        </div>
       </div>
     </div>
     <!-- Profile Customization Modal -->
@@ -607,7 +622,7 @@ onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/d/1hyQKv3
           </select>
         </div>
         <div class="form-group"><label class="required">الاسم الكامل</label><input class="form-input" name="name" required></div>
-        <div class="form-row"><div class="form-group"><label class="required">البريد</label><input class="form-input" type="email" name="email" required></div><div class="form-group"><label class="required">الهاتف</label><input class="form-input" type="tel" name="phone" required></div></div>
+        <div class="form-row"><div class="form-group"><label class="required">البريد الإلكتروني</label><input class="form-input" type="email" name="email" required></div><div class="form-group"><label class="required">رقم الهاتف</label><input class="form-input" type="tel" name="phone" required></div></div>
         <div id="dynamicContactFields"></div>
         <div class="form-group"><label class="required">نص الرسالة</label><textarea class="form-textarea" name="message" required></textarea></div>
         <button type="submit" class="btn-primary" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> إرسال</button>
@@ -919,7 +934,20 @@ function pageGo(pageKey,dir){
   if(window._paginatedRenderers[pageKey]) window._paginatedRenderers[pageKey]();
 }
 function formatNumber(n){n=Number(n)||0;if(n>=1e6)return(n/1e6).toFixed(1).replace(/\.0$/,'')+'M';if(n>=1e3)return(n/1e3).toFixed(1).replace(/\.0$/,'')+'K';return String(n)}
-function showToast(msg,type){type=type||'info';var wrap=document.getElementById('toast-wrap');var t=document.createElement('div');t.className='toast '+type;var icons={success:'fa-check-circle',error:'fa-times-circle',warning:'fa-exclamation-triangle',info:'fa-info-circle'};t.innerHTML='<i class="fas '+(icons[type]||icons.info)+'" style="color:var(--primary-light)"></i> '+escapeHtml(msg);wrap.appendChild(t);setTimeout(function(){t.style.opacity='0';setTimeout(function(){t.remove()},300)},3500)}
+function playFeedback(type){
+  try{ if(navigator.vibrate){ if(type==='success') navigator.vibrate([30,40,30]); else if(type==='error') navigator.vibrate([80,40,80,40,80]); else navigator.vibrate(25); } }catch(e){}
+  try{
+    var Ctx=window.AudioContext||window.webkitAudioContext; if(!Ctx) return;
+    if(!window._audioCtx) window._audioCtx=new Ctx();
+    var ctx=window._audioCtx; if(ctx.state==='suspended') ctx.resume();
+    var o=ctx.createOscillator(), g=ctx.createGain();
+    o.connect(g); g.connect(ctx.destination);
+    if(type==='success'){ o.frequency.value=880; g.gain.setValueAtTime(0.08,ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.18); o.start(); o.stop(ctx.currentTime+0.18); setTimeout(function(){ try{ var o2=ctx.createOscillator(),g2=ctx.createGain(); o2.connect(g2); g2.connect(ctx.destination); o2.frequency.value=1175; g2.gain.setValueAtTime(0.07,ctx.currentTime); g2.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.2); o2.start(); o2.stop(ctx.currentTime+0.2);}catch(e){} },120); }
+    else if(type==='error'){ o.type='sawtooth'; o.frequency.value=220; g.gain.setValueAtTime(0.09,ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.28); o.start(); o.stop(ctx.currentTime+0.28); }
+    else { o.frequency.value=520; g.gain.setValueAtTime(0.05,ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.12); o.start(); o.stop(ctx.currentTime+0.12); }
+  }catch(e){}
+}
+function showToast(msg,type){type=type||'info';var wrap=document.getElementById('toast-wrap');if(!wrap){wrap=document.createElement('div');wrap.id='toast-wrap';document.body.appendChild(wrap);}var t=document.createElement('div');t.className='toast '+type;var icons={success:'fa-check-circle',error:'fa-times-circle',warning:'fa-exclamation-triangle',info:'fa-info-circle'};t.innerHTML='<i class="fas '+(icons[type]||icons.info)+'" style="color:var(--primary-light)"></i> '+escapeHtml(msg);wrap.appendChild(t);playFeedback(type);setTimeout(function(){t.style.opacity='0';setTimeout(function(){t.remove()},300)},3500)}
 function generateTrackingCode(){var y=new Date().getFullYear(),chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789',code='';for(var i=0;i<8;i++)code+=chars[Math.floor(Math.random()*chars.length)];return 'NZ-'+y+'-'+code}
 function fillWilayaSelects(){
   var sels=document.querySelectorAll('select[id^="wilaya-"],select[name="wilaya"],select#extWilaya,select#joinWilayaSelect,select[id*="Wilaya"],select[id*="wilaya"],select[name*="Wilaya"],select[name*="wilaya"]');
@@ -1632,6 +1660,12 @@ function refreshMzone(){
   window.mzoneCurrentUser=u;
   var avatarEl=document.getElementById('profileAvatar');
   var img=u.photo||u.image||u.avatar||u.photoUrl||'';
+  var coverEl=document.getElementById('mzoneCover');
+  var coverUrl=u.coverUrl||u.coverPhoto||'';
+  if(coverEl){ if(coverUrl){ coverEl.style.backgroundImage='url('+coverUrl+')'; coverEl.style.backgroundSize='cover'; coverEl.style.backgroundPosition='center'; } else { coverEl.style.backgroundImage=''; coverEl.style.background='linear-gradient(135deg,#0d3d1a,#1a6b2f,#2ECC5A)'; } }
+  var unEl=document.getElementById('profileUsernameLabel');
+  if(unEl) unEl.textContent=u.username?('@'+u.username):'';
+
   if(avatarEl) avatarEl.innerHTML=img?'<img src="'+escapeHtml(img)+'" style="width:100%;height:100%;border-radius:50%;object-fit:cover" onerror="this.parentNode.innerHTML=\'<i class=\\\'fas fa-user\\\'></i>\'">':'<i class="fas fa-user"></i>';
   var nameEl=document.getElementById('profileName');
   if(nameEl) nameEl.textContent=u.fullName||u.name||'';
@@ -2699,8 +2733,8 @@ function renderJoinSteps(type){
       '<div class="form-group"><label class="required">البلدية</label><input class="form-input" name="commune" required></div>'+
       '<div class="form-group"><label class="required">الصورة الشخصية</label>'+createUploadZone('photo', true)+'</div></div>';
     var step1 = '<div class="step-panel" data-step="1">'+
-      '<div class="form-row"><div class="form-group"><label class="required">البريد</label><input class="form-input" type="email" name="email" required></div>'+
-      '<div class="form-group"><label class="required">الهاتف</label><input class="form-input" type="tel" name="phone" required placeholder="05XXXXXXXX"></div></div>';
+      '<div class="form-row"><div class="form-group"><label class="required">البريد الإلكتروني</label><input class="form-input" type="email" name="email" required></div>'+
+      '<div class="form-group"><label class="required">رقم الهاتف</label><input class="form-input" type="tel" name="phone" required placeholder="05XXXXXXXX" maxlength="10" pattern="0[5-7][0-9]{8}"><div style="font-size:11px;color:var(--text-muted);margin-top:4px"><i class="fas fa-info-circle"></i> يُفضّل أن يكون الرقم مربوطاً بواتساب وتيليغرام</div></div></div>';
     if(type==='membership'){
       step1 += '<div class="form-row"><div class="form-group"><label class="required">الصفة</label><select class="form-select" name="status" required><option value="">اختر</option><option>تلميذ</option><option>طالب جامعي</option><option>موظف</option><option>رائد أعمال</option><option>باحث عن عمل</option><option>أخرى</option></select></div><div class="form-group"><label>المستوى الدراسي</label><select class="form-select" name="education"><option value="">اختر</option><option>ابتدائي</option><option>متوسط</option><option>ثانوي</option><option>جامعي (ليسانس)</option><option>ماستر</option><option>دكتوراه</option><option>تكوين مهني</option><option>أخرى</option></select></div></div>'+
         '<div class="form-group"><label>التخصص</label><input class="form-input" name="specialty"></div>'+
@@ -3202,10 +3236,31 @@ function getPathFromLocation(){
 function navigate(path,replace){
   closeNav();
   path=(path||'/').split('?')[0].replace(/\/$/,'')||'/';
+  /* Dynamic detail routes */
+  var detailM=path.match(/^\/(activity|news|project|post|book|ambassador)\/([^\/?#]+)/);
+  if(detailM){
+    var useHash=(location.protocol==='file:');
+    var url=useHash?('#'+path.replace(/^\//,'')):path;
+    try{ if(replace) history.replaceState({path:path},'',url); else history.pushState({path:path},'',url); }catch(e){}
+    document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});
+    var del=document.getElementById('page-detail');
+    if(del) del.classList.add('active');
+    window.scrollTo(0,0);
+    if(typeof loadDetail==='function') loadDetail(detailM[1], decodeURIComponent(detailM[2]));
+    return;
+  }
   if(path.startsWith('/profile/')){ var un=path.split('/')[2]; setTimeout(function(){ openProfile(un); },100); path='/'; }
-  if(path!=='/'&&!ROUTES[path]&&!path.startsWith('/tracking/')&&!path.startsWith('/activity/')&&!path.startsWith('/news/')&&!path.startsWith('/project/')&&!path.startsWith('/ambassador/')) path='/404';
+  if(path.startsWith('/tracking/')){
+    var tcode=path.split('/')[2]||'';
+    path='/tracking';
+    setTimeout(function(){
+      var inp=document.getElementById('trackingInput');
+      if(inp && tcode){ inp.value=decodeURIComponent(tcode); if(typeof trackRequest==='function') trackRequest(); }
+    },200);
+  }
+  if(path!=='/'&&!ROUTES[path]&&path!=='/tracking') path='/404';
   if(path==='/'||path===''){ path='/'; }
-  var pageKey=path==='/404'?'404':(ROUTES[path]||(path.startsWith('/tracking/')?'tracking':'404'));
+  var pageKey=path==='/404'?'404':(ROUTES[path]||(path==='/tracking'||path.startsWith('/tracking')?'tracking':'404'));
   document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});
   var el=document.getElementById('page-'+pageKey);
   if(el) el.classList.add('active');
@@ -3289,7 +3344,7 @@ setInterval(function(){
 }, 1500);
 
 window.handleFounderImgError=function(img){
-  var tries=['https://lh3.googleusercontent.com/d/1hyQKv37AS1d3wEnY_YKwukJ8d2R7bx7y','https://drive.google.com/uc?export=view&id=1hyQKv37AS1d3wEnY_YKwukJ8d2R7bx7y','https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/founder.jpg'];
+  var tries=['https://lh3.googleusercontent.com/d/1d3TuXwcX0kU6f3jKDBpilxboNC04F1hN','https://drive.google.com/uc?export=view&id=1d3TuXwcX0kU6f3jKDBpilxboNC04F1hN','https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/founder.jpg'];
   var i=parseInt(img.dataset.try||'0',10);
   if(i<tries.length){ img.dataset.try=String(i+1); img.src=tries[i]; }
   else { img.style.display='none'; if(img.parentElement) img.parentElement.innerHTML='<i class="fas fa-user"></i>'; }
@@ -3375,20 +3430,20 @@ var JOIN_INFO = {
     benefits:['المشاركة في الأنشطة والبرامج','فرص التدريب والتطوير','المساهمة في المشاريع المجتمعية','بيئة مؤسسية احترافية','بناء شبكة علاقات شبابية']
   },
   volunteer:{
-    def:'التطوع هو المساهمة الاختيارية بالوقت والجهد والمهارات لدعم أنشطة المنتدى وبرامجه، بما يخدم تمكين الشباب وتنمية المجتمع، دون مقابل مادي.',
-    benefits:['اكتساب خبرة عملية','شهادة تطوع','تطوير المهارات','خدمة المجتمع','بناء ملف إنجازات']
+    def:'التطوع في المنتدى هو مساهمة طوعية تُمكّن الشباب من المشاركة في تنظيم الأنشطة والبرامج والمبادرات، واكتساب الخبرات العملية، وتنمية المهارات القيادية والمهنية، والعمل ضمن فريق يسعى إلى خدمة المجتمع وصناعة أثر إيجابي، دون أن يترتب على ذلك اكتساب صفة العضوية في المنتدى.',
+    benefits:['اكتساب خبرة عملية في التسيير والإدارة والعمل المؤسسي','تنمية مهارات القيادة، والتواصل، والعمل الجماعي','اكتساب القدرة على العمل تحت الضغط وإدارة الوقت وتحمل المسؤولية','المشاركة في دورات وورشات تدريبية داخلية','الحصول على شهادات مشاركة وتطوع وتقدير وفق الأنشطة المنجزة','اكتساب خبرة في إعداد التقارير، وتنظيم الفعاليات، وإدارة المشاريع','تطوير المهارات والمواهب الشخصية وصقلها من خلال الممارسة العملية','توسيع شبكة العلاقات المهنية والتطوعية مع شباب وخبراء من مختلف المجالات','المساهمة في تنفيذ مبادرات ومشاريع ذات أثر مجتمعي إيجابي']
   },
   ambassador:{
-    def:'التمثيل هو تمثيل المنتدى على مستوى الولاية كسفير معتمد، والتنسيق مع المؤسسات الشبانية والعلمية لتنظيم الأنشطة الميدانية والتواصل مع الشباب المحلي.',
-    benefits:['صفة سفير رسمية','قيادة فريق محلي','تنظيم أنشطة ميدانية','التواصل مع المؤسسات','شهادة تمثيل']
+    def:'التمثيل في المنتدى (السفير) هو طلب يقدمه الشخص لتمثيل المنتدى في ولاية معينة، حيث يكون السفير ممثلًا للمنتدى وفرعه في ولايته، ويتولى تنسيق أنشطة المنتدى، والتواصل مع المنخرطين، ودعم تنفيذ البرامج والمبادرات، وتمكين أعضاء المنتدى في الولاية من المشاركة والاستفادة من مختلف خدماته وفق التنظيم والصلاحيات المعتمدة.',
+    benefits:['يستفيد السفير من جميع البرامج والأنشطة التي يقدمها المنتدى ضمن رؤيته ورسالته وأهدافه، إضافة إلى اكتساب خبرات عملية في مجالات التمثيل، والعلاقات العامة، والتواصل، والدبلوماسية، والتعامل مع مختلف الجهات والمؤسسات.','كما يطور مهاراته في القيادة والإدارة والتنظيم، من خلال تشكيل فريق في ولايته، وتنسيق أعمال الأعضاء، ومتابعة الأنشطة، وإعداد التقارير ورفعها، مما يمنحه تجربة عملية في العمل المؤسسي وتحمل المسؤولية.']
   },
   training:{
-    def:'التأطير هو تقديم دورات تدريبية أو ورشات أو محاضرات لتمكين أعضاء المنتدى والشباب، وفق معايير الجودة المعتمدة.',
-    benefits:['مشاركة الخبرة','أثر مجتمعي','شهادة تأطير','التعاون مع المنتدى','بناء سمعة مهنية']
+    def:'التأطير في المنتدى الشبابي للفكر والمشاركة المدنية هو تقديم الدورات التدريبية والورشات والبرامج التأهيلية التي تهدف إلى تنمية معارف الشباب ومهاراتهم وقدراتهم في مختلف المجالات. ويُسهم المؤطر في نقل الخبرات، وتوجيه المشاركين، وتهيئة بيئة تعليمية تفاعلية تساعد على التعلم والتطبيق واكتساب الخبرات العملية، بما يحقق أهداف المنتدى في التمكين والتطوير.',
+    benefits:['تقديم الدورات والورشات ضمن منصة شبابية وطنية','تنمية الخبرة في التدريب والتأطير وإدارة الجلسات','توسيع شبكة العلاقات مع الخبراء والشباب والمؤسسات','الحصول على شهادات تقدير ومشاركة لقاء جهوده في التأطير','إبراز خبراته ومجالات تخصصه وتعزيز حضوره المهني','المساهمة في تمكين الشباب ونقل المعرفة والخبرة إليهم','تطوير مهارات التواصل، والإلقاء، وتصميم البرامج التدريبية','المشاركة في الفعاليات والبرامج والمبادرات التي ينظمها المنتدى','المساهمة في صناعة أثر مجتمعي من خلال تأهيل وتمكين الشباب']
   },
   partnership:{
-    def:'الشراكة تعاون رسمي بين المنتدى وجهة أخرى (مؤسسة، جمعية، شركة، هيئة) لتحقيق منفعة متبادلة وأثر مشترك.',
-    benefits:['تعاون مؤسسي','أثر مشترك','تبادل الموارد','الظهور الإعلامي','تحقيق أهداف مشتركة']
+    def:'الشراكة في المنتدى الشبابي للفكر والمشاركة المدنية هي تعاون رسمي بين المنتدى وجهة أخرى، سواء كانت مؤسسة، أو جمعية، أو شركة، أو هيئة، أو مبادرة، بهدف تنفيذ برامج ومشاريع وأنشطة مشتركة تحقق منفعة متبادلة وتسهم في تمكين الشباب، وتنمية قدراتهم، وتعزيز المشاركة المدنية، وتبادل الخبرات والموارد بما يخدم المصلحة العامة.',
+    benefits:['تعاون مؤسسي رسمي بين المنتدى والجهة الشريكة','تنفيذ برامج ومشاريع وأنشطة مشتركة تحقق منفعة متبادلة','الإسهام في تمكين الشباب وتنمية قدراتهم','تعزيز المشاركة المدنية','تبادل الخبرات والموارد بما يخدم المصلحة العامة']
   }
 };
 
@@ -3456,12 +3511,18 @@ window.formatCountdown=function(date){
 var SURVEY_STEPS = [
   {q:'ما هو عمرك؟', type:'choice', options:['أقل من 14','14–17','18–24','25–30','أكثر من 30'], key:'age'},
   {q:'هل تحمل الجنسية الجزائرية؟', type:'choice', options:['نعم','لا'], key:'nationality'},
+  {q:'في أي ولاية تقيم؟', type:'choice', options:['شمال','شرق','غرب','وسط','جنوب'], key:'region'},
   {q:'ما هو مستواك الدراسي أو المهني؟', type:'choice', options:['تلميذ','طالب جامعي','موظف','رائد أعمال','باحث عن عمل','أخرى'], key:'status'},
+  {q:'هل سبق لك الانخراط في جمعية أو مبادرة شبابية؟', type:'choice', options:['نعم','لا'], key:'priorOrg'},
   {q:'في أي مجال ترغب بالمساهمة؟', type:'choice', options:['التطوع الميداني','القيادة والتمثيل','التدريب والتأطير','المبادرات والمشاريع','الإعلام والمحتوى','التنظيم والإدارة'], key:'field'},
+  {q:'ما نوع النشاط الذي يهمك أكثر؟', type:'choice', options:['دورات وورشات','ندوات وحوارات','حملات ميدانية','مشاريع ابتكارية','أنشطة ثقافية'], key:'activityPref'},
   {q:'كم ساعة أسبوعياً يمكنك تخصيصها؟', type:'choice', options:['أقل من 2','2–5','5–10','أكثر من 10'], key:'hours'},
   {q:'هل لديك خبرة سابقة في العمل الجمعوي أو التطوعي؟', type:'choice', options:['نعم، خبرة جيدة','خبرة محدودة','لا توجد خبرة'], key:'experience'},
   {q:'ما الذي يحفزك للانضمام؟', type:'choice', options:['خدمة المجتمع','تطوير الذات','بناء شبكة علاقات','قيادة مبادرات','التعلم والتدريب'], key:'motivation'},
   {q:'هل تفضل العمل الميداني أم الرقمي؟', type:'choice', options:['ميداني','رقمي','كلاهما'], key:'mode'},
+  {q:'هل ترغب في تمثيل ولايتك كسفير؟', type:'choice', options:['نعم بقوة','ربما لاحقاً','لا'], key:'wantAmbassador'},
+  {q:'هل لديك مهارات تدريب أو تأطير يمكن تقديمها؟', type:'choice', options:['نعم','جزئياً','لا'], key:'canTrain'},
+  {q:'ما أولوية المنتدى بالنسبة لك؟', type:'choice', options:['تمكين الشباب','النزاهة والشفافية','المشاركة المدنية','الابتكار والمشاريع'], key:'priority'},
   {q:'هل أنت مستعد للالتزام بالنظام الداخلي وميثاق السلوك؟', type:'choice', options:['نعم، بالكامل','أحتاج للاطلاع أولاً','لست متأكداً'], key:'commitment'}
 ];
 var surveyAnswers={}, surveyStep=0;
@@ -3532,6 +3593,14 @@ function renderSurveyResult(){
   if(a.hours==='5–10'||a.hours==='أكثر من 10'){ score.volunteer+=2; score.ambassador+=2; }
   if(a.experience==='نعم، خبرة جيدة'){ score.ambassador+=2; score.training+=2; }
   if(a.commitment==='نعم، بالكامل'){ score.membership+=1; score.volunteer+=1; score.ambassador+=1; score.training+=1; }
+  if(a.wantAmbassador==='نعم بقوة') score.ambassador+=4;
+  if(a.canTrain==='نعم') score.training+=4;
+  if(a.canTrain==='جزئياً') score.training+=2;
+  if(a.activityPref==='دورات وورشات') score.training+=1;
+  if(a.activityPref==='حملات ميدانية') score.volunteer+=2;
+  if(a.priority==='تمكين الشباب') score.membership+=1;
+  if(a.priority==='النزاهة والشفافية') score.ambassador+=1;
+  if(a.priorOrg==='نعم'){ score.volunteer+=1; score.ambassador+=1; }
   if(a.age==='أقل من 14'||a.age==='أكثر من 30') score.membership-=2;
   var best='membership', bestScore=-999;
   Object.keys(score).forEach(function(k){ if(score[k]>bestScore){ bestScore=score[k]; best=k; } });
@@ -4022,6 +4091,302 @@ window.openJoinModal=openJoinModal;window.setJoinTab=setJoinTab;window.setLibrar
     }
     return _nav(path, replace);
   };
+})();
+
+
+
+/* ===== ENHANCEMENT PACK: validation, ambassador notice, FB-style profiles ===== */
+(function(){
+  /* --- Age rules --- */
+  var AGE_RULES = {
+    membership: {min:14, max:30, guardianMax:17},
+    volunteer:  {min:18, max:35},
+    ambassador: {min:18, max:35},
+    training:   {min:18, max:99},
+    partnership:{min:18, max:99}
+  };
+
+  function calcAge(birthDateStr){
+    if(!birthDateStr) return null;
+    var d=new Date(birthDateStr); if(isNaN(d.getTime())) return null;
+    var now=new Date();
+    var age=now.getFullYear()-d.getFullYear();
+    var m=now.getMonth()-d.getMonth();
+    if(m<0 || (m===0 && now.getDate()<d.getDate())) age--;
+    return age;
+  }
+
+  function isValidDZPhone(p){
+    p=String(p||'').replace(/[\s\-]/g,'');
+    return /^(0[5-7]\d{8}|(\+?213)[5-7]\d{8})$/.test(p);
+  }
+  function isValidEmail(e){
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(e||''));
+  }
+
+  /* Hook join form birth date for guardian + age */
+  document.addEventListener('change', function(e){
+    if(e.target && (e.target.name==='birthDate' || e.target.id==='joinBirthDate')){
+      var form=e.target.closest('form');
+      if(!form) return;
+      var type=form.getAttribute('data-join-type')||window._currentJoinType||'membership';
+      var age=calcAge(e.target.value);
+      var rules=AGE_RULES[type]||AGE_RULES.membership;
+      var warn=document.getElementById('joinAgeWarn');
+      if(!warn){
+        warn=document.createElement('div');
+        warn.id='joinAgeWarn';
+        warn.style.cssText='font-size:12px;margin-top:6px;padding:8px 12px;border-radius:10px;display:none';
+        e.target.parentElement.appendChild(warn);
+      }
+      var guardBox=document.getElementById('joinGuardianBox');
+      if(age===null){ warn.style.display='none'; return; }
+      if(age < rules.min || age > rules.max){
+        warn.style.display='block';
+        warn.style.background='rgba(229,57,53,.08)';
+        warn.style.color='var(--danger)';
+        warn.innerHTML='<i class="fas fa-exclamation-triangle"></i> العمر المطلوب: من '+rules.min+' إلى '+rules.max+' سنة (عمرك الحالي: '+age+')';
+      } else {
+        warn.style.display='block';
+        warn.style.background='rgba(46,204,90,.08)';
+        warn.style.color='var(--primary)';
+        warn.innerHTML='<i class="fas fa-check-circle"></i> العمر مناسب ('+age+' سنة)';
+      }
+      if(type==='membership' && age>=14 && age<=17){
+        if(!guardBox){
+          guardBox=document.createElement('div');
+          guardBox.id='joinGuardianBox';
+          guardBox.style.cssText='margin-top:12px;padding:12px;background:rgba(200,168,78,.08);border:1px dashed rgba(200,168,78,.4);border-radius:12px';
+          guardBox.innerHTML='<div style="font-weight:700;font-size:13px;color:var(--accent);margin-bottom:8px"><i class="fas fa-user-shield"></i> موافقة الولي الشرعي (إلزامية لمن دون 18)</div>'+
+            '<div class="form-group"><label class="required">اسم الولي الكامل</label><input class="form-input" name="guardianName" required maxlength="80"></div>'+
+            '<div class="form-group"><label class="required">رقم هاتف الولي</label><input class="form-input" type="tel" name="guardianPhone" required maxlength="10" placeholder="05XXXXXXXX"><div style="font-size:11px;color:var(--text-muted);margin-top:4px">يُفضّل أن يكون مربوطاً بواتساب</div></div>'+
+            '<div class="form-check"><input type="checkbox" required id="guardianConsent"><label for="guardianConsent" class="required">أقرّ بموافقة الولي الشرعي على الانخراط</label></div>';
+          e.target.closest('.step-panel') && e.target.closest('.step-panel').appendChild(guardBox);
+        } else guardBox.style.display='block';
+      } else if(guardBox) guardBox.style.display='none';
+    }
+  });
+
+  /* Validate join submit */
+  var _origSubmitJoin = window.submitJoinSteps;
+  if(typeof _origSubmitJoin==='function'){
+    window.submitJoinSteps=function(e,type){
+      e.preventDefault();
+      var form=e.target;
+      var fd=new FormData(form);
+      var birth=fd.get('birthDate');
+      var phone=fd.get('phone')||fd.get('orgPhone');
+      var email=fd.get('email')||fd.get('orgEmail');
+      var fullName=fd.get('fullName')||fd.get('orgName');
+      var rules=AGE_RULES[type]||{};
+      if(birth){
+        var age=calcAge(birth);
+        if(age===null || age < (rules.min||0) || age > (rules.max||99)){
+          showToast('العمر غير مستوفٍ للشروط (من '+(rules.min||'?')+' إلى '+(rules.max||'?')+' سنة)','error');
+          return false;
+        }
+        if(type==='membership' && age<=17){
+          if(!fd.get('guardianName') || !fd.get('guardianPhone')){
+            showToast('موافقة الولي الشرعي إلزامية لمن دون 18 سنة','error'); return false;
+          }
+        }
+      }
+      if(phone && !isValidDZPhone(phone)){
+        showToast('رقم الهاتف غير صحيح — استخدم صيغة 05/06/07xxxxxxxx','error'); return false;
+      }
+      if(email && !isValidEmail(email)){
+        showToast('البريد الإلكتروني غير صحيح','error'); return false;
+      }
+      if(fullName && String(fullName).trim().length < 5){
+        showToast('الاسم الكامل قصير جداً (5 أحرف على الأقل)','error'); return false;
+      }
+      return _origSubmitJoin(e,type);
+    };
+  }
+
+  /* Store join type when modal opens */
+  var _origOpenJoin = window.openJoinModal;
+  if(typeof _origOpenJoin==='function'){
+    window.openJoinModal=function(type){
+      window._currentJoinType=type;
+      _origOpenJoin(type);
+      setTimeout(function(){
+        var form=document.getElementById('joinModalForm');
+        if(form) form.setAttribute('data-join-type', type);
+        /* Ambassador public data notice */
+        if(type==='ambassador'){
+          var host=document.getElementById('joinStepsHost');
+          if(host && !document.getElementById('ambPublicNotice')){
+            var notice=document.createElement('div');
+            notice.id='ambPublicNotice';
+            notice.style.cssText='background:rgba(26,107,47,.07);border:1.5px solid rgba(46,204,90,.35);border-radius:14px;padding:14px 16px;margin-bottom:14px;font-size:12.5px;line-height:1.85;color:var(--text-secondary)';
+            notice.innerHTML='<div style="font-weight:800;color:var(--primary);margin-bottom:6px;font-size:13px"><i class="fas fa-bullhorn"></i> تنويه هام بخصوص بيانات السفير</div>'+
+              '<p>بمجرد قبول طلبك كسفير، سيتم <strong>عرض بعض بياناتك للعموم</strong> في تبويبة «سفراؤنا» وفي صفحة ملفك الشخصي، وتشمل:</p>'+
+              '<ul style="padding-right:18px;margin:8px 0">'+
+              '<li>الاسم الكامل</li><li>الصورة الشخصية</li><li>رقم الهاتف</li><li>البريد الإلكتروني</li><li>الولاية ووسائل التواصل</li>'+
+              '</ul>'+
+              '<p>الغرض من ذلك هو تمكين <strong>المنخرطين والمتطوعين والشركاء والمؤطرين</strong> من التواصل معك مباشرة بوصفك ممثلاً رسمياً للمنتدى في ولايتك، دون الحاجة للرجوع إلى المقر.</p>'+
+              '<p style="margin-top:8px;color:var(--danger);font-weight:700"><i class="fas fa-exclamation-triangle"></i> المنتدى غير مسؤول عن أي استخدام لبياناتك الظاهرة بعد موافقتك على هذا الإقرار.</p>'+
+              '<div class="form-check" style="margin-top:10px"><input type="checkbox" required id="ambDataConsent"><label for="ambDataConsent" class="required">أوافق على نشر بياناتي المذكورة أعلاه للتنسيق المحلي</label></div>';
+            host.insertBefore(notice, host.firstChild);
+          }
+        }
+        /* maxlength on common fields */
+        form && form.querySelectorAll('input[name="fullName"]').forEach(function(el){ el.setAttribute('maxlength','80'); el.setAttribute('minlength','5'); });
+        form && form.querySelectorAll('input[type="email"]').forEach(function(el){ el.setAttribute('maxlength','80'); });
+        form && form.querySelectorAll('input[type="tel"]').forEach(function(el){
+          el.setAttribute('maxlength','13');
+          if(!el.parentElement.querySelector('.phone-hint')){
+            var h=document.createElement('div');
+            h.className='phone-hint';
+            h.style.cssText='font-size:11px;color:var(--text-muted);margin-top:4px';
+            h.innerHTML='<i class="fas fa-info-circle"></i> يُفضّل أن يكون الرقم مربوطاً بواتساب وتيليغرام';
+            el.parentElement.appendChild(h);
+          }
+        });
+      }, 80);
+    };
+  }
+
+  /* ===== Facebook/Instagram style profile viewer ===== */
+  window.openProfile = async function(usernameOrId){
+    if(!usernameOrId){ showToast('معرّف غير صالح','warning'); return; }
+    var existing=document.getElementById('fbProfileOverlay');
+    if(existing) existing.remove();
+    var overlay=document.createElement('div');
+    overlay.id='fbProfileOverlay';
+    overlay.className='modal-overlay';
+    overlay.style.cssText='position:fixed;inset:0;z-index:10050;background:rgba(0,0,0,.55);display:flex;align-items:flex-start;justify-content:center;padding:20px 12px;overflow-y:auto';
+    overlay.innerHTML='<div style="background:var(--surface);border-radius:20px;max-width:520px;width:100%;margin:40px auto;overflow:hidden;box-shadow:var(--shadow-lg)" id="fbProfileCard"><div style="padding:40px;text-align:center"><i class="fas fa-spinner fa-spin" style="font-size:28px;color:var(--primary-light)"></i></div></div>';
+    document.body.appendChild(overlay);
+    overlay.addEventListener('click', function(e){ if(e.target===overlay) overlay.remove(); });
+
+    var user=null;
+    try{
+      if(window.FirestoreAPI && window.firebaseDB){
+        var FA=window.FirestoreAPI, db=window.firebaseDB;
+        var cols=['userProfiles','mzoneAccounts','members','volunteers','ambassadors','users'];
+        for(var i=0;i<cols.length && !user;i++){
+          try{
+            var ds=await FA.getDoc(FA.doc(db, cols[i], usernameOrId));
+            if(ds && ds.exists && (typeof ds.exists==='function'?ds.exists():ds.exists)){
+              user=Object.assign({id:usernameOrId, _source:cols[i]}, ds.data());
+            }
+          }catch(_){}
+        }
+        if(!user){
+          for(var i=0;i<cols.length && !user;i++){
+            try{
+              var snap=await FA.getDocs(FA.query(FA.collection(db,cols[i]), FA.where('username','==',usernameOrId), FA.limit(1)));
+              if(snap && !snap.empty) user=Object.assign({id:snap.docs[0].id, _source:cols[i]}, snap.docs[0].data());
+            }catch(_){}
+            if(!user){
+              try{
+                var snap2=await FA.getDocs(FA.query(FA.collection(db,cols[i]), FA.where('membershipNumber','==',usernameOrId), FA.limit(1)));
+                if(snap2 && !snap2.empty) user=Object.assign({id:snap2.docs[0].id, _source:cols[i]}, snap2.docs[0].data());
+              }catch(_){}
+            }
+          }
+        }
+      }
+    }catch(e){ console.warn(e); }
+
+    var card=document.getElementById('fbProfileCard');
+    if(!user){
+      card.innerHTML='<div style="padding:40px;text-align:center"><i class="fas fa-user-slash" style="font-size:36px;color:var(--text-muted)"></i><p style="margin-top:12px;color:var(--text-secondary)">تعذّر العثور على الملف الشخصي</p><button class="btn-outline-dark" onclick="document.getElementById(\'fbProfileOverlay\').remove()">إغلاق</button></div>';
+      return;
+    }
+
+    var name=escapeHtml(user.fullName||user.name||user.username||'عضو');
+    var photo=user.photoUrl||user.photo||user.avatar||'';
+    var cover=user.coverUrl||user.coverPhoto||'';
+    var bio=escapeHtml(user.bio||user.about||'');
+    var role=user.role||user.type||user._source||'';
+    var roleLabel={members:'منخرط',volunteers:'متطوع',ambassadors:'سفير',mzoneAccounts:'عضو',users:'عضو',membership:'منخرط',volunteer:'متطوع',ambassador:'سفير'}[role]||role||'عضو';
+    var city=escapeHtml(user.city||user.wilaya||'');
+    var work=escapeHtml(user.work||user.position||'');
+    var study=escapeHtml(user.study||user.educationLevel||'');
+    var username=escapeHtml(user.username||'');
+    var followers=user.followersCount||0;
+    var following=user.followingCount||0;
+    var joined='';
+    try{
+      var jd=user.createdAt&&user.createdAt.toDate?user.createdAt.toDate():(user.createdAt?new Date(user.createdAt):null);
+      if(jd&&!isNaN(jd)) joined=jd.toLocaleDateString('ar-DZ',{year:'numeric',month:'long'});
+    }catch(_){}
+
+    var socials='';
+    if(user.facebook) socials+='<a href="'+escapeHtml(user.facebook)+'" target="_blank" rel="noopener" class="btn-icon" title="فيسبوك"><i class="fab fa-facebook"></i></a>';
+    if(user.instagram) socials+='<a href="'+escapeHtml(user.instagram)+'" target="_blank" rel="noopener" class="btn-icon" title="إنستغرام"><i class="fab fa-instagram"></i></a>';
+    if(user.twitter||user.twitterX) socials+='<a href="'+escapeHtml(user.twitter||user.twitterX)+'" target="_blank" rel="noopener" class="btn-icon" title="X"><i class="fab fa-x-twitter"></i></a>';
+    if(user.whatsapp) socials+='<a href="https://wa.me/'+escapeHtml(String(user.whatsapp).replace(/\\D/g,''))+'" target="_blank" rel="noopener" class="btn-icon" title="واتساب"><i class="fab fa-whatsapp"></i></a>';
+    if(user.website) socials+='<a href="'+escapeHtml(user.website)+'" target="_blank" rel="noopener" class="btn-icon" title="موقع"><i class="fas fa-link"></i></a>';
+    if(user.phone && (role==='ambassadors'||role==='ambassador'||user.showPhone)) socials+='<a href="tel:'+escapeHtml(user.phone)+'" class="btn-icon" title="اتصال"><i class="fas fa-phone"></i></a>';
+
+    var me=currentUser||window.mzoneCurrentUser;
+    var isMe=me && (me.id===user.id || me.username===user.username);
+    var followBtn=isMe?'':'<button class="btn-primary" style="flex:1;justify-content:center" onclick="toggleFollow(\''+escapeHtml(user.id)+'\',this)"><i class="fas fa-user-plus"></i> متابعة</button>';
+    var editBtn=isMe?'<button class="btn-outline-dark" style="flex:1;justify-content:center" onclick="document.getElementById(\'fbProfileOverlay\').remove();openProfileCustomModal()"><i class="fas fa-pen"></i> تعديل ملفي</button>':'';
+
+    card.innerHTML=
+      '<div style="position:relative;height:160px;background:linear-gradient(135deg,#0d3d1a,#1a6b2f,#2ECC5A)">'+(cover?'<img src="'+escapeHtml(cover)+'" style="width:100%;height:100%;object-fit:cover">':'')+
+      '<button onclick="document.getElementById(\'fbProfileOverlay\').remove()" style="position:absolute;top:10px;left:10px;width:32px;height:32px;border-radius:50%;border:none;background:rgba(0,0,0,.45);color:#fff;cursor:pointer;font-size:16px">✕</button></div>'+
+      '<div style="padding:0 20px 24px;position:relative">'+
+        '<div style="width:96px;height:96px;border-radius:50%;border:4px solid var(--surface);background:linear-gradient(135deg,var(--primary-light),var(--primary));margin-top:-48px;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;font-size:36px;box-shadow:var(--shadow)">'+(photo?'<img src="'+escapeHtml(photo)+'" style="width:100%;height:100%;object-fit:cover">':'<i class="fas fa-user"></i>')+'</div>'+
+        '<div style="margin-top:12px">'+
+          '<h2 style="font-size:20px;margin:0">'+name+'</h2>'+
+          (username?'<div style="color:var(--text-muted);font-size:13px;direction:ltr;text-align:right">@'+username+'</div>':'')+
+          '<div style="margin-top:6px"><span class="badge badge-accepted">'+escapeHtml(roleLabel)+'</span>'+(city?' <span style="font-size:12px;color:var(--text-secondary)"><i class="fas fa-map-marker-alt"></i> '+city+'</span>':'')+'</div>'+
+        '</div>'+
+        (bio?'<p style="margin-top:12px;font-size:14px;line-height:1.7;color:var(--text-secondary)">'+bio+'</p>':'')+
+        '<div style="display:flex;gap:16px;margin-top:14px;font-size:13px">'+
+          '<div><strong>'+followers+'</strong> <span style="color:var(--text-muted)">متابع</span></div>'+
+          '<div><strong>'+following+'</strong> <span style="color:var(--text-muted)">يتابع</span></div>'+
+          (joined?'<div style="color:var(--text-muted)"><i class="fas fa-calendar-alt"></i> انضم '+joined+'</div>':'')+
+        '</div>'+
+        ((work||study)?'<div style="margin-top:12px;font-size:13px;color:var(--text-secondary);line-height:1.8">'+(work?'<div><i class="fas fa-briefcase" style="color:var(--primary-light);width:18px"></i> '+work+'</div>':'')+(study?'<div><i class="fas fa-graduation-cap" style="color:var(--primary-light);width:18px"></i> '+study+'</div>':'')+'</div>':'')+
+        (socials?'<div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">'+socials+'</div>':'')+
+        '<div style="display:flex;gap:8px;margin-top:18px">'+followBtn+editBtn+
+          '<button class="btn-outline-dark" style="flex:1;justify-content:center" onclick="shareContent(\''+name+'\', location.origin+\'/profile/'+(username||user.id)+'\')"><i class="fas fa-share-alt"></i> مشاركة</button>'+
+        '</div>'+
+        '<div id="fbProfilePosts" style="margin-top:20px;border-top:1px solid var(--border-light);padding-top:16px"><div style="text-align:center;color:var(--text-muted);font-size:13px"><i class="fas fa-spinner fa-spin"></i> جاري تحميل المنشورات...</div></div>'+
+      '</div>';
+
+    /* Load user posts */
+    try{
+      if(window.FirestoreAPI && window.firebaseDB){
+        var FA=window.FirestoreAPI, db=window.firebaseDB;
+        var posts=[];
+        for(var col of ['posts','mzoneMemberPublications','userPosts']){
+          try{
+            var snap=await FA.getDocs(FA.query(FA.collection(db,col), FA.where('authorId','==',user.id), FA.limit(10)));
+            (snap.docs||[]).forEach(function(d){ posts.push(Object.assign({id:d.id},d.data())); });
+            if(posts.length) break;
+          }catch(_){}
+        }
+        var box=document.getElementById('fbProfilePosts');
+        if(box){
+          if(!posts.length) box.innerHTML='<div style="text-align:center;color:var(--text-muted);font-size:13px;padding:16px">لا توجد منشورات بعد</div>';
+          else box.innerHTML='<div style="font-weight:700;font-size:14px;margin-bottom:10px">المنشورات</div>'+posts.map(function(p){
+            return '<div class="card" style="margin-bottom:10px;padding:12px;cursor:pointer" onclick="navigate(\'/post/'+escapeHtml(p.id)+'\');document.getElementById(\'fbProfileOverlay\').remove()">'+
+              (p.title?'<div style="font-weight:700;font-size:13px;margin-bottom:4px">'+escapeHtml(p.title)+'</div>':'')+
+              '<div style="font-size:12px;color:var(--text-secondary);line-height:1.6">'+escapeHtml(String(p.content||p.body||p.text||'').slice(0,120))+'...</div></div>';
+          }).join('');
+        }
+      }
+    }catch(e){ var box=document.getElementById('fbProfilePosts'); if(box) box.innerHTML=''; }
+  };
+
+  /* Make author names in library clickable to profile */
+  document.addEventListener('click', function(e){
+    var a=e.target.closest('[data-profile-id],[data-username]');
+    if(a){
+      e.preventDefault();
+      openProfile(a.getAttribute('data-profile-id')||a.getAttribute('data-username'));
+    }
+  });
+
+  console.log('[Enhance] validation + FB profiles + sounds ready');
 })();
 
 </script>
