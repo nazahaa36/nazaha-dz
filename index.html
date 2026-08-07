@@ -16003,5 +16003,1865 @@ console.log('[SANCTIONS + SMART NOTIFS] ready');
 })();
 </script>
 
+
+<script id="IDENTITY_AND_TEAM_SIZE_V1">
+(function(){
+'use strict';
+if (window.__IDENTITY_AND_TEAM_SIZE_V1) return;
+window.__IDENTITY_AND_TEAM_SIZE_V1 = true;
+
+function esc(s){
+  return String(s==null?'':s).replace(/[&<>"']/g,function(c){
+    return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];
+  });
+}
+function isVerified(u){
+  if(!u) return false;
+  return u.verified===true||u.isVerified===true||u.authorVerified===true||
+    u.verificationStatus==='accepted'||u.verificationStatus==='مقبول'||
+    u.authorVerificationStatus==='accepted'||u.authorVerificationStatus==='مقبول'||
+    u.blueCheck===true;
+}
+function verifiedBadge(){
+  return ' <span class="verified-badge green" title="حساب موثّق"><i class="fas fa-check"></i></span>';
+}
+
+/** Clean position label — never show admin/أدمين as the title */
+function positionLabel(p){
+  p = p || {};
+  var raw = String(p.position || p.title || p.roleLabel || p.role || p.type || p.jobTitle || '').trim();
+  if(!raw) return '';
+  /* strip pure admin labels */
+  if(/^(admin|administrator|أدمين|ادمن|إداري|اداري|إدارة|ادارة)$/i.test(raw)){
+    return p.positionTitle || p.jobTitle || p.customRole || 'عضو الفريق';
+  }
+  /* if starts with admin-like, prefer a cleaner field */
+  if(/admin|أدمين|ادمن/i.test(raw) && (p.position || p.title || p.jobTitle)){
+    raw = String(p.position || p.title || p.jobTitle).trim();
+  }
+  return raw;
+}
+
+/* ===== Unified identity block: photo + name + verified + @user ===== */
+window.authorIdentityHtml = function(fullName, username, opts){
+  opts = opts || {};
+  var name = String(fullName || 'عضو').trim() || 'عضو';
+  var user = String(username || '').trim().replace(/^@/,'');
+  var photo = opts.photo || opts.avatar || opts.image || '';
+  var verified = opts.verified === true;
+  var isAuthor = opts.isAuthor === true;
+  var click = opts.onclick || (opts.profileKey ? ("typeof openProfile==='function'&&openProfile('"+esc(opts.profileKey)+"')") : '');
+  var size = opts.size || 32;
+  var avatar = '<div class="person-avatar" style="width:'+size+'px;height:'+size+'px;font-size:'+Math.round(size*0.38)+'px;flex-shrink:0;'+(click?'cursor:pointer;':'')+'"'+(click?' onclick="event.stopPropagation();'+click+'"':'')+'>'+
+    (photo
+      ? '<img src="'+esc(photo)+'" alt="" style="width:100%;height:100%;border-radius:50%;object-fit:cover" onerror="this.style.display=\'none\';var p=this.parentElement;if(p&&!p.querySelector(\'.fa-user\'))p.insertAdjacentHTML(\'beforeend\',\'<i class=\\\'fas fa-user\\\'></i>\')">'
+      : '<i class="fas fa-user"></i>')+
+  '</div>';
+  return '<div style="display:flex;gap:10px;align-items:flex-start;min-width:0">'+
+    avatar+
+    '<div class="author-id-block" style="flex:1;min-width:0;'+(click?'cursor:pointer':'')+'"'+(click?' onclick="event.stopPropagation();'+click+'"':'')+'>'+
+      '<div class="author-id-name">'+esc(name)+(verified?verifiedBadge():'')+(isAuthor?' <span class="author-badge-author">المؤلف</span>':'')+(opts.badge?' <span class="badge badge-accepted" style="font-size:10px;padding:2px 6px">'+esc(opts.badge)+'</span>':'')+'</div>'+
+      (user ? '<div class="author-id-user">@'+esc(user)+'</div>' : '')+
+      (opts.meta ? '<div class="author-id-meta">'+opts.meta+'</div>' : '')+
+    '</div>'+
+  '</div>';
+};
+
+/* ===== Team cards = same size as ambassadors + position sticker (not admin) ===== */
+window.personCard = function(p){
+  p = p || {};
+  var img = p.photoUrl || p.photo || p.avatar || p.image || '';
+  var name = esc(p.fullName || p.name || 'عضو');
+  var pos = positionLabel(p);
+  var key = esc(String(p.username || p.id || ''));
+  var wilaya = esc(p.wilaya || p.city || '');
+  var verified = isVerified(p);
+  return '<div class="person-card amb-card amb-card-pro team-member-card" style="cursor:pointer" onclick="typeof openProfile===\'function\'&&openProfile(\''+key+'\')">'+
+    '<div class="person-avatar">'+(img?'<img src="'+esc(img)+'" alt="" loading="lazy" onerror="this.style.display=\'none\';var p=this.parentElement;if(p&&!p.querySelector(\'.fa-user\'))p.insertAdjacentHTML(\'beforeend\',\'<i class=\\\'fas fa-user\\\'></i>\')">':'<i class="fas fa-user"></i>')+'</div>'+
+    '<div class="person-name">'+name+(verified?verifiedBadge():'')+'</div>'+
+    (pos ? '<div class="person-role team-position-sticker">'+esc(pos)+'</div>' : '')+
+    (wilaya ? '<div class="person-role" style="color:var(--text-muted);font-weight:500"><i class="fas fa-map-marker-alt" style="font-size:11px"></i> '+wilaya+'</div>' : '')+
+    '<div class="amb-card-actions" onclick="event.stopPropagation()">'+
+      '<button type="button" class="amb-icon-btn amb-icon-profile" title="عرض الملف الشخصي" onclick="event.stopPropagation();typeof openProfile===\'function\'&&openProfile(\''+key+'\')"><i class="fas fa-user"></i></button>'+
+      '<button type="button" class="amb-icon-btn amb-icon-report amb-report" title="إبلاغ" data-name="'+name+'" onclick="event.stopPropagation();(function(btn){if(typeof navigate===\'function\')navigate(\'/contact\');setTimeout(function(){var s=document.querySelector(\'[name=subjectType]\');if(s){s.value=\'إبلاغ عن عضو فريق\';if(typeof updateContactFields===\'function\')updateContactFields(s.value);}var rn=document.querySelector(\'[name=reportedName]\');if(rn)rn.value=btn.getAttribute(\'data-name\')||\'\';},350);})(this)"><i class="fas fa-flag"></i></button>'+
+    '</div>'+
+  '</div>';
+};
+
+/* Same grid + card size for ambassadors, admin team, experts */
+(function(){
+  var st = document.getElementById('TEAM_AMB_SAME_SIZE');
+  if(st) st.remove();
+  st = document.createElement('style');
+  st.id = 'TEAM_AMB_SAME_SIZE';
+  st.textContent = [
+    '#ambassadorsList.cards-grid, #teamAdmin.cards-grid, #teamExperts.cards-grid,',
+    '#ambassadorsList, #teamAdmin, #teamExperts {',
+    '  display: grid !important;',
+    '  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)) !important;',
+    '  gap: 12px !important;',
+    '}',
+    '#ambassadorsList .person-card, #teamAdmin .person-card, #teamExperts .person-card,',
+    '#ambassadorsList .amb-card-pro, #teamAdmin .amb-card-pro, #teamExperts .amb-card-pro,',
+    '.team-member-card {',
+    '  padding: 16px 12px !important;',
+    '  border-radius: 16px !important;',
+    '  text-align: center !important;',
+    '  min-height: 0 !important;',
+    '}',
+    '#ambassadorsList .person-avatar, #teamAdmin .person-avatar, #teamExperts .person-avatar,',
+    '.team-member-card .person-avatar {',
+    '  width: 80px !important; height: 80px !important; font-size: 28px !important;',
+    '  margin: 0 auto 12px !important;',
+    '}',
+    '#ambassadorsList .person-name, #teamAdmin .person-name, #teamExperts .person-name {',
+    '  font-size: 14px !important; font-weight: 700 !important;',
+    '}',
+    '#ambassadorsList .person-role, #teamAdmin .person-role, #teamExperts .person-role {',
+    '  font-size: 11px !important;',
+    '}',
+    '.team-position-sticker {',
+    '  display: inline-block !important;',
+    '  margin-top: 4px !important;',
+    '  padding: 3px 10px !important;',
+    '  border-radius: 50px !important;',
+    '  background: rgba(46,204,90,.12) !important;',
+    '  border: 1px solid rgba(46,204,90,.3) !important;',
+    '  color: var(--primary) !important;',
+    '  font-weight: 700 !important;',
+    '  font-size: 11px !important;',
+    '  max-width: 100%;',
+    '  word-break: break-word;',
+    '}',
+    '#ambassadorsList .amb-card-actions, #teamAdmin .amb-card-actions, #teamExperts .amb-card-actions {',
+    '  display: flex !important; gap: 8px !important; margin-top: 12px !important;',
+    '  justify-content: center !important; flex-wrap: wrap !important;',
+    '}'
+  ].join('\n');
+  document.head.appendChild(st);
+})();
+
+/* ===== Comments: photo + name + verified everywhere ===== */
+window.loadPostComments = async function(postId){
+  var el = document.getElementById('postCommentsList') || document.getElementById('commentsList');
+  if(!el) return;
+  el.innerHTML = '<div class="empty-state" style="padding:12px"><span class="op-spinner"></span></div>';
+  if(!window.FirestoreAPI || !window.firebaseDB){
+    el.innerHTML = '<div class="empty-state" style="padding:12px">تعذّر التحميل</div>';
+    return;
+  }
+  var postAuthorId = '', postAuthorUser = '';
+  try{
+    var cache = (window._libCache && window._libCache.posts) || [];
+    var post = cache.find(function(p){ return p.id === postId; });
+    if(post){
+      postAuthorId = post.authorId || post.userId || '';
+      postAuthorUser = String(post.authorUsername || post.username || '').replace(/^@/,'');
+    }
+  }catch(_){}
+
+  try{
+    var FA = window.FirestoreAPI, db = window.firebaseDB;
+    var comments = [];
+    try{
+      var snap = await FA.getDocs(FA.query(FA.collection(db,'comments'), FA.where('postId','==',postId), FA.limit(100)));
+      (snap.docs||[]).forEach(function(d){ comments.push(Object.assign({id:d.id}, d.data())); });
+    }catch(_){
+      try{
+        var snap2 = await FA.getDocs(FA.collection(db,'comments'));
+        (snap2.docs||[]).forEach(function(d){
+          var c = d.data()||{};
+          if(c.postId === postId) comments.push(Object.assign({id:d.id}, c));
+        });
+      }catch(__){}
+    }
+    comments.sort(function(a,b){
+      var da=a.createdAt&&a.createdAt.toDate?a.createdAt.toDate().getTime():0;
+      var db2=b.createdAt&&b.createdAt.toDate?b.createdAt.toDate().getTime():0;
+      return da-db2;
+    });
+    try{ await FA.updateDoc(FA.doc(db,'posts',postId), {commentsCount: comments.length}); }catch(_){}
+    var countEl = document.getElementById('postCommentsCount');
+    if(countEl) countEl.textContent = String(comments.length);
+
+    if(!comments.length){
+      el.innerHTML = '<div class="empty-state" style="padding:12px">لا تعليقات بعد</div>';
+      return;
+    }
+    var me = window.currentUser || window.mzoneCurrentUser;
+    el.innerHTML = comments.map(function(c){
+      var name = c.authorName || c.name || 'عضو';
+      var uname = String(c.authorUsername || c.username || '').replace(/^@/,'');
+      var aid = c.authorId || c.userId || '';
+      var photo = c.authorPhoto || c.authorAvatar || c.photo || c.avatar || '';
+      var verified = isVerified(c);
+      var isAuthor = (postAuthorId && aid && aid === postAuthorId) || (postAuthorUser && uname && uname === postAuthorUser);
+      var isReply = !!(c.parentId || c.replyTo);
+      var dt = '';
+      try{
+        var d = c.createdAt && c.createdAt.toDate ? c.createdAt.toDate() : (c.createdAt ? new Date(c.createdAt) : null);
+        if(d && !isNaN(d)) dt = d.toLocaleString('ar-DZ');
+      }catch(_){}
+      var canDelete = me && (me.id === aid || (me.username && uname && me.username === uname));
+      var profileKey = uname || aid;
+      return '<div class="lib-comment'+(isReply?' lib-reply':'')+'" style="padding:10px;border-radius:12px;margin-bottom:8px'+(isReply?';margin-right:28px;border-right:3px solid var(--primary-light);background:rgba(46,204,90,.04)':'')+'">'+
+        window.authorIdentityHtml(name, uname, {
+          photo: photo,
+          verified: verified,
+          isAuthor: isAuthor,
+          profileKey: profileKey,
+          size: 32,
+          meta: dt
+        })+
+        '<div style="font-size:13px;line-height:1.7;margin-top:8px;margin-right:42px;word-break:break-word">'+(typeof linkifyText==='function'?linkifyText(c.text||c.content||c.comment||''):esc(c.text||c.content||c.comment||''))+'</div>'+
+        '<div style="display:flex;gap:10px;margin-top:6px;margin-right:42px;font-size:11px;color:var(--text-muted);flex-wrap:wrap">'+
+          '<button type="button" style="background:none;border:none;color:var(--primary);cursor:pointer;font-weight:700;font-size:11px" onclick="typeof replyToComment===\'function\'&&replyToComment(\''+esc(c.id)+'\',\''+esc(postId)+'\',\''+esc(name)+'\')">رد</button>'+
+          (canDelete?'<button type="button" style="background:none;border:none;color:var(--danger);cursor:pointer;font-weight:700;font-size:11px" onclick="typeof deleteMyComment===\'function\'&&deleteMyComment(\''+esc(c.id)+'\',\''+esc(postId)+'\')">حذف</button>':'')+
+        '</div>'+
+      '</div>';
+    }).join('');
+  }catch(e){
+    console.warn(e);
+    el.innerHTML = '<div class="empty-state" style="padding:12px">تعذّر تحميل التعليقات</div>';
+  }
+};
+
+/* When submitting comment, always save author photo + verified */
+if(typeof window.submitLibraryComment === 'function' && !window.submitLibraryComment.__photoFix){
+  var _slc = window.submitLibraryComment;
+  window.submitLibraryComment = async function(postId){
+    var _cu = window.currentUser || window.mzoneCurrentUser;
+    if(_cu){
+      /* ensure photo fields available for next render via patch of addDoc is hard;
+         wrap by temporarily enriching currentUser if needed */
+      if(!_cu.authorPhoto) _cu.authorPhoto = _cu.photoUrl || _cu.photo || _cu.avatar || '';
+    }
+    return await _slc.apply(this, arguments);
+  };
+  window.submitLibraryComment.__photoFix = true;
+}
+
+/* Patch comment save to include photo if original uses FA.addDoc for comments */
+document.addEventListener('submit', function(){ /* no-op guard */ }, true);
+
+/* Enrich submitLibraryComment data: override addDoc path by replacing function fully if simple */
+if(typeof window.submitLibraryComment === 'function'){
+  window.submitLibraryComment = async function(postId){
+    var _cu = window.currentUser || window.mzoneCurrentUser;
+    if(!_cu){ if(typeof showToast==='function') showToast('سجّل الدخول أولاً','warning'); return; }
+    if(typeof window.assertAllowed==='function' && !window.assertAllowed('comment')) return;
+    var input = document.getElementById('newCommentInput') || document.getElementById('commentInput');
+    var text = input ? String(input.value||'').trim() : '';
+    if(!text) return;
+    if(text.length > 1000){ if(typeof showToast==='function') showToast('التعليق طويل جداً','warning'); return; }
+    if(input) input.disabled = true;
+    try{
+      if(!window.FirestoreAPI || !window.firebaseDB) throw new Error('no db');
+      var FA = window.FirestoreAPI, db = window.firebaseDB;
+      await FA.addDoc(FA.collection(db,'comments'), {
+        postId: postId,
+        text: text,
+        authorName: _cu.fullName || _cu.name || 'عضو',
+        authorId: _cu.id || '',
+        authorUsername: _cu.username || '',
+        authorPhoto: _cu.photoUrl || _cu.photo || _cu.avatar || '',
+        authorVerified: isVerified(_cu),
+        verified: isVerified(_cu),
+        createdAt: FA.serverTimestamp()
+      });
+      try{ await FA.updateDoc(FA.doc(db,'posts',postId), {commentsCount: FA.increment(1)}); }catch(_){}
+      if(window._libCache && window._libCache.posts){
+        var p = window._libCache.posts.find(function(x){ return x.id===postId; });
+        if(p) p.commentsCount = (p.commentsCount||0)+1;
+      }
+      if(input) input.value = '';
+      if(typeof window.loadPostComments==='function') window.loadPostComments(postId);
+      if(typeof showToast==='function') showToast('تم نشر التعليق','success');
+    }catch(e){
+      console.warn(e);
+      if(typeof showToast==='function') showToast('تعذّر إرسال التعليق','error');
+    }finally{
+      if(input) input.disabled = false;
+    }
+  };
+}
+
+/* Reload team with new card size when visiting team page */
+var _ope = window.onPageEnter;
+if(typeof _ope === 'function'){
+  window.onPageEnter = function(key, path){
+    var r = _ope.apply(this, arguments);
+    if(key === 'team' && typeof window.loadTeam === 'function'){
+      setTimeout(function(){ window.loadTeam(); }, 80);
+    }
+    return r;
+  };
+}
+
+console.log('[IDENTITY_AND_TEAM_SIZE] photo+verified+position sticker+same card size');
+})();
+</script>
+
+
+<script id="INDEX_LIVE_FIX_V1">
+(function(){
+'use strict';
+if (window.__INDEX_LIVE_FIX_V1) return;
+window.__INDEX_LIVE_FIX_V1 = true;
+
+function esc(s){
+  return String(s==null?'':s).replace(/[&<>"']/g,function(c){
+    return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];
+  });
+}
+function me(){ return window.currentUser || window.mzoneCurrentUser || null; }
+function FA(){ return window.FirestoreAPI; }
+function DB(){ return window.firebaseDB; }
+function isVerified(u){
+  if(!u) return false;
+  return u.verified===true || u.isVerified===true || u.blueCheck===true ||
+    u.authorVerified===true ||
+    u.verificationStatus==='accepted' || u.verificationStatus==='مقبول' ||
+    u.verificationStatus==='verified' || u.verificationStatus==='موثق' ||
+    u.authorVerificationStatus==='accepted' || u.authorVerificationStatus==='مقبول';
+}
+function verifiedBadgeHtml(){
+  return ' <span class="verified-badge green" title="حساب موثّق"><i class="fas fa-check"></i></span>';
+}
+
+/* ═══════════════════════════════════════════
+   1) REALTIME: أي تحديث من اللوحة يظهر فوراً
+═══════════════════════════════════════════ */
+window._liveUnsubs = window._liveUnsubs || [];
+function liveReload(kind){
+  try{
+    if(kind==='activities' && typeof loadActivities==='function') loadActivities();
+    if(kind==='news' && typeof loadNews==='function') loadNews();
+    if(kind==='projects' && typeof loadProjects==='function') loadProjects();
+    if(kind==='library' && typeof loadLibrary==='function') loadLibrary();
+    if(kind==='team' && typeof loadTeam==='function') loadTeam();
+    if(kind==='ambassadors' && typeof loadAmbassadors==='function') loadAmbassadors();
+    if(kind==='partners' && typeof loadPartners==='function') loadPartners();
+    if(kind==='home' && typeof loadHomeStats==='function') loadHomeStats();
+  }catch(e){ console.warn('[liveReload]', kind, e); }
+}
+
+function attachColListener(col, kind, opts){
+  opts = opts || {};
+  if(!FA()||!DB()) return;
+  try{
+    var q;
+    try{
+      q = FA().query(FA().collection(DB(), col), FA().orderBy('createdAt','desc'), FA().limit(opts.limit||80));
+    }catch(_){
+      q = FA().collection(DB(), col);
+    }
+    var unsub = FA().onSnapshot(q, function(snap){
+      if(!window._liveInit){ window._liveInit = window._liveInit||{}; }
+      if(!window._liveInit[col]){
+        window._liveInit[col] = true;
+        /* first snapshot: still refresh once so dashboard data already present is shown */
+        liveReload(kind);
+        return;
+      }
+      var changed = false;
+      try{
+        snap.docChanges().forEach(function(ch){
+          if(ch.type==='added'||ch.type==='modified'||ch.type==='removed') changed = true;
+        });
+      }catch(_){ changed = true; }
+      if(changed){
+        liveReload(kind);
+        if(kind==='library'||kind==='projects'||kind==='news'||kind==='activities') liveReload('home');
+      }
+    }, function(err){ console.warn('[live]', col, err && err.message); });
+    window._liveUnsubs.push(unsub);
+  }catch(e){ console.warn('[attachCol]', col, e); }
+}
+
+function setupFullRealtime(){
+  if(!FA()||!DB()) return;
+  if(window.__fullRealtimeOn) return;
+  window.__fullRealtimeOn = true;
+  /* Content — names used by site + dashboard */
+  [['siteActivities','activities'],['activities','activities'],
+   ['siteNews','news'],['news','news'],
+   ['siteProjects','projects'],['projects','projects'],
+   ['posts','library'],['books','library'],['linksy','library'],
+   ['teams','team'],['team','team'],['trainers','team'],
+   ['ambassadors','ambassadors'],
+   ['partners','partners'],['sitePartners','partners']
+  ].forEach(function(pair){ attachColListener(pair[0], pair[1]); });
+
+  /* Current user profile live updates (photo, verified, bio…) */
+  var u = me();
+  if(u){
+    var ids = [u.id, u.username, u.membershipNumber, u.volunteerNumber, u.ambassadorNumber, u.idNumber].filter(Boolean);
+    var cols = ['mzoneAccounts','userProfiles','profiles','members','volunteers','ambassadors'];
+    ids.forEach(function(uid){
+      cols.forEach(function(col){
+        try{
+          var unsub = FA().onSnapshot(FA().doc(DB(), col, String(uid)), function(doc){
+            if(!doc || !(typeof doc.exists==='function'?doc.exists():doc.exists)) return;
+            var data = doc.data()||{};
+            var cur = me();
+            if(!cur) return;
+            var keys = ['photoUrl','photo','coverUrl','bio','username','fullName','name','verified','isVerified','blueCheck','verificationStatus','work','study','city','wilaya','facebook','instagram','twitter','whatsapp','website','canPublish','canComment','canJoinActivities','profileDisabled','status'];
+            var changed=false;
+            keys.forEach(function(k){
+              if(data[k]!==undefined && data[k]!==cur[k]){ cur[k]=data[k]; changed=true; }
+            });
+            if(changed){
+              window.currentUser = cur;
+              window.mzoneCurrentUser = cur;
+              if(typeof refreshMzone==='function') refreshMzone();
+              paintVerifiedEverywhere();
+            }
+          });
+          window._liveUnsubs.push(unsub);
+        }catch(_){}
+      });
+    });
+  }
+}
+window.addEventListener('firebaseReady', function(){ setTimeout(setupFullRealtime, 800); });
+setTimeout(setupFullRealtime, 2500);
+setTimeout(setupFullRealtime, 6000);
+
+/* ═══════════════════════════════════════════
+   2) TEAM CARDS = same size as ambassadors
+      Admin card = photo + name + position only
+═══════════════════════════════════════════ */
+(function(){
+  var st = document.getElementById('TEAM_SIZE_LIVE_FIX');
+  if(st) st.remove();
+  st = document.createElement('style');
+  st.id = 'TEAM_SIZE_LIVE_FIX';
+  st.textContent = [
+    '#ambassadorsList.cards-grid, #teamAdmin.cards-grid, #teamExperts.cards-grid,',
+    '#ambassadorsList, #teamAdmin, #teamExperts {',
+    '  display:grid!important;',
+    '  grid-template-columns:repeat(auto-fill,minmax(150px,1fr))!important;',
+    '  gap:12px!important;',
+    '}',
+    '#ambassadorsList .person-card, #teamAdmin .person-card, #teamExperts .person-card,',
+    '.team-member-card, .amb-card-pro {',
+    '  padding:16px 12px!important; border-radius:16px!important; text-align:center!important;',
+    '  min-height:0!important;',
+    '}',
+    '#ambassadorsList .person-avatar, #teamAdmin .person-avatar, #teamExperts .person-avatar,',
+    '.team-member-card .person-avatar {',
+    '  width:80px!important; height:80px!important; font-size:28px!important;',
+    '  margin:0 auto 12px!important;',
+    '}',
+    '#ambassadorsList .person-name, #teamAdmin .person-name, #teamExperts .person-name {',
+    '  font-size:14px!important; font-weight:700!important;',
+    '}',
+    '#ambassadorsList .person-role, #teamAdmin .person-role, #teamExperts .person-role {',
+    '  font-size:11px!important;',
+    '}',
+    '.team-position-sticker {',
+    '  display:inline-block!important; margin-top:4px!important; padding:3px 10px!important;',
+    '  border-radius:50px!important; background:rgba(46,204,90,.12)!important;',
+    '  border:1px solid rgba(46,204,90,.3)!important; color:var(--primary)!important;',
+    '  font-weight:700!important; font-size:11px!important; max-width:100%; word-break:break-word;',
+    '}',
+    /* Admin cards: hide report/extra actions clutter — keep profile open via card click */
+    '#teamAdmin .amb-card-actions { display:none!important; }'
+  ].join('\n');
+  document.head.appendChild(st);
+})();
+
+window.personCard = function(p){
+  p = p || {};
+  var img = p.photoUrl || p.photo || p.avatar || p.image || '';
+  var name = esc(p.fullName || p.name || 'عضو');
+  var rawPos = String(p.position || p.title || p.roleLabel || p.jobTitle || p.role || p.type || '').trim();
+  if(/^(admin|administrator|أدمين|ادمن|إداري|اداري|إدارة|ادارة)$/i.test(rawPos)){
+    rawPos = p.positionTitle || p.customRole || 'عضو الفريق';
+  }
+  var pos = esc(rawPos);
+  var key = esc(String(p.username || p.id || ''));
+  var verified = isVerified(p);
+  return '<div class="person-card amb-card amb-card-pro team-member-card" style="cursor:pointer" onclick="typeof openProfile===\'function\'&&openProfile(\''+key+'\')">'+
+    '<div class="person-avatar">'+(img?'<img src="'+esc(img)+'" alt="" loading="lazy" onerror="this.style.display=\'none\';var p=this.parentElement;if(p&&!p.querySelector(\'.fa-user\'))p.insertAdjacentHTML(\'beforeend\',\'<i class=\\\'fas fa-user\\\'></i>\')">':'<i class="fas fa-user"></i>')+'</div>'+
+    '<div class="person-name">'+name+(verified?verifiedBadgeHtml():'')+'</div>'+
+    (pos ? '<div class="person-role team-position-sticker">'+pos+'</div>' : '')+
+  '</div>';
+};
+
+/* ═══════════════════════════════════════════
+   3) PROFILE: لا فتح تلقائي + توثيق يظهر + دخول طبيعي
+═══════════════════════════════════════════ */
+function forceCloseProfileModal(){
+  var modal = document.getElementById('profileCustomModal');
+  if(!modal) return;
+  if(modal.getAttribute('data-user-opened')==='1') return;
+  modal.style.display = 'none';
+}
+
+window.requireCompleteProfile = function(actionLabel){
+  var u = me();
+  if(!u){
+    if(typeof showToast==='function') showToast('يجب تسجيل الدخول أولاً','warning');
+    if(typeof navigate==='function') navigate('/mzone');
+    return false;
+  }
+  /* لا تفتح المودال تلقائياً أبداً — فقط تنبيه */
+  var name = u.fullName || u.name || '';
+  var uname = u.username || '';
+  if(!name || !uname){
+    if(typeof showToast==='function'){
+      showToast('يُفضّل إكمال الاسم واسم المستخدم من تبويب «تخصيص» في حسابك قبل: '+(actionLabel||'هذه الخدمة'),'warning');
+    }
+    /* انتقل لحسابي دون فتح المودال */
+    if(typeof navigate==='function') navigate('/mzone');
+    try{
+      var tab = document.querySelector('.mzone-tab[data-tab="customize"], [onclick*="Customize"], #mzoneTabCustomize');
+      /* switch to customize tab if present */
+      var btn = document.querySelector('.mzone-tab[data-mzone="customize"], .mzone-tab[data-tab="customize"]');
+      if(btn) btn.click();
+    }catch(_){}
+    return true; /* لا نمنع الخدمة بشكل صارم حتى لا يُحظر الدخول */
+  }
+  return true;
+};
+
+window.isProfileComplete = function(u){
+  u = u || me();
+  if(!u) return false;
+  return !!( (u.fullName||u.name) && (u.username) );
+};
+
+/* open only on explicit user action */
+var _opcm = window.openProfileCustomModal;
+window.openProfileCustomModal = async function(){
+  var modal = document.getElementById('profileCustomModal');
+  if(modal) modal.setAttribute('data-user-opened','1');
+  if(typeof _opcm==='function') return await _opcm.apply(this, arguments);
+};
+var _cpcm = window.closeProfileCustomModal;
+window.closeProfileCustomModal = function(){
+  var modal = document.getElementById('profileCustomModal');
+  if(modal){
+    modal.style.display='none';
+    modal.removeAttribute('data-user-opened');
+  }
+  if(typeof _cpcm==='function') try{ _cpcm(); }catch(_){}
+};
+
+function paintVerifiedEverywhere(){
+  var u = me();
+  var nameEl = document.getElementById('profileName');
+  if(nameEl && u){
+    var n = esc(u.fullName||u.name||'');
+    nameEl.innerHTML = n + (isVerified(u) ? verifiedBadgeHtml() : '');
+  }
+}
+
+/* override force interval identity to keep badge */
+setInterval(function(){
+  forceCloseProfileModal();
+  paintVerifiedEverywhere();
+}, 1200);
+
+/* After login: close modal, refresh verified from DB, setup live */
+var _doLogin = window.doLogin;
+if(typeof _doLogin==='function' && !_doLogin.__liveFix){
+  window.doLogin = async function(){
+    var r = await _doLogin.apply(this, arguments);
+    setTimeout(async function(){
+      forceCloseProfileModal();
+      var modal = document.getElementById('profileCustomModal');
+      if(modal){ modal.style.display='none'; modal.removeAttribute('data-user-opened'); }
+      var u = me();
+      if(u && FA() && DB()){
+        try{
+          var cols = ['mzoneAccounts','userProfiles','profiles','members','volunteers','ambassadors'];
+          var ids = [u.id, u.username, u.idNumber, u.membershipNumber].filter(Boolean);
+          for(var i=0;i<ids.length;i++){
+            for(var c=0;c<cols.length;c++){
+              try{
+                var ds = await FA().getDoc(FA().doc(DB(), cols[c], String(ids[i])));
+                if(ds && (typeof ds.exists==='function'?ds.exists():ds.exists)){
+                  var d = ds.data()||{};
+                  ['verified','isVerified','blueCheck','verificationStatus','photoUrl','coverUrl','bio','username','fullName'].forEach(function(k){
+                    if(d[k]!==undefined && d[k]!==null && d[k]!=='') u[k]=d[k];
+                  });
+                }
+              }catch(_){}
+            }
+          }
+          window.currentUser = u;
+          window.mzoneCurrentUser = u;
+          if(typeof refreshMzone==='function') refreshMzone();
+          paintVerifiedEverywhere();
+        }catch(e){ console.warn(e); }
+      }
+      window.__fullRealtimeOn = false;
+      setupFullRealtime();
+    }, 400);
+    return r;
+  };
+  window.doLogin.__liveFix = true;
+}
+
+/* refreshMzone: never auto-open modal + keep verified */
+var _rmz = window.refreshMzone;
+if(typeof _rmz==='function' && !_rmz.__liveFix){
+  window.refreshMzone = function(){
+    var r = _rmz.apply(this, arguments);
+    setTimeout(function(){
+      forceCloseProfileModal();
+      paintVerifiedEverywhere();
+    }, 50);
+    return r;
+  };
+  window.refreshMzone.__liveFix = true;
+}
+
+/* ═══════════════════════════════════════════
+   4) POSTS: بعد النشر تظهر فوراً + التفاصيل من DB
+═══════════════════════════════════════════ */
+function normalizePost(o){
+  o = o || {};
+  if(!o.image) o.image = o.photoUrl || o.photo || o.cover || o.imageUrl || o.coverUrl || '';
+  if(!o.content) o.content = o.body || o.text || o.description || '';
+  if(!o.authorName) o.authorName = o.author || o.name || 'عضو';
+  if(o.views==null) o.views = 0;
+  if(o.commentsCount==null) o.commentsCount = 0;
+  if(!Array.isArray(o.likedBy)) o.likedBy = o.likedBy || [];
+  return o;
+}
+
+var _loadLibrary = window.loadLibrary;
+if(typeof _loadLibrary==='function'){
+  /* keep */
+}
+
+/* openPostDetail: fetch from Firestore if missing in cache */
+var _openPostDetail = window.openPostDetail;
+window.openPostDetail = async function(id){
+  id = String(id||'');
+  if(!id) return;
+  var cache = (window._libCache && window._libCache.posts) || [];
+  var p = cache.find(function(x){ return x.id===id; });
+  if(!p && FA() && DB()){
+    try{
+      var ds = await FA().getDoc(FA().doc(DB(),'posts',id));
+      if(ds && (typeof ds.exists==='function'?ds.exists():ds.exists)){
+        p = normalizePost(Object.assign({id:ds.id}, ds.data()));
+        if(!window._libCache) window._libCache = {posts:[],books:[],links:[]};
+        window._libCache.posts = window._libCache.posts || [];
+        if(!window._libCache.posts.some(function(x){return x.id===id;})) window._libCache.posts.unshift(p);
+      }
+    }catch(e){ console.warn(e); }
+  }
+  if(!p){
+    /* try other collections */
+    try{
+      for(var col of ['publications','mzoneMemberPublications','libraryPosts']){
+        var ds2 = await FA().getDoc(FA().doc(DB(),col,id));
+        if(ds2 && (typeof ds2.exists==='function'?ds2.exists():ds2.exists)){
+          p = normalizePost(Object.assign({id:ds2.id}, ds2.data()));
+          break;
+        }
+      }
+    }catch(_){}
+  }
+  if(!p){
+    if(typeof showToast==='function') showToast('تعذّر إيجاد المنشور','error');
+    return;
+  }
+  /* ensure in cache for like/comment */
+  if(window._libCache && window._libCache.posts){
+    var ix = window._libCache.posts.findIndex(function(x){return x.id===id;});
+    if(ix>=0) window._libCache.posts[ix]=p; else window._libCache.posts.unshift(p);
+  }
+  if(typeof _openPostDetail==='function'){
+    /* temporarily ensure cache has it */
+    return await _openPostDetail.call(this, id);
+  }
+};
+
+/* After successful publish — force library reload + cache inject */
+document.addEventListener('click', function(){}, true);
+var _submitPublish = window.submitPublish;
+if(typeof _submitPublish==='function' && !_submitPublish.__liveFix){
+  window.submitPublish = async function(e){
+    var r = await _submitPublish.apply(this, arguments);
+    setTimeout(function(){
+      if(typeof loadLibrary==='function') loadLibrary();
+    }, 400);
+    return r;
+  };
+  window.submitPublish.__liveFix = true;
+}
+
+/* Comments: include authorPhoto */
+var _slc = window.submitLibraryComment;
+if(typeof window.submitLibraryComment==='function'){
+  window.submitLibraryComment = async function(postId){
+    var _cu = me();
+    if(!_cu){ if(typeof showToast==='function') showToast('سجّل الدخول أولاً','warning'); return; }
+    var input = document.getElementById('newCommentInput') || document.getElementById('commentInput');
+    var text = input ? String(input.value||'').trim() : '';
+    if(!text) return;
+    if(text.length>1000){ if(typeof showToast==='function') showToast('التعليق طويل جداً','warning'); return; }
+    if(input) input.disabled = true;
+    try{
+      if(!FA()||!DB()) throw new Error('no db');
+      await FA().addDoc(FA().collection(DB(),'comments'), {
+        postId: postId,
+        text: text,
+        authorName: _cu.fullName || _cu.name || 'عضو',
+        authorId: _cu.id || '',
+        authorUsername: _cu.username || '',
+        authorPhoto: _cu.photoUrl || _cu.photo || _cu.avatar || '',
+        authorVerified: isVerified(_cu),
+        verified: isVerified(_cu),
+        createdAt: FA().serverTimestamp()
+      });
+      try{ await FA().updateDoc(FA().doc(DB(),'posts',postId), {commentsCount: FA().increment(1)}); }catch(_){}
+      if(window._libCache && window._libCache.posts){
+        var p = window._libCache.posts.find(function(x){ return x.id===postId; });
+        if(p) p.commentsCount = (p.commentsCount||0)+1;
+      }
+      if(input) input.value = '';
+      if(typeof window.loadPostComments==='function') window.loadPostComments(postId);
+      else if(typeof loadPostComments==='function') loadPostComments(postId);
+      if(typeof showToast==='function') showToast('تم نشر التعليق','success');
+    }catch(e){
+      console.warn(e);
+      if(typeof showToast==='function') showToast('تعذّر إرسال التعليق','error');
+    }finally{
+      if(input) input.disabled = false;
+    }
+  };
+}
+
+/* ═══════════════════════════════════════════
+   5) PROJECTS: توحيد الحقول + صورة + حالة
+═══════════════════════════════════════════ */
+var _loadProjects = typeof loadProjects==='function' ? loadProjects : null;
+window.loadProjects = async function(){
+  window.projectsCache = [];
+  try{
+    if(FA()&&DB()){
+      var seen={};
+      for(var col of ['siteProjects','projects','project']){
+        try{
+          var snap=null;
+          try{ snap=await FA().getDocs(FA().query(FA().collection(DB(),col),FA().orderBy('createdAt','desc'),FA().limit(100))); }
+          catch(_){
+            try{ snap=await FA().getDocs(FA().collection(DB(),col)); }catch(__){}
+          }
+          if(snap&&snap.docs){
+            snap.docs.forEach(function(d){
+              if(seen[d.id]) return; seen[d.id]=1;
+              var o=Object.assign({id:d.id}, d.data());
+              o.image = o.image || o.photoUrl || o.photo || o.coverUrl || o.cover || o.logoUrl || '';
+              o.title = o.title || o.name || '';
+              o.description = o.description || o.content || o.body || '';
+              o.category = o.category || o.type || '';
+              /* normalize status from dashboard */
+              var st = String(o.status||'').toLowerCase();
+              if(st==='تم التنفيذ'||st==='مكتمل'||st==='completed'||st==='done') o.status='completed';
+              else if(st==='قيد التطوير'||st==='active'||st==='نشط'||st==='قيد التنفيذ') o.status='active';
+              else if(st==='مخطط'||st==='planned') o.status='planned';
+              if(o.published===false||o.visible===false||o.showOnSite===false) return;
+              if(o.scheduledAt){
+                try{
+                  var sch=o.scheduledAt.toDate?o.scheduledAt.toDate():new Date(o.scheduledAt);
+                  if(sch>new Date()) return;
+                }catch(_){}
+              }
+              window.projectsCache.push(o);
+            });
+          }
+        }catch(_){}
+      }
+    }
+  }catch(e){ console.warn(e); }
+  projectsCache = window.projectsCache;
+  if(typeof fillProjectCategoryFilter==='function') fillProjectCategoryFilter();
+  if(typeof renderProjects==='function') renderProjects(projectsCache);
+  else if(typeof window.renderProjects==='function') window.renderProjects(projectsCache);
+  else if(typeof window.renderProjectsUnified==='function') window.renderProjectsUnified(projectsCache);
+};
+
+/* project card image fields */
+if(typeof projectCard==='function'){
+  var _pc = projectCard;
+  window.projectCard = function(p){
+    p = p || {};
+    p.image = p.image || p.photoUrl || p.photo || p.coverUrl || p.cover || '';
+    return _pc(p);
+  };
+  try{ projectCard = window.projectCard; }catch(_){}
+}
+
+/* ═══════════════════════════════════════════
+   6) ACTIVITIES field normalize (dashboard dual names)
+═══════════════════════════════════════════ */
+var _loadAct = typeof loadActivities==='function' ? loadActivities : null;
+if(_loadAct){
+  window.loadActivities = async function(){
+    await _loadAct.apply(this, arguments);
+    try{
+      (window.activitiesCache||activitiesCache||[]).forEach(function(a){
+        if(!a.startDate && a.dateFrom) a.startDate = a.dateFrom;
+        if(!a.endDate && a.dateTo) a.endDate = a.dateTo;
+        if(!a.date && (a.startDate||a.dateFrom)) a.date = a.startDate||a.dateFrom;
+        if(a.registrationEnabled===undefined && a.showRegBtn!==undefined){
+          var on = !(String(a.showRegBtn)==='إخفاء'||a.showRegBtn===false);
+          a.registrationEnabled = on; a.allowRegister = on;
+        }
+        if(!a.image) a.image = a.photoUrl||a.photo||a.coverUrl||'';
+      });
+    }catch(_){}
+  };
+}
+
+console.log('[INDEX_LIVE_FIX_V1] realtime + team cards + profile + posts + projects');
+})();
+</script>
+
+
+<script id="INDEX_POST_PROFILE_FIX_V2">
+(function(){
+'use strict';
+if (window.__INDEX_POST_PROFILE_FIX_V2) return;
+window.__INDEX_POST_PROFILE_FIX_V2 = true;
+
+function esc(s){
+  return String(s==null?'':s).replace(/[&<>"']/g, function(c){
+    return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];
+  });
+}
+function me(){ return window.currentUser || window.mzoneCurrentUser || null; }
+function isVerifiedUser(u){
+  if(!u) return false;
+  return u.verified===true || u.isVerified===true || u.blueCheck===true ||
+    u.authorVerified===true ||
+    u.verificationStatus==='accepted' || u.verificationStatus==='مقبول' ||
+    u.verificationStatus==='verified' || u.verificationStatus==='موثق' ||
+    u.authorVerificationStatus==='accepted' || u.authorVerificationStatus==='مقبول';
+}
+function verifiedHtml(){
+  return ' <span class="verified-badge green" title="حساب موثّق"><i class="fas fa-check"></i></span>';
+}
+function FA(){ return window.FirestoreAPI; }
+function DB(){ return window.firebaseDB; }
+
+/* ═══════════════════════════════════════
+   1) رفع صور + فيديو مع معاينة فورية
+═══════════════════════════════════════ */
+window.createUploadZone = function(inputName, required){
+  var id = 'up_'+inputName+'_'+Math.random().toString(36).slice(2,8);
+  return '<div class="upload-zone" id="'+id+'_zone" style="position:relative">'+
+    '<input type="file" name="'+inputName+'" accept="image/*,video/*" '+(required?'required':'')+
+      ' id="'+id+'" onchange="handleUploadPreview(this,\''+id+'\')" style="position:absolute;inset:0;opacity:0;cursor:pointer;z-index:2">'+
+    '<img class="upload-preview" id="'+id+'_prev" alt="" style="display:none;max-width:100%;max-height:160px;border-radius:12px;margin:0 auto 8px;object-fit:cover">'+
+    '<video class="upload-preview" id="'+id+'_vid" controls style="display:none;max-width:100%;max-height:160px;border-radius:12px;margin:0 auto 8px"></video>'+
+    '<div id="'+id+'_label"><i class="fas fa-cloud-upload-alt" style="font-size:28px;color:var(--primary-light);margin-bottom:8px;display:block"></i>'+
+    '<div style="font-weight:700;font-size:13px">اضغط أو اسحب صورة / فيديو هنا</div>'+
+    '<div style="font-size:11px;color:var(--text-muted);margin-top:4px">PNG, JPG, MP4, WebM — حتى 20 ميجا</div></div>'+
+    '<div id="'+id+'_pct" style="display:none;font-size:11px;font-weight:700;color:var(--primary);margin-top:4px;text-align:center"></div>'+
+    '<div class="upload-progress" id="'+id+'_prog" style="display:none"><div class="upload-progress-bar" id="'+id+'_bar"></div></div>'+
+    '</div>';
+};
+
+window.handleUploadPreview = function(input, id){
+  var file = input.files && input.files[0];
+  if(!file) return;
+  if(file.size > 20*1024*1024){
+    if(typeof showToast==='function') showToast('الملف كبير جداً (الحد 20MB)','warning');
+    input.value='';
+    return;
+  }
+  var prev = document.getElementById(id+'_prev');
+  var vid = document.getElementById(id+'_vid');
+  var label = document.getElementById(id+'_label');
+  var isVideo = file.type && file.type.indexOf('video')===0;
+  if(isVideo){
+    if(prev) prev.style.display='none';
+    if(vid){
+      vid.src = URL.createObjectURL(file);
+      vid.style.display='block';
+    }
+  } else {
+    if(vid){ vid.style.display='none'; vid.removeAttribute('src'); }
+    if(prev){
+      var reader = new FileReader();
+      reader.onload = function(e){
+        prev.src = e.target.result;
+        prev.style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+  if(label) label.style.display = 'none';
+};
+
+/* ═══════════════════════════════════════
+   2) عند النشر: authorVerified + views + image
+═══════════════════════════════════════ */
+var _submitPublish = window.submitPublish;
+if(typeof _submitPublish==='function'){
+  window.submitPublish = async function(e){
+    if(e && e.preventDefault) e.preventDefault();
+    var u = me();
+    if(!u){
+      if(typeof showToast==='function') showToast('سجّل الدخول أولاً','error');
+      return false;
+    }
+    /* wrap: call original then ensure fields */
+    var form = e && e.target;
+    var result;
+    try {
+      result = await _submitPublish.apply(this, arguments);
+    } catch(err) {
+      console.error(err);
+      /* fallback publish if original fails on media */
+    }
+    setTimeout(function(){
+      if(typeof loadLibrary==='function') loadLibrary();
+    }, 500);
+    return result;
+  };
+}
+
+/* Patch payload building by wrapping addDoc isn't feasible; enhance original path via intercept on publish form */
+document.addEventListener('submit', function(e){
+  var form = e.target;
+  if(!form || form.id!=='publishForm') return;
+  /* ensure file input name image is present */
+}, true);
+
+/* Stronger submitPublish that guarantees verified + media */
+window.submitPublish = async function(e){
+  if(e && e.preventDefault) e.preventDefault();
+  var u = me();
+  if(!u){ if(typeof showToast==='function') showToast('سجّل الدخول أولاً','error'); return false; }
+  if(!FA()||!DB()){ if(typeof showToast==='function') showToast('تعذّر الاتصال','error'); return false; }
+  var form = e.target;
+  var fd = new FormData(form);
+  var data = {};
+  fd.forEach(function(v,k){ if(k!=='image') data[k]= (typeof sanitizeInput==='function'?sanitizeInput(v):String(v)); });
+  var type = window._pubType || 'post';
+  var btn = document.getElementById('publishSubmitBtn');
+  if(btn){ btn.disabled=true; btn.innerHTML='<span class="op-spinner"></span> جاري النشر...'; }
+  try{
+    var imgInput = form.querySelector('[name="image"]');
+    var imgUrl = '';
+    var isVideoFile = false;
+    if(imgInput && imgInput.files && imgInput.files[0]){
+      var file = imgInput.files[0];
+      isVideoFile = file.type && file.type.indexOf('video')===0;
+      if(typeof window.uploadImageReal==='function'){
+        imgUrl = await window.uploadImageReal(file, isVideoFile?'جاري رفع الفيديو...':'جاري رفع الصورة...') || '';
+      } else if(typeof uploadImage==='function'){
+        imgUrl = await uploadImage(file) || '';
+      }
+    }
+    var payload = Object.assign({}, data, {
+      authorId: u.id || '',
+      authorName: u.fullName || u.name || 'عضو المنتدى',
+      authorPhoto: u.photoUrl || u.photo || u.avatar || '',
+      authorUsername: u.username || '',
+      authorVerified: isVerifiedUser(u),
+      verified: isVerifiedUser(u),
+      isVerified: isVerifiedUser(u),
+      authorRole: u._resolvedRole || u.role || u.type || '',
+      views: 0,
+      commentsCount: 0,
+      likes: 0,
+      likedBy: [],
+      createdAt: FA().serverTimestamp(),
+      published: true,
+      visible: true,
+      showOnSite: true
+    });
+    if(imgUrl){
+      if(isVideoFile){
+        payload.videoUrl = payload.videoUrl || imgUrl;
+        payload.video = imgUrl;
+      } else {
+        payload.image = imgUrl;
+        payload.photoUrl = imgUrl;
+        payload.photo = imgUrl;
+        payload.cover = imgUrl;
+      }
+    }
+    if(type==='post'){
+      var sched = data.scheduledFor || data.scheduledAt;
+      if(sched){
+        try{
+          var sch = new Date(sched);
+          if(sch > new Date()){
+            payload.status = 'scheduled';
+            payload.scheduledFor = sch;
+            payload.published = false;
+          }
+        }catch(_){}
+      }
+      await FA().addDoc(FA().collection(DB(),'posts'), payload);
+    } else if(type==='book'){
+      if(imgUrl) payload.cover = imgUrl;
+      await FA().addDoc(FA().collection(DB(),'books'), payload);
+    } else {
+      await FA().addDoc(FA().collection(DB(),'linksy'), payload);
+    }
+    if(typeof showToast==='function') showToast('تم نشر المحتوى بنجاح','success');
+    var modal = document.getElementById('publishModal');
+    if(modal) modal.remove();
+    if(typeof loadLibrary==='function') loadLibrary();
+  }catch(err){
+    console.error(err);
+    if(typeof showToast==='function') showToast('تعذّر النشر — حاول مجدداً','error');
+  }finally{
+    if(btn){ btn.disabled=false; btn.innerHTML='<i class="fas fa-paper-plane"></i> نشر'; }
+  }
+  return false;
+};
+
+/* ═══════════════════════════════════════
+   3) بطاقة المنشور + التفاصيل: توثيق + مشاهدات + صورة
+═══════════════════════════════════════ */
+function resolvePostMedia(p){
+  p = p || {};
+  return {
+    img: p.image || p.photoUrl || p.photo || p.cover || p.imageUrl || p.coverUrl || '',
+    video: p.videoUrl || p.video || ''
+  };
+}
+function postVerified(p){
+  return isVerifiedUser(p) || p.authorVerified===true || p.authorIsVerified===true;
+}
+
+var _renderLibrary = window.renderLibrary;
+if(typeof renderLibrary==='function' || typeof _renderLibrary==='function'){
+  var _rl = typeof renderLibrary==='function' ? renderLibrary : _renderLibrary;
+  window.renderLibrary = function(){
+    var r = _rl.apply(this, arguments);
+    setTimeout(function(){
+      /* enhance verified badges on existing cards if author is current verified user */
+      try{
+        var u = me();
+        if(!u || !isVerifiedUser(u)) return;
+        document.querySelectorAll('#postsList .card, #libPosts .card, .item-card-clickable').forEach(function(card){
+          /* already has badge? */
+          if(card.querySelector('.verified-badge')) return;
+          var nameEl = card.querySelector('[onclick*="openProfile"]');
+          if(!nameEl) return;
+          var txt = nameEl.textContent||'';
+          if((u.username && txt.indexOf(u.username)>=0) || (u.fullName && txt.indexOf(u.fullName)>=0) || (u.name && txt.indexOf(u.name)>=0)){
+            nameEl.insertAdjacentHTML('beforeend', verifiedHtml());
+          }
+        });
+      }catch(_){}
+    }, 100);
+    return r;
+  };
+}
+
+/* openPostDetail: fetch if missing, increment views, show verified in header, media */
+var _openPostDetail = window.openPostDetail;
+window.openPostDetail = async function(id){
+  id = String(id||'');
+  if(!id) return;
+  var cache = (window._libCache && window._libCache.posts) || [];
+  var p = cache.find(function(x){ return x.id===id; });
+  if(!p && FA() && DB()){
+    try{
+      var ds = await FA().getDoc(FA().doc(DB(),'posts',id));
+      if(ds && (typeof ds.exists==='function'?ds.exists():ds.exists)){
+        p = Object.assign({id:ds.id}, ds.data());
+        if(!window._libCache) window._libCache={posts:[],books:[],links:[]};
+        window._libCache.posts = window._libCache.posts || [];
+        if(!window._libCache.posts.some(function(x){return x.id===id;})) window._libCache.posts.unshift(p);
+      }
+    }catch(_){}
+  }
+  if(!p){
+    if(typeof showToast==='function') showToast('تعذّر إيجاد المنشور','error');
+    return;
+  }
+
+  /* Increment views */
+  try{
+    if(FA()&&DB()){
+      await FA().updateDoc(FA().doc(DB(),'posts',id), {views: FA().increment(1)});
+      p.views = (Number(p.views)||0) + 1;
+      /* update cache */
+      var ix = (window._libCache.posts||[]).findIndex(function(x){return x.id===id;});
+      if(ix>=0) window._libCache.posts[ix].views = p.views;
+    }
+  }catch(e){ console.warn('[views]', e); }
+
+  var media = resolvePostMedia(p);
+  var likesCount = (p.likedBy&&p.likedBy.length)||p.likes||0;
+  var authorName = esc(p.authorName||p.author||'عضو');
+  var authorId = esc(p.authorId||p.authorUsername||'');
+  var authorPhoto = p.authorPhoto||p.authorAvatar||'';
+  var vBadge = postVerified(p) ? verifiedHtml() : '';
+
+  var overlay = document.createElement('div');
+  overlay.className = 'modal-overlay';
+  overlay.style.zIndex = '100060';
+  overlay.innerHTML =
+    '<div class="modal-box wide" style="max-height:88vh;overflow-y:auto;text-align:right">'+
+      '<button class="modal-close" onclick="this.closest(\'.modal-overlay\').remove()"><i class="fas fa-times"></i></button>'+
+      '<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">'+
+        '<div class="person-avatar" style="width:40px;height:40px;cursor:pointer" onclick="typeof openProfile===\'function\'&&openProfile(\''+authorId+'\')">'+
+          (authorPhoto?'<img src="'+esc(authorPhoto)+'" style="width:100%;height:100%;border-radius:50%;object-fit:cover" onerror="this.remove()">':'<i class="fas fa-user"></i>')+
+        '</div>'+
+        '<div style="font-weight:800;font-size:14px;cursor:pointer" onclick="typeof openProfile===\'function\'&&openProfile(\''+authorId+'\')">'+authorName+vBadge+'</div>'+
+      '</div>'+
+      (p.title?'<h2 style="font-size:18px;margin-bottom:10px">'+esc(p.title)+'</h2>':'')+
+      '<div style="font-size:14px;color:var(--text-secondary);line-height:1.9;white-space:pre-wrap;margin-bottom:14px">'+esc(p.content||p.body||p.text||'')+'</div>'+
+      (media.video && typeof videoEmbedHtml==='function' ? videoEmbedHtml(media.video) :
+        (media.video ? '<video src="'+esc(media.video)+'" controls style="width:100%;border-radius:10px;margin-bottom:14px"></video>' : ''))+
+      (media.img ? '<img src="'+esc(media.img)+'" style="width:100%;border-radius:10px;margin-bottom:14px" onerror="this.style.display=\'none\'">' : '')+
+      '<div style="display:flex;gap:16px;font-size:13px;color:var(--text-muted);border-top:1px solid var(--border-light);border-bottom:1px solid var(--border-light);padding:10px 0;margin-bottom:14px">'+
+        '<button class="btn-outline-dark" style="font-size:12px" id="postLikeBtn" onclick="toggleLibraryPostLike(\''+esc(id)+'\')"><i class="fas fa-heart"></i> إعجاب ('+likesCount+')</button>'+
+        '<span id="postViewsCount"><i class="fas fa-eye"></i> '+(p.views||0)+'</span>'+
+        '<span><i class="fas fa-comment"></i> '+(p.commentsCount||0)+'</span>'+
+      '</div>'+
+      '<h3 style="font-size:14px;margin-bottom:10px">التعليقات</h3>'+
+      '<div id="postCommentsList" style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px"><span class="op-spinner"></span></div>'+
+      (me()
+        ? '<div style="display:flex;gap:8px"><input class="form-input" id="newCommentInput" placeholder="اكتب تعليقاً..." style="flex:1"><button class="btn-primary" onclick="submitLibraryComment(\''+esc(id)+'\')"><i class="fas fa-paper-plane"></i></button></div>'
+        : '<div class="empty-state" style="padding:10px"><i class="fas fa-lock"></i> سجّل الدخول لإضافة تعليق</div>')+
+    '</div>';
+  document.body.appendChild(overlay);
+  overlay.addEventListener('click', function(e){ if(e.target===overlay) overlay.remove(); });
+  if(typeof window.loadPostComments==='function') window.loadPostComments(id);
+  else if(typeof loadPostComments==='function') loadPostComments(id);
+};
+
+/* Comments with verified + photo */
+window.loadPostComments = async function(postId){
+  var el = document.getElementById('postCommentsList');
+  if(!el) return;
+  el.innerHTML = '<span class="op-spinner"></span>';
+  try{
+    if(!FA()||!DB()){ el.innerHTML='<div class="empty-state">لا اتصال</div>'; return; }
+    var snap;
+    try{
+      snap = await FA().getDocs(FA().query(FA().collection(DB(),'comments'), FA().where('postId','==',postId), FA().orderBy('createdAt','asc'), FA().limit(100)));
+    }catch(_){
+      snap = await FA().getDocs(FA().query(FA().collection(DB(),'comments'), FA().where('postId','==',postId), FA().limit(100)));
+    }
+    var comments = [];
+    if(snap && snap.docs){
+      snap.docs.forEach(function(d){ comments.push(Object.assign({id:d.id}, d.data())); });
+    }
+    comments.sort(function(a,b){
+      var ta=a.createdAt&&a.createdAt.toDate?a.createdAt.toDate().getTime():0;
+      var tb=b.createdAt&&b.createdAt.toDate?b.createdAt.toDate().getTime():0;
+      return ta-tb;
+    });
+    if(!comments.length){
+      el.innerHTML='<div class="empty-state" style="padding:10px">لا تعليقات بعد، كن أول من يعلّق</div>';
+      return;
+    }
+    el.innerHTML = comments.map(function(c){
+      var cVerified = isVerifiedUser(c) || c.authorVerified===true;
+      var cPhoto = c.authorPhoto || c.authorAvatar || '';
+      var cAid = esc(c.authorId||c.authorUsername||'');
+      var dt = c.createdAt&&c.createdAt.toDate?c.createdAt.toDate():new Date(c.createdAt||Date.now());
+      return '<div style="display:flex;gap:8px">'+
+        '<div class="person-avatar" style="width:28px;height:28px;font-size:11px;flex-shrink:0;cursor:pointer" onclick="typeof openProfile===\'function\'&&openProfile(\''+cAid+'\')">'+
+          (cPhoto?'<img src="'+esc(cPhoto)+'" style="width:100%;height:100%;border-radius:50%;object-fit:cover" onerror="this.remove()">':'<i class="fas fa-user"></i>')+
+        '</div>'+
+        '<div style="flex:1;background:var(--surface-alt);border-radius:12px;padding:8px 10px">'+
+          '<div style="font-weight:700;font-size:12px;cursor:pointer" onclick="typeof openProfile===\'function\'&&openProfile(\''+cAid+'\')">'+
+            esc(c.authorName||'عضو')+(cVerified?verifiedHtml():'')+
+          '</div>'+
+          '<div style="font-size:13px;line-height:1.6;margin-top:2px">'+esc(c.text||c.content||c.comment||'')+'</div>'+
+          (c.adminReply?'<div style="margin-top:6px;padding:6px 8px;background:rgba(46,204,90,.08);border-right:3px solid var(--primary-light);border-radius:8px;font-size:12px"><b style="color:var(--primary)">رد الإدارة:</b> '+esc(c.adminReply)+'</div>':'')+
+          '<div style="font-size:10px;color:var(--text-muted);margin-top:4px">'+dt.toLocaleString('ar-DZ')+'</div>'+
+        '</div></div>';
+    }).join('');
+  }catch(e){
+    console.warn(e);
+    el.innerHTML='<div class="empty-state">تعذّر تحميل التعليقات</div>';
+  }
+};
+
+window.submitLibraryComment = async function(postId){
+  var _cu = me();
+  if(!_cu){ if(typeof showToast==='function') showToast('سجّل الدخول أولاً','warning'); return; }
+  var input = document.getElementById('newCommentInput');
+  var text = input ? String(input.value||'').trim() : '';
+  if(!text) return;
+  if(text.length>1000){ if(typeof showToast==='function') showToast('التعليق طويل جداً','warning'); return; }
+  if(input) input.disabled = true;
+  try{
+    await FA().addDoc(FA().collection(DB(),'comments'), {
+      postId: postId,
+      text: text,
+      authorName: _cu.fullName || _cu.name || 'عضو',
+      authorId: _cu.id || '',
+      authorUsername: _cu.username || '',
+      authorPhoto: _cu.photoUrl || _cu.photo || _cu.avatar || '',
+      authorVerified: isVerifiedUser(_cu),
+      verified: isVerifiedUser(_cu),
+      isVerified: isVerifiedUser(_cu),
+      createdAt: FA().serverTimestamp()
+    });
+    try{ await FA().updateDoc(FA().doc(DB(),'posts',postId), {commentsCount: FA().increment(1)}); }catch(_){}
+    if(window._libCache && window._libCache.posts){
+      var p = window._libCache.posts.find(function(x){return x.id===postId;});
+      if(p) p.commentsCount = (p.commentsCount||0)+1;
+    }
+    if(input) input.value='';
+    window.loadPostComments(postId);
+  }catch(e){
+    console.warn(e);
+    if(typeof showToast==='function') showToast('تعذّر إرسال التعليق','error');
+  }finally{
+    if(input) input.disabled=false;
+  }
+};
+
+/* ═══════════════════════════════════════
+   4) منع فتح استمارة التخصيص تلقائياً
+═══════════════════════════════════════ */
+function hardCloseCustomModal(){
+  var modal = document.getElementById('profileCustomModal');
+  if(!modal) return;
+  if(modal.getAttribute('data-user-opened')==='1') return;
+  modal.style.display = 'none';
+}
+
+window.requireCompleteProfile = function(actionLabel){
+  var u = me();
+  if(!u){
+    if(typeof showToast==='function') showToast('سجّل الدخول أولاً','warning');
+    if(typeof navigate==='function') navigate('/mzone');
+    return false;
+  }
+  /* لا تفتح المودال أبداً — فقط تنبيه خفيف */
+  if(!(u.fullName||u.name) || !u.username){
+    if(typeof showToast==='function'){
+      showToast('يُفضّل إكمال الاسم واسم المستخدم من تبويب التخصيص'+(actionLabel?(' قبل: '+actionLabel):''),'warning');
+    }
+  }
+  return true;
+};
+window.isProfileComplete = function(u){
+  u = u || me();
+  if(!u) return false;
+  return !!( (u.fullName||u.name) && u.username );
+};
+
+/* openProfile = معاينة فقط، بدون فتح استمارة */
+var _op = window.openProfile;
+window.openProfile = async function(usernameOrId){
+  hardCloseCustomModal();
+  var modal = document.getElementById('profileCustomModal');
+  if(modal){
+    modal.style.display='none';
+    modal.removeAttribute('data-user-opened');
+  }
+  if(typeof _op==='function'){
+    var r = await _op.apply(this, arguments);
+    hardCloseCustomModal();
+    return r;
+  }
+};
+
+/* open custom ONLY on explicit user click with data-user-opened */
+var _opcm = window.openProfileCustomModal;
+window.openProfileCustomModal = async function(){
+  var modal = document.getElementById('profileCustomModal');
+  if(modal) modal.setAttribute('data-user-opened','1');
+  if(typeof _opcm==='function') return await _opcm.apply(this, arguments);
+  if(modal) modal.style.display='flex';
+};
+
+window.closeProfileCustomModal = function(){
+  var modal = document.getElementById('profileCustomModal');
+  if(modal){
+    modal.style.display='none';
+    modal.removeAttribute('data-user-opened');
+  }
+};
+
+/* Continuous guard: close if not user-opened */
+setInterval(hardCloseCustomModal, 800);
+
+/* On mzone / refresh: never open */
+var _rm = window.refreshMzone;
+if(typeof _rm==='function'){
+  window.refreshMzone = function(){
+    var r = _rm.apply(this, arguments);
+    hardCloseCustomModal();
+    return r;
+  };
+}
+
+/* Override setMzoneTab customize so it never opens modal */
+var _smt = window.setMzoneTab;
+window.setMzoneTab = function(tab){
+  if(typeof _smt==='function') _smt(tab);
+  if(tab==='customize') hardCloseCustomModal();
+};
+
+/* Initial close */
+hardCloseCustomModal();
+document.addEventListener('DOMContentLoaded', hardCloseCustomModal);
+
+console.log('[INDEX_POST_PROFILE_FIX_V2] media + verified + views + no auto modal');
+})();
+</script>
+
+
+
+<script id="ARAB_NATIONAL_JOIN_CARDS_REPORT_V1">
+(function(){
+'use strict';
+/* force reload of rules */
+window.__ARAB_NATIONAL_JOIN_CARDS_REPORT_V1 = true;
+
+function esc(s){
+  return String(s==null?'':s).replace(/[&<>"']/g,function(c){
+    return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];
+  });
+}
+
+/* ═══════════════════════════════════════════
+   دول عربية + تحقق أرقام + مناطق كاملة
+═══════════════════════════════════════════ */
+window.ARAB_COUNTRIES = [
+  {name:'الجزائر', code:'DZ', dial:'+213', nat:'جزائرية', phoneRe:/^(0)?[5-7]\d{8}$/, localLen:[9,10], strip0:true},
+  {name:'تونس', code:'TN', dial:'+216', nat:'تونسية', phoneRe:/^(0)?[2-9]\d{7}$/, localLen:[8,9], strip0:true},
+  {name:'المغرب', code:'MA', dial:'+212', nat:'مغربية', phoneRe:/^(0)?[5-7]\d{8}$/, localLen:[9,10], strip0:true},
+  {name:'ليبيا', code:'LY', dial:'+218', nat:'ليبية', phoneRe:/^(0)?9\d{8}$/, localLen:[9,10], strip0:true},
+  {name:'مصر', code:'EG', dial:'+20', nat:'مصرية', phoneRe:/^(0)?1[0125]\d{8}$/, localLen:[10,11], strip0:true},
+  {name:'موريتانيا', code:'MR', dial:'+222', nat:'موريتانية', phoneRe:/^(0)?[2-4]\d{7}$/, localLen:[8,9], strip0:true},
+  {name:'السودان', code:'SD', dial:'+249', nat:'سودانية', phoneRe:/^(0)?9\d{8}$/, localLen:[9,10], strip0:true},
+  {name:'السعودية', code:'SA', dial:'+966', nat:'سعودية', phoneRe:/^(0)?5\d{8}$/, localLen:[9,10], strip0:true},
+  {name:'الإمارات', code:'AE', dial:'+971', nat:'إماراتية', phoneRe:/^(0)?5\d{8}$/, localLen:[9,10], strip0:true},
+  {name:'قطر', code:'QA', dial:'+974', nat:'قطرية', phoneRe:/^[3-7]\d{7}$/, localLen:[8], strip0:false},
+  {name:'الكويت', code:'KW', dial:'+965', nat:'كويتية', phoneRe:/^[569]\d{7}$/, localLen:[8], strip0:false},
+  {name:'البحرين', code:'BH', dial:'+973', nat:'بحرينية', phoneRe:/^[36]\d{7}$/, localLen:[8], strip0:false},
+  {name:'عُمان', code:'OM', dial:'+968', nat:'عُمانية', phoneRe:/^[79]\d{7}$/, localLen:[8], strip0:false},
+  {name:'اليمن', code:'YE', dial:'+967', nat:'يمنية', phoneRe:/^(0)?7\d{8}$/, localLen:[9,10], strip0:true},
+  {name:'الأردن', code:'JO', dial:'+962', nat:'أردنية', phoneRe:/^(0)?7\d{8}$/, localLen:[9,10], strip0:true},
+  {name:'سوريا', code:'SY', dial:'+963', nat:'سورية', phoneRe:/^(0)?9\d{8}$/, localLen:[9,10], strip0:true},
+  {name:'لبنان', code:'LB', dial:'+961', nat:'لبنانية', phoneRe:/^(0)?[37]\d{7}$/, localLen:[7,8,9], strip0:true},
+  {name:'فلسطين', code:'PS', dial:'+970', nat:'فلسطينية', phoneRe:/^(0)?5\d{8}$/, localLen:[9,10], strip0:true},
+  {name:'العراق', code:'IQ', dial:'+964', nat:'عراقية', phoneRe:/^(0)?7\d{9}$/, localLen:[10,11], strip0:true},
+  {name:'جيبوتي', code:'DJ', dial:'+253', nat:'جيبوتية', phoneRe:/^[77]\d{6}$/, localLen:[8], strip0:false},
+  {name:'الصومال', code:'SO', dial:'+252', nat:'صومالية', phoneRe:/^(0)?6\d{8}$/, localLen:[9,10], strip0:true},
+  {name:'جزر القمر', code:'KM', dial:'+269', nat:'قمرية', phoneRe:/^[3]\d{6}$/, localLen:[7], strip0:false}
+];
+
+window.REGIONS_BY_COUNTRY = {
+  'الجزائر': (typeof WILAYAS!=='undefined' && WILAYAS.length>=48) ? WILAYAS.slice() : [
+    'أدرار','الشلف','الأغواط','أم البواقي','باتنة','بجاية','بسكرة','بشار','البليدة','البويرة',
+    'تمنراست','تبسة','تلمسان','تيارت','تيزي وزو','الجزائر','الجلفة','جيجل','سطيف','سعيدة',
+    'سكيكدة','سيدي بلعباس','عنابة','قالمة','قسنطينة','المدية','مستغانم','المسيلة','معسكر','ورقلة',
+    'وهران','البيض','إليزي','برج بوعريريج','بومرداس','الطارف','تندوف','تيسمسيلت','الوادي','خنشلة',
+    'سوق أهراس','تيبازة','ميلة','عين الدفلى','النعامة','عين تموشنت','غرداية','غليزان','تيميمون',
+    'برج باجي مختار','أولاد جلال','بني عباس','عين صالح','عين قزام','تقرت','جانت','المغير','المنيعة'
+  ],
+  'تونس': [
+    'تونس','أريانة','بن عروس','منوبة','نابل','زغوان','بنزرت','باجة','جندوبة','الكاف',
+    'سليانة','القيروان','القصرين','سيدي بوزيد','سوسة','المنستير','المهدية','صفاقس','قفصة','توزر',
+    'قبلي','قابس','مدنين','تطاوين'
+  ],
+  'المغرب': [
+    'الدار البيضاء','الرباط','سلا','تمارة','فاس','مراكش','طنجة','أغادير','مكناس','وجدة',
+    'القنيطرة','تطوان','آسفي','المحمدية','الجديدة','خريبكة','بني ملال','الناظور','سطات','العرائش',
+    'القصر الكبير','تازة','خنيفرة','ورزازات','الرشيدية','الحسيمة','الصويرة','طانطان','العيون','الداخلة',
+    'كلميم','تيزنيت','إفران','بركان','تاوريرت','الفقيه بن صالح','سيدي سليمان','سيدي قاسم','شفشاون','وادي زم'
+  ],
+  'ليبيا': [
+    'طرابلس','بنغازي','مصراتة','الزاوية','سبها','البيضاء','درنة','زليتن','الخمس','سرت',
+    'طبرق','غريان','صبراتة','صرمان','الأبيار','اجدابيا','المرج','ترهونة','بني وليد','نالوت',
+    'غات','أوباري','الكفرة','مرزق','الجفرة'
+  ],
+  'مصر': [
+    'القاهرة','الجيزة','الإسكندرية','الدقهلية','الشرقية','القليوبية','المنيا','أسيوط','سوهاج','الغربية',
+    'البحيرة','المنوفية','كفر الشيخ','الفيوم','بني سويف','قنا','أسوان','الأقصر','دمياط','بورسعيد',
+    'الإسماعيلية','السويس','شمال سيناء','جنوب سيناء','البحر الأحمر','مطروح','الوادي الجديد'
+  ],
+  'موريتانيا': [
+    'نواكشوط','نواذيبو','كيفة','روصو','ألاك','زويرات','كيهيدي','أطار','سيليبابي','تجكجة',
+    'مقامة','بابابي','بوتلميت','أكجوجت'
+  ],
+  'السودان': [
+    'الخرطوم','أم درمان','بحري','بورتسودان','كسلا','الأبيض','نيالا','الفاشر','ود مدني','عطبرة',
+    'الدمازين','سنار','كوستي','شندي','الجنينة','كادقلي','الدلنج'
+  ],
+  'السعودية': [
+    'الرياض','جدة','مكة المكرمة','المدينة المنورة','الدمام','الخبر','الطائف','تبوك','أبها','حائل',
+    'بريدة','خميس مشيط','الهفوف','الجبيل','ينبع','نجران','جازان','الأحساء','القطيف','عرعر',
+    'سكاكا','الباحة','القريات','رابغ','الخرج','الرس','عنيزة'
+  ],
+  'الإمارات': [
+    'أبوظبي','دبي','الشارقة','عجمان','رأس الخيمة','الفجيرة','أم القيوين','العين','الذيد','خورفكان',
+    'كلباء','دبا الفجيرة','ليوا','الرويس'
+  ],
+  'قطر': [
+    'الدوحة','الريان','الوكرة','الخور','أم صلال','الظعاين','الشحانية','مسيعيد','الغويرية','الجميلية'
+  ],
+  'الكويت': [
+    'العاصمة','حولي','الفروانية','الجهراء','مبارك الكبير','الأحمدي','السالمية','الفحيحيل','الرقعي','بيان'
+  ],
+  'البحرين': [
+    'العاصمة','المحرق','الشمالية','الجنوبية','المنامة','الرفاع','عيسى','الحد','سترة','البديع'
+  ],
+  'عُمان': [
+    'مسقط','صلالة','صحار','نزوى','صور','البريمي','عبري','الرستاق','إبراء','خصب',
+    'بهلاء','إزكي','سمائل','بركاء','السويق'
+  ],
+  'اليمن': [
+    'صنعاء','عدن','تعز','الحديدة','إب','المكلا','ذمار','البيضاء','حجة','صعدة',
+    'أبين','لحج','شبوة','مأرب','الجوف','المحويت','ريمة','عمران','الضالع','المهرة','سقطرى'
+  ],
+  'الأردن': [
+    'عمّان','إربد','الزرقاء','العقبة','السلط','المفرق','جرش','عجلون','مادبا','الكرك',
+    'الطفيلة','معان','الرصيفة','وادي موسى','الفحيص'
+  ],
+  'سوريا': [
+    'دمشق','ريف دمشق','حلب','حمص','حماة','اللاذقية','طرطوس','إدلب','درعا','السويداء',
+    'القنيطرة','دير الزور','الحسكة','الرقة'
+  ],
+  'لبنان': [
+    'بيروت','جبل لبنان','الشمال','الجنوب','البقاع','النبطية','جبيل','طرابلس','صيدا','زحلة',
+    'بعلبك','صور','بشري','كسروان','المتن','الشوف'
+  ],
+  'فلسطين': [
+    'القدس','رام الله والبيرة','نابلس','الخليل','غزة','جنين','بيت لحم','طولكرم','قلقيلية','سلفيت',
+    'أريحا','طوباس','شمال غزة','دير البلح','خان يونس','رفح'
+  ],
+  'العراق': [
+    'بغداد','البصرة','الموصل','أربيل','النجف','كربلاء','السليمانية','كركوك','الأنبار','ديالى',
+    'واسط','ميسان','ذي قار','المثنى','القادسية','بابل','صلاح الدين','دهوك','حلبجة'
+  ],
+  'جيبوتي': [
+    'جيبوتي','علي صبيح','تاجورة','أوبوك','دخيل','أرتا'
+  ],
+  'الصومال': [
+    'مقديشو','هرجيسا','بوصاصو','كيسمايو','بايدوا','جالكعيو','بربرة','مركا','جورو','بوروما'
+  ],
+  'جزر القمر': [
+    'موروني','موتسامودو','فومبوني','دوموني','تسيمبي'
+  ]
+};
+
+function countryByNat(nat){
+  nat = String(nat||'');
+  return (window.ARAB_COUNTRIES||[]).find(function(c){
+    return c.nat===nat || c.name===nat;
+  }) || window.ARAB_COUNTRIES[0];
+}
+function countryByName(name){
+  name = String(name||'');
+  return (window.ARAB_COUNTRIES||[]).find(function(c){ return c.name===name || c.nat===name; }) || window.ARAB_COUNTRIES[0];
+}
+
+window.getNationalityOptionsHtml = function(selected){
+  selected = selected || 'جزائرية';
+  return (window.ARAB_COUNTRIES||[]).map(function(c){
+    return '<option value="'+esc(c.nat)+'"'+(c.nat===selected?' selected':'')+'>'+esc(c.nat)+'</option>';
+  }).join('');
+};
+window.getRegionOptionsHtml = function(countryOrNat, selected){
+  var c = countryByNat(countryOrNat) || countryByName(countryOrNat);
+  var list = (window.REGIONS_BY_COUNTRY[c.name] || window.REGIONS_BY_COUNTRY['الجزائر'] || []);
+  var html = '<option value="">اختر الولاية / المحافظة / المنطقة</option>';
+  list.forEach(function(r){
+    html += '<option value="'+esc(r)+'"'+(selected===r?' selected':'')+'>'+esc(r)+'</option>';
+  });
+  return html;
+};
+window.getDialCode = function(countryOrNat){
+  var c = countryByNat(countryOrNat) || countryByName(countryOrNat);
+  return (c && c.dial) || '+213';
+};
+
+window.validateArabPhone = function(raw, countryOrNat){
+  var c = countryByNat(countryOrNat) || countryByName(countryOrNat) || window.ARAB_COUNTRIES[0];
+  var v = String(raw||'').replace(/[\s\-().]/g,'');
+  /* إزالة المفتاح الدولي إن وُجد */
+  if(c.dial){
+    var d = c.dial.replace('+','');
+    if(v.indexOf('+'+d)===0) v = v.slice(c.dial.length);
+    else if(v.indexOf('00'+d)===0) v = v.slice(2+d.length);
+    else if(v.indexOf(d)===0 && v.length > (c.localLen[0]||8)) v = v.slice(d.length);
+  }
+  var ok = c.phoneRe ? c.phoneRe.test(v) : true;
+  var normalized = v;
+  if(c.strip0 && /^0/.test(v)) normalized = v.replace(/^0+/,'');
+  return {
+    ok: ok,
+    normalized: normalized,
+    full: c.dial + (c.strip0 ? normalized.replace(/^0+/,'') : normalized),
+    dial: c.dial,
+    msg: ok ? 'صحيح' : ('رقم غير صالح لـ '+c.name+' — مثال متوقع وفق مفتاح '+c.dial)
+  };
+};
+
+window.onJoinNationalityChange = function(sel){
+  var form = sel && sel.closest ? sel.closest('form') : null;
+  if(!form) form = document.querySelector('#joinModal form') || document.getElementById('joinForm');
+  if(!form) return;
+  var nat = sel.value || 'جزائرية';
+  var c = countryByNat(nat);
+  form.querySelectorAll('[name="wilaya"], #joinWilayaSelect, [name="region"], [name="representWilaya"], [name="orgWilaya"]').forEach(function(regionSel){
+    if(regionSel && regionSel.tagName==='SELECT'){
+      var prev = regionSel.value;
+      regionSel.innerHTML = window.getRegionOptionsHtml(nat, prev);
+    }
+  });
+  /* رمز مخفي */
+  var dialHidden = form.querySelector('[name="phoneDial"], #joinPhoneDial');
+  if(dialHidden) dialHidden.value = c.dial;
+  var phone = form.querySelector('[name="phone"], [name="orgPhone"]');
+  if(phone){
+    phone.setAttribute('data-dial', c.dial);
+    phone.setAttribute('data-nat', nat);
+    phone.placeholder = 'رقم الهاتف بدون مفتاح الدولة';
+  }
+};
+
+window.onOrgNationalityChange = function(sel){
+  window.onJoinNationalityChange(sel);
+};
+
+function ensureHiddenDial(form, value){
+  var el = form.querySelector('[name="phoneDial"], #joinPhoneDial');
+  if(!el){
+    el = document.createElement('input');
+    el.type = 'hidden';
+    el.name = 'phoneDial';
+    el.id = 'joinPhoneDial';
+    form.appendChild(el);
+  } else {
+    el.type = 'hidden';
+    el.style.display = 'none';
+  }
+  el.value = value || '+213';
+  /* إخفاء أي واجهة ظاهرة للمفتاح */
+  form.querySelectorAll('.phone-dial, [name="phoneDial"]:not([type="hidden"])').forEach(function(n){
+    if(n.id==='joinPhoneDial' && n.type==='hidden') return;
+    if(n.name==='phoneDial' && n.type==='hidden') return;
+    try{
+      var g = n.closest('.form-group');
+      if(g) g.style.display='none';
+      else n.style.display='none';
+    }catch(_){}
+  });
+  return el;
+}
+
+function enhanceJoinForm(){
+  var form = document.querySelector('#joinModal form') || document.getElementById('joinForm') || document.querySelector('.modal-overlay form');
+  if(!form) return;
+  form.setAttribute('data-arab-enhanced','1');
+
+  var type = String(window._joinType || form.getAttribute('data-join-type') || '').toLowerCase();
+  var isAmbassador = (type==='ambassador' || type==='تمثيل' || type==='representation');
+  var isPartnership = (type==='partnership' || type==='شراكة');
+
+  /* إزالة جنسية الشخص من التمثيل */
+  var nat = form.querySelector('[name="nationality"], #joinNationality');
+  if(isAmbassador){
+    if(nat){
+      var g = nat.closest('.form-group');
+      if(g) g.remove(); else nat.remove();
+    }
+    /* فرض جزائرية مخفية للتمثيل */
+    var hiddenNat = form.querySelector('[name="nationality"]');
+    if(!hiddenNat){
+      hiddenNat = document.createElement('input');
+      hiddenNat.type = 'hidden';
+      hiddenNat.name = 'nationality';
+      form.appendChild(hiddenNat);
+    }
+    hiddenNat.value = 'جزائرية';
+    var wilaya = form.querySelector('[name="wilaya"], #joinWilayaSelect, [name="representWilaya"]');
+    if(wilaya && wilaya.tagName==='SELECT'){
+      wilaya.innerHTML = window.getRegionOptionsHtml('جزائرية', wilaya.value);
+    }
+    ensureHiddenDial(form, '+213');
+    var phone = form.querySelector('[name="phone"]');
+    if(phone){
+      phone.placeholder = '05XXXXXXXX';
+      phone.setAttribute('data-dial','+213');
+      phone.setAttribute('data-nat','جزائرية');
+    }
+  } else if(isPartnership){
+    /* جنسية المنظمة */
+    var orgNat = form.querySelector('[name="orgNationality"], #orgNationality');
+    if(!orgNat){
+      var box = document.createElement('div');
+      box.className = 'form-group';
+      box.innerHTML = '<label class="required">جنسية / بلد المنظمة</label>'+
+        '<select class="form-select" name="orgNationality" id="orgNationality" required onchange="onOrgNationalityChange(this)">'+
+        window.getNationalityOptionsHtml('جزائرية')+'</select>';
+      var anchor = form.querySelector('[name="orgName"], [name="wilaya"], #joinWilayaSelect');
+      if(anchor && anchor.closest('.form-group')) anchor.closest('.form-group').parentNode.insertBefore(box, anchor.closest('.form-group'));
+      else form.insertBefore(box, form.firstChild);
+      orgNat = form.querySelector('[name="orgNationality"]');
+    } else {
+      orgNat.innerHTML = window.getNationalityOptionsHtml(orgNat.value||'جزائرية');
+      orgNat.setAttribute('onchange','onOrgNationalityChange(this)');
+    }
+    /* مناطق حسب جنسية المنظمة */
+    var orgWilaya = form.querySelector('[name="wilaya"], #joinWilayaSelect, [name="orgWilaya"]');
+    if(orgWilaya && orgWilaya.tagName==='SELECT'){
+      orgWilaya.innerHTML = window.getRegionOptionsHtml(orgNat?orgNat.value:'جزائرية', orgWilaya.value);
+    }
+    ensureHiddenDial(form, window.getDialCode(orgNat?orgNat.value:'جزائرية'));
+    if(orgNat) window.onOrgNationalityChange(orgNat);
+  } else {
+    /* انخراط / تطوع / تأطير: جنسية ظاهرة */
+    if(!nat){
+      var box2 = document.createElement('div');
+      box2.className = 'form-group';
+      box2.innerHTML = '<label class="required">الجنسية</label>'+
+        '<select class="form-select" name="nationality" id="joinNationality" required onchange="onJoinNationalityChange(this)">'+
+        window.getNationalityOptionsHtml('جزائرية')+'</select>';
+      var wilaya2 = form.querySelector('[name="wilaya"], #joinWilayaSelect');
+      if(wilaya2 && wilaya2.closest('.form-group')){
+        wilaya2.closest('.form-group').parentNode.insertBefore(box2, wilaya2.closest('.form-group'));
+      } else {
+        form.insertBefore(box2, form.firstChild);
+      }
+      nat = form.querySelector('[name="nationality"]');
+    } else {
+      if(nat.type==='hidden'){
+        /* كان مخفياً من تمثيل سابق — أظهره */
+        var showBox = document.createElement('div');
+        showBox.className = 'form-group';
+        showBox.innerHTML = '<label class="required">الجنسية</label>'+
+          '<select class="form-select" name="nationality" id="joinNationality" required onchange="onJoinNationalityChange(this)">'+
+          window.getNationalityOptionsHtml(nat.value||'جزائرية')+'</select>';
+        nat.remove();
+        var w = form.querySelector('[name="wilaya"], #joinWilayaSelect');
+        if(w && w.closest('.form-group')) w.closest('.form-group').parentNode.insertBefore(showBox, w.closest('.form-group'));
+        else form.insertBefore(showBox, form.firstChild);
+        nat = form.querySelector('#joinNationality');
+      } else {
+        nat.innerHTML = window.getNationalityOptionsHtml(nat.value||'جزائرية');
+        nat.value = nat.value || 'جزائرية';
+        nat.setAttribute('onchange','onJoinNationalityChange(this)');
+      }
+    }
+    var wilaya3 = form.querySelector('[name="wilaya"], #joinWilayaSelect');
+    if(wilaya3 && wilaya3.tagName==='SELECT'){
+      wilaya3.innerHTML = window.getRegionOptionsHtml(nat?nat.value:'جزائرية', wilaya3.value);
+    }
+    ensureHiddenDial(form, window.getDialCode(nat?nat.value:'جزائرية'));
+    if(nat) window.onJoinNationalityChange(nat);
+  }
+
+  /* مدينة يدوية */
+  if(!form.querySelector('[name="city"]')){
+    var cityBox = document.createElement('div');
+    cityBox.className = 'form-group';
+    cityBox.innerHTML = '<label>المدينة</label><input class="form-input" name="city" maxlength="80" placeholder="اكتب اسم المدينة يدوياً">';
+    var wref = form.querySelector('[name="wilaya"], #joinWilayaSelect, [name="representWilaya"]');
+    if(wref && wref.closest('.form-group')) wref.closest('.form-group').after(cityBox);
+  }
+
+  /* تحقق الرقم عند الإرسال */
+  if(!form.__arabPhoneBound){
+    form.__arabPhoneBound = true;
+    form.addEventListener('submit', function(e){
+      var ph = form.querySelector('[name="phone"], [name="orgPhone"]');
+      if(!ph) return;
+      var natVal = 'جزائرية';
+      var n1 = form.querySelector('[name="nationality"]');
+      var n2 = form.querySelector('[name="orgNationality"]');
+      if(n2 && n2.value) natVal = n2.value;
+      else if(n1 && n1.value) natVal = n1.value;
+      var check = window.validateArabPhone(ph.value, natVal);
+      if(!check.ok){
+        e.preventDefault();
+        e.stopPropagation();
+        if(typeof showToast==='function') showToast(check.msg,'warning');
+        ph.focus();
+        return false;
+      }
+      ensureHiddenDial(form, check.dial);
+      var full = form.querySelector('[name="phoneFull"]');
+      if(!full){
+        full = document.createElement('input');
+        full.type = 'hidden';
+        full.name = 'phoneFull';
+        form.appendChild(full);
+      }
+      full.value = check.full;
+    }, true);
+  }
+}
+
+var _openJoin = window.openJoinModal;
+window.openJoinModal = function(type){
+  window._joinType = type;
+  if(typeof _openJoin==='function') _openJoin.apply(this, arguments);
+  setTimeout(enhanceJoinForm, 60);
+  setTimeout(enhanceJoinForm, 250);
+  setTimeout(enhanceJoinForm, 600);
+};
+
+/* تحقق فوري أثناء الكتابة */
+document.addEventListener('input', function(e){
+  var t = e.target;
+  if(!t || (t.name!=='phone' && t.name!=='orgPhone')) return;
+  var form = t.closest('form');
+  if(!form) return;
+  var natVal = 'جزائرية';
+  var n1 = form.querySelector('[name="nationality"]');
+  var n2 = form.querySelector('[name="orgNationality"]');
+  if(n2 && n2.value) natVal = n2.value;
+  else if(n1 && n1.value) natVal = n1.value;
+  var check = window.validateArabPhone(t.value, natVal);
+  t.style.borderColor = t.value ? (check.ok ? 'var(--primary-light,#2ECC5A)' : 'var(--danger,#e53935)') : '';
+}, true);
+
+console.log('[ARAB_NATIONAL_JOIN_CARDS_REPORT_V1] updated: no nat for ambassador, full regions, phone validate, org nat, hidden dial');
+})();
+</script>
+
+<script id="TEAM_CARDS_REPORT_KEEP_V1">
+(function(){
+'use strict';
+if(window.__TEAM_CARDS_REPORT_KEEP_V1) return;
+window.__TEAM_CARDS_REPORT_KEEP_V1 = true;
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];});}
+
+window.teamPage = window.teamPage || 0;
+window.trainersPage = window.trainersPage || 0;
+window.TEAM_PER_PAGE = 3;
+window.TRAINERS_PER_PAGE = 3;
+
+window.personCard = function(p){
+  p = p || {};
+  var img = p.photoUrl || p.photo || p.avatar || p.image || '';
+  var name = esc(p.fullName || p.name || 'عضو');
+  var role = esc(p.position || p.role || p.type || p.title || '');
+  var key = esc(String(p.username || p.id || ''));
+  var wilaya = esc(p.wilaya || p.city || '');
+  var verified = p.verified===true || p.isVerified===true || p.blueCheck===true;
+  return '<div class="person-card amb-card amb-card-pro" style="cursor:pointer" onclick="typeof openProfile===\'function\'&&openProfile(\''+key+'\')">'+
+    '<div class="person-avatar">'+(img?'<img src="'+esc(img)+'" alt="" loading="lazy" onerror="this.style.display=\'none\'">':'<i class="fas fa-user"></i>')+'</div>'+
+    '<div class="person-name">'+name+(verified?' <span class="verified-badge green"><i class="fas fa-check"></i></span>':'')+'</div>'+
+    (role?'<div class="person-role">'+role+'</div>':'')+
+    (wilaya?'<div class="person-role" style="color:var(--text-muted);font-weight:500"><i class="fas fa-map-marker-alt" style="font-size:11px"></i> '+wilaya+'</div>':'')+
+    '<div class="amb-card-actions" onclick="event.stopPropagation()">'+
+      '<button type="button" class="amb-icon-btn amb-icon-profile" title="عرض الملف" onclick="event.stopPropagation();typeof openProfile===\'function\'&&openProfile(\''+key+'\')"><i class="fas fa-user"></i></button>'+
+      '<button type="button" class="amb-icon-btn amb-icon-report" title="إبلاغ" onclick="event.stopPropagation();openMemberReport({id:\''+key+'\',name:\''+name+'\',username:\''+esc(p.username||'')+'\',photo:\''+esc(img)+'\',verified:'+(verified?'true':'false')+'})"><i class="fas fa-flag"></i></button>'+
+    '</div></div>';
+};
+
+function renderPagedCards(containerId, list, pageKey, perPage){
+  var el = document.getElementById(containerId);
+  if(!el) return;
+  list = list || [];
+  perPage = perPage || 3;
+  var page = window[pageKey] || 0;
+  var total = Math.max(1, Math.ceil(list.length / perPage));
+  if(page >= total) page = total - 1;
+  if(page < 0) page = 0;
+  window[pageKey] = page;
+  var slice = list.slice(page * perPage, (page + 1) * perPage);
+  var html = '<div class="cards-grid amb-grid" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px">';
+  if(!slice.length) html += '<div class="empty-state" style="grid-column:1/-1">لا عناصر حالياً</div>';
+  else slice.forEach(function(p){ html += window.personCard(p); });
+  html += '</div>';
+  if(list.length > perPage){
+    html += '<div style="display:flex;justify-content:center;align-items:center;gap:12px;margin-top:14px">'+
+      '<button type="button" class="btn-outline-dark" '+(page<=0?'disabled':'')+' onclick="window.'+pageKey+'='+(page-1)+';window.__rerenderPaged && window.__rerenderPaged(\''+containerId+'\')"><i class="fas fa-arrow-right"></i> السابق</button>'+
+      '<span style="font-size:13px;font-weight:700">'+(page+1)+' / '+total+'</span>'+
+      '<button type="button" class="btn-outline-dark" '+(page>=total-1?'disabled':'')+' onclick="window.'+pageKey+'='+(page+1)+';window.__rerenderPaged && window.__rerenderPaged(\''+containerId+'\')">التالي <i class="fas fa-arrow-left"></i></button></div>';
+  }
+  el.innerHTML = html;
+}
+window.__pagedSources = window.__pagedSources || {};
+window.__rerenderPaged = function(containerId){
+  var src = window.__pagedSources[containerId];
+  if(src) renderPagedCards(containerId, src.list, src.pageKey, src.perPage);
+};
+function wireTeamPagination(){
+  var trainers = window.trainersCache || [];
+  if(!trainers.length && window.teamsCache){
+    trainers = (window.teamsCache||[]).filter(function(t){ return /مؤطر|trainer|تأطير/i.test(String(t.role||t.type||t.position||'')); });
+  }
+  window.__pagedSources['trainersList'] = {list:trainers, pageKey:'trainersPage', perPage:3};
+  if(document.getElementById('trainersList')) renderPagedCards('trainersList', trainers, 'trainersPage', 3);
+  var team = window.teamsCache || window.teamCache || [];
+  var admin = team.filter(function(t){
+    var r = String(t.role||t.type||t.position||'').toLowerCase();
+    return /إدار|admin|مجلس|رئيس|أمين|منسق|مشرف/i.test(r) || !/مؤطر|trainer|سفير|ambassador/i.test(r);
+  });
+  if(!admin.length) admin = team;
+  var teamEl = document.getElementById('teamList') || document.getElementById('adminList') || document.getElementById('managementList');
+  if(teamEl){
+    window.__pagedSources[teamEl.id] = {list:admin, pageKey:'teamPage', perPage:3};
+    renderPagedCards(teamEl.id, admin, 'teamPage', 3);
+  }
+}
+setTimeout(wireTeamPagination, 1200);
+setInterval(wireTeamPagination, 10000);
+
+window.openMemberReport = function(person){
+  person = person || {};
+  var old = document.getElementById('memberReportModal');
+  if(old) old.remove();
+  var photo = person.photo || person.photoUrl || '';
+  var name = person.name || person.fullName || 'عضو';
+  var username = person.username ? ('@'+String(person.username).replace(/^@/,'')) : '';
+  var verified = !!person.verified;
+  var overlay = document.createElement('div');
+  overlay.id = 'memberReportModal';
+  overlay.className = 'modal-overlay';
+  overlay.style.zIndex = '100080';
+  overlay.innerHTML = '<div class="modal-box" style="max-width:420px;text-align:right">'+
+    '<button class="modal-close" onclick="document.getElementById(\'memberReportModal\').remove()"><i class="fas fa-times"></i></button>'+
+    '<h2 style="font-size:17px;margin-bottom:12px"><i class="fas fa-flag" style="color:var(--danger)"></i> إبلاغ</h2>'+
+    '<div style="display:flex;gap:12px;align-items:center;padding:12px;background:var(--surface-alt);border-radius:14px;margin-bottom:14px">'+
+      '<div class="person-avatar" style="width:52px;height:52px">'+(photo?'<img src="'+esc(photo)+'" style="width:100%;height:100%;border-radius:50%;object-fit:cover" onerror="this.remove()">':'<i class="fas fa-user"></i>')+'</div>'+
+      '<div><div style="font-weight:800">'+esc(name)+(verified?' <span class="verified-badge green"><i class="fas fa-check"></i></span>':'')+'</div>'+
+      (username?'<div style="font-size:12px;color:var(--text-muted);direction:ltr;text-align:right">'+esc(username)+'</div>':'')+'</div></div>'+
+    '<div class="form-group"><label class="required">سبب الإبلاغ</label><select class="form-select" id="reportReason"><option value="">اختر</option><option>محتوى غير لائق</option><option>تحريض أو كراهية</option><option>انتحال شخصية</option><option>معلومات مضللة</option><option>إزعاج أو سبام</option><option>أخرى</option></select></div>'+
+    '<div class="form-group"><label>تفاصيل</label><textarea class="form-textarea" id="reportDetails" rows="3" maxlength="500"></textarea></div>'+
+    '<div style="display:flex;gap:8px"><button type="button" class="btn-primary" style="flex:1" onclick="submitMemberReport()"><i class="fas fa-paper-plane"></i> إرسال</button><button type="button" class="btn-outline-dark" onclick="document.getElementById(\'memberReportModal\').remove()">إلغاء</button></div></div>';
+  document.body.appendChild(overlay);
+  window._reportPayload = person;
+};
+window.submitMemberReport = async function(){
+  var reason = (document.getElementById('reportReason')||{}).value||'';
+  var details = (document.getElementById('reportDetails')||{}).value||'';
+  if(!reason){ if(typeof showToast==='function') showToast('اختر السبب','warning'); return; }
+  var p = window._reportPayload||{}, u = window.currentUser||window.mzoneCurrentUser||{};
+  try{
+    if(window.FirestoreAPI&&window.firebaseDB){
+      await window.FirestoreAPI.addDoc(window.FirestoreAPI.collection(window.firebaseDB,'reports'),{
+        reason:reason,details:details,targetType:p.targetType||'عضو',targetId:p.id||'',targetName:p.name||'',
+        targetUsername:p.username||'',targetPhoto:p.photo||'',postId:p.postId||'',commentId:p.commentId||'',
+        reporterId:u.id||'',reporterName:u.fullName||u.name||'زائر',status:'pending',
+        createdAt:window.FirestoreAPI.serverTimestamp()
+      });
+    }
+    if(typeof showToast==='function') showToast('تم إرسال البلاغ','success');
+    var m=document.getElementById('memberReportModal'); if(m)m.remove();
+  }catch(e){ if(typeof showToast==='function') showToast('تعذّر الإرسال','error'); }
+};
+
+console.log('[TEAM_CARDS_REPORT_KEEP_V1] ok');
+})();
+</script>
+
+
 </body>
 </html>
