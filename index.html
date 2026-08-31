@@ -1227,7 +1227,7 @@ header.site-header{
 
 <header class="site-header" style="position:fixed!important;top:0!important;left:0!important;right:0!important;width:100%!important;z-index:1000!important;transform:none!important;height:100px!important;margin:0!important;">
   <div class="header-brand" onclick="window.open('https://nazaha.site','_blank')">
-    <div class="brand-logo"><img src="https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/hidr.png" alt="شعار" onerror="this.style.display='none'"></div>
+    <div class="brand-logo"><img src="https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/hidr.png" alt="شعار" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png'"></div>
     <div class="brand-text">نـ<span>زاهة</span></div>
   </div>
   <div class="header-actions">
@@ -1284,7 +1284,7 @@ header.site-header{
   <div class="hero">
     <div class="hero-bg" style="background-image:linear-gradient(160deg,rgba(8,20,10,.9),rgba(20,70,30,.72),rgba(8,20,10,.88)),url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1920&q=85');background-size:cover;background-position:center;"></div>
     <div class="hero-content">
-      <div class="hero-logo"><img src="https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/logo-3.png" alt="شعار نزاهة" onerror="this.style.display='none'"></div>
+      <div class="hero-logo"><img src="https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/logo-3.png" alt="شعار نزاهة" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png'"></div>
       <div class="hero-typewriter hero-typewriter-main"><span id="typewriterText"></span><span class="cursor"></span></div>
       <div class="hero-btns">
         <button class="btn-primary" onclick="navigate('/about')"><i class="fas fa-info-circle"></i> تعرّف علينا</button>
@@ -1516,7 +1516,7 @@ header.site-header{
     <div id="mzoneLoginBox" class="nz-login-shell">
       <div class="nz-login-card">
         <div class="nz-login-brand">
-          <div class="nz-login-logo"><img src="https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/logo-2.png" alt="نزاهة" onerror="this.style.display='none'"></div>
+          <div class="nz-login-logo"><img src="https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/logo-2.png" alt="نزاهة" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png'"></div>
           <h1>تسجيل الدخول</h1>
           <p>ادخل برقم العضوية أو اسم المستخدم مع كلمة المرور</p>
         </div>
@@ -1828,7 +1828,10 @@ header.site-header{
           </select>
         </div>
         <div class="form-group"><label class="required">الاسم الكامل</label><input class="form-input" name="name" required></div>
-        <div class="form-row"><div class="form-group"><label class="required">البريد الإلكتروني</label><input class="form-input" type="email" name="email" required></div><div class="form-group"><label class="required">رقم الهاتف</label><input class="form-input" type="tel" name="phone" required></div></div>
+        <div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start">
+          <div class="form-group" style="min-width:0;max-width:100%"><label class="required">البريد الإلكتروني</label><input class="form-input" type="email" name="email" required style="width:100%;max-width:100%;box-sizing:border-box;height:46px"></div>
+          <div class="form-group" style="min-width:0;max-width:100%"><label class="required">رقم الهاتف</label><input class="form-input" type="tel" name="phone" required style="width:100%;max-width:100%;box-sizing:border-box;height:46px"></div>
+        </div>
         <div id="dynamicContactFields"></div>
         <div class="form-group"><label class="required">نص الرسالة</label><textarea class="form-textarea" name="message" required></textarea></div>
         <button type="submit" class="btn-primary" style="width:100%;justify-content:center"><i class="fas fa-paper-plane"></i> إرسال</button>
@@ -2312,7 +2315,7 @@ function renderPartners(list){
     var url = p.url || p.link || p.website || '#';
     var name = p.name || 'شريك';
     if (src) {
-      return '<a class="partner-logo" href="' + escapeHtml(url) + '" target="_blank" rel="noopener" title="' + escapeHtml(name) + '"><img src="' + escapeHtml(src) + '" alt="' + escapeHtml(name) + '" crossorigin="anonymous" loading="lazy" decoding="async" onload="partnerLogoRemoveBg(this)" onerror="this.style.display=\'none\'"></a>';
+      return '<a class="partner-logo" href="' + escapeHtml(url) + '" target="_blank" rel="noopener" title="' + escapeHtml(name) + '"><img src="' + escapeHtml(src) + '" alt="' + escapeHtml(name) + '" crossorigin="anonymous" loading="lazy" decoding="async" onload="partnerLogoRemoveBg(this)" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'"></a>';
     }
     return '<a class="partner-logo" href="' + escapeHtml(url) + '" target="_blank" rel="noopener" style="font-size:12px;font-weight:700;color:var(--primary);text-align:center">' + escapeHtml(name) + '</a>';
   }
@@ -2364,7 +2367,7 @@ function renderAmbPage(){
     var uname=String(a.username||a.id||'');
     var profileKey=escapeHtml(uname);
     return '<div class="person-card amb-card amb-card-pro" style="cursor:pointer" data-amb-profile="'+profileKey+'" onclick="openAmbassadorProfile(\''+profileKey+'\')">'+
-      '<div class="person-avatar">'+(img?'<img src="'+escapeHtml(img)+'" alt="" onerror="this.style.display=\'none\'">':'<i class="fas fa-user"></i>')+'</div>'+
+      '<div class="person-avatar">'+(img?'<img src="'+escapeHtml(img)+'" alt="" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':'<i class="fas fa-user"></i>')+'</div>'+
       '<div class="person-name">'+name+'</div>'+
       '<div class="person-role"><i class="fas fa-map-marker-alt" style="font-size:11px"></i> '+wilaya+'</div>'+
       '<div class="amb-card-actions" onclick="event.stopPropagation()">'+
@@ -2798,7 +2801,7 @@ window.openPostDetail =async function(id){
     (p.title?'<h2 style="font-size:18px;margin-bottom:10px">'+escapeHtml(p.title)+'</h2>':'')+
     '<div style="font-size:14px;color:var(--text-secondary);line-height:1.9;white-space:pre-wrap;margin-bottom:14px">'+escapeHtml(p.content||p.body||p.text||'')+'</div>'+
     (p.videoUrl?videoEmbedHtml(p.videoUrl):'')+
-    (img?'<img src="'+escapeHtml(img)+'" style="width:100%;border-radius:10px;margin-bottom:14px" onerror="this.style.display=\'none\'">':'')+
+    (img?'<img src="'+escapeHtml(img)+'" style="width:100%;border-radius:10px;margin-bottom:14px" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':'')+
     '<div style="display:flex;gap:16px;font-size:13px;color:var(--text-muted);border-top:1px solid var(--border-color,rgba(0,0,0,.08));border-bottom:1px solid var(--border-color,rgba(0,0,0,.08));padding:10px 0;margin-bottom:14px">'+
       '<button class="btn-outline-dark" style="font-size:12px" id="postLikeBtn" onclick="toggleLibraryPostLike(\''+escapeHtml(id)+'\',true)"><i class="fas fa-heart"></i> إعجاب ('+likesCount+')</button>'+
       '<span><i class="fas fa-eye"></i> '+(p.views||0)+'</span>'+
@@ -2826,7 +2829,7 @@ async function loadPostComments(postId){
       var cAid = c.authorId || c.authorUsername || '';
       var cUser = String(c.authorUsername||'').replace(/^@/,'');
       var cVerified = c.authorVerified===true||c.verified===true||c.isVerified===true;
-      return '<div style="display:flex;gap:8px"><div class="person-avatar" style="width:28px;height:28px;font-size:11px;flex-shrink:0'+(cAid?';cursor:pointer':'')+'"'+(cAid?' onclick="typeof openProfile===\'function\'&&openProfile(\''+escapeHtml(cAid)+'\')"':'')+'>'+(c.authorPhoto?'<img src="'+escapeHtml(c.authorPhoto)+'" style="width:100%;height:100%;border-radius:50%;object-fit:cover" onerror="this.parentNode.innerHTML=\'<i class=\\\'fas fa-user\\\'></i>\'">':'<i class="fas fa-user"></i>')+'</div>'+
+      return '<div style="display:flex;gap:8px"><div class="person-avatar" style="width:28px;height:28px;font-size:11px;flex-shrink:0'+(cAid?';cursor:pointer':'')+'"'+(cAid?' onclick="typeof openProfile===\'function\'&&openProfile(\''+escapeHtml(cAid)+'\')"':'')+'>'+(c.authorPhoto?'<img src="'+escapeHtml(c.authorPhoto)+'" style="width:100%;height:100%;border-radius:50%;object-fit:cover" onerror="this.onerror=null;this.src=\'https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png\';this.style.display=\'block\'">':'<i class="fas fa-user"></i>')+'</div>'+
         '<div style="flex:1;background:var(--surface-alt);border-radius:10px;padding:8px 12px">'+
         '<div class="author-id-block"'+(cAid?' style="cursor:pointer" onclick="typeof openProfile===\'function\'&&openProfile(\''+escapeHtml(cAid)+'\')"':'')+'>'+
         '<div class="author-id-name">'+escapeHtml(c.authorName||'مستخدم')+(cVerified?' <span class="verified-badge green"><i class="fas fa-check"></i></span>':'')+'</div>'+
@@ -3196,7 +3199,7 @@ function refreshMzone(){
   var unEl=document.getElementById('profileUsernameLabel');
   if(unEl) unEl.textContent=u.username?('@'+u.username):'';
 
-  if(avatarEl) avatarEl.innerHTML=img?'<img src="'+escapeHtml(img)+'" style="width:100%;height:100%;border-radius:50%;object-fit:cover" onerror="this.parentNode.innerHTML=\'<i class=\\\'fas fa-user\\\'></i>\'">':'<i class="fas fa-user"></i>';
+  if(avatarEl) avatarEl.innerHTML=img?'<img src="'+escapeHtml(img)+'" style="width:100%;height:100%;border-radius:50%;object-fit:cover" onerror="this.onerror=null;this.src=\'https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png\';this.style.display=\'block\'">':'<i class="fas fa-user"></i>';
   var nameEl=document.getElementById('profileName');
   var isVerifiedNow = u.verified===true || u.isVerified===true || u.verificationStatus==='accepted' || u.verificationStatus==='مقبول' || u.verificationStatus==='verified';
   if(nameEl) nameEl.innerHTML = escapeHtml(u.fullName||u.name||'') + (isVerifiedNow ? ' <span class="verified-badge green" title="حساب موثّق"><i class="fas fa-check"></i></span>' : '');
@@ -3278,7 +3281,7 @@ async function loadMyPosts(){
       var img=p.image||p.photo||p.cover||'';
       var likes=(p.likedBy&&p.likedBy.length)||p.likes||0, comments=p.commentsCount||0;
       return '<div class="mzone-post-thumb" onclick="openPostDetail(\''+escapeHtml(p.id)+'\')">'+
-        (img?'<img src="'+escapeHtml(img)+'" alt="" onerror="this.style.display=\'none\'">':'<div class="mzone-post-noimg">'+escapeHtml((p.title||p.content||'منشور').slice(0,40))+'</div>')+
+        (img?'<img src="'+escapeHtml(img)+'" alt="" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':'<div class="mzone-post-noimg">'+escapeHtml((p.title||p.content||'منشور').slice(0,40))+'</div>')+
         '<div class="mzone-post-thumb-stats"><span><i class="fas fa-heart"></i> '+likes+'</span><span><i class="fas fa-comment"></i> '+comments+'</span></div>'+
       '</div>';
     }).join('');
@@ -5988,7 +5991,7 @@ window.generateActivityTicket=async function(activityId, participant, basePrice,
   host.innerHTML =
     '<div style="width:520px;background:#fff;border-radius:0;overflow:hidden;border:1px solid #e4e8e4">'+
       '<div style="background:linear-gradient(120deg,#1A6B2F,#0F4A1E);padding:24px 28px;text-align:center;position:relative">'+
-        '<img src="https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/hidr.png" style="height:48px;margin:0 auto 8px;display:block" onerror="this.style.display=\'none\'">'+"\n"+''+
+        '<img src="https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/hidr.png" style="height:48px;margin:0 auto 8px;display:block" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">'+"\n"+''+
         '<div style="color:#fff;font-size:22px;font-weight:800">تذكرة مشاركة نزاهة</div>'+
       '</div>'+
       '<div style="padding:22px 28px 6px">'+
@@ -7029,7 +7032,7 @@ window.filterProfanity=function(t){
 
     return '<div class="item-card act-card-pro" style="cursor:pointer;flex-direction:column;min-height:auto" onclick="openActivityDetail(\'' + escapeHtml(id) + '\')">' +
       '<div style="display:flex;min-height:120px">' +
-        '<div class="item-card-img">' + (img ? '<img src="' + escapeHtml(img) + '" alt="" onerror="this.style.display=\'none\'">' : '<i class="fas fa-calendar" style="color:rgba(255,255,255,.5);font-size:28px"></i>') + '</div>' +
+        '<div class="item-card-img">' + (img ? '<img src="' + escapeHtml(img) + '" alt="" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">' : '<i class="fas fa-calendar" style="color:rgba(255,255,255,.5);font-size:28px"></i>') + '</div>' +
         '<div class="item-card-body" style="overflow:hidden">' +
           '<div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px">' +
             '<span class="item-tag">' + escapeHtml(typeLabel) + '</span>' +
@@ -7343,7 +7346,7 @@ window.filterProfanity=function(t){
       '</div>' +
       (p.title ? '<h2 style="font-size:18px;margin-bottom:10px;word-break:break-word">' + escapeHtml(p.title) + '</h2>' : '') +
       '<div style="font-size:14px;color:var(--text-secondary);line-height:1.9;white-space:pre-wrap;margin-bottom:14px;word-break:break-word;overflow-wrap:anywhere">' + escapeHtml(p.content || p.body || p.text || '') + '</div>' +
-      (img ? '<img src="' + escapeHtml(img) + '" style="width:100%;border-radius:12px;margin-bottom:14px" onerror="this.style.display=\'none\'">' : '') +
+      (img ? '<img src="' + escapeHtml(img) + '" style="width:100%;border-radius:12px;margin-bottom:14px" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">' : '') +
       '<div style="display:flex;gap:12px;align-items:center;padding:12px 0;border-top:1px solid var(--border-light);border-bottom:1px solid var(--border-light);margin-bottom:14px">' +
         '<button class="btn-outline-dark" style="font-size:12px" id="postLikeBtn" onclick="toggleLibraryPostLike(\'' + escapeHtml(id) + '\')"><i class="fas fa-heart"></i> إعجاب (' + likesCount + ')</button>' +
         '<span style="font-size:12px;color:var(--text-muted)"><i class="fas fa-comment"></i> تعليقات</span>' +
@@ -7829,7 +7832,7 @@ window.restrictUserAccount=async function(userId, untilDate, reason){
     var role = p.position || p.role || p.title || '';
     var uname = p.username || p.id || '';
     var av = img
-      ? ('<img src="'+escapeHtml(img)+'" alt="" onerror="this.style.display=\'none\'">')
+      ? ('<img src="'+escapeHtml(img)+'" alt="" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">')
       : '<i class="fas fa-user"></i>';
     return '<div class="person-card" style="cursor:pointer" onclick="openProfile(\''+escapeHtml(uname)+'\')">'+
       '<div class="person-avatar">'+av+'</div>'+
@@ -8624,7 +8627,7 @@ window.restrictUserAccount=async function(userId, untilDate, reason){
         '<button type="button" class="modal-close" style="z-index:2" onclick="document.getElementById(\'fbProfileOverlay\').remove()"><i class="fas fa-times"></i></button>'+
         ambNav+
         '<div class="img-loading-wrap" style="height:140px;'+coverFallback+'">'+
-          (cover ? '<img src="'+escapeHtml(cover)+'" style="width:100%;height:100%;object-fit:cover;display:block" onload="this.closest(\'.img-loading-wrap\').classList.add(\'loaded\')" onerror="this.remove()">' : '')+
+          (cover ? '<img src="'+escapeHtml(cover)+'" style="width:100%;height:100%;object-fit:cover;display:block" onload="this.closest(\'.img-loading-wrap\').classList.add(\'loaded\')" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">' : '')+
         '</div>'+
         '<div style="padding:0 20px 24px">'+
           '<div class="person-avatar" style="width:96px;height:96px;margin:-48px auto 10px;'+(photo?'border:4px solid var(--surface);':'border:none;')+'font-size:34px;overflow:hidden;border-radius:50%;background:linear-gradient(135deg,var(--primary-light),var(--primary));display:flex;align-items:center;justify-content:center;color:#fff">'+
@@ -8747,7 +8750,7 @@ window.restrictUserAccount=async function(userId, untilDate, reason){
       var wilaya = escapeHtml(a.wilaya || a.wilayaName || '');
       var key = escapeHtml(String(a.username || a.id || ''));
       return '<div class="person-card amb-card amb-card-pro" style="cursor:pointer" onclick="openAmbassadorProfile(\''+key+'\')">'+
-        '<div class="person-avatar">'+(img ? '<img src="'+escapeHtml(img)+'" alt="" onerror="this.style.display=\'none\'">' : '<i class="fas fa-user"></i>')+'</div>'+
+        '<div class="person-avatar">'+(img ? '<img src="'+escapeHtml(img)+'" alt="" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">' : '<i class="fas fa-user"></i>')+'</div>'+
         '<div class="person-name">'+name+'</div>'+
         '<div class="person-role"><i class="fas fa-map-marker-alt" style="font-size:11px"></i> '+wilaya+'</div>'+
         '<div class="amb-card-actions" onclick="event.stopPropagation()">'+
@@ -9519,7 +9522,7 @@ window.restrictUserAccount=async function(userId, untilDate, reason){
     var role = esc(p.role || p.position || p.type || '');
     var key = esc(String(p.username || p.id || ''));
     return '<div class="person-card" style="cursor:pointer" onclick="openProfile(\''+key+'\')">'+
-      '<div class="person-avatar">'+(img?'<img src="'+esc(img)+'" alt="" onerror="this.style.display=\'none\'">':'<i class="fas fa-user"></i>')+'</div>'+
+      '<div class="person-avatar">'+(img?'<img src="'+esc(img)+'" alt="" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':'<i class="fas fa-user"></i>')+'</div>'+
       '<div class="person-name">'+name+'</div>'+
       (role?'<div class="person-role">'+role+'</div>':'')+
       '<button type="button" class="btn-outline-dark" style="margin-top:10px;font-size:12px" onclick="event.stopPropagation();openProfile(\''+key+'\')"><i class="fas fa-user"></i> فتح الملف</button>'+
@@ -9560,7 +9563,7 @@ window.restrictUserAccount=async function(userId, untilDate, reason){
       var wilaya = esc(a.wilaya || a.wilayaName || '');
       var key = esc(String(a.username || a.id || ''));
       return '<div class="person-card amb-card amb-card-pro" style="cursor:pointer" onclick="openAmbassadorProfile(\''+key+'\')">'+
-        '<div class="person-avatar">'+(img?'<img src="'+esc(img)+'" alt="" onerror="this.style.display=\'none\'">':'<i class="fas fa-user"></i>')+'</div>'+
+        '<div class="person-avatar">'+(img?'<img src="'+esc(img)+'" alt="" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':'<i class="fas fa-user"></i>')+'</div>'+
         '<div class="person-name">'+name+'</div>'+
         '<div class="person-role"><i class="fas fa-map-marker-alt" style="font-size:11px"></i> '+wilaya+'</div>'+
         '<div class="amb-card-actions" onclick="event.stopPropagation()">'+
@@ -10102,7 +10105,7 @@ window.restrictUserAccount=async function(userId, untilDate, reason){
         var wilaya = esc2(a.wilaya || a.wilayaName || '');
         var key = esc2(String(a.username || a.id || ''));
         return '<div class="person-card amb-card-pro" style="cursor:pointer" onclick="typeof openProfile===\'function\'&&openProfile(\''+key+'\')">'+
-          '<div class="person-avatar">'+(img?'<img src="'+esc2(img)+'" alt="" onerror="this.style.display=\'none\'">':'<i class="fas fa-user"></i>')+'</div>'+
+          '<div class="person-avatar">'+(img?'<img src="'+esc2(img)+'" alt="" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':'<i class="fas fa-user"></i>')+'</div>'+
           '<div class="person-name">'+name+'</div>'+
           '<div class="person-role"><i class="fas fa-map-marker-alt"></i> '+wilaya+'</div>'+
           '<button type="button" class="btn-outline-dark" style="margin-top:10px;font-size:12px" onclick="event.stopPropagation();typeof openProfile===\'function\'&&openProfile(\''+key+'\')"><i class="fas fa-user"></i> فتح الملف</button>'+
@@ -11009,7 +11012,7 @@ window.restrictUserAccount=async function(userId, untilDate, reason){
       var badge = st==='مكتمل'?'badge-accepted':(st==='مخطط'?'badge-pending':'badge-review');
       var id = p.id || '';
       return '<div class="person-card" style="text-align:right;padding:0;overflow:hidden;cursor:pointer" onclick="typeof openProjectDetail===\'function\'&&openProjectDetail(\''+esc(id)+'\')">'+
-        '<div style="height:120px;background:linear-gradient(135deg,#0d3d1a,#1a6b2f);overflow:hidden">'+(img?'<img src="'+esc(img)+'" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display=\'none\'">':'')+'</div>'+
+        '<div style="height:120px;background:linear-gradient(135deg,#0d3d1a,#1a6b2f);overflow:hidden">'+(img?'<img src="'+esc(img)+'" style="width:100%;height:100%;object-fit:cover" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':'')+'</div>'+
         '<div style="padding:14px"><span class="item-tag">'+esc(p.category||'')+'</span> <span class="badge '+badge+'" style="margin-right:6px">'+st+'</span>'+
         '<div class="item-title" style="margin-top:6px">'+esc(p.title||p.name||'')+'</div>'+
         (p.description?'<div class="item-desc" style="margin-top:4px">'+esc((p.description||'').slice(0,90))+'</div>':'')+
@@ -12356,7 +12359,7 @@ window.restrictUserAccount=async function(userId, untilDate, reason){
       var comments = p.commentsCount || (p.comments && p.comments.length) || 0;
       return '<div class="mzone-post-thumb" style="position:relative" onclick="typeof openPostDetail===\'function\'&&openPostDetail(\''+esc(p.id)+'\')">'+
         '<button type="button" onclick="event.stopPropagation();togglePostMenu(this,\''+esc(p.id)+'\',\''+esc(p._col)+'\')" style="position:absolute;top:4px;left:4px;z-index:5;width:26px;height:26px;border-radius:50%;border:none;background:rgba(0,0,0,.45);color:#fff;cursor:pointer"><i class="fas fa-ellipsis-v"></i></button>'+
-        (img ? '<img src="'+esc(img)+'" alt="" onerror="this.style.display=\'none\'">' : '<div class="mzone-post-noimg">'+esc((p.title||p.content||'منشور').slice(0,40))+'</div>')+
+        (img ? '<img src="'+esc(img)+'" alt="" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">' : '<div class="mzone-post-noimg">'+esc((p.title||p.content||'منشور').slice(0,40))+'</div>')+
         '<div class="mzone-post-thumb-stats"><span><i class="fas fa-heart"></i> '+likes+'</span><span><i class="fas fa-comment"></i> '+comments+'</span></div>'+
       '</div>';
     }).join('');
@@ -12713,7 +12716,7 @@ window.restrictUserAccount=async function(userId, untilDate, reason){
             return '<div class="card" style="padding:14px;margin-bottom:10px;cursor:pointer" onclick="typeof openPostDetail===\'function\'&&openPostDetail(\''+esc(p.id)+'\')">'+
               '<div style="font-weight:700;margin-bottom:6px">'+esc(p.title||'منشور')+'</div>'+
               '<div style="font-size:12px;color:var(--text-muted);margin-bottom:8px">'+esc(author)+'</div>'+
-              (img?'<img src="'+esc(img)+'" style="width:100%;max-height:200px;object-fit:cover;border-radius:10px;margin-bottom:8px" onerror="this.style.display=\'none\'">':'')+
+              (img?'<img src="'+esc(img)+'" style="width:100%;max-height:200px;object-fit:cover;border-radius:10px;margin-bottom:8px" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':'')+
               '<div style="font-size:13px;color:var(--text-secondary)">'+esc((p.content||p.body||p.text||'').slice(0,160))+'</div></div>';
           }).join('')
         : '<div class="empty-state"><i class="fas fa-pen"></i>لا منشورات بعد</div>';
@@ -13162,7 +13165,7 @@ window.restrictUserAccount=async function(userId, untilDate, reason){
         '<div class="fb-pro-cover" style="'+coverStyle+'"></div>'+
         '<div class="fb-pro-body">'+
           '<div class="fb-pro-top">'+
-            '<div class="fb-pro-avatar">'+(photo?'<img src="'+esc(photo)+'" style="width:100%;height:100%;object-fit:cover" onerror="this.remove()">':'<i class="fas fa-user"></i>')+'</div>'+
+            '<div class="fb-pro-avatar">'+(photo?'<img src="'+esc(photo)+'" style="width:100%;height:100%;object-fit:cover" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':'<i class="fas fa-user"></i>')+'</div>'+
             '<div style="flex:1;min-width:140px;padding-bottom:6px">'+
               '<h2 class="fb-pro-name">'+esc(name)+verifiedBadge+'</h2>'+
               (uname?'<div class="fb-pro-user">@'+esc(uname)+'</div>':'')+
@@ -13215,7 +13218,7 @@ window.restrictUserAccount=async function(userId, untilDate, reason){
             var comments=p.commentsCount||0;
             return '<div class="card" style="margin-bottom:10px;padding:12px;cursor:pointer" onclick="typeof openPostDetail===\'function\'&&openPostDetail(\''+esc(p.id)+'\');document.getElementById(\'fbProfileOverlay\').remove()">'+
               (txt?'<div style="font-size:13px;line-height:1.7;margin-bottom:8px">'+esc(String(txt).slice(0,200))+(String(txt).length>200?'…':'')+'</div>':'')+
-              (img?'<img src="'+esc(img)+'" style="width:100%;max-height:200px;object-fit:cover;border-radius:12px;margin-bottom:8px" onerror="this.remove()">':'')+
+              (img?'<img src="'+esc(img)+'" style="width:100%;max-height:200px;object-fit:cover;border-radius:12px;margin-bottom:8px" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':'')+
               '<div style="display:flex;gap:14px;font-size:12px;color:var(--text-muted)"><span><i class="fas fa-heart" style="color:var(--danger)"></i> '+likes+'</span><span><i class="fas fa-comment" style="color:#3b82f6"></i> '+comments+'</span></div></div>';
           }).join('');
         }
@@ -14198,7 +14201,7 @@ console.log('[REAL FIX] phone, join steps, arabic type, header, seo, categories,
     var role = p.position || p.role || p.title || p.job || '';
     var uname = p.username || p.id || '';
     var av = img
-      ? ('<img src="'+esc(img)+'" alt="" loading="lazy" onerror="this.remove();if(!this.parentNode.querySelector(\'i\')){var i=document.createElement(\'i\');i.className=\'fas fa-user\';this.parentNode.appendChild(i);}">')
+      ? ('<img src="'+esc(img)+'" alt="" loading="lazy" onerror="this.onerror=null;this.src=\'https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png\';this.style.display=\'block\';this.style.visibility=\'visible\'">')
       : '<i class="fas fa-user"></i>';
     return '<div class="person-card amb-card-pro team-card-pro" style="text-align:center">'+
       '<div class="person-avatar">'+av+'</div>'+
@@ -14675,7 +14678,7 @@ console.log('[REAL FIX] phone, join steps, arabic type, header, seo, categories,
     host.innerHTML =
       '<div style="width:560px;background:#fff;border:2px solid #1a6b2f;border-radius:16px;overflow:hidden">'+
         '<div style="background:linear-gradient(120deg,#1A6B2F,#0F4A1E);padding:22px 24px;text-align:center">'+
-          '<img src="https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/hidr.png" style="height:52px;margin:0 auto 8px;display:block" onerror="this.style.display=\'none\'">'+
+          '<img src="https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/hidr.png" style="height:52px;margin:0 auto 8px;display:block" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">'+
           ''+
           '<div style="color:#fff;font-size:22px;font-weight:800">تذكرة مشاركة نزاهة</div>'+
         '</div>'+
@@ -14872,7 +14875,7 @@ console.log('[REAL FIX] phone, join steps, arabic type, header, seo, categories,
     if (act.image && images.indexOf(act.image) < 0) images = [act.image].concat(images);
     if (images.length) {
       mediaHtml += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-top:12px">'+
-        images.map(function(src){ return '<img src="'+esc(src)+'" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px" loading="lazy" onerror="this.style.display=\'none\'">'; }).join('')+
+        images.map(function(src){ return '<img src="'+esc(src)+'" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px" loading="lazy" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">'; }).join('')+
       '</div>';
     }
     var video = act.videoUrl || act.video || '';
@@ -15243,7 +15246,7 @@ console.log('[REAL FIX] phone, join steps, arabic type, header, seo, categories,
     var uname = p.username || p.id || '';
     var verified = isVerifiedFlag(p);
     var av = img
-      ? ('<img src="'+esc(img)+'" alt="" loading="lazy" onerror="this.remove();if(!this.parentNode.querySelector(\'i\')){var i=document.createElement(\'i\');i.className=\'fas fa-user\';this.parentNode.appendChild(i);}">')
+      ? ('<img src="'+esc(img)+'" alt="" loading="lazy" onerror="this.onerror=null;this.src=\'https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png\';this.style.display=\'block\';this.style.visibility=\'visible\'">')
       : '<i class="fas fa-user"></i>';
     return '<div class="person-card amb-card-pro team-card-pro">'+
       '<div class="person-avatar">'+av+'</div>'+
@@ -15441,7 +15444,7 @@ console.log('[REAL FIX] phone, join steps, arabic type, header, seo, categories,
 
         return '<div class="lib-comment" style="display:flex;gap:8px" data-author-id="'+esc(cAid)+'" data-verified="'+(cVerified?'true':'false')+'" data-admin="'+(cAdmin?'true':'false')+'">'+
           '<div class="person-avatar" style="width:28px;height:28px;font-size:11px;flex-shrink:0'+(cAid?';cursor:pointer':'')+'"'+(cAid?' onclick="typeof openProfile===\'function\'&&openProfile(\''+esc(cAid)+'\')"':'')+'>'+
-            (c.authorPhoto ? '<img src="'+esc(c.authorPhoto)+'" style="width:100%;height:100%;border-radius:50%;object-fit:cover" onerror="this.parentNode.innerHTML=\'<i class=\\\'fas fa-user\\\'></i>\'">' : '<i class="fas fa-user"></i>')+
+            (c.authorPhoto ? '<img src="'+esc(c.authorPhoto)+'" style="width:100%;height:100%;border-radius:50%;object-fit:cover" onerror="this.onerror=null;this.src=\'https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png\';this.style.display=\'block\'">' : '<i class="fas fa-user"></i>')+
           '</div>'+
           '<div style="'+boxStyle+'">'+
             '<div class="author-id-block"'+(cAid?' style="cursor:pointer" onclick="typeof openProfile===\'function\'&&openProfile(\''+esc(cAid)+'\')"':'')+'>'+
@@ -15607,7 +15610,7 @@ console.log('[REAL FIX] phone, join steps, arabic type, header, seo, categories,
       ? ' <span class="verified-badge green" title="موثّق"><i class="fas fa-check"></i></span>' : '';
     /* صورة فقط — بدون سبينر */
     var av = img
-      ? ('<img src="'+esc(img)+'" alt="" loading="lazy" onerror="this.style.display=\'none\';var p=this.parentNode;if(p&&!p.querySelector(\'i.fas\')){var i=document.createElement(\'i\');i.className=\'fas fa-user\';p.appendChild(i);}">')
+      ? ('<img src="'+esc(img)+'" alt="" loading="lazy" onerror="this.onerror=null;this.src=\'https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png\';this.style.display=\'block\';this.style.visibility=\'visible\'">')
       : '<i class="fas fa-user"></i>';
     return '<div class="person-card amb-card-pro team-card-pro">'+
       '<div class="person-avatar">'+av+'</div>'+
@@ -15926,7 +15929,7 @@ console.log('[REAL FIX] phone, join steps, arabic type, header, seo, categories,
       if (src) {
         return '<a class="partner-logo" href="' + esc(url) + '" target="_blank" rel="noopener noreferrer" title="' + esc(name) + '">' +
           '<img src="' + esc(src) + '" alt="' + esc(name) + '" crossorigin="anonymous" loading="lazy" decoding="async" ' +
-          'onload="typeof partnerLogoRemoveBg===\'function\'&&partnerLogoRemoveBg(this)" onerror="this.style.display=\'none\'"></a>';
+          'onload="typeof partnerLogoRemoveBg===\'function\'&&partnerLogoRemoveBg(this)" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'"></a>';
       }
       return '<a class="partner-logo" href="' + esc(url) + '" target="_blank" rel="noopener noreferrer" ' +
         'style="font-size:12px;font-weight:700;color:var(--primary);text-align:center;text-decoration:none">' + esc(name) + '</a>';
@@ -16191,7 +16194,7 @@ console.log('[REAL FIX] phone, join steps, arabic type, header, seo, categories,
           }
         } catch(_){}
         var av = photo
-          ? '<img src="' + esc(photo) + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.parentNode.innerHTML=\'<i class=\\\'fas fa-user\\\'></i>\'">'
+          ? '<img src="' + esc(photo) + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.onerror=null;this.src=\'https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png\';this.style.display=\'block\'">'
           : '<i class="fas fa-user"></i>';
         rows.push(
           '<div style="display:flex;align-items:center;gap:12px;padding:10px;border-radius:12px;cursor:pointer;border:1px solid var(--border-light);margin-bottom:8px" ' +
@@ -16248,7 +16251,7 @@ console.log('[REAL FIX] phone, join steps, arabic type, header, seo, categories,
           : '';
         return '<div class="lib-comment" style="display:flex;gap:8px;margin-bottom:10px" data-author-id="' + esc(cAid) + '" data-verified="' + (cVerified ? 'true' : 'false') + '" data-admin="' + (cAdmin ? 'true' : 'false') + '">' +
           '<div class="person-avatar" style="width:28px;height:28px;font-size:11px;flex-shrink:0">' +
-            (c.authorPhoto ? '<img src="' + esc(c.authorPhoto) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover" onerror="this.parentNode.innerHTML=\'<i class=\\\'fas fa-user\\\'></i>\'">' : '<i class="fas fa-user"></i>') +
+            (c.authorPhoto ? '<img src="' + esc(c.authorPhoto) + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover" onerror="this.onerror=null;this.src=\'https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png\';this.style.display=\'block\'">' : '<i class="fas fa-user"></i>') +
           '</div>' +
           '<div style="' + boxStyle + '">' +
             '<div class="author-id-name" style="font-weight:700;font-size:13px">' + esc(c.authorName || 'مستخدم') + badges + '</div>' +
@@ -17303,7 +17306,7 @@ console.log('[REAL FIX] phone, join steps, arabic type, header, seo, categories,
     var verified = (p.verified===true||p.isVerified===true||String(p.verificationStatus||'').toLowerCase()==='accepted');
     var vBadge = verified ? ' <span class="verified-badge green" title="موثّق"><i class="fas fa-check"></i></span>' : '';
     var av = img
-      ? ('<img src="'+esc(img)+'" alt="" loading="lazy" onerror="this.style.display=\'none\';var p=this.parentNode;if(p&&!p.querySelector(\'i.fas\')){var i=document.createElement(\'i\');i.className=\'fas fa-user\';p.appendChild(i);}">')
+      ? ('<img src="'+esc(img)+'" alt="" loading="lazy" onerror="this.onerror=null;this.src=\'https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png\';this.style.display=\'block\';this.style.visibility=\'visible\'">')
       : '<i class="fas fa-user"></i>';
     return '<div class="person-card amb-card-pro team-card-pro">'+
       '<div class="person-avatar" style="background:transparent;border:1px solid var(--border)">'+av+'</div>'+
@@ -17926,7 +17929,7 @@ console.log('[REAL FIX] phone, join steps, arabic type, header, seo, categories,
     var role = p.position || p.role || p.title || p.job || p.roleLabel || '';
     var uname = p.username || p.id || '';
     var av = img
-      ? '<img src="'+esc(img)+'" alt="" loading="lazy" onerror="this.style.display=\'none\';var p=this.parentNode;if(p&&!p.querySelector(\'i.fas\')){var i=document.createElement(\'i\');i.className=\'fas fa-user\';p.appendChild(i);}">'
+      ? '<img src="'+esc(img)+'" alt="" loading="lazy" onerror="this.onerror=null;this.src=\'https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png\';this.style.display=\'block\';this.style.visibility=\'visible\'">'
       : '<i class="fas fa-user"></i>';
     return '<div class="person-card amb-card-pro">'+
       '<div class="person-avatar" style="background:transparent;border:1px solid var(--border)">'+av+'</div>'+
@@ -19811,7 +19814,7 @@ window.submitActivityRegistration =async function(e, activityId){
       '</div>'+
       '<div class="pcf-body" style="cursor:pointer" onclick="typeof openLibraryItem===\'function\'&&openLibraryItem(\''+esc(b.id)+'\',\'post\')">'+
         esc(String(content).slice(0,320))+(String(content).length>320?'…':'')+
-        (img?'<img class="pcf-img" src="'+esc(img)+'" alt="" loading="lazy" onerror="this.style.display=\'none\'">':'')+
+        (img?'<img class="pcf-img" src="'+esc(img)+'" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':'')+
       '</div>'+
       '<div style="padding:0 14px 14px">'+
         '<div class="lib-meta-row"><span class="lib-likes" data-id="'+esc(b.id)+'"><i class="fas fa-heart"></i> <b class="cnt">'+b.likes+'</b></span><span class="lib-comments" data-id="'+esc(b.id)+'"><i class="fas fa-comment"></i> <b class="cnt">'+b.comments+'</b></span></div>'+
@@ -19830,7 +19833,7 @@ window._libPublisherHTML = function(item){
   if (!n && !u) return '';
   function e(s){ return (typeof esc==='function'?esc:function(x){return String(x||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');})(s); }
   return '<div class="lib-publisher-row" style="display:flex;align-items:center;gap:8px;margin-bottom:8px;cursor:pointer" onclick="event.stopPropagation();typeof openProfile===\'function\'&&openProfile(\''+e(id)+'\')">'+
-    (p ? '<img src="'+e(p)+'" style="width:28px;height:28px;border-radius:50%;object-fit:cover" onerror="this.style.display=\'none\'">' : '<div style="width:28px;height:28px;border-radius:50%;background:var(--surface-alt);display:flex;align-items:center;justify-content:center"><i class="fas fa-user" style="font-size:11px;color:var(--text-muted)"></i></div>')+
+    (p ? '<img src="'+e(p)+'" style="width:28px;height:28px;border-radius:50%;object-fit:cover" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">' : '<div style="width:28px;height:28px;border-radius:50%;background:var(--surface-alt);display:flex;align-items:center;justify-content:center"><i class="fas fa-user" style="font-size:11px;color:var(--text-muted)"></i></div>')+
     '<div><div style="font-weight:700;font-size:12px">'+e(n||'عضو')+v+'</div>'+(u?'<div style="font-size:10px;color:var(--text-muted);direction:ltr;text-align:right">@'+e(u)+'</div>':'')+'</div></div>';
 };
 
@@ -19842,7 +19845,7 @@ window._libPublisherHTML = function(item){
     var url = item.url || item.link || '';
     var cat = item.category ? '<span class="badge" style="background:var(--surface-alt);color:var(--primary);font-size:10px">'+esc(item.category)+'</span>' : '';
     return '<div class="book-card-lib lib-card-uni" data-id="'+esc(b.id)+'" data-kind="book">'+
-      (img?'<img class="bcl-cover" src="'+esc(img)+'" alt="" loading="lazy" onerror="this.style.display=\'none\'">':'<div class="bcl-cover" style="display:flex;align-items:center;justify-content:center"><i class="fas fa-book" style="font-size:22px;color:var(--text-muted)"></i></div>')+
+      (img?'<img class="bcl-cover" src="'+esc(img)+'" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':'<div class="bcl-cover" style="display:flex;align-items:center;justify-content:center"><i class="fas fa-book" style="font-size:22px;color:var(--text-muted)"></i></div>')+
       '<div class="bcl-body">'+
         cat+
         '<div style="font-weight:800;font-size:14.5px;margin:4px 0 2px;cursor:pointer" onclick="typeof openLibraryItem===\'function\'&&openLibraryItem(\''+esc(b.id)+'\',\'book\')">'+esc(item.title||item.name||'كتاب')+'</div>'+
@@ -21257,7 +21260,7 @@ window._libPublisherHTML = function(item){
         var ownerBadge = (isMe && st==='pending') ? '<span class="badge badge-pending" style="position:absolute;top:6px;right:6px;font-size:9px">قيد المراجعة</span>' : '';
         return '<div style="border-radius:12px;overflow:hidden;border:1px solid var(--border);cursor:pointer;position:relative;background:var(--surface-alt)" onclick="typeof openLibraryItem===\'function\'&&openLibraryItem(\''+esc(p.id)+'\',\'post\')">'+
           ownerBadge+
-          (img?'<img src="'+esc(img)+'" style="width:100%;height:100px;object-fit:cover;display:block" onerror="this.style.display=\'none\'">':'<div style="height:60px;display:flex;align-items:center;justify-content:center"><i class="fas fa-file-alt" style="color:var(--text-muted)"></i></div>')+
+          (img?'<img src="'+esc(img)+'" style="width:100%;height:100px;object-fit:cover;display:block" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':'<div style="height:60px;display:flex;align-items:center;justify-content:center"><i class="fas fa-file-alt" style="color:var(--text-muted)"></i></div>')+
           '<div style="padding:8px;font-size:11px;font-weight:600;line-height:1.4">'+esc(String(title).slice(0,60))+(String(title).length>60?'…':'')+'</div>'+
         '</div>';
       }).join('');
@@ -21404,7 +21407,7 @@ window._libPublisherHTML = function(item){
       }
 
       return '<div class="lib-card-uni" data-id="'+esc(id)+'" style="width:100%;border:1px solid var(--border);border-radius:16px;background:var(--surface);overflow:hidden">'+
-        (img?'<img src="'+esc(img)+'" alt="" style="width:100%;height:180px;object-fit:cover;display:block" loading="lazy" onerror="this.style.display=\'none\'">':
+        (img?'<img src="'+esc(img)+'" alt="" style="width:100%;height:180px;object-fit:cover;display:block" loading="lazy" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':
           (kind==='link'?'<div style="height:100px;display:flex;align-items:center;justify-content:center;background:var(--surface-alt)"><i class="fas fa-link" style="font-size:28px;color:var(--text-muted)"></i></div>':''))+
         '<div style="padding:14px">'+
           '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">'+
@@ -21673,7 +21676,7 @@ window._libPublisherHTML = function(item){
         '<div class="fb-pro-body">'+
           '<div class="fb-pro-top">'+
             '<div class="fb-pro-avatar" style="position:relative">'+
-              (photo?'<img src="'+esc(photo)+'" style="width:100%;height:100%;object-fit:cover" onerror="this.remove()">':'<i class="fas fa-user"></i>')+
+              (photo?'<img src="'+esc(photo)+'" style="width:100%;height:100%;object-fit:cover" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':'<i class="fas fa-user"></i>')+
               (isVerified?'<span class="verified-badge green" style="position:absolute;bottom:4px;left:4px;width:18px;height:18px"><i class="fas fa-check"></i></span>':'')+
             '</div>'+
             '<div style="flex:1;min-width:140px;padding-bottom:6px">'+
@@ -21749,7 +21752,7 @@ window._libPublisherHTML = function(item){
             return '<div class="card" style="margin-bottom:10px;padding:12px;cursor:pointer" onclick="typeof openPostDetail===\'function\'&&openPostDetail(\''+esc(p.id)+'\');document.getElementById(\'fbProfileOverlay\').remove()">'+
               ownBadge+
               (txt?'<div style="font-size:13px;line-height:1.7;margin-bottom:8px">'+esc(String(txt).slice(0,200))+(String(txt).length>200?'…':'')+'</div>':'')+
-              (img?'<img src="'+esc(img)+'" style="width:100%;max-height:200px;object-fit:cover;border-radius:12px;margin-bottom:8px" onerror="this.remove()">':'')+
+              (img?'<img src="'+esc(img)+'" style="width:100%;max-height:200px;object-fit:cover;border-radius:12px;margin-bottom:8px" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':'')+
               '<div style="display:flex;gap:14px;font-size:12px;color:var(--text-muted)"><span><i class="fas fa-heart" style="color:var(--danger)"></i> '+likes+'</span><span><i class="fas fa-comment" style="color:#3b82f6"></i> '+comments+'</span></div></div>';
           }).join('');
         }
@@ -22001,7 +22004,7 @@ window._libPublisherHTML = function(item){
         '<div class="fb-pro-body">'+
           '<div class="fb-pro-top">'+
             '<div class="fb-pro-avatar" style="position:relative">'+
-              (photo?'<img src="'+esc(photo)+'" style="width:100%;height:100%;object-fit:cover" onerror="this.remove()">':'<i class="fas fa-user"></i>')+
+              (photo?'<img src="'+esc(photo)+'" style="width:100%;height:100%;object-fit:cover" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':'<i class="fas fa-user"></i>')+
               (isVerified?'<span class="verified-badge green" style="position:absolute;bottom:4px;left:4px;width:16px;height:16px"><i class="fas fa-check"></i></span>':'')+
             '</div>'+
             '<div style="flex:1;min-width:140px;padding-bottom:6px">'+
@@ -22073,7 +22076,7 @@ window._libPublisherHTML = function(item){
             return '<div class="card" style="margin-bottom:10px;padding:12px;cursor:pointer" onclick="typeof openPostDetail===\'function\'&&openPostDetail(\''+esc(p.id)+'\');document.getElementById(\'fbProfileOverlay\').remove()">'+
               ownBadge+
               (txt?'<div style="font-size:13px;line-height:1.7;margin-bottom:8px">'+esc(String(txt).slice(0,200))+(String(txt).length>200?'…':'')+'</div>':'')+
-              (img?'<img src="'+esc(img)+'" style="width:100%;max-height:200px;object-fit:cover;border-radius:12px;margin-bottom:8px" onerror="this.remove()">':'')+
+              (img?'<img src="'+esc(img)+'" style="width:100%;max-height:200px;object-fit:cover;border-radius:12px;margin-bottom:8px" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':'')+
               '<div style="display:flex;gap:14px;font-size:12px;color:var(--text-muted)"><span><i class="fas fa-heart" style="color:var(--danger)"></i> '+likes+'</span><span><i class="fas fa-comment" style="color:#3b82f6"></i> '+comments+'</span></div></div>';
           }).join('');
         }
@@ -23678,7 +23681,7 @@ window.postCardHTML = function(item){
     var src=video||img;
     mediaHtml='<video class="pcf-video" src="'+esc(src)+'" controls playsinline preload="metadata" onclick="event.stopPropagation()"></video>';
   } else if(img){
-    mediaHtml='<img class="pcf-img" src="'+esc(img)+'" alt="" loading="lazy" onerror="this.style.display=\'none\'">';
+    mediaHtml='<img class="pcf-img" src="'+esc(img)+'" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">';
   }
   return '<div class="post-card-fb lib-card-uni" data-id="'+esc(id)+'" data-kind="post" style="border:1.5px solid var(--border-light);border-radius:16px;background:var(--surface);overflow:hidden;margin-bottom:12px">'+
     '<div class="pcf-head">'+
@@ -23728,7 +23731,7 @@ window.bookCardHTML = function(item){
   return '<div class="book-card-lib lib-card-uni" data-id="'+esc(id)+'" data-kind="book" style="border:1.5px solid var(--border-light);border-radius:16px;background:var(--surface);overflow:hidden;display:flex;margin-bottom:12px">'+
     '<div style="width:100px;min-width:100px;background:var(--surface-alt);display:flex;align-items:center;justify-content:center;overflow:hidden">'+
       (video?'<video src="'+esc(video)+'" style="width:100%;height:140px;object-fit:cover" muted></video>':
-        (img?'<img src="'+esc(img)+'" style="width:100%;height:140px;object-fit:cover" loading="lazy" onerror="this.style.display=\'none\'">':'<i class="fas fa-book" style="font-size:28px;color:var(--text-muted)"></i>'))+
+        (img?'<img src="'+esc(img)+'" style="width:100%;height:140px;object-fit:cover" loading="lazy" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':'<i class="fas fa-book" style="font-size:28px;color:var(--text-muted)"></i>'))+
     '</div>'+
     '<div style="flex:1;padding:12px 14px;min-width:0">'+
       (pubAuthor?'<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">'+
@@ -23934,7 +23937,7 @@ window.editMyPost=async function(postId, col){
         '<div class="form-group"><label class="required">المحتوى</label><textarea class="form-textarea" id="editFullContent" rows="5">'+esc(p.content||p.text||p.description||'')+'</textarea></div>'+
         '<div class="form-group"><label class="required">التصنيف</label><select class="form-select" id="editFullCat">'+catOpts+'</select></div>'+
         '<div class="form-group"><label>صورة / فيديو جديد</label><input class="form-input" type="file" id="editFullMedia" accept="image/*,video/*"></div>'+
-        (p.image||p.video?'<div style="margin-bottom:10px"><img src="'+esc(p.image||'')+'" style="max-width:100%;max-height:120px;border-radius:8px" onerror="this.style.display=\'none\'"></div>':'')+
+        (p.image||p.video?'<div style="margin-bottom:10px"><img src="'+esc(p.image||'')+'" style="max-width:100%;max-height:120px;border-radius:8px" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'"></div>':'')+
         '<button type="button" class="btn-primary" style="width:100%;justify-content:center" id="editFullSave"><i class="fas fa-save"></i> حفظ التعديلات</button>'+
       '</div>';
     document.body.appendChild(overlay);
@@ -24471,7 +24474,7 @@ window.openLibraryItem = async function(id, kind){
 
   var media='';
   if(video) media='<video src="'+esc(video)+'" controls style="width:100%;max-height:320px;border-radius:12px;background:#000;margin:12px 0"></video>';
-  else if(img) media='<img src="'+esc(img)+'" style="width:100%;max-height:320px;object-fit:contain;border-radius:12px;margin:12px 0" onerror="this.style.display=\'none\'">';
+  else if(img) media='<img src="'+esc(img)+'" style="width:100%;max-height:320px;object-fit:contain;border-radius:12px;margin:12px 0" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">';
 
   var overlay=document.createElement('div');
   overlay.className='modal-overlay';
@@ -24627,7 +24630,7 @@ window.postCardHTML = function(item){
   var needsMore=String(content).length>180;
   var mediaHtml='';
   if(video||isVideo) mediaHtml='<video class="pcf-video" src="'+esc(video||img)+'" controls playsinline preload="metadata" style="width:100%;max-height:300px;margin-top:8px;background:#000" onclick="event.stopPropagation()"></video>';
-  else if(img) mediaHtml='<img src="'+esc(img)+'" style="width:100%;max-height:280px;object-fit:cover;margin-top:8px;display:block" loading="lazy" onerror="this.style.display=\'none\'" onclick="event.stopPropagation();window.openLibraryItem(\''+esc(id)+'\',\'post\')">';
+  else if(img) mediaHtml='<img src="'+esc(img)+'" style="width:100%;max-height:280px;object-fit:cover;margin-top:8px;display:block" loading="lazy" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'" onclick="event.stopPropagation();window.openLibraryItem(\''+esc(id)+'\',\'post\')">';
 
   return '<div class="post-card-fb lib-card-uni" data-id="'+esc(id)+'" data-kind="post" style="border:1.5px solid var(--border-light);border-radius:16px;background:var(--surface);overflow:hidden;margin-bottom:12px">'+
     '<div class="pcf-head">'+
@@ -24961,7 +24964,7 @@ window.bookCardHTML = function(item){
   var isMe=me&&(me.id===authorId);
 
   var coverHtml = m.img
-    ? '<img class="bc-cover" src="'+esc(m.img)+'" alt="" loading="lazy" onerror="this.style.display=\'none\'">'
+    ? '<img class="bc-cover" src="'+esc(m.img)+'" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">'
     : '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center"><i class="fas fa-book" style="font-size:28px;color:var(--text-muted)"></i></div>';
 
   return '<div class="book-card-v2 lib-card-uni" data-id="'+esc(id)+'" data-kind="book">'+
@@ -25881,7 +25884,7 @@ window.bookCardHTML = function(item){
   var me=user();
   var isMe=me&&(me.id===authorId);
   var coverHtml=m.img
-    ? '<img class="bc-cover" src="'+esc(m.img)+'" alt="" loading="lazy" onerror="this.style.display=\'none\'">'
+    ? '<img class="bc-cover" src="'+esc(m.img)+'" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">'
     : '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center"><i class="fas fa-book" style="font-size:28px;color:var(--text-muted)"></i></div>';
 
   return '<div class="book-card-v2 lib-card-uni" data-id="'+esc(id)+'" data-kind="book">'+
@@ -26173,7 +26176,7 @@ window.showFollowList = async function(kind){
       }
       if(!uname && pid && !/^[0-9a-f]{20,}$/i.test(pid)) uname=pid;
       var av=photo
-        ? '<img src="'+esc(photo)+'" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.parentNode.innerHTML=\'<i class=\\\'fas fa-user\\\'></i>\'">'
+        ? '<img src="'+esc(photo)+'" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.onerror=null;this.src=\'https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png\';this.style.display=\'block\'">'
         : '<i class="fas fa-user"></i>';
       rows.push(
         '<div class="follow-row" onclick="typeof openProfile===\'function\'&&openProfile(\''+esc(uname||pid)+'\');this.closest(\'.modal-overlay\').remove()">'+
@@ -26687,7 +26690,7 @@ window.mediaHtmlFromItem = function(item){
     }
     return '<video class="pcf-video media-main" src="'+esc(m.video)+'" controls playsinline preload="metadata" style="width:100%;max-height:400px;background:#000;display:block;margin-top:10px" onclick="event.stopPropagation()"></video>';
   }
-  if(m.img) return '<img class="pcf-img media-main" src="'+esc(m.img)+'" alt="" loading="lazy" style="width:100%;max-height:380px;object-fit:cover;display:block;margin-top:10px" onerror="this.style.display=\'none\'">';
+  if(m.img) return '<img class="pcf-img media-main" src="'+esc(m.img)+'" alt="" loading="lazy" style="width:100%;max-height:380px;object-fit:cover;display:block;margin-top:10px" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">';
   return '';
 };
 
@@ -28319,7 +28322,7 @@ window.renderActivityDetailV15 = function(data, host){
       html+='<video src="'+_esc(video)+'" controls playsinline style="width:100%;max-height:420px;border-radius:16px;background:#000;margin-bottom:18px"></video>';
     }
   } else if(img){
-    html+='<img src="'+_esc(img)+'" alt="" style="width:100%;max-height:360px;object-fit:cover;border-radius:16px;margin-bottom:18px" onerror="this.style.display=\'none\'">';
+    html+='<img src="'+_esc(img)+'" alt="" style="width:100%;max-height:360px;object-fit:cover;border-radius:16px;margin-bottom:18px" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">';
   }
 
   html+='<h1 style="font-size:clamp(22px,4vw,30px);font-weight:800;margin-bottom:12px">'+_esc(title)+'</h1>';
@@ -28592,7 +28595,7 @@ window.sortByVerifiedFirst = function(list, nameKeys){
     var ver=(item.authorVerified||item.verified||item.isVerified)?' <span class="verified-badge green" title="موثّق"><i class="fas fa-check"></i></span>':'';
     var uid=item.authorId||item.userId||'';
     return '<div class="lib-author-row" style="display:flex;align-items:center;gap:8px;padding:8px 0 4px;cursor:pointer" onclick="event.stopPropagation();typeof openProfile===\'function\'&&openProfile(\''+_esc(uid||un)+'\')">'+
-      (photo?'<img src="'+_esc(photo)+'" style="width:32px;height:32px;border-radius:50%;object-fit:cover" onerror="this.style.display=\'none\'">':'<div style="width:32px;height:32px;border-radius:50%;background:var(--surface-alt);display:flex;align-items:center;justify-content:center"><i class="fas fa-user" style="font-size:12px;color:var(--text-muted)"></i></div>')+
+      (photo?'<img src="'+_esc(photo)+'" style="width:32px;height:32px;border-radius:50%;object-fit:cover" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':'<div style="width:32px;height:32px;border-radius:50%;background:var(--surface-alt);display:flex;align-items:center;justify-content:center"><i class="fas fa-user" style="font-size:12px;color:var(--text-muted)"></i></div>')+
       '<div style="text-align:right"><div style="font-weight:700;font-size:12px">'+_esc(name)+ver+'</div>'+
       (un?'<div style="font-size:11px;color:var(--text-muted);direction:ltr;text-align:right">@'+_esc(un)+'</div>':'')+
       '</div></div>';
@@ -29098,7 +29101,7 @@ window._authorStrip=function(item){
   var ver=(item.authorVerified||item.verified||item.isVerified)?' <span class="verified-badge green"><i class="fas fa-check"></i></span>':'';
   var id=item.authorId||item.userId||un||'';
   return '<div class="lib-author-row author-id-block" style="display:flex;align-items:center;gap:8px;padding:8px 0 4px;cursor:pointer" onclick="event.stopPropagation();typeof openProfile===\'function\'&&openProfile(\''+esc(id)+'\')">'+
-    (photo?'<img class="profile-photo" data-profile-id="'+esc(id)+'" src="'+esc(photo)+'" style="width:32px;height:32px;border-radius:50%;object-fit:cover" onerror="this.style.display=\'none\'">':'<div class="person-avatar profile-photo" data-profile-id="'+esc(id)+'" style="width:32px;height:32px;font-size:12px"><i class="fas fa-user"></i></div>')+
+    (photo?'<img class="profile-photo" data-profile-id="'+esc(id)+'" src="'+esc(photo)+'" style="width:32px;height:32px;border-radius:50%;object-fit:cover" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':'<div class="person-avatar profile-photo" data-profile-id="'+esc(id)+'" style="width:32px;height:32px;font-size:12px"><i class="fas fa-user"></i></div>')+
     '<div style="text-align:right;min-width:0"><div class="author-id-name" style="font-weight:700;font-size:12px">'+esc(name)+ver+'</div>'+
     (un?'<div class="author-id-user" style="font-size:11px;color:var(--text-muted);direction:ltr;text-align:right">@'+esc(un)+'</div>':'')+
     '</div></div>';
@@ -30040,7 +30043,7 @@ window.generateActivityTicketPNG = async function(activityId, participant, baseP
   host.innerHTML=
     '<div id="ticketA5v2" style="width:'+W+'px;height:'+H+'px;background:#fff;box-sizing:border-box;padding:28px 32px;display:flex;flex-direction:column;">'+
       '<div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">'+
-        '<img src="'+E(forumLogo)+'" crossorigin="anonymous" style="height:58px;width:auto;max-width:110px;object-fit:contain" onerror="this.style.display=\'none\'">'+
+        '<img src="'+E(forumLogo)+'" crossorigin="anonymous" style="height:58px;width:auto;max-width:110px;object-fit:contain" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">'+
         '<div style="flex:1;text-align:right">'+
           '<div style="font-size:11px;color:#1a6b2f;font-weight:700">'+E(forumName)+'</div>'+
           '<div style="font-size:20px;font-weight:800;color:#111;margin-top:2px">تذكرة مشاركة</div>'+
@@ -31271,7 +31274,7 @@ window.renderFounderProfessional = function(data){
   var ver = data.verified ? ' <span class="verified-badge green"><i class="fas fa-check"></i></span>' : '';
   host.innerHTML =
     '<div class="founder-pro">'+
-      '<div class="person-avatar">'+(photo?'<img src="'+String(photo).replace(/"/g,'&quot;')+'" alt="'+String(name).replace(/"/g,'&quot;')+'" onerror="this.remove()">':'<i class="fas fa-user-tie"></i>')+'</div>'+
+      '<div class="person-avatar">'+(photo?'<img src="'+String(photo).replace(/"/g,'&quot;')+'" alt="'+String(name).replace(/"/g,'&quot;')+'" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':'<i class="fas fa-user-tie"></i>')+'</div>'+
       '<div class="founder-body">'+
         '<h2>'+String(name).replace(/</g,'&lt;')+ver+'</h2>'+
         '<div class="founder-role"><i class="fas fa-star" style="color:var(--accent);margin-left:6px"></i>'+String(role).replace(/</g,'&lt;')+'</div>'+
@@ -32323,7 +32326,7 @@ window.showFollowList = async function(kind){
       }
       var ver = verified ? ' <span class="verified-badge green"><i class="fas fa-check"></i></span>' : '';
       var av = photo
-        ? '<img src="'+esc(photo)+'" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.remove()">'
+        ? '<img src="'+esc(photo)+'" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">'
         : '<i class="fas fa-user"></i>';
       rows.push(
         '<div style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:14px;cursor:pointer;border:1px solid var(--border-light);margin-bottom:8px;background:var(--surface)" '+
@@ -33086,7 +33089,7 @@ window.renderFounderProfessional = function(data){
     ? ' <span class="verified-badge green" title="موثّق"><i class="fas fa-check"></i></span>' : '';
   var socials = collectSocials(data);
   var av = photo
-    ? '<img src="'+esc(photo)+'" alt="'+esc(name)+'" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.parentNode.innerHTML=\'<i class=\\\'fas fa-user-tie\\\'></i>\'">'
+    ? '<img src="'+esc(photo)+'" alt="'+esc(name)+'" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.onerror=null;this.src=\'https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png\';this.style.display=\'block\'">'
     : '<i class="fas fa-user-tie"></i>';
 
   var socialHtml = '';
@@ -33934,7 +33937,7 @@ window.renderFounderProfessional = function(data){
   var ver=(data.verified||data.isVerified)?' <span class="verified-badge green"><i class="fas fa-check"></i></span>':'';
   var socials=collectSocials(data);
   var av=photo
-    ?'<img src="'+esc(photo)+'" alt="'+esc(name)+'" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.parentNode.innerHTML=\'<i class=\\\'fas fa-user-tie\\\'></i>\'">'
+    ?'<img src="'+esc(photo)+'" alt="'+esc(name)+'" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.onerror=null;this.src=\'https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png\';this.style.display=\'block\'">'
     :'<i class="fas fa-user-tie"></i>';
   var socialHtml=socials.length
     ? '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px">'+socials.map(function(s){
@@ -34758,7 +34761,7 @@ window.renderFounderProfessional = function(data){
   window._founderData = data;
   var shareUrl = ORIGIN + '/team';
   var av = photo
-    ? '<img src="'+esc(photo)+'" alt="" style="width:100%;height:100%;object-fit:cover" onerror="this.remove()">'
+    ? '<img src="'+esc(photo)+'" alt="" style="width:100%;height:100%;object-fit:cover" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">'
     : '<i class="fas fa-user-tie" style="font-size:42px;color:var(--primary-light)"></i>';
   host.innerHTML =
     '<div class="founder-pro-card" style="display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;padding:8px 4px">'+
@@ -34795,7 +34798,7 @@ window.personCard = function(p){
   var role = p.specialty||p.field||p.domain||p.trainingField||p.position||p.role||p.title||'';
   var uname = String(p.username||p.id||'').replace(/^@/,'');
   var phone = phoneOf(p);
-  var av = img ? '<img src="'+esc(img)+'" alt="" onerror="this.style.display=\'none\'">' : '<i class="fas fa-user"></i>';
+  var av = img ? '<img src="'+esc(img)+'" alt="" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">' : '<i class="fas fa-user"></i>';
   return '<div class="person-card" style="cursor:'+(uname?'pointer':'default')+'" '+(uname?'onclick="typeof openProfile===\'function\'&&openProfile(\''+esc(uname)+'\')"':'')+'>'+
     '<div class="person-avatar">'+av+'</div>'+
     '<div class="person-name">'+esc(name)+'</div>'+
@@ -34831,7 +34834,7 @@ window.personCard = function(p){
       var uname=String(a.username||a.id||'');
       var phone=phoneOf(a);
       return '<div class="person-card amb-card-pro" style="cursor:pointer" onclick="typeof openAmbassadorProfile===\'function\'&&openAmbassadorProfile(\''+esc(uname)+'\')">'+
-        '<div class="person-avatar">'+(img?'<img src="'+esc(img)+'" alt="" onerror="this.style.display=\'none\'">':'<i class="fas fa-user"></i>')+'</div>'+
+        '<div class="person-avatar">'+(img?'<img src="'+esc(img)+'" alt="" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':'<i class="fas fa-user"></i>')+'</div>'+
         '<div class="person-name">'+name+'</div>'+
         '<div class="person-role"><i class="fas fa-map-marker-alt" style="font-size:11px"></i> '+wilaya+'</div>'+
         socialIconsHtml(a)+
@@ -35105,7 +35108,7 @@ window.personCard = function(p){
   var uname=String(p.username||'').replace(/^@/,'');
   if(!uname && p.id && !/^[A-Za-z0-9]{16,}$/.test(String(p.id))) uname=String(p.id);
   var phone=phoneOf(p);
-  var av=img?'<img src="'+esc(img)+'" alt="" onerror="this.style.display=\'none\'">':'<i class="fas fa-user"></i>';
+  var av=img?'<img src="'+esc(img)+'" alt="" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':'<i class="fas fa-user"></i>';
   return '<div class="person-card">'+
     '<div class="person-avatar">'+av+'</div>'+
     '<div class="person-name">'+esc(name)+'</div>'+
@@ -35139,7 +35142,7 @@ window.renderAmbPage = function(){
     var uname=String(a.username||'').replace(/^@/,'');
     var phone=phoneOf(a);
     return '<div class="person-card amb-card-pro">'+
-      '<div class="person-avatar">'+(img?'<img src="'+esc(img)+'" alt="" onerror="this.style.display=\'none\'">':'<i class="fas fa-user"></i>')+'</div>'+
+      '<div class="person-avatar">'+(img?'<img src="'+esc(img)+'" alt="" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':'<i class="fas fa-user"></i>')+'</div>'+
       '<div class="person-name">'+esc(name)+'</div>'+
       '<div class="person-role"><i class="fas fa-map-marker-alt" style="font-size:11px"></i> '+esc(wilaya)+'</div>'+
       socialIconsHtml(a)+
@@ -35166,7 +35169,7 @@ window.formatAuthorBlock = function(u){
   if(Array.isArray(u.followers)) followers=u.followers.length;
   if(Array.isArray(u.following)) following=u.following.length;
   var av=photo
-    ? '<img src="'+esc(photo)+'" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.remove()">'
+    ? '<img src="'+esc(photo)+'" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">'
     : '<i class="fas fa-user" style="font-size:14px"></i>';
   return '<div class="author-id-block" style="display:flex;align-items:center;gap:10px;text-align:right">'+
     '<div style="width:40px;height:40px;border-radius:50%;overflow:hidden;background:var(--surface-alt);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--border-light)">'+av+'</div>'+
@@ -35409,7 +35412,7 @@ window.personCard = function(p){
   var role=p.specialty||p.field||p.domain||p.trainingField||p.position||p.role||p.title||'';
   var uname=String(p.username||p.profileUsername||'').replace(/^@/,'');
   var phone=phoneOf(p);
-  var av=img?'<img src="'+esc(img)+'" alt="" onerror="this.style.display=\'none\'">':'<i class="fas fa-user"></i>';
+  var av=img?'<img src="'+esc(img)+'" alt="" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':'<i class="fas fa-user"></i>';
   var actions='<div style="display:flex;gap:8px;justify-content:center;margin-top:12px" onclick="event.stopPropagation()">';
   if(phone) actions+='<a class="amb-icon-btn" href="tel:'+esc(phone)+'" title="اتصال" style="text-decoration:none;color:var(--primary)"><i class="fas fa-phone"></i></a>';
   /* profile button always shown */
@@ -35715,7 +35718,7 @@ window.personCard = function(p){
   var uname=profileKey(p);
   var phone=phoneOf(p);
   var av=img
-    ? '<img class="js-open-profile" data-profile="'+esc(uname)+'" src="'+esc(img)+'" alt="" style="cursor:pointer" onerror="this.style.display=\'none\'">'
+    ? '<img class="js-open-profile" data-profile="'+esc(uname)+'" src="'+esc(img)+'" alt="" style="cursor:pointer" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">'
     : '<i class="fas fa-user"></i>';
   return '<div class="person-card" data-profile="'+esc(uname)+'">'+
     '<div class="person-avatar js-open-profile" data-profile="'+esc(uname)+'" style="cursor:pointer">'+av+'</div>'+
@@ -35750,7 +35753,7 @@ window.renderAmbPage = function(){
     var uname=profileKey(a);
     var phone=phoneOf(a);
     return '<div class="person-card amb-card-pro" data-profile="'+esc(uname)+'">'+
-      '<div class="person-avatar js-open-profile" data-profile="'+esc(uname)+'" style="cursor:pointer">'+(img?'<img class="js-open-profile" data-profile="'+esc(uname)+'" src="'+esc(img)+'" alt="" style="cursor:pointer" onerror="this.style.display=\'none\'">':'<i class="fas fa-user"></i>')+'</div>'+
+      '<div class="person-avatar js-open-profile" data-profile="'+esc(uname)+'" style="cursor:pointer">'+(img?'<img class="js-open-profile" data-profile="'+esc(uname)+'" src="'+esc(img)+'" alt="" style="cursor:pointer" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':'<i class="fas fa-user"></i>')+'</div>'+
       '<div class="person-name">'+esc(name)+'</div>'+
       '<div class="person-role"><i class="fas fa-map-marker-alt" style="font-size:11px"></i> '+esc(wilaya)+'</div>'+
       '<div style="display:flex;gap:8px;justify-content:center;margin-top:12px" onclick="event.stopPropagation()">'+
@@ -36128,7 +36131,7 @@ function renderProfileOverlay(data){
     grid.innerHTML=posts.map(function(p){
       var img=p.image||p.photo||p.cover||'';
       return '<div class="pro-post-thumb" onclick="document.getElementById(\'fbProfileOverlay\').remove();typeof openPostDetail===\'function\'&&openPostDetail('+JSON.stringify(p.id)+')">'+
-        (img?'<img src="'+esc(img)+'" alt="" onerror="this.style.display=\'none\'">':esc((p.title||p.content||'منشور').slice(0,40)))+
+        (img?'<img src="'+esc(img)+'" alt="" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':esc((p.title||p.content||'منشور').slice(0,40)))+
       '</div>';
     }).join('');
   });
@@ -37101,7 +37104,7 @@ window.loadPostComments = async function(postId){
         var dt = c.createdAt&&c.createdAt.toDate?c.createdAt.toDate():new Date(c.createdAt||Date.now());
         return '<div class="nz-cmt-item" data-comment-id="'+esc(c.id)+'">'+
           '<div class="nz-cmt-av" '+(aid?'onclick="typeof openProfile===\'function\'&&openProfile(\''+esc(aid)+'\')"':'')+'>'+
-            (photo?'<img src="'+esc(photo)+'" alt="" onerror="this.remove()">':'<i class="fas fa-user" style="font-size:12px;color:var(--text-muted)"></i>')+
+            (photo?'<img src="'+esc(photo)+'" alt="" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':'<i class="fas fa-user" style="font-size:12px;color:var(--text-muted)"></i>')+
           '</div>'+
           '<div class="nz-cmt-bubble">'+
             '<div style="font-weight:800;font-size:12.5px;margin-bottom:3px;cursor:pointer" '+(aid?'onclick="typeof openProfile===\'function\'&&openProfile(\''+esc(aid)+'\')"':'')+'>'+esc(name)+
@@ -40315,7 +40318,7 @@ setInterval(stripOuterCommentsHard, 1500);
         head.className = 'nz-pub-head';
         head.innerHTML =
           '<div class="nz-pub-av" '+(aid?'onclick="typeof openProfile===\'function\'&&openProfile(\''+esc(aid)+'\')"':'')+'>'+
-            (photo?'<img src="'+esc(photo)+'" alt="" onerror="this.remove()">':'<i class="fas fa-user" style="color:var(--text-muted)"></i>')+
+            (photo?'<img src="'+esc(photo)+'" alt="" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';this.style.display='block';this.style.visibility='visible';this.style.opacity='1'">':'<i class="fas fa-user" style="color:var(--text-muted)"></i>')+
           '</div>'+
           '<div style="flex:1;min-width:0">'+
             '<div class="nz-pub-name" '+(aid?'onclick="typeof openProfile===\'function\'&&openProfile(\''+esc(aid)+'\')"':'')+'>'+esc(author||'ناشر')+vBadge+'</div>'+
@@ -42437,6 +42440,643 @@ document.addEventListener('dragover', function(e){
 }, true);
 
 console.log('[UX_STATS_FOLLOW_UNK] unk · real stats · full edit · no-dup-cmt · follow · upload unify · img protect');
+})();
+</script>
+
+
+<style id="NZ_BATCH_SEP01_CSS">
+/* ═══ بطاقات التقييمات الاحترافية ═══ */
+#homeReviewsCarousel{max-width:920px;margin:28px auto 8px;padding:0 16px}
+#hrcTrackWrap{overflow:hidden;border-radius:20px;direction:ltr}
+#hrcTrack{display:flex;gap:16px;will-change:transform}
+.hrc-slide{
+  flex:0 0 min(340px,86vw);background:var(--surface);border:1px solid var(--border-light);
+  border-radius:20px;padding:22px 20px 18px;box-shadow:0 10px 32px rgba(26,107,47,.08);
+  position:relative;overflow:hidden;text-align:right;direction:rtl;
+}
+.hrc-slide::before{
+  content:"";position:absolute;top:0;right:0;left:0;height:4px;
+  background:linear-gradient(90deg,var(--primary-light),var(--accent));
+}
+.hrc-slide .hrc-quote{
+  position:absolute;top:14px;left:16px;font-size:28px;color:rgba(46,204,90,.15);line-height:1;
+}
+.hrc-stars{color:#C8A84E;font-size:15px;letter-spacing:2px;margin-bottom:10px;direction:ltr;text-align:right}
+.hrc-text{font-size:14px;line-height:1.85;color:var(--text-secondary);min-height:72px}
+.hrc-author{margin-top:14px;font-weight:800;font-size:13.5px;color:var(--text);display:flex;align-items:center;gap:8px}
+.hrc-author .hrc-av{
+  width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--primary-light),var(--primary));
+  color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0;
+  overflow:hidden;
+}
+.hrc-author .hrc-av img{width:100%;height:100%;object-fit:cover}
+.hrc-wilaya{font-size:11.5px;color:var(--text-muted);margin-top:4px}
+#hrcDots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+#hrcDots span{width:8px;height:8px;border-radius:50%;background:var(--border);cursor:pointer;transition:.2s}
+#hrcDots span.on{background:var(--primary-light);transform:scale(1.2)}
+
+/* ═══ قسم التواصل داخل الملف ═══ */
+.nz-contact-section{
+  background:var(--surface-alt);border:1px solid var(--border-light);border-radius:16px;
+  padding:16px;margin:12px 0 4px;
+}
+.nz-contact-section h4{
+  font-size:13px;font-weight:800;margin:0 0 12px;color:var(--primary);
+  display:flex;align-items:center;gap:8px;
+}
+.nz-contact-grid{display:flex;flex-wrap:wrap;gap:8px}
+.nz-contact-chip{
+  display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border-radius:50px;
+  background:var(--surface);border:1px solid var(--border-light);font-size:12px;font-weight:700;
+  color:var(--text);text-decoration:none;transition:.2s;
+}
+.nz-contact-chip:hover{border-color:var(--primary-light);color:var(--primary)}
+.nz-contact-chip i{color:var(--primary-light);width:16px;text-align:center}
+.nz-contact-empty{font-size:12px;color:var(--text-muted)}
+
+/* ═══ زر متابعة ═══ */
+.nz-follow-btn.is-following,.btn-primary.is-following{
+  background:var(--surface-alt)!important;color:var(--primary)!important;
+  border:1.5px solid var(--primary-light)!important;box-shadow:none!important;
+}
+
+/* ═══ إصلاح حقول تواصل معنا ═══ */
+#page-contact .form-row{
+  display:grid!important;grid-template-columns:1fr 1fr!important;gap:12px!important;
+  align-items:start!important;
+}
+#page-contact .form-row .form-group{margin-bottom:16px!important;min-width:0!important;max-width:100%!important}
+#page-contact .form-input,
+#page-contact input[type="email"],
+#page-contact input[type="tel"],
+#page-contact input[name="email"],
+#page-contact input[name="phone"]{
+  width:100%!important;max-width:100%!important;min-width:0!important;
+  box-sizing:border-box!important;font-size:14px!important;
+  height:46px!important;min-height:46px!important;max-height:46px!important;
+  padding:11px 14px!important;line-height:1.3!important;
+  overflow:hidden!important;
+}
+@media(max-width:560px){
+  #page-contact .form-row{grid-template-columns:1fr!important}
+}
+
+/* ═══ unk إجباري لأي أفاتار ═══ */
+.person-avatar img,
+.fb-pro-avatar img,
+.mzone-pro-avatar img,
+.nz-cmt-av img,
+.amb-photo img,
+#profileAvatar img{
+  display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;
+}
+</style>
+
+<script id="NZ_BATCH_SEP01">
+(function(){
+'use strict';
+if(window.__NZ_BATCH_SEP01__) return;
+window.__NZ_BATCH_SEP01__ = true;
+
+var UNK = 'https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';
+
+function toast(m,t){ try{ if(typeof showToast==='function') showToast(m,t||'info'); }catch(e){} }
+function me(){ return window.currentUser||window.mzoneCurrentUser||null; }
+function FA(){ return window.FirestoreAPI; }
+function db(){ return window.firebaseDB; }
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+async function waitFB(ms){
+  if(FA()&&db()) return true;
+  return await new Promise(function(res){
+    var t=setTimeout(function(){ res(!!(FA()&&db())); }, ms||6000);
+    window.addEventListener('firebaseReady', function(){ clearTimeout(t); res(!!(FA()&&db())); }, {once:true});
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   1) بطاقات تقييمات احترافية
+   ═══════════════════════════════════════════════════════════════ */
+window.renderReviewsTrack = function(){
+  var track = document.getElementById('hrcTrack');
+  var dots = document.getElementById('hrcDots');
+  if(!track) return;
+  var list = window._reviewsList || [];
+  if(!list.length){
+    track.innerHTML = '<div class="hrc-slide"><div class="hrc-text">لا تقييمات بعد — كن أول من يقيّم</div></div>';
+    if(dots) dots.innerHTML='';
+    return;
+  }
+  track.innerHTML = list.map(function(r,i){
+    var n = Math.max(1, Math.min(5, Number(r.stars||5)));
+    var stars = Array(n+1).join('★') + Array(6-n).join('☆');
+    var initial = String(r.name||'م').trim().charAt(0);
+    var photo = r.photo || r.photoUrl || '';
+    var av = photo
+      ? '<span class="hrc-av"><img src="'+esc(photo)+'" alt="" onerror="this.parentNode.textContent=\''+esc(initial)+'\'"></span>'
+      : '<span class="hrc-av">'+esc(initial)+'</span>';
+    return '<div class="hrc-slide" data-idx="'+i+'">'+
+      '<div class="hrc-quote"><i class="fas fa-quote-left"></i></div>'+
+      '<div class="hrc-stars">'+stars+'</div>'+
+      '<div class="hrc-text">'+esc(r.text||'')+'</div>'+
+      '<div class="hrc-author">'+av+'<span>'+esc(r.name||'مشارك')+'</span></div>'+
+      (r.wilaya?'<div class="hrc-wilaya"><i class="fas fa-map-marker-alt"></i> '+esc(r.wilaya)+'</div>':'')+
+    '</div>';
+  }).join('');
+  if(dots){
+    dots.innerHTML = list.map(function(_,i){
+      return '<span data-i="'+i+'" class="'+(i===0?'on':'')+'" onclick="window.goReviewSlide('+i+')"></span>';
+    }).join('');
+  }
+  window._hrcIndex = 0;
+  if(typeof window.applyReviewSlide==='function') window.applyReviewSlide(false);
+};
+
+/* ═══════════════════════════════════════════════════════════════
+   2) unk.png إجباري — كل الأفاتار والبطاقات (سفراء/فريق/مؤطرين)
+   ═══════════════════════════════════════════════════════════════ */
+(function(){
+  var LOGO = '.brand-logo,.hero-logo,.nz-login-logo,.footer-brand,.partner-logo';
+  var PERSON = [
+    '.person-avatar','#profileAvatar','.fb-pro-avatar','.fb-me-avatar','.mzone-pro-avatar',
+    '.nz-cmt-av','.lib-cmt-av','.amb-photo','.founder-photo','.pro-av','.profile-photo',
+    '.pcv-photo','.nz-pub-av','.hrc-av','[class*="avatar"]'
+  ].join(',');
+
+  function isPerson(img){
+    if(!img||img.tagName!=='IMG') return false;
+    if(img.closest&&img.closest(LOGO)) return false;
+    if(img.matches&&img.matches(PERSON)) return true;
+    return !!(img.closest&&img.closest(PERSON));
+  }
+  function forceUnk(img){
+    if(!img||!isPerson(img)) return;
+    if((img.getAttribute('src')||'').indexOf('unk.png')>=0) return;
+    img.onerror=null;
+    img.removeAttribute('onerror');
+    img.src=UNK;
+    img.alt='';
+    img.style.cssText += ';display:block!important;visibility:visible!important;opacity:1!important;object-fit:cover!important;width:100%;height:100%';
+  }
+
+  document.addEventListener('error', function(e){
+    var img=e.target;
+    if(!img||img.tagName!=='IMG') return;
+    if(!isPerson(img)) return;
+    e.stopImmediatePropagation();
+    forceUnk(img);
+  }, true);
+
+  function fix(img){
+    if(!isPerson(img)) return;
+    var s=img.getAttribute('src')||'';
+    if(!s||s==='undefined'||s==='null'||s==='#'){ forceUnk(img); return; }
+    var oe=img.getAttribute('onerror')||'';
+    if(/display\s*=|remove\(\)|innerHTML|parentNode/i.test(oe)){
+      img.removeAttribute('onerror');
+      img.onerror=function(){ forceUnk(this); };
+    }
+    /* already broken naturalWidth after load */
+    if(img.complete && img.naturalWidth===0 && s.indexOf('unk.png')<0) forceUnk(img);
+  }
+  function scan(){ document.querySelectorAll('img').forEach(fix); }
+  scan();
+  setInterval(scan, 1500);
+  try{
+    new MutationObserver(function(ms){
+      ms.forEach(function(m){
+        (m.addedNodes||[]).forEach(function(n){
+          if(n.tagName==='IMG') fix(n);
+          else if(n.querySelectorAll) n.querySelectorAll('img').forEach(fix);
+        });
+      });
+    }).observe(document.body,{childList:true,subtree:true});
+  }catch(_){}
+
+  window.imgFallback=function(el){ forceUnk(el); };
+  window.swapForIcon=function(img){ forceUnk(img); };
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   3) قسم تواصل داخل الملف الشخصي (بدل زر فقط)
+   ═══════════════════════════════════════════════════════════════ */
+function buildContactSection(data, host){
+  if(!host) return;
+  var old = host.querySelector('.nz-contact-section');
+  if(old) old.remove();
+  data = data||{};
+  var chips = [];
+  function add(icon, label, url, dir){
+    if(!url) return;
+    var href = url;
+    if(/^[\d\+\s\-]+$/.test(url)) href = 'tel:'+url.replace(/\s/g,'');
+    else if(url.indexOf('@')>0 && url.indexOf('http')<0 && icon==='fa-envelope') href='mailto:'+url;
+    else if(url.indexOf('http')!==0 && url.indexOf('tel:')!==0 && url.indexOf('mailto:')!==0){
+      if(icon==='fa-facebook') href='https://facebook.com/'+url.replace(/^@/,'');
+      else if(icon==='fa-instagram') href='https://instagram.com/'+url.replace(/^@/,'');
+      else if(icon==='fa-x-twitter'||icon==='fa-twitter') href='https://x.com/'+url.replace(/^@/,'');
+      else if(icon==='fa-whatsapp') href='https://wa.me/'+url.replace(/\D/g,'');
+      else if(icon==='fa-telegram') href='https://t.me/'+url.replace(/^@/,'');
+      else if(icon==='fa-linkedin') href='https://linkedin.com/in/'+url.replace(/^@/,'');
+      else if(icon==='fa-youtube') href='https://youtube.com/'+url;
+      else href = url;
+    }
+    chips.push('<a class="nz-contact-chip" href="'+esc(href)+'" target="_blank" rel="noopener"'+(dir?' style="direction:ltr"':'')+'><i class="fab '+icon+' fas '+icon+'"></i> '+esc(label)+'</a>');
+  }
+  var phone = data.phone||data.mobile||data.publicPhone||data.whatsapp||'';
+  var email = data.publicEmail||data.email||'';
+  var web = data.website||data.socialLink||'';
+  if(phone) add('fa-phone', phone, phone, true);
+  if(email && data.showEmail!==false) add('fa-envelope', email, email, true);
+  if(data.facebook) add('fa-facebook', 'Facebook', data.facebook);
+  if(data.instagram) add('fa-instagram', 'Instagram', data.instagram);
+  if(data.twitter||data.twitterX) add('fa-x-twitter', 'X', data.twitter||data.twitterX);
+  if(data.whatsapp) add('fa-whatsapp', 'WhatsApp', data.whatsapp);
+  if(data.telegram) add('fa-telegram', 'Telegram', data.telegram);
+  if(data.linkedin) add('fa-linkedin', 'LinkedIn', data.linkedin);
+  if(data.youtube) add('fa-youtube', 'YouTube', data.youtube);
+  if(web) add('fa-globe', 'موقع', web, true);
+
+  var sec = document.createElement('div');
+  sec.className = 'nz-contact-section';
+  sec.innerHTML = '<h4><i class="fas fa-address-book"></i> التواصل</h4>'+
+    (chips.length ? '<div class="nz-contact-grid">'+chips.join('')+'</div>' : '<div class="nz-contact-empty">لا معلومات تواصل متاحة</div>');
+  host.appendChild(sec);
+}
+
+/* inject into own profile */
+function injectOwnContact(){
+  var body = document.querySelector('#mzoneProfileBox .mzone-pro-body, #mzoneProfileBox .fb-me-body');
+  if(!body) return;
+  if(body.querySelector('.nz-contact-section')) return;
+  var u = me();
+  if(!u) return;
+  /* place after stats */
+  var stats = body.querySelector('.mzone-stats-row, .fb-me-stats');
+  var host = document.createElement('div');
+  host.id = 'nzOwnContactHost';
+  if(stats && stats.parentNode) stats.parentNode.insertBefore(host, stats.nextSibling);
+  else body.appendChild(host);
+  buildContactSection(u, host);
+}
+setInterval(injectOwnContact, 1500);
+
+/* inject into public profile overlay */
+function injectPublicContact(){
+  var ov = document.getElementById('fbProfileOverlay');
+  if(!ov) return;
+  var body = ov.querySelector('.fb-pro-body, .mzone-pro-body, .modal-box');
+  if(!body || body.querySelector('.nz-contact-section')) return;
+  var data = window._lastProfileData || window._viewingProfile || {};
+  buildContactSection(data, body);
+}
+setInterval(injectPublicContact, 1000);
+
+/* hook openProfile to store data */
+(function(){
+  var _op = window.openProfile;
+  if(typeof _op!=='function') return;
+  window.openProfile = async function(key){
+    var r = await _op.apply(this, arguments);
+    setTimeout(function(){
+      try{
+        /* try extract from overlay */
+        injectPublicContact();
+        injectFollowEverywhere();
+      }catch(_){}
+    }, 500);
+    return r;
+  };
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   4) منشوراتي = منشورات + كتب + وسائط (تعزيز)
+   ═══════════════════════════════════════════════════════════════ */
+/* loadMyPosts already patched earlier — force refresh call */
+setTimeout(function(){
+  if(me() && typeof loadMyPosts==='function'){
+    try{ loadMyPosts(); }catch(_){}
+  }
+}, 2500);
+
+/* ═══════════════════════════════════════════════════════════════
+   5) إزالة تكرار التعليقات نهائياً
+   ═══════════════════════════════════════════════════════════════ */
+function killDupComments(){
+  /* outer */
+  document.querySelectorAll(
+    '#postsList .post-comments-section, #booksList .post-comments-section, #linksList .post-comments-section, '+
+    '#libraryList .post-comments-section, #newsList .post-comments-section, .lib-inline-comments, '+
+    '.lib-card-uni .post-comments-section, .lib-card-uni .nz-cmt-form, .lib-card-uni #postCommentsList, '+
+    '#postsList #postCommentsList, #booksList #postCommentsList'
+  ).forEach(function(el){
+    if(!el.closest('#detailContent, #page-detail, #libDetailOverlay, .modal-overlay')){
+      try{ el.remove(); }catch(_){ el.style.display='none'; }
+    }
+  });
+  /* inside detail: one section only */
+  ['#libDetailOverlay .modal-box','#detailContent','#page-detail .content','.modal-overlay .modal-box'].forEach(function(sel){
+    var hosts = document.querySelectorAll(sel);
+    hosts.forEach(function(host){
+      if(!host) return;
+      var secs = host.querySelectorAll('.post-comments-section');
+      for(var i=1;i<secs.length;i++) try{ secs[i].remove(); }catch(_){}
+      var lists = host.querySelectorAll('#postCommentsList');
+      for(var k=1;k<lists.length;k++) try{ lists[k].remove(); }catch(_){}
+      var forms = host.querySelectorAll('.nz-cmt-form, #nzCmtForm');
+      for(var j=1;j<forms.length;j++) try{ forms[j].remove(); }catch(_){}
+      /* duplicate comment items by text+author */
+      var list = host.querySelector('#postCommentsList');
+      if(list){
+        var seen = {};
+        list.querySelectorAll('.nz-cmt-item, .lib-comment, [data-comment-id]').forEach(function(item){
+          var id = item.getAttribute('data-comment-id')||'';
+          var sig = id || (item.textContent||'').replace(/\s+/g,' ').slice(0,120);
+          if(seen[sig]) try{ item.remove(); }catch(_){}
+          else seen[sig]=1;
+        });
+      }
+    });
+  });
+}
+setInterval(killDupComments, 800);
+
+/* wrap loadPostComments to dedupe after load */
+(function(){
+  var _lpc = window.loadPostComments;
+  if(typeof _lpc!=='function') return;
+  window.loadPostComments = async function(postId){
+    killDupComments();
+    var r = await _lpc.apply(this, arguments);
+    setTimeout(killDupComments, 100);
+    setTimeout(killDupComments, 400);
+    return r;
+  };
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   6) زر متابعة في كل الملفات — متابعة / أتابع
+   ═══════════════════════════════════════════════════════════════ */
+async function isFollowing(myId, targetId){
+  if(!myId||!targetId||!(await waitFB(2000))) return false;
+  try{
+    var snap = await FA().getDoc(FA().doc(db(),'follows', myId+'_'+targetId));
+    return !!(snap && (typeof snap.exists==='function'?snap.exists():snap.exists));
+  }catch(_){ return false; }
+}
+
+function injectFollowEverywhere(){
+  var u = me();
+  var myId = u ? String(u.id||u.uid||'') : '';
+  /* public overlay */
+  var ov = document.getElementById('fbProfileOverlay');
+  if(ov){
+    var actions = ov.querySelector('.fb-pro-actions, .mzone-quick-actions, .fb-me-actions') || ov.querySelector('.modal-box');
+    if(actions && !actions.querySelector('.nz-follow-btn')){
+      var targetId = window._viewingProfileId || ov.dataset.profileId || '';
+      if(!targetId){
+        var m = (ov.innerHTML||'').match(/\/profile\/([a-zA-Z0-9_\.\-]+)/);
+        if(m) targetId = decodeURIComponent(m[1]);
+      }
+      if(targetId && myId && targetId!==myId && targetId!==(u.username||'')){
+        var btn = document.createElement('button');
+        btn.type='button';
+        btn.className='btn-primary nz-follow-btn';
+        btn.style.cssText='flex:1;justify-content:center;min-height:34px;padding:6px 14px;font-size:12px';
+        btn.innerHTML='<i class="fas fa-user-plus"></i> متابعة';
+        btn.onclick=function(){ window.toggleFollow(targetId, btn); };
+        if(actions.firstChild) actions.insertBefore(btn, actions.firstChild);
+        else actions.appendChild(btn);
+        isFollowing(myId, targetId).then(function(yes){
+          if(yes){ btn.innerHTML='<i class="fas fa-user-check"></i> أتابع'; btn.classList.add('is-following'); }
+        });
+      }
+    }
+  }
+  /* ambassador / team cards: small follow is optional — profile open handles it */
+}
+setInterval(injectFollowEverywhere, 1000);
+
+/* enhance toggleFollow labels */
+(function(){
+  var _tf = window.toggleFollow;
+  if(typeof _tf!=='function') return;
+  window.toggleFollow = async function(targetId, btn){
+    var r = await _tf.apply(this, arguments);
+    if(btn){
+      setTimeout(function(){
+        if(btn.classList.contains('is-following') || /إلغاء/.test(btn.textContent||'')){
+          btn.innerHTML='<i class="fas fa-user-check"></i> أتابع';
+          btn.classList.add('is-following');
+        } else if(/متابعة/.test(btn.textContent||'')){
+          btn.innerHTML='<i class="fas fa-user-plus"></i> متابعة';
+        }
+      }, 300);
+    }
+    return r;
+  };
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   7) منع غير المكتملين من الخدمات (تعليق/إعجاب/نشر/متابعة)
+   ═══════════════════════════════════════════════════════════════ */
+window.isProfileComplete = function(u){
+  u = u || me();
+  if(!u) return false;
+  if(u.profileComplete===true || u.profileCompleted===true) return true;
+  var name = (u.fullName||u.name||'').trim();
+  var uname = (u.username||'').trim();
+  var photo = u.photoUrl||u.photo||u.avatar||'';
+  var bio = (u.bio||'').trim();
+  return !!(name && uname && photo && bio);
+};
+
+window.requireCompleteProfile = function(actionLabel){
+  var u = me();
+  if(!u){
+    toast('سجّل الدخول أولاً','warning');
+    if(typeof navigate==='function') navigate('/profile/');
+    return false;
+  }
+  if(!window.isProfileComplete(u)){
+    toast('أكمل تخصيص ملفك الشخصي أولاً للتمتع بـ «'+(actionLabel||'هذه الخدمة')+'» (الاسم، اليوزر، الصورة، النبذة)','warning');
+    setTimeout(function(){
+      if(typeof navigate==='function') navigate('/profile/editing');
+    }, 600);
+    return false;
+  }
+  return true;
+};
+
+/* gate interactions */
+['submitUnifiedComment','toggleLibLike','toggleLibraryPostLike','toggleFollow'].forEach(function(fn){
+  var orig = window[fn];
+  if(typeof orig!=='function') return;
+  window[fn] = function(){
+    var label = fn.indexOf('omment')>=0?'التعليق':(fn.indexOf('ike')>=0?'الإعجاب':(fn.indexOf('ollow')>=0?'المتابعة':'هذه الخدمة'));
+    if(fn==='toggleFollow'){
+      /* follow still requires login; profile complete optional for follow? user asked to block services */
+    }
+    if(!window.requireCompleteProfile(label)) return;
+    return orig.apply(this, arguments);
+  };
+});
+
+/* gate publish */
+(function(){
+  var names = ['submitLibraryPost','publishPost','submitPost','openPublishModal'];
+  names.forEach(function(fn){
+    var orig = window[fn];
+    if(typeof orig!=='function') return;
+    window[fn] = function(){
+      if(!window.requireCompleteProfile('النشر')) return;
+      return orig.apply(this, arguments);
+    };
+  });
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   8) إصلاح حقول الهاتف والبريد في تواصل معنا
+   ═══════════════════════════════════════════════════════════════ */
+function fixContactFields(){
+  var page = document.getElementById('page-contact');
+  if(!page) return;
+  page.querySelectorAll('input[type="email"], input[type="tel"], input[name="email"], input[name="phone"]').forEach(function(inp){
+    inp.style.maxWidth = '100%';
+    inp.style.width = '100%';
+    inp.style.minWidth = '0';
+    inp.style.boxSizing = 'border-box';
+    inp.style.height = '46px';
+    inp.style.fontSize = '14px';
+  });
+  page.querySelectorAll('.form-row').forEach(function(row){
+    row.style.display = 'grid';
+    row.style.gridTemplateColumns = window.innerWidth<560 ? '1fr' : '1fr 1fr';
+    row.style.gap = '12px';
+  });
+}
+setInterval(fixContactFields, 2000);
+setTimeout(fixContactFields, 400);
+
+/* ═══════════════════════════════════════════════════════════════
+   9) نظام إشعارات + متابعة حقيقي
+   ═══════════════════════════════════════════════════════════════ */
+window.createNotification = async function(recipientId, data){
+  recipientId = String(recipientId||'');
+  if(!recipientId || !(await waitFB(3000))) return;
+  try{
+    var F=FA(), D=db();
+    var u = me();
+    await F.addDoc(F.collection(D,'notifications'), {
+      userId: recipientId,
+      type: (data&&data.type)||'info',
+      title: (data&&data.title)||'إشعار',
+      message: (data&&data.message)||'',
+      icon: (data&&data.icon)||'fas fa-bell',
+      postId: (data&&data.postId)||'',
+      fromId: u ? (u.id||u.uid||'') : '',
+      fromName: u ? (u.fullName||u.name||'') : '',
+      fromPhoto: u ? (u.photoUrl||u.photo||'') : '',
+      read: false,
+      isRead: false,
+      createdAt: F.serverTimestamp ? F.serverTimestamp() : new Date()
+    });
+  }catch(e){ console.warn('[createNotification]', e); }
+};
+
+window.loadUserNotifications = async function(){
+  var host = document.getElementById('mzoneNotifList');
+  if(!host) return;
+  var u = me();
+  if(!u){ host.innerHTML='<div class="empty-state" style="padding:16px">سجّل الدخول</div>'; return; }
+  if(!(await waitFB(4000))){ host.innerHTML='<div class="empty-state">تعذّر الاتصال</div>'; return; }
+  host.innerHTML='<div class="empty-state" style="padding:16px"><span class="op-spinner"></span></div>';
+  try{
+    var F=FA(), D=db();
+    var uid = String(u.id||u.uid||'');
+    var snap;
+    try{
+      snap = await F.getDocs(F.query(F.collection(D,'notifications'), F.where('userId','==',uid), F.limit(40)));
+    }catch(_){
+      snap = await F.getDocs(F.query(F.collection(D,'notifications'), F.where('userId','==',uid)));
+    }
+    var list = (snap.docs||[]).map(function(d){ return Object.assign({id:d.id}, d.data()); });
+    list.sort(function(a,b){
+      function ts(x){ return x.createdAt&&x.createdAt.toDate?x.createdAt.toDate().getTime():(x.createdAt&&x.createdAt.seconds?x.createdAt.seconds*1000:0); }
+      return ts(b)-ts(a);
+    });
+    var unread = list.filter(function(n){ return n.read!==true && n.isRead!==true; }).length;
+    var badge = document.getElementById('mzoneNotifBadge');
+    if(badge){
+      if(unread>0){ badge.style.display='inline-flex'; badge.textContent=String(unread); }
+      else { badge.style.display='none'; }
+    }
+    if(!list.length){ host.innerHTML='<div class="empty-state" style="padding:16px">لا إشعارات</div>'; return; }
+    host.innerHTML = list.map(function(n){
+      var dt = n.createdAt&&n.createdAt.toDate?n.createdAt.toDate():new Date();
+      var unreadCls = (n.read===true||n.isRead===true)?'':'background:rgba(46,204,90,.06);';
+      return '<div class="settings-row" style="'+unreadCls+'margin-bottom:6px" onclick="typeof markNotifRead===\'function\'&&markNotifRead(\''+esc(n.id)+'\')">'+
+        '<div class="settings-row-icon"><i class="'+(n.icon||'fas fa-bell')+'"></i></div>'+
+        '<div class="settings-row-body">'+
+          '<div class="settings-row-title">'+esc(n.title||'إشعار')+'</div>'+
+          '<div class="settings-row-sub">'+esc(n.message||'')+' · '+dt.toLocaleDateString('ar-DZ')+'</div>'+
+        '</div></div>';
+    }).join('');
+  }catch(e){
+    console.warn(e);
+    host.innerHTML='<div class="empty-state">تعذّر التحميل</div>';
+  }
+};
+
+window.markNotifRead = async function(id){
+  if(!id || !(await waitFB(2000))) return;
+  try{
+    await FA().updateDoc(FA().doc(db(),'notifications',id), {read:true, isRead:true});
+    if(typeof loadUserNotifications==='function') loadUserNotifications();
+  }catch(_){}
+};
+
+/* notify on follow */
+(function(){
+  var _tf = window.toggleFollow;
+  if(typeof _tf!=='function') return;
+  window.toggleFollow = async function(targetId, btn){
+    var u = me();
+    var wasFollowing = btn && btn.classList.contains('is-following');
+    var r = await _tf.apply(this, arguments);
+    if(!wasFollowing && u && targetId){
+      try{
+        await window.createNotification(targetId, {
+          type:'follow',
+          title:'متابع جديد',
+          message:(u.fullName||u.name||'عضو')+' بدأ بمتابعتك',
+          icon:'fas fa-user-plus'
+        });
+      }catch(_){}
+    }
+    /* fix label */
+    if(btn){
+      setTimeout(function(){
+        if(btn.classList.contains('is-following') || /أتابع|إلغاء/.test(btn.textContent||'')){
+          btn.innerHTML='<i class="fas fa-user-check"></i> أتابع';
+          btn.classList.add('is-following');
+        } else {
+          btn.innerHTML='<i class="fas fa-user-plus"></i> متابعة';
+          btn.classList.remove('is-following');
+        }
+      }, 250);
+    }
+    return r;
+  };
+})();
+
+/* refresh notifs periodically when logged in */
+setInterval(function(){
+  if(me() && document.getElementById('mzoneNotifList')){
+    try{ window.loadUserNotifications(); }catch(_){}
+  }
+}, 60000);
+
+console.log('[BATCH_SEP01] reviews · unk · contact section · posts · dedupe cmt · follow · profile gate · contact fields · notifs');
 })();
 </script>
 
