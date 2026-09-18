@@ -1441,7 +1441,7 @@ header.site-header{
       <a href="https://nazaha.site/profile/" target="_blank" rel="noopener" class="btn-primary" style="width:100%;justify-content:center;padding:14px 20px;font-size:15px;text-decoration:none">
         <i class="fas fa-briefcase"></i> الدخول إلى فضاء الأعضاء والخدمات
       </a>
-      <p style="font-size:12px;color:var(--text-muted);text-align:center;margin-top:8px">mzone.nazaha.site</p>
+      <p style="font-size:12px;color:var(--text-muted);text-align:center;margin-top:8px">nazaha.site</p>
     </div>
 
     <div id="trackingTabRequests" class="tab-panel active" style="display:block">
@@ -10691,7 +10691,7 @@ window.restrictUserAccount=async function(userId, untilDate, reason){
       {icon:'fa-certificate', title:'طلب توثيق الحساب', sub:'إرسال طلب شارة التوثيق الخضراء', fn:'requestVerification()'},
       {icon:'fa-undo', title:'إعادة تعيين ملفي الشخصي', sub:'مسح النبذة والروابط الاختيارية', fn:'resetMyProfile()'},
       {icon:'fa-flag', title:'الإبلاغ عن مشكل', sub:'فتح نموذج التواصل', fn:'navigate(\'/contact\')'},
-      {icon:'fa-th-large', title:'المزيد من الخدمات', sub:'فضاء الأعضاء المتقدم', fn:'window.open(\'https://mzone.nazaha.site\',\'_blank\',\'noopener\')'}
+      {icon:'fa-th-large', title:'المزيد من الخدمات', sub:'فضاء الأعضاء المتقدم', fn:'window.open(\'https://nazaha.site\',\'_blank\',\'noopener\')'}
     ];
     /* extra.forEach DISABLED */
   }, 1000);
@@ -11685,7 +11685,7 @@ window.restrictUserAccount=async function(userId, untilDate, reason){
       {icon:'fa-certificate', title:'طلب توثيق الحساب', sub:'إرسال طلب شارة التوثيق الخضراء', fn:'requestVerification()'},
       {icon:'fa-undo', title:'إعادة تعيين ملفي الشخصي', sub:'مسح النبذة والروابط الاختيارية', fn:'resetMyProfile()'},
       {icon:'fa-flag', title:'الإبلاغ عن مشكل', sub:'فتح نموذج التواصل', fn:'navigate(\'/contact\')'},
-      {icon:'fa-th-large', title:'المزيد من الخدمات', sub:'فضاء الأعضاء المتقدم', fn:'window.open(\'https://mzone.nazaha.site\',\'_blank\',\'noopener\')'}
+      {icon:'fa-th-large', title:'المزيد من الخدمات', sub:'فضاء الأعضاء المتقدم', fn:'window.open(\'https://nazaha.site\',\'_blank\',\'noopener\')'}
     ];
     /* extras.forEach DISABLED */
   }, 800);
@@ -17224,7 +17224,7 @@ console.log('[REAL FIX] phone, join steps, arabic type, header, seo, categories,
     path = String(path||'/');
     if (path === '/staff' || path.indexOf('/staff') === 0) path = '/';
     if (path === '/mzone' || path === '/mzone/') {
-      window.open('https://mzone.nazaha.site','_blank','noopener');
+      window.open('https://nazaha.site','_blank','noopener');
       return;
     }
     if (path === '/profile') path = '/profile/';
@@ -17596,7 +17596,7 @@ console.log('[REAL FIX] phone, join steps, arabic type, header, seo, categories,
   document.querySelectorAll('.settings-row').forEach(function(row){
     var t = (row.textContent||'');
     if (/المزيد من الخدمات/.test(t)) {
-      row.setAttribute('onclick', "window.open('https://mzone.nazaha.site','_blank','noopener')");
+      row.setAttribute('onclick', "window.open('https://nazaha.site','_blank','noopener')");
     }
   });
 
@@ -17671,7 +17671,7 @@ console.log('[REAL FIX] phone, join steps, arabic type, header, seo, categories,
       if (/المزيد من الخدمات/.test(row.textContent||'')) {
         row.onclick = function(e){
           if (e) { e.preventDefault(); e.stopPropagation(); }
-          window.open('https://mzone.nazaha.site','_blank','noopener');
+          window.open('https://nazaha.site','_blank','noopener');
           return false;
         };
       }
@@ -17760,7 +17760,7 @@ console.log('[REAL FIX] phone, join steps, arabic type, header, seo, categories,
         if (typeof navigate === 'function') navigate('/contact');
       } else if (/المزيد من الخدمات/.test(title)) {
         e.preventDefault();
-        window.open('https://mzone.nazaha.site','_blank','noopener');
+        window.open('https://nazaha.site','_blank','noopener');
       } else if (/تسجيل الخروج/.test(title)) {
         e.preventDefault();
         if (typeof doLogout === 'function') doLogout();
@@ -17810,7 +17810,7 @@ console.log('[REAL FIX] phone, join steps, arabic type, header, seo, categories,
     window.navigate = function(path){
       path = String(path||'/');
       if (path === '/mzone' || path === '/mzone/') {
-        window.open('https://mzone.nazaha.site','_blank','noopener');
+        window.open('https://nazaha.site','_blank','noopener');
         return;
       }
       if (path === '/contact/') path = '/contact';
@@ -35420,7 +35420,7 @@ console.log('[PERF] activities cache+prefetch');
 <script id="NAZAHA_LINKS_PROFILE_CONTACT_FIX">
 (function(){
 'use strict';
-var MZONE = 'https://mzone.nazaha.site';
+var MZONE = 'https://nazaha.site';
 var ORIGIN = 'https://nazaha.site';
 var HERO = 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1920&q=85';
 
@@ -35449,12 +35449,12 @@ function fixMemberSpaceLinks(){
     if(/nazaha-dz\.(web\.app|vercel\.app)|nzaha-dz\.web\.app/i.test(h)){
       a.setAttribute('href', h.replace(/https?:\/\/(nazaha-dz\.(web\.app|vercel\.app)|nzaha-dz\.web\.app)/gi, ORIGIN));
     }
-    if(/msp\.nazaha\.site/i.test(a.textContent||'')) a.textContent=(a.textContent||'').replace(/msp\.nazaha\.site/gi,'mzone.nazaha.site');
+    if(/msp\.nazaha\.site/i.test(a.textContent||'')) a.textContent=(a.textContent||'').replace(/msp\.nazaha\.site/gi,'nazaha.site');
   });
   document.querySelectorAll('p,span,div').forEach(function(el){
     if(el.children && el.children.length) return;
     var t=el.textContent||'';
-    if(/msp\.nazaha\.site/.test(t) && t.length<80) el.textContent=t.replace(/msp\.nazaha\.site/g,'mzone.nazaha.site');
+    if(/msp\.nazaha\.site/.test(t) && t.length<80) el.textContent=t.replace(/msp\.nazaha\.site/g,'nazaha.site');
   });
 }
 fixMemberSpaceLinks();
@@ -35514,7 +35514,7 @@ setTimeout(function(){
   try{ if(typeof setMzoneTab==='function') setMzoneTab('activity'); }catch(e){}
 }, 400);
 
-console.log('[FIX] mzone.nazaha.site · profile btn · hide my-info · single hero · contact borders');
+console.log('[FIX] nazaha.site · profile btn · hide my-info · single hero · contact borders');
 })();
 </script>
 
@@ -35525,7 +35525,7 @@ console.log('[FIX] mzone.nazaha.site · profile btn · hide my-info · single he
 'use strict';
 
 var ORIGIN='https://nazaha.site';
-var MZONE='https://mzone.nazaha.site';
+var MZONE='https://nazaha.site';
 var CV_PATH='/cv/nazihboumahni';
 var HERO='https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1920&q=85';
 
@@ -35544,7 +35544,7 @@ function toast(m,t){ try{ if(typeof showToast==='function') showToast(m,t||'info
 
 /* domains */
 document.querySelectorAll('a[href*="msp.nazaha"]').forEach(function(a){
-  a.href=(a.getAttribute('href')||'').replace(/msp\.nazaha\.site/g,'mzone.nazaha.site');
+  a.href=(a.getAttribute('href')||'').replace(/msp\.nazaha\.site/g,'nazaha.site');
 });
 
 /* ═══ Notif badge: correct unread count ═══ */
@@ -36270,7 +36270,7 @@ window.refreshAllCounters = async function(){
 /* Domains */
 document.querySelectorAll('a[href]').forEach(function(a){
   var h=a.getAttribute('href')||'';
-  if(/msp\.nazaha\.site/i.test(h)) a.setAttribute('href', h.replace(/msp\.nazaha\.site/gi,'mzone.nazaha.site'));
+  if(/msp\.nazaha\.site/i.test(h)) a.setAttribute('href', h.replace(/msp\.nazaha\.site/gi,'nazaha.site'));
   if(/nazaha-dz\.(web\.app|vercel\.app)|nzaha-dz\.web\.app/i.test(h))
     a.setAttribute('href', h.replace(/https?:\/\/(nazaha-dz\.(web\.app|vercel\.app)|nzaha-dz\.web\.app)/gi,'https://nazaha.site'));
 });
@@ -37678,7 +37678,7 @@ function lockSettingsHTML(){
           '<button type="button" class="nz-set-item" onclick="openSettingsPanel(\'appearance\')"><span class="nz-set-icon"><i class="fas fa-palette"></i></span><span class="nz-set-body"><span class="nz-set-title">المظهر</span><span class="nz-set-sub">الوضع النهاري والليلي واللغة</span></span><i class="fas fa-chevron-left nz-set-chev"></i></button>'+
         '</div>'+
         '<div class="nz-set-group"><div class="nz-set-group-title">الخدمات</div>'+
-          '<button type="button" class="nz-set-item" onclick="window.open(\'https://mzone.nazaha.site\',\'_blank\')"><span class="nz-set-icon"><i class="fas fa-briefcase"></i></span><span class="nz-set-body"><span class="nz-set-title">فضاء الخدمات الإدارية</span><span class="nz-set-sub">mzone.nazaha.site</span></span><i class="fas fa-external-link-alt nz-set-chev"></i></button>'+
+          '<button type="button" class="nz-set-item" onclick="window.open(\'https://nazaha.site\',\'_blank\')"><span class="nz-set-icon"><i class="fas fa-briefcase"></i></span><span class="nz-set-body"><span class="nz-set-title">فضاء الخدمات الإدارية</span><span class="nz-set-sub">nazaha.site</span></span><i class="fas fa-external-link-alt nz-set-chev"></i></button>'+
         '</div>'+
         '<div class="nz-set-group">'+
           '<button type="button" class="nz-set-item nz-set-danger" onclick="confirmLogout()"><span class="nz-set-icon nz-set-icon-danger"><i class="fas fa-sign-out-alt"></i></span><span class="nz-set-body"><span class="nz-set-title">تسجيل الخروج</span><span class="nz-set-sub">إنهاء الجلسة الحالية</span></span><i class="fas fa-chevron-left nz-set-chev"></i></button>'+
@@ -38094,7 +38094,7 @@ document.addEventListener('click', function(e){
     }
     if(set === 'admin-space'){
       e.preventDefault();
-      window.open('https://mzone.nazaha.site','_blank');
+      window.open('https://nazaha.site','_blank');
       return;
     }
     if(set === 'logout'){
@@ -41495,7 +41495,7 @@ function rewriteLinksToNazaha(){
   document.querySelectorAll('a[href]').forEach(function(a){
     var h = a.getAttribute('href')||'';
     if(!h || h.startsWith('#') || h.startsWith('mailto:') || h.startsWith('tel:') || h.startsWith('javascript:')) return;
-    /* keep mzone.nazaha.site as external service */
+    /* keep nazaha.site as external service */
     if(/mzone\.nazaha\.site/i.test(h)) return;
     if(/nazaha-dz\.(vercel\.app|web\.app)|nzaha-dz\.web\.app|msp\.nazaha\.site/i.test(h)){
       try{
@@ -49989,7 +49989,7 @@ setTimeout(function(){
 }, 500);
 
 /* Update old links */
-document.querySelectorAll('a[href*="mzone.nazaha.site"]').forEach(function(a){
+document.querySelectorAll('a[href*="nazaha.site"]').forEach(function(a){
   a.href = 'https://nazaha.site/Admservs';
 });
 
@@ -52183,6 +52183,64 @@ window.openProfile=async function(usernameOrId){
 };
 
 console.log('[HARD_RBP] role badge killed, books fixed, profile 3 tabs once');
+})();
+</script>
+
+
+<script id="NAZAHA_ORIGIN_FORCE">
+(function(){
+'use strict';
+var CANONICAL = 'https://nazaha.site';
+try {
+  Object.defineProperty(window, '__NAZAHA_ORIGIN__', { value: CANONICAL, writable: false });
+} catch(e) { window.__NAZAHA_ORIGIN__ = CANONICAL; }
+
+function toCanonical(url){
+  if(!url) return CANONICAL + '/';
+  var s = String(url);
+  s = s.replace(/https?:\/\/(www\.)?mzone\.nazaha\.site/gi, CANONICAL);
+  s = s.replace(/https?:\/\/localhost(?::\d+)?/gi, CANONICAL);
+  s = s.replace(/https?:\/\/127\.0\.0\.1(?::\d+)?/gi, CANONICAL);
+  /* if relative path, prefix */
+  if(s.charAt(0) === '/') s = CANONICAL + s;
+  /* if still not absolute to nazaha, and looks like path-only deep link */
+  if(/^https?:\/\//i.test(s) && s.indexOf('nazaha.site') < 0){
+    /* keep external social/cdn; only rewrite own old host already done */
+  }
+  return s;
+}
+window.toCanonicalUrl = toCanonical;
+
+/* Override shareContent to always emit nazaha.site links */
+var _sc = window.shareContent;
+window.shareContent = function(title, url){
+  var u = toCanonical(url || (CANONICAL + location.pathname + location.search + location.hash));
+  if(typeof _sc === 'function') return _sc.call(this, title, u);
+  try {
+    if(navigator.share) return navigator.share({ title: title || document.title, url: u });
+  } catch(e){}
+  try { navigator.clipboard.writeText(u); if(typeof showToast==='function') showToast('تم نسخ الرابط','success'); } catch(e){}
+};
+
+/* When building share sheets, rewrite any mzone links in DOM */
+function rewriteShareLinks(){
+  document.querySelectorAll('a[href*="mzone.nazaha"], a[href*="mzone.nazaha.site"]').forEach(function(a){
+    a.href = toCanonical(a.getAttribute('href'));
+  });
+  /* also text nodes showing old domain */
+  document.querySelectorAll('p, span, small, div').forEach(function(el){
+    if(el.children && el.children.length) return;
+    var t = el.textContent || '';
+    if(t.indexOf('mzone.nazaha.site') >= 0) el.textContent = t.replace(/mzone\.nazaha\.site/g, 'nazaha.site');
+  });
+}
+rewriteShareLinks();
+setInterval(rewriteShareLinks, 3000);
+
+/* Patch location.origin usage in share by wrapping common builders */
+window.getShareBase = function(){ return CANONICAL; };
+
+console.log('[ORIGIN_FORCE] all shares → https://nazaha.site');
 })();
 </script>
 
