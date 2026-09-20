@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قيد التطوير | المنتدى الشبابي للفكر والمشاركة المدنية</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --secondary: #2ECC5A;
+            --secondary-red: #E91E24;
+            --accent-gold: #C8A84E;
+            --background: #FFFFFF;
+            --text: #111A14;
+            --text-secondary: #4A5A50;
+            --text-muted: #6B7C70;
+            --card-bg: #F7F9F7;
+            --border: #E0E8E2;
+            --border-light: #EDF2EE;
+            --shadow: rgba(17, 26, 20, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background: var(--background);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow-x: hidden;
+            perspective: 1200px;
+        }
+
+        .bg-pattern {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(46, 204, 90, 0.07) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(200, 168, 78, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* Floating 3D orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.35;
+            pointer-events: none;
+            z-index: 0;
+            animation: orb-float 12s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 220px;
+            height: 220px;
+            background: var(--secondary);
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 180px;
+            height: 180px;
+            background: var(--accent-gold);
+            bottom: 15%;
+            right: 8%;
+            animation-delay: -4s;
+        }
+
+        .orb-3 {
+            width: 140px;
+            height: 140px;
+            background: var(--secondary);
+            top: 60%;
+            left: 15%;
+            opacity: 0.2;
+            animation-delay: -7s;
+        }
+
+        @keyframes orb-float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -40px) scale(1.08); }
+            66% { transform: translate(-20px, 25px) scale(0.95); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 480px;
+            width: 90%;
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            transform-style: preserve-3d;
+            transition: transform 0.15s ease-out;
+        }
+
+        /* Logo 3D */
+        .logo-wrapper {
+            margin: 0 auto 1.8rem;
+            display: flex;
+            justify-content: center;
+            transform-style: preserve-3d;
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .logo-img {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+            border-radius: 50%;
+            border: 3px solid var(--border);
+            padding: 6px;
+            background: var(--card-bg);
+            box-shadow: 
+                0 8px 24px var(--shadow),
+                0 2px 6px rgba(0,0,0,0.04);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            transform: translateZ(30px);
+        }
+
+        .logo-wrapper:hover .logo-img {
+            transform: translateZ(50px) scale(1.08);
+            box-shadow: 
+                0 16px 40px rgba(46, 204, 90, 0.18),
+                0 4px 12px rgba(0,0,0,0.06);
+            border-color: var(--secondary);
+        }
+
+        /* Badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(46, 204, 90, 0.1);
+            border: 1px solid rgba(46, 204, 90, 0.22);
+            color: #1B9A45;
+            padding: 7px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.4rem;
+            transform: translateZ(20px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 8px rgba(46, 204, 90, 0.1);
+        }
+
+        .status-badge:hover {
+            transform: translateZ(35px) scale(1.04);
+            box-shadow: 0 6px 16px rgba(46, 204, 90, 0.2);
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--secondary);
+            border-radius: 50%;
+            animation: blink 1.5s ease-in-out infinite;
+            box-shadow: 0 0 6px var(--secondary);
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-bottom: 2rem;
+            line-height: 1.85;
+            max-width: 420px;
+            margin-left: auto;
+            margin-right: auto;
+            transform: translateZ(15px);
+        }
+
+        /* Progress card 3D */
+        .progress-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.4rem 1.6rem;
+            margin-bottom: 2rem;
+            box-shadow: 
+                0 4px 16px var(--shadow),
+                0 1px 3px rgba(0,0,0,0.03);
+            transform: translateZ(25px);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            transform-style: preserve-3d;
+        }
+
+        .progress-section:hover {
+            transform: translateZ(45px) rotateX(2deg);
+            box-shadow: 
+                0 12px 32px rgba(17, 26, 20, 0.1),
+                0 4px 12px rgba(46, 204, 90, 0.08);
+            border-color: rgba(46, 204, 90, 0.3);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        .progress-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .progress-percent {
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--border-light);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 68%;
+            background: linear-gradient(90deg, var(--secondary), #27AE50);
+            border-radius: 8px;
+            position: relative;
+            transition: width 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent);
+            animation: shine 2.2s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* WhatsApp button 3D */
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #25D366;
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 
+                0 6px 20px rgba(37, 211, 102, 0.3),
+                0 2px 6px rgba(0,0,0,0.06);
+            transform: translateZ(30px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .whatsapp-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateZ(50px) scale(1.05);
+            box-shadow: 
+                0 12px 32px rgba(37, 211, 102, 0.4),
+                0 4px 12px rgba(0,0,0,0.08);
+            background: #20BD5A;
+        }
+
+        .whatsapp-btn:hover::before {
+            left: 100%;
+        }
+
+        .whatsapp-btn:active {
+            transform: translateZ(20px) scale(0.98);
+        }
+
+        .whatsapp-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-btn:hover svg {
+            transform: scale(1.1) rotate(-8deg);
+        }
+
+        .footer {
+            margin-top: 2.2rem;
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            transform: translateZ(10px);
+        }
+
+        /* Entrance animation */
+        .container > * {
+            animation: fadeUp 0.7s cubic-bezier(0.23, 1, 0.32, 1) both;
+        }
+
+        .logo-wrapper { animation-delay: 0.1s; }
+        .status-badge { animation-delay: 0.2s; }
+        .subtitle { animation-delay: 0.3s; }
+        .progress-section { animation-delay: 0.4s; }
+        .whatsapp-btn { animation-delay: 0.5s; }
+        .footer { animation-delay: 0.6s; }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px) translateZ(0);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) translateZ(var(--z, 0));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="container" id="card">
+        <div class="logo-wrapper">
+            <img src="https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/logo-2.png" alt="شعار المنتدى" class="logo-img">
+        </div>
+
+        <div class="status-badge">
+            <span class="status-dot"></span>
+            قيد التطوير
+        </div>
+
+        <p class="subtitle">
+            نعمل حاليًا على تطوير وصيانة موقعنا الإلكتروني، في إطار تحسين تجربة التصفح وتقديم تجربة رقمية تليق بأعضاء المنتدى وزوّاره. تابعوا صفحات المنتدى للاطلاع على موعد الإطلاق الرسمي.<br><br>
+            تطوير يستحق انتظارك... نعود قريبًا.
+        </p>
+
+        <div class="progress-section">
+            <div class="progress-header">
+                <span class="progress-label">نسبة الإنجاز</span>
+                <span class="progress-percent">68%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+
+        <a href="https://wa.me/213541270738" class="whatsapp-btn" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.85 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            انضم عبر واتساب
+        </a>
+
+        <div class="footer">
+            © 2026 المنتدى الشبابي للفكر والمشاركة المدنية
+        </div>
+    </div>
+
+    <script>
+        // 3D tilt effect on mouse move
+        const card = document.getElementById('card');
+        const maxTilt = 8;
+
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 2;
+            const y = (e.clientY / window.innerHeight - 0.5) * 2;
+
+            const rotateY = x * maxTilt;
+            const rotateX = -y * maxTilt;
+
+            card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        document.addEventListener('mouseleave', () => {
+            card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+        });
+
+        // Animate progress bar on load
+        window.addEventListener('load', () => {
+            const fill = document.getElementById('progressFill');
+            fill.style.width = '0%';
+            setTimeout(() => {
+                fill.style.width = '68%';
+            }, 400);
+        });
+    </script>
+</body>
+</html>
