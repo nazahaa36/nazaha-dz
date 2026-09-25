@@ -1,0 +1,1963 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1a6b2f">
+<meta name="description" content="انضم إلى جيل يصنع الفرق. نزاهة منصة شبابية وطنية تمكّنك من التعلم والقيادة والتطوع وبناء أثر حقيقي في الجزائر عبر برامج نوعية وشبكة سفراء وفرص مشاركة مدنية.">
+<meta name="keywords" content="نزاهة, المنتدى الشبابي للفكر والمشاركة المدنية, Youth Forum for Thought and Civic Participation, YFTCP, مشاركة مدنية, تمكين الشباب, شباب الجزائر, سفراء, تطوع, انخراط, ولاية الطارف">
+<meta name="author" content="المنتدى الشبابي للفكر والمشاركة المدنية">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="language" content="Arabic">
+<meta name="geo.region" content="DZ">
+<meta name="geo.placename" content="El Tarf, Algeria">
+<link rel="canonical" href="https://nazaha.site/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ar_DZ">
+<meta property="og:site_name" content="المنتدى الشبابي للفكر والمشاركة المدنية">
+<meta property="og:title" content="المنتدى الشبابي للفكر والمشاركة المدنية — نزاهة">
+<meta property="og:description" content="انضم إلى جيل يصنع الفرق. نزاهة منصة شبابية وطنية تمكّنك من التعلم والقيادة والتطوع وبناء أثر حقيقي في الجزائر.">
+<meta property="og:url" content="https://nazaha.site/">
+<meta property="og:image" content="https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/logo-3.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="نزاهة | المنتدى الشبابي للفكر والمشاركة المدنية">
+<meta name="twitter:description" content="انضم إلى جيل يصنع الفرق مع نزاهة.">
+<title>المنتدى الشبابي للفكر والمشاركة المدنية — نزاهة</title>
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/logo-3.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"المنتدى الشبابي للفكر والمشاركة المدنية","alternateName":"نزاهة","url":"https://nazaha.site/","logo":"https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/logo-3.png","description":"منتدى شبابي وطني غير ربحي مقره ولاية الطارف في الجزائر. نمكّن الشباب ونصنع القيادات ونعزز قيم النزاهة والشفافية والمواطنة الفاعلة.","email":"nzaha.dz@gmail.com","address":{"@type":"PostalAddress","addressLocality":"الطارف","addressCountry":"DZ"},"founder":{"@type":"Person","name":"نزيه عبدالله بومهني"},"sameAs":["https://www.facebook.com/nzaha.dz","https://www.instagram.com/nzaha.dz","https://youtube.com/@nzaha-dz","https://t.me/+qMBoS7tGvi1iZDBk"]}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<script src="https://www.gstatic.com/firebasejs/12.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.13.0/firebase-storage-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.13.0/firebase-analytics-compat.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+/* ===== Design tokens (spec §5) ===== */
+:root{
+  --primary:#1a6b2f;--primary-light:#2ECC5A;--primary-dark:#0f4a1e;--accent:#C8A84E;--danger:#e53935;
+  --bg:#FFFFFF;--surface:#fff;--surface-alt:#f4f7f5;--surface-glass:rgba(255,255,255,.88);
+  --text:#111A14;--text-secondary:#4a5c52;--text-muted:#8a9e92;--border:#d8e4db;--border-light:#eaf2ec;
+  --shadow-sm:0 2px 8px rgba(0,0,0,.06);--shadow:0 6px 24px rgba(0,0,0,.08);--shadow-lg:0 16px 48px rgba(0,0,0,.12);
+  --radius-sm:12px;--radius:18px;--radius-pill:50px;--transition:.28s cubic-bezier(.4,0,.2,1);
+  --font:'IBM Plex Sans Arabic','IBM Plex Sans',Arial,sans-serif;--font-mono:'IBM Plex Mono',monospace;
+  --header-h:100px;
+}
+body.dark{
+  --bg:#0a0f0c;--surface:#111a14;--surface-alt:#172019;--surface-glass:rgba(17,26,20,.92);
+  --text:#e8f0ea;--text-secondary:#9ab5a0;--text-muted:#5a7a62;--border:#243029;--border-light:#1c2820;
+  --shadow-sm:0 2px 8px rgba(0,0,0,.3);--shadow:0 6px 24px rgba(0,0,0,.45);--shadow-lg:0 16px 48px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;direction:rtl;background:var(--bg)}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+.fas,.far,.fab,.fa,[class^=fa-],[class*=" fa-"]{font-family:"Font Awesome 6 Free","Font Awesome 6 Brands"!important;font-weight:900;font-style:normal}
+h1,h2,h3,h4{font-weight:600;line-height:1.35}a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
+button,input,select,textarea{font-family:var(--font)}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:var(--primary-light);border-radius:3px}
+
+/* Header — مواصفات: hidr.png · ارتفاع 100px (90 على ≤480) */
+.site-header{
+  position:fixed;top:0;left:0;right:0;width:100%;
+  z-index:1000;height:var(--header-h);min-height:var(--header-h);
+  display:flex;align-items:center;justify-content:center;
+  padding:0 16px;margin:0;
+  background:var(--surface-glass);backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+  border-bottom:1px solid var(--border-light);
+  transform:none;
+}
+.header-brand{
+  position:absolute;left:50%;right:auto;transform:translateX(-50%);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:1;
+}
+.brand-logo{
+  width:160px;height:78px;max-width:42vw;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;background:transparent;border:none;padding:0;
+}
+.brand-logo img{
+  width:100%;height:100%;max-width:160px;max-height:78px;
+  object-fit:contain;object-position:center;display:block;
+}
+.header-actions{
+  position:absolute;right:16px;left:auto;top:50%;transform:translateY(-50%);
+  display:flex;align-items:center;gap:8px;z-index:1002;
+}
+.btn-icon{
+  width:40px;height:40px;border-radius:50%;border:none;
+  background:var(--surface-alt);color:var(--text);cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;
+  transition:var(--transition);font-size:15px;
+}
+.btn-icon:hover{background:var(--primary);color:#fff}
+.hamburger{
+  width:44px;height:44px;border-radius:50%;border:none;
+  background:var(--primary);color:#fff;cursor:pointer;
+  display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+  box-shadow:0 4px 14px rgba(26,107,47,.35);z-index:1001;
+}
+.hamburger span{display:block;width:18px;height:2.5px;background:currentColor;border-radius:2px;transition:.25s}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+@media(max-width:480px){
+  :root{--header-h:90px}
+  .brand-logo{width:140px;height:68px}
+  .brand-logo img{max-width:140px;max-height:68px}
+  .header-actions{right:10px}
+}
+
+/* Side nav */
+.side-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:998;opacity:0;visibility:hidden;transition:.3s;backdrop-filter:blur(3px)}.side-overlay.open{opacity:1;visibility:visible}
+.side-nav{position:fixed;top:0;right:-320px;width:300px;max-width:88vw;height:100%;background:var(--surface);z-index:999;transition:right .35s cubic-bezier(.4,0,.2,1);padding:calc(var(--header-h) + 12px) 16px 24px;overflow-y:auto;display:flex;flex-direction:column;gap:2px;box-shadow:var(--shadow-lg);border-left:1px solid var(--border)}.side-nav.open{right:0}
+.side-nav a,.side-nav .nav-link{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--radius-sm);color:var(--text);font-weight:600;font-size:14px;border:1px solid transparent;cursor:pointer;transition:var(--transition);background:none;width:100%;text-align:right}
+.side-nav a i,.side-nav .nav-link i{width:16px;text-align:center;color:var(--primary-light);font-size:12px}
+.side-nav a:hover,.side-nav .nav-link:hover,.side-nav a.active,.side-nav .nav-link.active{background:rgba(46,204,90,.1);border-color:rgba(46,204,90,.2);color:var(--primary)}
+.nav-divider{height:1px;background:var(--border-light);margin:8px 0}
+.nav-social{display:flex;gap:6px;padding:12px 4px 0;margin-top:auto;flex-wrap:wrap}
+.nav-social a{width:28px;height:28px;border-radius:50%;background:var(--surface-alt);display:flex;align-items:center;justify-content:center;border:1px solid var(--border-light);color:var(--text-secondary);padding:0;font-size:12px}
+.nav-social a:hover{background:var(--primary);color:#fff}
+
+/* Pages */
+.page{display:none;padding-top:var(--header-h);min-height:100vh}.page.active{display:block;animation:pageIn .35s ease}
+@keyframes pageIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.content{max-width:1100px;margin:0 auto;padding:40px 20px}
+.section-header{text-align:center;margin-bottom:32px}
+.section-tag{display:inline-block;padding:4px 14px;background:rgba(46,204,90,.1);color:var(--primary);border-radius:50px;font-size:11px;font-weight:700;border:1px solid rgba(46,204,90,.2);margin-bottom:8px}
+.section-title{font-size:clamp(22px,4vw,30px);margin-bottom:8px}
+.section-sub{font-size:14px;color:var(--text-secondary);max-width:580px;margin:0 auto}
+.section-divider{width:48px;height:3px;background:linear-gradient(90deg,var(--primary-light),var(--accent));border-radius:3px;margin:14px auto}
+
+/* Buttons */
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;background:var(--primary-light);color:#fff;border:none;border-radius:var(--radius-pill);font-weight:700;font-size:14px;cursor:pointer;transition:var(--transition);box-shadow:0 6px 20px rgba(46,204,90,.35)}.btn-primary:hover{background:#25a84a;transform:translateY(-2px)}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;background:transparent;color:#fff;border:2px solid rgba(255,255,255,.55);border-radius:var(--radius-pill);font-weight:700;font-size:14px;cursor:pointer;transition:var(--transition)}.btn-outline:hover{background:rgba(255,255,255,.12);border-color:#fff}
+.btn-outline-dark{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;background:transparent;color:var(--primary);border:1.5px solid var(--primary-light);border-radius:var(--radius-pill);font-weight:700;font-size:13px;cursor:pointer;transition:var(--transition)}.btn-outline-dark:hover{background:rgba(46,204,90,.1)}
+.btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 22px;background:var(--surface-alt);color:var(--text);border:1.5px solid var(--border-light);border-radius:var(--radius-pill);font-weight:700;font-size:13px;cursor:pointer;transition:var(--transition)}.btn-secondary:hover{background:var(--border-light)}
+.card{background:var(--surface);border:1.5px solid var(--border-light);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow-sm);transition:var(--transition)}.card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+
+/* Hero */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden;padding:calc(var(--header-h) + 24px) 20px 80px}
+.hero-bg{position:absolute;inset:0;z-index:0;background:linear-gradient(160deg,rgba(8,20,10,.9),rgba(20,70,30,.72),rgba(8,20,10,.88)),url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1920&q=85') center/cover no-repeat;animation:kenBurns 22s ease-in-out infinite alternate}
+@keyframes kenBurns{0%{transform:scale(1)}100%{transform:scale(1.12) translate(-1%,-1%)}}
+.hero-content{position:relative;z-index:2;max-width:720px}
+.hero-logo{width:min(160px,38vw);height:auto;aspect-ratio:1;margin:0 auto 24px;filter:drop-shadow(0 8px 28px rgba(0,0,0,.4))}
+.hero-logo img{width:100%;height:100%;object-fit:contain}
+.hero-title{font-size:clamp(26px,5.5vw,44px);font-weight:700;margin-bottom:14px;text-shadow:0 2px 16px rgba(0,0,0,.4)}
+.hero-typewriter{font-size:clamp(15px,2.8vw,18px);opacity:.9;margin-bottom:28px;min-height:32px;font-weight:500}
+.hero-typewriter .cursor{display:inline-block;width:2px;height:1.1em;background:var(--primary-light);margin-right:2px;animation:blink .8s step-end infinite;vertical-align:text-bottom}
+@keyframes blink{50%{opacity:0}}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+
+/* Stats */
+.stats-strip{position:relative;z-index:3;margin:-48px auto 0;padding:0 20px;display:flex;flex-wrap:wrap;justify-content:center;gap:12px;max-width:900px}
+.stat-card{background:var(--surface);border-radius:16px;padding:18px 14px;text-align:center;flex:1;min-width:120px;border:1.5px solid var(--border-light);box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+.stat-card::before{content:'';position:absolute;top:0;inset-inline:0;height:3px;background:linear-gradient(90deg,var(--primary-light),var(--accent))}
+.stat-number{font-size:clamp(24px,4vw,36px);font-weight:800;color:var(--primary);font-family:var(--font-mono)}.stat-label{font-size:12px;font-weight:600;color:var(--text-secondary);margin-top:6px}.stat-icon{font-size:20px;color:var(--primary-light);margin-bottom:6px}
+
+/* Activity banner */
+.home-activity-banner{display:flex;align-items:center;gap:10px;height:52px;background:var(--surface);border:1.5px solid var(--border-light);border-radius:14px;box-shadow:var(--shadow-sm);overflow:hidden;padding-inline-start:14px;max-width:900px;margin:20px auto 0}
+.hab-icon{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;animation:habPulse 2s ease-in-out infinite}
+@keyframes habPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+.hab-track-wrap{flex:1;min-width:0;overflow:hidden;height:100%;position:relative}
+.hab-track{position:absolute;white-space:nowrap;top:50%;transform:translateY(-50%);font-size:13px;font-weight:600;color:var(--text);animation:habScroll 28s linear infinite}
+.hab-track .hab-sep{color:var(--primary-light);margin:0 14px}
+@keyframes habScroll{from{right:0}to{right:-100%}}
+.hab-cta{flex-shrink:0;height:36px;padding:0 16px;border:none;border-radius:10px;background:var(--primary);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;gap:6px;cursor:pointer;white-space:nowrap}.hab-cta:hover{background:var(--primary-light)}
+
+/* Partners */
+.partners-wrap{overflow:hidden;padding:32px 0;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.partners-track{display:flex;align-items:center;gap:36px;width:max-content;animation:partnersScroll 40s linear infinite}
+.partners-track img{height:40px;width:auto;opacity:.7;filter:grayscale(40%);transition:.3s}.partners-track img:hover{opacity:1;filter:none}
+@keyframes partnersScroll{from{transform:translateX(0)}to{transform:translateX(50%)}}
+
+/* ===== Team carousel — carosil.html حرفي (spec §6) ===== */
+#page-team{overflow-x:clip}
+#page-team .content{overflow:visible;max-width:100%;padding-left:0;padding-right:0}
+.team-section{max-width:1100px;margin:0 auto;padding:0 20px}
+.team-slider-wrap{
+  width:100%;max-width:1100px;margin:0 auto;
+  padding:24px 0 48px;direction:ltr;
+  overflow:visible;position:relative;
+}
+.team-swiper{
+  width:100%;
+  padding:50px 0 70px !important;
+  overflow:visible !important;
+  margin:0 auto;
+}
+.team-swiper .swiper-wrapper{align-items:stretch}
+.team-swiper .swiper-slide{
+  width:280px !important;
+  height:390px !important;
+  border-radius:20px;
+  overflow:hidden;
+  background:#fff;
+  border:1px solid rgba(17,26,20,.08);
+  box-shadow:
+    0 18px 40px -10px rgba(17,26,20,.14),
+    0 0 0 1px rgba(255,255,255,.8) inset;
+  cursor:grab;
+  user-select:none;
+  transition:border-color .25s ease, box-shadow .25s ease;
+  flex-shrink:0;
+}
+.team-swiper .swiper-slide-active{
+  border-color:rgba(46,204,90,.22);
+  box-shadow:
+    0 22px 48px -12px rgba(17,26,20,.18),
+    0 0 0 1px rgba(46,204,90,.08) inset;
+}
+.team-swiper .swiper-slide:active{cursor:grabbing}
+.team-card{
+  width:100%;height:100%;
+  display:flex;flex-direction:column;
+  background:#fff;direction:rtl;
+}
+.team-card-image-wrapper{
+  width:100%;height:57%;min-height:0;
+  overflow:hidden;background:#f7f8f7;
+  position:relative;flex-shrink:0;
+}
+.team-card-image{
+  width:100%;height:100%;display:block;
+  object-fit:cover;object-position:center 25%;
+  pointer-events:none;
+  transition:transform .45s ease;
+}
+.team-swiper .swiper-slide-active .team-card-image{transform:scale(1.015)}
+.team-card-content{
+  flex:1;min-height:0;
+  padding:18px 20px 24px;
+  display:flex;flex-direction:column;justify-content:flex-start;
+}
+.team-card-info{flex-shrink:0}
+.team-card-info h3{
+  font-size:1.2rem;font-weight:600;margin-bottom:6px;
+  line-height:1.35;color:var(--text);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.team-card-info p{
+  font-size:.9rem;color:rgba(17,26,20,.7);line-height:1.45;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.team-profile-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:100%;margin-top:auto;margin-bottom:2px;
+  padding:11px 16px;font-size:.9rem;font-weight:500;font-family:inherit;
+  color:#fff;background:var(--primary-light);
+  border:none;border-radius:12px;cursor:pointer;
+  transition:background .25s ease, transform .2s ease, box-shadow .25s ease;
+}
+.team-profile-btn:hover{background:#27ae4e;box-shadow:0 6px 16px rgba(46,204,90,.22)}
+.team-profile-btn:active{transform:scale(.97)}
+/* coverflow 3D shadows from Swiper */
+.team-swiper .swiper-slide-shadow-left,
+.team-swiper .swiper-slide-shadow-right{border-radius:20px}
+@media(max-width:768px){
+  .team-swiper .swiper-slide{width:250px !important;height:370px !important}
+  .team-swiper{padding:40px 0 60px !important}
+}
+@media(max-width:480px){
+  .team-swiper .swiper-slide{width:230px !important;height:350px !important}
+  .team-card-content{padding:16px 16px 20px}
+  .team-card-info h3{font-size:1.1rem}
+  .team-card-info p{font-size:.85rem}
+  .team-profile-btn{padding:10px 14px;font-size:.88rem}
+  .team-slider-wrap{padding:16px 0 36px}
+}
+body.dark .team-swiper .swiper-slide{background:var(--surface);border-color:var(--border)}
+body.dark .team-card{background:var(--surface)}
+body.dark .team-card-info h3{color:var(--text)}
+body.dark .team-card-info p{color:var(--text-secondary)}
+body.dark .team-card-image-wrapper{background:#0f1612}
+
+/* Goals list */
+.goals-list{list-style:none;counter-reset:g;display:grid;gap:12px;max-width:720px;margin:0 auto}
+.goals-list li{counter-increment:g;display:flex;gap:14px;align-items:flex-start;padding:14px 16px;background:var(--surface);border:1px solid var(--border-light);border-radius:14px}
+.goals-list li::before{content:counter(g);flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--primary-light);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}
+
+/* Join options */
+.join-options{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-bottom:28px}
+.join-card{background:var(--surface);border:1.5px solid var(--border-light);border-radius:var(--radius);padding:22px 18px;text-align:center;cursor:pointer;transition:var(--transition)}
+.join-card:hover,.join-card.selected{border-color:var(--primary-light);box-shadow:0 8px 24px rgba(46,204,90,.15);transform:translateY(-3px)}
+.join-card i{font-size:28px;color:var(--primary-light);margin-bottom:10px}
+.join-card h3{font-size:16px;margin-bottom:6px}.join-card p{font-size:12px;color:var(--text-secondary)}
+
+/* Forms */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:640px){.form-grid{grid-template-columns:1fr}}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group.full{grid-column:1/-1}
+.form-group label{font-size:13px;font-weight:600;color:var(--text)}
+.form-group label .req{color:var(--danger);margin-right:3px}
+.form-group input,.form-group select,.form-group textarea{padding:11px 14px;border:1.5px solid var(--border);border-radius:12px;background:var(--surface);color:var(--text);font-size:14px;transition:border-color .2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--primary-light);box-shadow:0 0 0 3px rgba(46,204,90,.15)}
+.form-group textarea{min-height:90px;resize:vertical}
+.field-error{border-color:var(--danger)!important;animation:fieldShake .4s}
+@keyframes fieldShake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-4px)}40%,80%{transform:translateX(4px)}}
+.step-dots{display:flex;gap:8px;justify-content:center;margin-bottom:20px}
+.step-dot{width:10px;height:10px;border-radius:50%;background:var(--border);transition:.25s}.step-dot.active{background:var(--primary-light);transform:scale(1.2)}.step-dot.done{background:var(--primary)}
+.form-actions{display:flex;gap:10px;justify-content:space-between;margin-top:20px;flex-wrap:wrap}
+.upload-zone{border:2px dashed var(--border);border-radius:14px;padding:24px;text-align:center;cursor:pointer;transition:.2s;background:var(--surface-alt)}
+.upload-zone:hover,.upload-zone.drag{border-color:var(--primary-light);background:rgba(46,204,90,.06)}
+.upload-zone img{max-width:100px;max-height:100px;border-radius:50%;margin:0 auto 8px;object-fit:cover}
+.checkbox-row{display:flex;align-items:flex-start;gap:10px;font-size:13px;margin-top:8px}
+.checkbox-row input{margin-top:4px;accent-color:var(--primary-light)}
+
+/* Status badges */
+.badge-pending{background:#fef3c7;color:#b45309;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700}
+.badge-review{background:#dbeafe;color:#1d4ed8;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700}
+.badge-accepted{background:#d1fae5;color:#047857;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700}
+.badge-rejected{background:#fee2e2;color:#b91c1c;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700}
+
+/* Ambassadors grid */
+.amb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.amb-card{background:var(--surface);border:1.5px solid var(--border-light);border-radius:var(--radius);padding:20px;text-align:center;transition:var(--transition)}
+.amb-card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.amb-card img{width:84px;height:84px;border-radius:50%;object-fit:cover;margin:0 auto 12px;border:3px solid var(--primary-light)}
+.amb-card h3{font-size:16px;margin-bottom:4px}.amb-card .wilaya{font-size:13px;color:var(--text-secondary);margin-bottom:12px}
+.amb-card .btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+
+/* Toast */
+.toast-container{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:100100;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none}
+.toast{padding:12px 20px;border-radius:12px;font-size:13px;font-weight:600;color:#fff;box-shadow:var(--shadow-lg);animation:toastIn .3s ease;pointer-events:auto;max-width:90vw}
+.toast.success{background:#059669}.toast.error{background:#dc2626}.toast.warning{background:#d97706}.toast.info{background:#2563eb}
+@keyframes toastIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* Offline banner */
+.offline-banner{display:none;position:fixed;top:var(--header-h);inset-inline:0;z-index:997;background:#b91c1c;color:#fff;text-align:center;padding:8px;font-size:13px;font-weight:600}
+.offline-banner.show{display:block}
+
+/* Footer */
+.site-footer{background:var(--surface-alt);border-top:1px solid var(--border-light);padding:40px 20px 24px;margin-top:48px}
+.footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px}
+.footer-col h4{font-size:14px;margin-bottom:12px;color:var(--primary)}.footer-col a,.footer-col p{font-size:13px;color:var(--text-secondary);display:block;margin-bottom:6px}.footer-col a:hover{color:var(--primary)}
+.footer-bottom{text-align:center;margin-top:28px;padding-top:16px;border-top:1px solid var(--border-light);font-size:12px;color:var(--text-muted)}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:100050;display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
+.modal-box{background:var(--surface);border-radius:18px;padding:24px;max-width:480px;width:100%;position:relative;box-shadow:var(--shadow-lg)}
+.modal-close{position:absolute;top:12px;left:12px;width:32px;height:32px;border-radius:50%;border:none;background:var(--surface-alt);cursor:pointer;display:flex;align-items:center;justify-content:center}
+
+/* Item cards */
+.item-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.item-card{background:var(--surface);border:1.5px solid var(--border-light);border-radius:var(--radius);overflow:hidden;transition:var(--transition);cursor:pointer}
+.item-card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.item-card img{width:100%;height:160px;object-fit:cover}
+.item-card .body{padding:16px}.item-card h3{font-size:15px;margin-bottom:6px}.item-card .meta{font-size:12px;color:var(--text-muted)}
+
+/* Empty / loading */
+.empty-state{text-align:center;padding:48px 20px;color:var(--text-muted)}.empty-state i{font-size:40px;margin-bottom:12px;opacity:.4}
+.spinner{display:inline-block;width:24px;height:24px;border:3px solid var(--border);border-top-color:var(--primary-light);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Legal text */
+.legal-block{margin-bottom:24px}.legal-block h3{font-size:16px;margin-bottom:8px;color:var(--primary)}.legal-block p,.legal-block ul{font-size:14px;color:var(--text-secondary);line-height:1.8}.legal-block ul{padding-right:20px}
+
+@media(max-width:520px){
+  .home-activity-banner{height:46px;padding-inline-start:10px}.hab-cta{padding:0 12px;font-size:11px}
+  .content{padding:28px 14px}
+}
+</style>
+</head>
+<body>
+
+<div class="offline-banner" id="offlineBanner">أنت غير متصل بالإنترنت</div>
+
+<!-- Header — شعار hidr.png الرسمي فقط -->
+<header class="site-header">
+  <div class="header-brand" onclick="navigate('/')" title="نزاهة — الرئيسية">
+    <div class="brand-logo">
+      <img src="https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/hidr.png" alt="شعار نزاهة"
+           onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/logo-3.png'">
+    </div>
+  </div>
+  <div class="header-actions">
+    <button type="button" class="btn-icon" id="themeToggle" title="الوضع الداكن" aria-label="تبديل الوضع"><i class="fas fa-moon"></i></button>
+    <button type="button" class="hamburger" id="hamburger" aria-label="القائمة"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="side-overlay" id="sideOverlay"></div>
+<nav class="side-nav" id="sideNav">
+  <a href="#/" class="nav-link" data-path="/"><i class="fas fa-home"></i> الرئيسية</a>
+  <a href="#/about" class="nav-link" data-path="/about"><i class="fas fa-info-circle"></i> من نحن</a>
+  <a href="#/team" class="nav-link" data-path="/team"><i class="fas fa-users"></i> فريقنا</a>
+  <a href="#/ambassadors" class="nav-link" data-path="/ambassadors"><i class="fas fa-map-marker-alt"></i> سفراؤنا</a>
+  <a href="#/join" class="nav-link" data-path="/join"><i class="fas fa-user-plus"></i> انضم إلينا</a>
+  <a href="#/activities" class="nav-link" data-path="/activities"><i class="fas fa-calendar-alt"></i> أنشطتنا</a>
+  <a href="#/news" class="nav-link" data-path="/news"><i class="fas fa-newspaper"></i> أخبارنا</a>
+  <a href="#/projects" class="nav-link" data-path="/projects"><i class="fas fa-project-diagram"></i> مشاريعنا</a>
+  <a href="#/library" class="nav-link" data-path="/library"><i class="fas fa-book"></i> المكتبة</a>
+  <div class="nav-divider"></div>
+  <a href="#/tracking" class="nav-link" data-path="/tracking"><i class="fas fa-search"></i> تتبع الطلب</a>
+  <a href="#/profile" class="nav-link" data-path="/profile"><i class="fas fa-user"></i> حسابي</a>
+  <a href="#/contact" class="nav-link" data-path="/contact"><i class="fas fa-envelope"></i> تواصل معنا</a>
+  <a href="#/legal" class="nav-link" data-path="/legal"><i class="fas fa-balance-scale"></i> الشؤون القانونية</a>
+  <div class="nav-social">
+    <a href="https://www.facebook.com/nzaha.dz" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.instagram.com/nzaha.dz" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://youtube.com/@nzaha-dz" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+    <a href="https://t.me/+qMBoS7tGvi1iZDBk" target="_blank" rel="noopener" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+  </div>
+</nav>
+
+<main id="app">
+
+<!-- ===== HOME ===== -->
+<section class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-logo"><img src="https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/logo-3.png" alt="نزاهة" onerror="this.style.display='none'"></div>
+      <h1 class="hero-title">المنتدى الشبابي للفكر والمشاركة المدنية</h1>
+      <div class="hero-typewriter" id="typewriter"><span id="twText"></span><span class="cursor"></span></div>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="navigate('/join')"><i class="fas fa-user-plus"></i> انضم إلينا</button>
+        <button class="btn-outline" onclick="navigate('/about')"><i class="fas fa-info-circle"></i> تعرّف علينا</button>
+      </div>
+    </div>
+  </div>
+  <div class="stats-strip">
+    <div class="stat-card"><div class="stat-icon"><i class="fas fa-users"></i></div><div class="stat-number" data-count="1200">0</div><div class="stat-label">عضو</div></div>
+    <div class="stat-card"><div class="stat-icon"><i class="fas fa-calendar-check"></i></div><div class="stat-number" data-count="85">0</div><div class="stat-label">نشاط</div></div>
+    <div class="stat-card"><div class="stat-icon"><i class="fas fa-project-diagram"></i></div><div class="stat-number" data-count="24">0</div><div class="stat-label">مشروع</div></div>
+    <div class="stat-card"><div class="stat-icon"><i class="fas fa-map"></i></div><div class="stat-number" data-count="18">0</div><div class="stat-label">ولاية</div></div>
+  </div>
+  <div class="content" style="padding-top:28px">
+    <div class="home-activity-banner">
+      <div class="hab-icon"><i class="fas fa-bullhorn"></i></div>
+      <div class="hab-track-wrap"><div class="hab-track" id="habTrack">ورشة القيادة الشبابية — الطارف <span class="hab-sep">•</span> ندوة المواطنة الرقمية <span class="hab-sep">•</span> حملة التطوع البيئي <span class="hab-sep">•</span> ملتقى السفراء الوطني</div></div>
+      <button class="hab-cta" onclick="navigate('/activities')">سجّل الآن <i class="fas fa-arrow-left"></i></button>
+    </div>
+    <div class="partners-wrap" style="margin-top:36px">
+      <div class="partners-track" id="partnersTrack">
+        <img src="https://via.placeholder.com/120x40?text=Partner+1" alt="شريك"><img src="https://via.placeholder.com/120x40?text=Partner+2" alt="شريك"><img src="https://via.placeholder.com/120x40?text=Partner+3" alt="شريك"><img src="https://via.placeholder.com/120x40?text=Partner+4" alt="شريك"><img src="https://via.placeholder.com/120x40?text=Partner+5" alt="شريك">
+        <img src="https://via.placeholder.com/120x40?text=Partner+1" alt="شريك"><img src="https://via.placeholder.com/120x40?text=Partner+2" alt="شريك"><img src="https://via.placeholder.com/120x40?text=Partner+3" alt="شريك"><img src="https://via.placeholder.com/120x40?text=Partner+4" alt="شريك"><img src="https://via.placeholder.com/120x40?text=Partner+5" alt="شريك">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="page" id="page-about">
+  <div class="content">
+    <div class="section-header">
+      <span class="section-tag">من نحن</span>
+      <h2 class="section-title">المنتدى الشبابي للفكر والمشاركة المدنية</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="card" style="margin-bottom:24px">
+      <p style="margin-bottom:14px">المنتدى الشبابي للفكر والمشاركة المدنية هو مبادرة شبابية وطنية غير ربحية، تُعنى بتمكين الشباب وتنمية قدراتهم الفكرية والقيادية، من خلال برامج نوعية وفرص عملية تُعزز التعلم والابتكار والمشاركة المجتمعية.</p>
+      <p style="margin-bottom:14px">نعمل وفق نموذج مؤسسي يحاكي بيئات العمل الاحترافية، لنمنح الشباب تجربة واقعية تُسهم في تطوير مهاراتهم، وتعزيز روح المسؤولية، وإعدادهم لقيادة المبادرات وصناعة الأثر الإيجابي.</p>
+      <p>كما يلتزم المنتدى بترسيخ قيم النزاهة والشفافية، ونشر ثقافة التفكير النقدي والمواطنة الفاعلة، وبناء شراكات فاعلة بين الشباب والمؤسسات، مع احتضان المبادرات الشبابية غير الربحية ودعمها حتى تتحول إلى مشاريع مستدامة تُسهم في تنمية المجتمع.</p>
+    </div>
+    <div class="section-header" style="margin-top:36px">
+      <span class="section-tag">الأهداف</span>
+      <h2 class="section-title">أهدافنا العشرة</h2>
+      <div class="section-divider"></div>
+    </div>
+    <ol class="goals-list">
+      <li>تمكين الشباب من اكتساب المهارات والمعارف اللازمة للمشاركة الفاعلة في تنمية المجتمع.</li>
+      <li>إعداد قيادات شبابية مؤهلة تمتلك الفكر والكفاءة والقدرة على صناعة القرار.</li>
+      <li>ترسيخ ثقافة التفكير النقدي والابتكار، وتشجيع الحوار البنّاء وتبادل المعرفة.</li>
+      <li>تعزيز المشاركة المدنية وترسيخ قيم المواطنة والمسؤولية المجتمعية.</li>
+      <li>بناء شراكات استراتيجية بين الشباب ومؤسسات الدولة والقطاعين العام والخاص والمجتمع المدني.</li>
+      <li>دعم وتأهيل المبادرات الشبابية غير الربحية، وتحويلها إلى مشاريع مستدامة ذات أثر ملموس.</li>
+      <li>نشر قيم النزاهة والشفافية والحوكمة الرشيدة، والإسهام في ترسيخ ثقافة مكافحة الفساد.</li>
+      <li>توفير بيئة مؤسسية تُحاكي بيئات العمل الاحترافية، لتنمية الخبرات العملية وتعزيز جاهزية الشباب لسوق العمل.</li>
+      <li>اكتشاف المواهب الشابة ورعايتها وتمكينها من الوصول إلى فرص التطوير والتميز.</li>
+      <li>الإسهام في تحقيق أهداف التنمية المستدامة من خلال مبادرات ومشاريع يقودها الشباب.</li>
+    </ol>
+    <div class="section-header" style="margin-top:40px">
+      <span class="section-tag">الرؤية</span>
+      <h2 class="section-title">رؤيتنا</h2>
+      <div class="section-divider"></div>
+      <p class="section-sub" style="max-width:680px">أن نكون منصة وطنية رائدة في تمكين الشباب، وصناعة القيادات المستقبلية، وبناء مجتمع أكثر وعيًا ونزاهة ومشاركة، من خلال إعداد جيل يمتلك المعرفة والمهارة والمسؤولية، ويسهم بفاعلية في صناعة القرار وتحقيق التنمية المستدامة.</p>
+    </div>
+    <div class="section-header" style="margin-top:32px">
+      <span class="section-tag">الرسالة</span>
+      <h2 class="section-title">رسالتنا</h2>
+      <div class="section-divider"></div>
+      <p class="section-sub" style="max-width:680px">نعمل على تمكين الشباب وتطوير قدراتهم الفكرية والقيادية والمهنية، عبر توفير بيئة مؤسسية محفزة للتعلم والمشاركة والابتكار، واحتضان المبادرات الشبابية، وبناء شراكات فاعلة مع مختلف القطاعات، بما يسهم في تعزيز قيم النزاهة والشفافية والمواطنة، وتحويل الأفكار إلى مشاريع ذات أثر مستدام يخدم المجتمع.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TEAM ===== -->
+<section class="page" id="page-team">
+  <div class="content">
+    <div class="team-section">
+      <div class="section-header">
+        <span class="section-tag">الفريق</span>
+        <h2 class="section-title">مجلس الإدارة</h2>
+        <p class="section-sub">القادة الذين يقودون رؤية المنتدى</p>
+        <div class="section-divider"></div>
+      </div>
+    </div>
+    <div class="team-slider-wrap">
+      <div class="swiper team-swiper" id="teamSwiperAdmin">
+        <div class="swiper-wrapper" id="teamAdminSlides"></div>
+      </div>
+    </div>
+    <div class="team-section">
+      <div class="section-header" style="margin-top:8px">
+        <span class="section-tag">المؤطرون</span>
+        <h2 class="section-title">المدربون والمؤطرون</h2>
+        <div class="section-divider"></div>
+      </div>
+    </div>
+    <div class="team-slider-wrap">
+      <div class="swiper team-swiper" id="teamSwiperExperts">
+        <div class="swiper-wrapper" id="teamExpertsSlides"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AMBASSADORS ===== -->
+<section class="page" id="page-ambassadors">
+  <div class="content">
+    <div class="section-header">
+      <span class="section-tag">السفراء</span>
+      <h2 class="section-title">سفراؤنا في الولايات</h2>
+      <p class="section-sub">شبكة التمثيل المحلي عبر الجزائر</p>
+      <div class="section-divider"></div>
+    </div>
+    <div class="amb-grid" id="ambGrid">
+      <div class="empty-state"><i class="fas fa-spinner fa-spin"></i><p>جاري التحميل...</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== JOIN ===== -->
+<section class="page" id="page-join">
+  <div class="content">
+    <div class="section-header">
+      <span class="section-tag">الانضمام</span>
+      <h2 class="section-title">انضم إلينا</h2>
+      <p class="section-sub">اختر الصفة المناسبة واملأ الاستمارة الرسمية</p>
+      <div class="section-divider"></div>
+    </div>
+    <div id="joinOptionsWrap">
+      <div class="join-options">
+        <div class="join-card" data-type="membership" onclick="selectJoinType('membership')"><i class="fas fa-id-card"></i><h3>انخراط</h3><p>عضوية عامة — مشاركة في البرامج والأنشطة</p></div>
+        <div class="join-card" data-type="volunteer" onclick="selectJoinType('volunteer')"><i class="fas fa-hands-helping"></i><h3>تطوع</h3><p>منصب ومهام واضحة داخل خلية</p></div>
+        <div class="join-card" data-type="ambassador" onclick="selectJoinType('ambassador')"><i class="fas fa-flag"></i><h3>تمثيل / سفير</h3><p>تمثيل ولاية — 18–35 سنة، جزائري</p></div>
+        <div class="join-card" data-type="training" onclick="selectJoinType('training')"><i class="fas fa-chalkboard-teacher"></i><h3>تأطير</h3><p>تقديم دورات وورشات</p></div>
+        <div class="join-card" data-type="partnership" onclick="selectJoinType('partnership')"><i class="fas fa-handshake"></i><h3>شراكة</h3><p>للجهات والمؤسسات</p></div>
+      </div>
+    </div>
+    <div id="joinFormWrap" style="display:none">
+      <div class="step-dots" id="stepDots"></div>
+      <form id="joinForm" novalidate onsubmit="return submitRegistration(event)">
+        <div id="formSteps"></div>
+        <div class="form-actions">
+          <button type="button" class="btn-secondary" id="btnPrev" onclick="formPrev()" style="display:none"><i class="fas fa-arrow-right"></i> السابق</button>
+          <button type="button" class="btn-outline-dark" onclick="cancelJoin()">إلغاء</button>
+          <button type="button" class="btn-primary" id="btnNext" onclick="formNext()">التالي <i class="fas fa-arrow-left"></i></button>
+          <button type="submit" class="btn-primary" id="btnSubmit" style="display:none"><i class="fas fa-paper-plane"></i> إرسال الطلب</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRACKING ===== -->
+<section class="page" id="page-tracking">
+  <div class="content">
+    <div class="section-header">
+      <span class="section-tag">التتبع</span>
+      <h2 class="section-title">تتبع طلبك</h2>
+      <p class="section-sub">أدخل رقم التتبع للاطلاع على حالة الطلب</p>
+      <div class="section-divider"></div>
+    </div>
+    <div class="card" style="max-width:420px;margin:0 auto">
+      <div class="form-group">
+        <label>رقم التتبع</label>
+        <input type="text" id="trackCode" placeholder="NZ-XXXXXX" style="text-align:center;letter-spacing:1px;font-family:var(--font-mono)">
+      </div>
+      <button class="btn-primary" style="width:100%;margin-top:12px" onclick="trackRequest()"><i class="fas fa-search"></i> بحث</button>
+      <div id="trackResult" style="margin-top:20px;display:none"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ACTIVITIES ===== -->
+<section class="page" id="page-activities">
+  <div class="content">
+    <div class="section-header">
+      <span class="section-tag">الأنشطة</span>
+      <h2 class="section-title">أنشطتنا</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="item-grid" id="activitiesGrid"></div>
+    <div id="activityRegisterPanel" style="display:none;margin-top:28px">
+      <div class="card" style="max-width:560px;margin:0 auto">
+        <h3 style="margin-bottom:14px;font-size:17px" id="actRegTitle">تسجيل في النشاط</h3>
+        <form id="activityRegForm" onsubmit="return submitActivityReg(event)">
+          <input type="hidden" name="activityId" id="actId">
+          <input type="hidden" name="activityTitle" id="actTitle">
+          <input type="hidden" name="activityPrice" id="actPrice" value="0">
+          <div class="form-grid">
+            <div class="form-group"><label><span class="req">*</span> الاسم واللقب</label><input name="fullName" required minlength="5"></div>
+            <div class="form-group"><label><span class="req">*</span> البريد</label><input name="email" type="email" required></div>
+            <div class="form-group"><label><span class="req">*</span> تاريخ الميلاد</label><input name="birthDate" type="date" required></div>
+            <div class="form-group"><label><span class="req">*</span> الجنسية</label><select name="nationality" required><option value="جزائرية">جزائرية</option><option>تونسية</option><option>مغربية</option><option>أخرى</option></select></div>
+            <div class="form-group"><label><span class="req">*</span> الولاية</label><select name="wilaya" id="actWilaya" required></select></div>
+            <div class="form-group"><label><span class="req">*</span> الهاتف</label><input name="phone" type="tel" required></div>
+            <div class="form-group"><label>سبق المشاركة؟</label><select name="priorParticipation"><option>لا</option><option>نعم</option></select></div>
+            <div class="form-group"><label>علاقتك بمجال النشاط</label><input name="relation"></div>
+            <div class="form-group full"><label>احتياجات تسهيل</label><select name="needsAssist" onchange="document.getElementById('needsDetail').style.display=this.value==='نعم'?'block':'none'"><option>لا</option><option>نعم</option></select>
+              <input name="needsDetail" id="needsDetail" style="display:none;margin-top:8px" placeholder="تفاصيل الاحتياج">
+            </div>
+          </div>
+          <div id="paymentBlock" style="display:none;margin-top:14px;padding:14px;background:var(--surface-alt);border-radius:12px">
+            <h4 style="font-size:14px;margin-bottom:10px">معلومات الدفع</h4>
+            <div class="form-grid">
+              <div class="form-group"><label>طريقة الدفع</label><select name="paymentMethod"><option>تحويل بنكي</option><option>باركيدي</option><option>نقدًا</option><option>أخرى</option></select></div>
+              <div class="form-group"><label>مرجع العملية</label><input name="paymentRef" placeholder="NZ-PAY-XXXXXX" style="font-family:var(--font-mono)"></div>
+              <div class="form-group"><label>السعر</label><input name="priceDisplay" id="priceDisplay" readonly></div>
+              <div class="form-group"><label>المبلغ الإجمالي</label><input name="totalDisplay" id="totalDisplay" readonly></div>
+            </div>
+          </div>
+          <div class="form-actions" style="margin-top:16px">
+            <button type="button" class="btn-secondary" onclick="document.getElementById('activityRegisterPanel').style.display='none'">إلغاء</button>
+            <button type="submit" class="btn-primary"><i class="fas fa-check"></i> تأكيد التسجيل</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NEWS ===== -->
+<section class="page" id="page-news">
+  <div class="content">
+    <div class="section-header"><span class="section-tag">الأخبار</span><h2 class="section-title">أخبارنا</h2><div class="section-divider"></div></div>
+    <div class="item-grid" id="newsGrid">
+      <div class="item-card"><img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=80" alt=""><div class="body"><h3>إطلاق شبكة السفراء</h3><div class="meta">منذ أسبوع</div></div></div>
+      <div class="item-card"><img src="https://images.unsplash.com/photo-1495020689067-958852a7455e?w=600&q=80" alt=""><div class="body"><h3>شراكة جديدة مع جامعة محلية</h3><div class="meta">منذ أسبوعين</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+<section class="page" id="page-projects">
+  <div class="content">
+    <div class="section-header"><span class="section-tag">المشاريع</span><h2 class="section-title">مشاريعنا</h2><div class="section-divider"></div></div>
+    <div class="item-grid" id="projectsGrid">
+      <div class="item-card"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80" alt=""><div class="body"><h3>منصة التمكين الرقمي</h3><div class="meta">جارٍ</div></div></div>
+      <div class="item-card"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&q=80" alt=""><div class="body"><h3>برنامج القيادات الشابة</h3><div class="meta">مكتمل</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LIBRARY ===== -->
+<section class="page" id="page-library">
+  <div class="content">
+    <div class="section-header"><span class="section-tag">المكتبة</span><h2 class="section-title">المكتبة والموارد</h2><div class="section-divider"></div></div>
+    <h3 style="margin-bottom:16px;font-size:18px">تطبيقات مفيدة</h3>
+    <div class="item-grid" id="appsGrid" style="margin-bottom:36px"></div>
+    <h3 style="margin-bottom:16px;font-size:18px">كتب ومنشورات</h3>
+    <div class="item-grid" id="booksGrid">
+      <div class="empty-state"><i class="fas fa-book-open"></i><p>لا توجد كتب حاليًا</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROFILE / MZONE ===== -->
+<section class="page" id="page-mzone">
+  <div class="content">
+    <div class="section-header"><span class="section-tag">الحساب</span><h2 class="section-title">حسابي (MZone)</h2><div class="section-divider"></div></div>
+    <div class="card" style="max-width:400px;margin:0 auto;text-align:center" id="mzoneBox">
+      <i class="fas fa-user-circle" style="font-size:64px;color:var(--primary-light);margin-bottom:12px"></i>
+      <p style="color:var(--text-secondary);margin-bottom:16px">سجّل الدخول للوصول إلى ملفك وإحصائياتك والروابط المفيدة</p>
+      <button class="btn-primary" onclick="showToast('سيتم ربط Firebase Auth قريبًا','info')"><i class="fas fa-sign-in-alt"></i> تسجيل الدخول</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="page" id="page-contact">
+  <div class="content">
+    <div class="section-header"><span class="section-tag">تواصل</span><h2 class="section-title">تواصل معنا</h2><div class="section-divider"></div></div>
+    <div class="card" style="max-width:520px;margin:0 auto">
+      <form id="contactForm" onsubmit="return submitContact(event)">
+        <div class="form-grid">
+          <div class="form-group"><label><span class="req">*</span> الاسم</label><input name="name" required minlength="3"></div>
+          <div class="form-group"><label><span class="req">*</span> البريد</label><input name="email" type="email" required></div>
+          <div class="form-group"><label>الهاتف</label><input name="phone" type="tel"></div>
+          <div class="form-group"><label><span class="req">*</span> نوع الشخص</label>
+            <select name="personType" required><option value="">—</option><option>زائر</option><option>عضو</option><option>مؤسسة</option><option>إعلام</option></select>
+          </div>
+          <div class="form-group full"><label><span class="req">*</span> الموضوع</label>
+            <select name="subjectType" required><option value="">—</option><option>استفسار عام</option><option>شراكة</option><option>شكوى</option><option>اقتراح</option><option>أخرى</option></select>
+          </div>
+          <div class="form-group full"><label><span class="req">*</span> الرسالة</label><textarea name="message" required minlength="10"></textarea></div>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;margin-top:16px"><i class="fas fa-paper-plane"></i> إرسال</button>
+      </form>
+      <div style="margin-top:20px;text-align:center;font-size:13px;color:var(--text-secondary)">
+        <p><i class="fas fa-envelope"></i> <a href="mailto:nzaha.dz@gmail.com">nzaha.dz@gmail.com</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LEGAL ===== -->
+<section class="page" id="page-legal">
+  <div class="content">
+    <div class="section-header"><span class="section-tag">قانونية</span><h2 class="section-title">الشؤون القانونية</h2><div class="section-divider"></div></div>
+    <div class="legal-block">
+      <h3>طبيعة المنتدى</h3>
+      <p>المنتدى مبادرة غير ربحية تنشط رقميًا أكثر ريثما استكمال تأسيس جمعية وطنية. السفراء يمثلون ميدانيًا مع دور الشباب والجامعات والمخابر بالتنسيق مع الإدارة.</p>
+    </div>
+    <div class="legal-block">
+      <h3>الثوابت</h3>
+      <ul>
+        <li>حياد سياسي تام</li>
+        <li>احترام الدستور والوحدة الترابية</li>
+        <li>مساندة تمكين الشباب ومكافحة الفساد</li>
+        <li>سلامة وأمن وصحة ونظافة</li>
+        <li>نزاهة وشفافية</li>
+      </ul>
+    </div>
+    <div class="legal-block">
+      <h3>المعالجة (قانون 18-07)</h3>
+      <p>جمع البيانات للغرض المعلن وبموافقة. النطاق: اسم، صورة، ولاية، تواصل، مهني/دراسي. الإدارة: نشر تواصل رسمي. السفراء: نشر اسم وصورة وولاية وهاتف وبريد وحسابات بعد إقرار. باقي الحسابات محمية مع تحكم خصوصية. حقوق: اطلاع، تصحيح، سحب، حذف مع إثبات. لا طرف ثالث إلا موافقة أو قانون أو جهة مختصة.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>نزاهة</h4>
+      <p>المنتدى الشبابي للفكر والمشاركة المدنية</p>
+      <p>ولاية الطارف، الجزائر</p>
+    </div>
+    <div class="footer-col">
+      <h4>روابط</h4>
+      <a href="#/" onclick="navigate('/')">الرئيسية</a>
+      <a href="#/about" onclick="navigate('/about')">من نحن</a>
+      <a href="#/join" onclick="navigate('/join')">انضم إلينا</a>
+      <a href="#/legal" onclick="navigate('/legal')">الشؤون القانونية</a>
+    </div>
+    <div class="footer-col">
+      <h4>تواصل</h4>
+      <a href="mailto:nzaha.dz@gmail.com">nzaha.dz@gmail.com</a>
+      <a href="https://www.facebook.com/nzaha.dz" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.instagram.com/nzaha.dz" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 نزاهة — Youth Forum for Thought and Civic Participation (YFTCP)</div>
+</footer>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+/* ============================================================
+   Nazaha SPA — complete rebuild + Firebase linked
+   Project: nazaha-b1c97 · Spec sources: index-1, promt2, carosil
+   ============================================================ */
+
+const UNK = 'https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';
+const LOGO = 'https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/logo-3.png';
+const CANONICAL = 'https://nazaha.site';
+const CLOUDINARY_CLOUD='dlb1tvpms', CLOUDINARY_PRESET='nazaha_unsigned';
+const IMGBB_API_KEY='2495c2f02cb55d8de7ce909d5b63b044';
+
+/* ---------- Firebase init (nazaha-b1c97) ---------- */
+(function initFirebase(){
+  var firebaseConfig = {
+    apiKey: "AIzaSyBWGPKwCiEDVu4Qe_REnZUGc0w6cmxG9Xk",
+    authDomain: "nazaha-b1c97.firebaseapp.com",
+    projectId: "nazaha-b1c97",
+    storageBucket: "nazaha-b1c97.firebasestorage.app",
+    messagingSenderId: "718233504902",
+    appId: "1:718233504902:web:fa830f7f199d360be49507",
+    measurementId: "G-S1WE1ES684"
+  };
+  try {
+    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+    window.firebaseDB = firebase.firestore();
+    try { window.firebaseStorage = firebase.storage(); } catch(e) { window.firebaseStorage = null; }
+    try { window.firebaseAuth = firebase.auth(); } catch(e) { window.firebaseAuth = null; }
+    try { firebase.analytics(); } catch(e) {}
+    window.FirestoreAPI = {
+      collection: function(db, path){ return db.collection(path); },
+      doc: function(db, path, id){ return id != null ? db.collection(path).doc(id) : db.doc(path); },
+      getDoc: function(ref){ return ref.get().then(function(s){ return { exists: function(){ return s.exists; }, id: s.id, data: function(){ return s.data(); } }; }); },
+      getDocs: function(q){ return q.get ? q.get() : q; },
+      query: function(col){ var args=[].slice.call(arguments,1); var q=col; args.forEach(function(a){ if(a&&a._type==='where') q=q.where(a.f,a.op,a.v); if(a&&a._type==='limit') q=q.limit(a.n); if(a&&a._type==='orderBy') q=q.orderBy(a.f,a.dir||'asc'); }); return q; },
+      where: function(f,op,v){ return {_type:'where',f:f,op:op,v:v}; },
+      limit: function(n){ return {_type:'limit',n:n}; },
+      orderBy: function(f,dir){ return {_type:'orderBy',f:f,dir:dir}; },
+      addDoc: function(col, data){ return col.add(data); },
+      setDoc: function(ref, data, opts){ return opts&&opts.merge ? ref.set(data,{merge:true}) : ref.set(data); },
+      updateDoc: function(ref, data){ return ref.update(data); },
+      serverTimestamp: function(){ return firebase.firestore.FieldValue.serverTimestamp(); },
+      increment: function(n){ return firebase.firestore.FieldValue.increment(n); }
+    };
+    window.dispatchEvent(new Event('firebaseReady'));
+    console.log('[Nazaha] Firebase connected → nazaha-b1c97');
+  } catch(err) {
+    console.warn('[Nazaha] Firebase init failed', err);
+    window.firebaseDB = null;
+  }
+})();
+
+/* ---------- Utils ---------- */
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function sanitizeInput(s){return String(s||'').trim().replace(/[<>]/g,'');}
+function showToast(msg, kind){
+  kind=kind||'info';
+  const c=document.getElementById('toastContainer');
+  const t=document.createElement('div');
+  t.className='toast '+kind; t.textContent=msg;
+  c.appendChild(t);
+  setTimeout(()=>{t.style.opacity='0';setTimeout(()=>t.remove(),300);},3200);
+}
+function generateTrackingCode(){
+  var y=new Date().getFullYear(), chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789', code='';
+  for(var i=0;i<8;i++) code+=chars[Math.floor(Math.random()*chars.length)];
+  return 'NZ-'+y+'-'+code;
+}
+function generatePayRef(){
+  var n=Math.floor(100000+Math.random()*900000);
+  return 'NZ-PAY-'+n;
+}
+function toArabicType(t){
+  const m={membership:'انخراط',member:'انخراط',volunteer:'تطوع',ambassador:'تمثيل',representation:'تمثيل',training:'تأطير',partnership:'شراكة'};
+  return m[t]||t;
+}
+function ageFromBirth(d){
+  if(!d) return null;
+  const b=new Date(d), now=new Date();
+  let a=now.getFullYear()-b.getFullYear();
+  const m=now.getMonth()-b.getMonth();
+  if(m<0||(m===0&&now.getDate()<b.getDate())) a--;
+  return a;
+}
+async function fetchWithTimeout(url, opts, ms){
+  ms=ms||15000;
+  const ctrl=new AbortController();
+  const t=setTimeout(()=>ctrl.abort(),ms);
+  try{ return await fetch(url, Object.assign({},opts,{signal:ctrl.signal})); }
+  finally{ clearTimeout(t); }
+}
+
+/* Upload image: Cloudinary → imgbb → Firebase Storage → dataURL */
+async function uploadImage(file){
+  if(!file) return null;
+  if(file.size > 3*1024*1024){ showToast('حجم الصورة يتجاوز 3MB','warning'); return null; }
+  try{
+    var fd=new FormData(); fd.append('file',file); fd.append('upload_preset',CLOUDINARY_PRESET);
+    var res=await fetchWithTimeout('https://api.cloudinary.com/v1_1/'+CLOUDINARY_CLOUD+'/image/upload',{method:'POST',body:fd});
+    var data=await res.json(); if(data.secure_url) return data.secure_url;
+  }catch(_){}
+  try{
+    var fd2=new FormData(); fd2.append('image',file);
+    var res2=await fetchWithTimeout('https://api.imgbb.com/1/upload?key='+IMGBB_API_KEY,{method:'POST',body:fd2});
+    var data2=await res2.json(); if(data2.data&&data2.data.url) return data2.data.url;
+  }catch(_){}
+  try{
+    if(window.firebaseStorage){
+      var ref=window.firebaseStorage.ref('uploads/'+Date.now()+'_'+file.name.replace(/[^a-zA-Z0-9.]/g,'_'));
+      var snap=await ref.put(file); return await snap.ref.getDownloadURL();
+    }
+  }catch(_){}
+  return new Promise(function(resolve){
+    var r=new FileReader(); r.onload=function(){resolve(r.result);}; r.onerror=function(){resolve(null);}; r.readAsDataURL(file);
+  });
+}
+
+/* Validate tashil key against Firestore */
+async function validateTashilKey(key){
+  if(!key||!/^NZ-TASS-[A-Z0-9]{6}$/i.test(key)) return false;
+  if(!window.FirestoreAPI||!window.firebaseDB) return false;
+  try{
+    var FA=window.FirestoreAPI, db=window.firebaseDB;
+    var snap=await FA.getDocs(FA.query(FA.collection(db,'tashilKeys'), FA.where('code','==',key.toUpperCase()), FA.limit(1)));
+    if(snap.empty) {
+      // try doc id = key
+      var ds=await FA.getDoc(FA.doc(db,'tashilKeys',key.toUpperCase()));
+      if(ds.exists()){ var d=ds.data(); return d.valid!==false && d.active!==false; }
+      return false;
+    }
+    var d=snap.docs[0].data();
+    return d.valid!==false && d.active!==false;
+  }catch(e){ console.warn('tashil validate',e); return false; }
+}
+
+/* ---------- Router ---------- */
+const PAGES={
+  '/':'page-home','/about':'page-about','/team':'page-team','/ambassadors':'page-ambassadors',
+  '/join':'page-join','/tracking':'page-tracking','/activities':'page-activities',
+  '/news':'page-news','/projects':'page-projects','/library':'page-library',
+  '/profile':'page-mzone','/contact':'page-contact','/legal':'page-legal'
+};
+function navigate(path, replace){
+  path=(path||'/').split('?')[0];
+  if(path.charAt(0)!=='/') path='/'+path;
+  const id=PAGES[path]||'page-home';
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const el=document.getElementById(id);
+  if(el) el.classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(a=>{
+    a.classList.toggle('active', a.getAttribute('data-path')===path);
+  });
+  closeNav();
+  window.scrollTo(0,0);
+  const hash='#'+(path==='/'?'':path);
+  if(replace) history.replaceState(null,'',hash); else history.pushState(null,'',hash);
+  if(path==='/team') setTimeout(bootTeam,100);
+  if(path==='/ambassadors') setTimeout(loadAmbassadors,100);
+  if(path==='/library') setTimeout(renderApps,100);
+  if(path==='/activities') setTimeout(loadActivities,100);
+  if(path==='/news') setTimeout(loadNews,100);
+  if(path==='/projects') setTimeout(loadProjects,100);
+  if(path==='/profile') setTimeout(refreshMzone,100);
+  if(path==='/') setTimeout(function(){animateStats();loadHomeStats();},200);
+}
+window.addEventListener('popstate',()=>{
+  const h=location.hash.replace(/^#/,'')||'/';
+  navigate(h.charAt(0)==='/'?h:'/'+h, true);
+});
+document.querySelectorAll('.nav-link').forEach(a=>{
+  a.addEventListener('click',e=>{e.preventDefault();navigate(a.getAttribute('data-path'));});
+});
+
+/* ---------- Nav / Theme ---------- */
+const hamburger=document.getElementById('hamburger');
+const sideNav=document.getElementById('sideNav');
+const sideOverlay=document.getElementById('sideOverlay');
+function openNav(){sideNav.classList.add('open');sideOverlay.classList.add('open');hamburger.classList.add('active');}
+function closeNav(){sideNav.classList.remove('open');sideOverlay.classList.remove('open');hamburger.classList.remove('active');}
+hamburger.addEventListener('click',()=>sideNav.classList.contains('open')?closeNav():openNav());
+sideOverlay.addEventListener('click',closeNav);
+document.getElementById('themeToggle').addEventListener('click',()=>{
+  document.body.classList.toggle('dark');
+  const i=document.querySelector('#themeToggle i');
+  i.className=document.body.classList.contains('dark')?'fas fa-sun':'fas fa-moon';
+  localStorage.setItem('nz-theme',document.body.classList.contains('dark')?'dark':'light');
+});
+if(localStorage.getItem('nz-theme')==='dark'){document.body.classList.add('dark');document.querySelector('#themeToggle i').className='fas fa-sun';}
+
+/* Offline */
+window.addEventListener('online',()=>document.getElementById('offlineBanner').classList.remove('show'));
+window.addEventListener('offline',()=>document.getElementById('offlineBanner').classList.add('show'));
+if(!navigator.onLine) document.getElementById('offlineBanner').classList.add('show');
+
+/* Typewriter */
+const TW_PHRASES=['تمكين الشباب · صناعة القيادات','نزاهة · شفافية · مواطنة فاعلة','انضم إلى جيل يصنع الفرق'];
+let twI=0,twJ=0,twDel=false;
+function typeTick(){
+  const el=document.getElementById('twText'); if(!el) return;
+  const p=TW_PHRASES[twI];
+  if(!twDel){el.textContent=p.slice(0,++twJ); if(twJ===p.length){twDel=true;setTimeout(typeTick,1800);return;}}
+  else{el.textContent=p.slice(0,--twJ); if(twJ===0){twDel=false;twI=(twI+1)%TW_PHRASES.length;}}
+  setTimeout(typeTick, twDel?40:70);
+}
+typeTick();
+
+/* Stats animation */
+function animateStats(){
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const target=+el.getAttribute('data-count'); let n=0;
+    const step=Math.max(1,Math.floor(target/40));
+    const t=setInterval(()=>{n+=step; if(n>=target){n=target;clearInterval(t);} el.textContent=n;},30);
+  });
+}
+
+/* ---------- Audio (carosil) ---------- */
+let audioCtx=null, lastSound=0;
+function initAudio(){try{if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')audioCtx.resume();}catch(e){}}
+function playNavSound(){
+  try{
+    initAudio(); if(!audioCtx) return;
+    const now=audioCtx.currentTime;
+    const o1=audioCtx.createOscillator(), g1=audioCtx.createGain();
+    o1.type='triangle'; o1.frequency.setValueAtTime(950,now); o1.frequency.exponentialRampToValueAtTime(420,now+0.045);
+    g1.gain.setValueAtTime(0.0001,now); g1.gain.exponentialRampToValueAtTime(0.055,now+0.004); g1.gain.exponentialRampToValueAtTime(0.0001,now+0.065);
+    const o2=audioCtx.createOscillator(), g2=audioCtx.createGain();
+    o2.type='sine'; o2.frequency.setValueAtTime(520,now); o2.frequency.exponentialRampToValueAtTime(720,now+0.055);
+    g2.gain.setValueAtTime(0.0001,now); g2.gain.exponentialRampToValueAtTime(0.018,now+0.008); g2.gain.exponentialRampToValueAtTime(0.0001,now+0.09);
+    o1.connect(g1); g1.connect(audioCtx.destination); o2.connect(g2); g2.connect(audioCtx.destination);
+    o1.start(now); o2.start(now); o1.stop(now+0.07); o2.stop(now+0.095);
+  }catch(e){}
+}
+document.addEventListener('pointerdown',initAudio,{once:true,passive:true});
+document.addEventListener('touchstart',initAudio,{once:true,passive:true});
+
+/* ---------- Team data + carosil Swiper ---------- */
+const DEMO_ADMIN=[
+  {id:'1',name:'أحمد خالد',role:'رئيس خلية العلاقات العامة',photo:'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80'},
+  {id:'2',name:'سارة العتيبي',role:'مسؤولة الإعلام والتواصل',photo:'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80'},
+  {id:'3',name:'خالد المنصور',role:'منسق الفعاليات',photo:'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=800&q=80'},
+  {id:'4',name:'نورة الشمري',role:'مسؤولة المحتوى الرقمي',photo:'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&q=80'},
+  {id:'5',name:'فهد الغامدي',role:'مسؤول العلاقات الخارجية',photo:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80'},
+  {id:'6',name:'لينا الحربي',role:'منسقة التطوع',photo:'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=800&q=80'}
+];
+const DEMO_EXPERTS=[
+  {id:'e1',name:'د. يوسف بن علي',role:'مؤطر — القيادة',photo:'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&q=80'},
+  {id:'e2',name:'أ. مريم الزهراء',role:'مؤطرة — التواصل',photo:'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&q=80'}
+];
+
+function buildSlide(p){
+  return `<div class="swiper-slide">
+    <div class="team-card">
+      <div class="team-card-image-wrapper"><img class="team-card-image" src="${esc(p.photo||UNK)}" alt="" loading="lazy" onerror="this.src='${UNK}'"></div>
+      <div class="team-card-content">
+        <div class="team-card-info"><h3>${esc(p.name)}</h3><p>${esc(p.role||'')}</p></div>
+        <button type="button" class="team-profile-btn" onclick="openProfile('${esc(p.id)}')">عرض الملف الشخصي</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function bootSwiper(el){
+  if(!el) return;
+  // destroy previous instance cleanly
+  if(el.swiper){
+    try{ el.swiper.destroy(true,true); }catch(_){}
+  }
+  var slideCount = el.querySelectorAll('.swiper-slide').length;
+  // loop needs enough slides — duplicate if fewer than 5
+  var enableLoop = slideCount >= 3;
+  if(slideCount > 0 && slideCount < 5){
+    var wrap = el.querySelector('.swiper-wrapper');
+    if(wrap){
+      var html = wrap.innerHTML;
+      while(wrap.querySelectorAll('.swiper-slide').length < 6){
+        wrap.insertAdjacentHTML('beforeend', html);
+      }
+      enableLoop = true;
+    }
+  }
+  if(slideCount === 0) return;
+
+  var sw = new Swiper(el,{
+    effect:'coverflow',
+    grabCursor:true,
+    centeredSlides:true,
+    slidesPerView:'auto',
+    spaceBetween:26,
+    loop: enableLoop,
+    loopAdditionalSlides: 2,
+    speed:500,
+    threshold:18,
+    resistanceRatio:0.55,
+    longSwipesRatio:0.25,
+    followFinger:true,
+    watchSlidesProgress:true,
+    observer:true,
+    observeParents:true,
+    coverflowEffect:{
+      rotate:11,
+      stretch:0,
+      depth:95,
+      modifier:1,
+      slideShadows:true
+    },
+    on:{
+      slideChangeTransitionStart:function(){ playNavSound(); },
+      init:function(){
+        // force layout after paint
+        var self=this;
+        requestAnimationFrame(function(){ self.update(); self.slideToLoop ? self.slideToLoop(0,0) : self.slideTo(0,0); });
+      }
+    }
+  });
+  el.addEventListener('pointerup',function(){
+    const now=Date.now(); if(now-lastSound>180){lastSound=now;playNavSound();}
+  },{passive:true});
+  return sw;
+}
+
+async function fetchCollection(cols, mapFn, limitN){
+  if(!window.FirestoreAPI||!window.firebaseDB) return null;
+  var FA=window.FirestoreAPI, db=window.firebaseDB, out=[];
+  for(var i=0;i<cols.length;i++){
+    try{
+      var q=FA.query(FA.collection(db,cols[i]), FA.limit(limitN||24));
+      var snap=await FA.getDocs(q);
+      (snap.docs||[]).forEach(function(d){
+        var data=Object.assign({id:d.id}, d.data?d.data():{});
+        if(mapFn) data=mapFn(data);
+        if(data) out.push(data);
+      });
+    }catch(e){}
+  }
+  return out.length?out:null;
+}
+
+async function bootTeam(){
+  const a=document.getElementById('teamAdminSlides');
+  const e=document.getElementById('teamExpertsSlides');
+  if(!a) return;
+  // try live data
+  var admin=await fetchCollection(['adminMembers','teams','team','siteTeam'], function(d){
+    if(d.status && d.status!=='مقبول' && d.status!=='accepted' && d.status!=='approved') return null;
+    var role=d.position||d.title||d.role||d.job||'';
+    if(/^(admin|user|member)$/i.test(role)) role='';
+    return {id:d.id||d.username, name:d.fullName||d.name||'عضو', role:role, photo:d.photoUrl||d.photo||d.avatar||d.image||UNK, isBoard:true};
+  }, 20);
+  var experts=await fetchCollection(['trainers','experts'], function(d){
+    if(d.status && d.status!=='مقبول' && d.status!=='accepted') return null;
+    return {id:d.id||d.username, name:d.fullName||d.name||'مؤطر', role:d.position||d.trainingField||d.title||'مؤطر', photo:d.photoUrl||d.photo||UNK};
+  }, 20);
+
+  window._teamAdminList = admin||DEMO_ADMIN;
+  window._teamExpertsList = experts||DEMO_EXPERTS;
+
+  var swAdmin = document.getElementById('teamSwiperAdmin');
+  var swExp = document.getElementById('teamSwiperExperts');
+
+  a.innerHTML = (window._teamAdminList).map(buildSlide).join('');
+  // wait for DOM then init
+  requestAnimationFrame(function(){
+    bootSwiper(swAdmin);
+  });
+
+  if(e){
+    e.innerHTML = (window._teamExpertsList).map(buildSlide).join('');
+    requestAnimationFrame(function(){
+      bootSwiper(swExp);
+    });
+  }
+}
+
+/* ---------- Profile modal (3 tabs) — Firestore lookup ---------- */
+window.openProfile=async function(id){
+  if(window.__profLock) return; window.__profLock=true; setTimeout(function(){window.__profLock=false;},800);
+  var key=String(id||'').trim().replace(/^@/,'');
+  if(!key) return;
+  var existing=document.getElementById('fbProfileOverlay'); if(existing) existing.remove();
+  var loading=document.createElement('div'); loading.id='fbProfileOverlay'; loading.className='modal-overlay';
+  loading.innerHTML='<div class="modal-box" style="padding:28px;text-align:center"><i class="fas fa-spinner fa-spin" style="font-size:22px;color:var(--primary-light)"></i></div>';
+  document.body.appendChild(loading);
+
+  var data=null;
+  var caches=[].concat(window._teamAdminList||[], window._teamExpertsList||[], window.ambassadorsCache||[], DEMO_ADMIN, DEMO_EXPERTS);
+  data=caches.find(function(p){return String(p.id)===key||String(p.username||'')===key;})||null;
+
+  if(!data && window.FirestoreAPI && window.firebaseDB){
+    var FA=window.FirestoreAPI, D=window.firebaseDB;
+    var cols=['userProfiles','mzoneAccounts','ambassadors','members','volunteers','adminMembers','trainers','experts','teams','team'];
+    for(var i=0;i<cols.length&&!data;i++){
+      try{ var ds=await FA.getDoc(FA.doc(D,cols[i],key)); if(ds&&ds.exists()) data=Object.assign({id:ds.id},ds.data()); }catch(_){}
+    }
+  }
+  if(!data){
+    loading.innerHTML='<div class="modal-box" style="padding:24px;text-align:center"><div style="font-weight:700;margin-bottom:10px">لم يُعثر على الحساب</div><button class="btn-primary" onclick="document.getElementById(\'fbProfileOverlay\').remove()">إغلاق</button></div>';
+    return;
+  }
+
+  var name=data.fullName||data.name||'عضو';
+  var photo=data.photoUrl||data.photo||data.avatar||data.image||UNK;
+  var role=data.position||data.title||data.role||data.job||'';
+  if(/^(admin|user|member)$/i.test(String(role))) role='';
+  var wilaya=data.wilaya||data.representWilaya||'';
+  var bio=data.bio||data.about||'';
+  var email=(data.privacyEmail===false||data.showEmail===false)?'':(data.email||'');
+  var phone=(data.privacyPhone===false||data.showPhone===false)?'':(data.phone||'');
+  var isBoard=data.isAdmin||data.isBoard||/مجلس|أمين|رئيس|admin|board/i.test(String(role));
+  var logged=!!(window.currentUser||window.mzoneCurrentUser);
+  if(!isBoard && !logged){
+    loading.innerHTML='<div class="modal-box" style="padding:24px;text-align:center"><div style="font-weight:700;margin-bottom:8px">للأعضاء فقط</div><p style="font-size:13px;color:var(--text-muted);margin-bottom:12px">سجّل الدخول لعرض الملف</p><button class="btn-primary" onclick="document.getElementById(\'fbProfileOverlay\').remove()">إغلاق</button></div>';
+    return;
+  }
+
+  var infoHTML='<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(0,0,0,.05);font-size:13px"><span style="color:var(--text-muted)">الاسم</span><span style="font-weight:600">'+esc(name)+'</span></div>';
+  if(role) infoHTML+='<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(0,0,0,.05);font-size:13px"><span style="color:var(--text-muted)">المنصب</span><span style="font-weight:600">'+esc(role)+'</span></div>';
+  if(wilaya) infoHTML+='<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(0,0,0,.05);font-size:13px"><span style="color:var(--text-muted)">الولاية</span><span style="font-weight:600">'+esc(wilaya)+'</span></div>';
+  if(bio) infoHTML+='<div style="margin-top:10px;font-size:13px;line-height:1.7;color:var(--text-secondary)">'+esc(bio)+'</div>';
+  var contactHTML='';
+  if(email) contactHTML+='<div style="display:flex;justify-content:space-between;padding:8px 0;font-size:13px"><span style="color:var(--text-muted)">البريد</span><span style="font-weight:600">'+esc(email)+'</span></div>';
+  if(phone) contactHTML+='<div style="display:flex;justify-content:space-between;padding:8px 0;font-size:13px"><span style="color:var(--text-muted)">الهاتف</span><span style="font-weight:600">'+esc(phone)+'</span></div>';
+  if(!contactHTML) contactHTML='<div style="text-align:center;color:var(--text-muted);font-size:13px;padding:16px">لا توجد معلومات تواصل متاحة</div>';
+
+  loading.innerHTML='<div class="modal-box" style="padding:0;overflow:hidden;max-width:420px;margin:16px auto">'+
+    '<button class="modal-close" onclick="document.getElementById(\'fbProfileOverlay\').remove()"><i class="fas fa-times"></i></button>'+
+    '<div style="height:100px;background:linear-gradient(135deg,#0d3d1a,#1a6b2f,#2ECC5A)"></div>'+
+    '<div style="padding:0 16px 20px;text-align:center">'+
+      '<img src="'+esc(photo)+'" style="width:88px;height:88px;border-radius:50%;border:4px solid #fff;margin-top:-44px;object-fit:cover" onerror="this.src=\''+UNK+'\'">'+
+      '<h2 style="font-size:18px;margin:8px 0 2px">'+esc(name)+'</h2>'+
+      (role?'<p style="font-size:13px;color:var(--text-secondary);margin-bottom:12px">'+esc(role)+'</p>':'')+
+      '<div style="display:flex;border-bottom:1px solid var(--border-light);margin-bottom:12px">'+
+        '<button class="nz-ptab active" data-p="info" style="flex:1;padding:10px;border:none;background:0;font-weight:700;font-size:12px;border-bottom:2px solid #2ECC5A;color:#1a6b2f">المعلومات</button>'+
+        '<button class="nz-ptab" data-p="posts" style="flex:1;padding:10px;border:none;background:0;font-weight:600;font-size:12px;border-bottom:2px solid transparent;color:#6b7280">المنشورات</button>'+
+        '<button class="nz-ptab" data-p="contact" style="flex:1;padding:10px;border:none;background:0;font-weight:600;font-size:12px;border-bottom:2px solid transparent;color:#6b7280">التواصل</button>'+
+      '</div>'+
+      '<div id="nzPinfo" style="text-align:right">'+infoHTML+'</div>'+
+      '<div id="nzPposts" style="display:none;color:var(--text-muted);font-size:13px;padding:16px">لا توجد منشورات</div>'+
+      '<div id="nzPcontact" style="display:none;text-align:right">'+contactHTML+'</div>'+
+    '</div></div>';
+  loading.onclick=function(e){if(e.target===loading)loading.remove();};
+  loading.querySelectorAll('.nz-ptab').forEach(function(tab){
+    tab.onclick=function(){
+      loading.querySelectorAll('.nz-ptab').forEach(function(t){t.classList.remove('active');t.style.borderBottomColor='transparent';t.style.color='#6b7280';t.style.fontWeight='600';});
+      tab.classList.add('active');tab.style.borderBottomColor='#2ECC5A';tab.style.color='#1a6b2f';tab.style.fontWeight='700';
+      var k=tab.getAttribute('data-p');
+      loading.querySelector('#nzPinfo').style.display=k==='info'?'block':'none';
+      loading.querySelector('#nzPposts').style.display=k==='posts'?'block':'none';
+      loading.querySelector('#nzPcontact').style.display=k==='contact'?'block':'none';
+    };
+  });
+};
+
+/* ---------- Ambassadors ---------- */
+const DEMO_AMB=[
+  {id:'a1',name:'محمد الطاهر',wilaya:'الطارف',photo:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80',hqAddress:'الطارف المركز',hqPhone:'0555 000 000'},
+  {id:'a2',name:'فاطمة زهراء',wilaya:'عنابة',photo:'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80'}
+];
+async function loadAmbassadors(){
+  const g=document.getElementById('ambGrid');
+  if(!g) return;
+  g.innerHTML='<div class="empty-state"><i class="fas fa-spinner fa-spin"></i><p>جاري التحميل...</p></div>';
+  var list=await fetchCollection(['ambassadors'], function(d){
+    var st=String(d.status||d.verificationStatus||'').toLowerCase();
+    if(st && st!=='مقبول' && st!=='accepted' && st!=='approved') return null;
+    return {
+      id:d.id||d.username,
+      name:d.fullName||d.name||'سفير',
+      wilaya:d.representWilaya||d.wilaya||'',
+      photo:d.photoUrl||d.photo||UNK,
+      hqAddress:d.hqAddress||'', hqPhone:d.hqPhone||'', hqHours:d.hqHours||'', hqUrl:d.hqUrl||d.mapsUrl||''
+    };
+  }, 60);
+  window.ambassadorsCache = list||DEMO_AMB;
+  var arr=window.ambassadorsCache;
+  g.innerHTML=arr.map(function(a){return '<div class="amb-card">'+
+    '<img src="'+esc(a.photo)+'" onerror="this.src=\''+UNK+'\'" alt="">'+
+    '<h3>'+esc(a.name)+'</h3>'+
+    '<div class="wilaya"><i class="fas fa-map-marker-alt"></i> '+esc(a.wilaya)+'</div>'+
+    '<div class="btns">'+
+      '<button class="btn-outline-dark" style="padding:8px 14px;font-size:12px" onclick="openProfile(\''+esc(a.id)+'\')">الملف</button>'+
+      (a.hqAddress?'<button class="btn-primary" style="padding:8px 14px;font-size:12px" onclick="openHQ(\''+esc(a.id)+'\')">المقر</button>':'')+
+    '</div></div>';}).join('')||'<div class="empty-state"><i class="fas fa-map"></i><p>لا يوجد سفراء معتمدون حاليًا</p></div>';
+}
+window.openHQ=function(id){
+  const a=(window.ambassadorsCache||DEMO_AMB).find(x=>x.id===id); if(!a) return;
+  const ov=document.createElement('div'); ov.className='modal-overlay';
+  ov.onclick=e=>{if(e.target===ov)ov.remove();};
+  ov.innerHTML=`<div class="modal-box"><button class="modal-close" onclick="this.closest('.modal-overlay').remove()"><i class="fas fa-times"></i></button>
+    <h3 style="margin-bottom:12px">مقر السفير — ${esc(a.wilaya)}</h3>
+    <p style="font-size:14px;margin-bottom:8px"><strong>العنوان:</strong> ${esc(a.hqAddress||'غير متوفر')}</p>
+    <p style="font-size:14px;margin-bottom:8px"><strong>الهاتف:</strong> ${esc(a.hqPhone||'—')}</p>
+    ${a.hqHours?'<p style="font-size:14px;margin-bottom:8px"><strong>الساعات:</strong> '+esc(a.hqHours)+'</p>':''}
+    ${a.hqUrl?'<p style="font-size:14px"><a href="'+esc(a.hqUrl)+'" target="_blank" rel="noopener" style="color:var(--primary)">فتح الخريطة</a></p>':''}
+  </div>`;
+  document.body.appendChild(ov);
+};
+
+/* ---------- Join forms (official fields from promt2) ---------- */
+const WILAYAS=['أدرار','الشلف','الأغواط','أم البواقي','باتنة','بجاية','بسكرة','بشار','البليدة','البويرة','تمنراست','تبسة','تلمسان','تيارت','تيزي وزو','الجزائر','الجلفة','جيجل','سطيف','سعيدة','سكيكدة','سيدي بلعباس','عنابة','قالمة','قسنطينة','المدية','مستغانم','المسيلة','معسكر','ورقلة','وهران','البيض','إليزي','برج بوعريريج','بومرداس','الطارف','تندوف','تيسمسيلت','الوادي','خنشلة','سوق أهراس','تيبازة','ميلة','عين الدفلى','النعامة','عين تموشنت','غرداية','غليزان','تيميمون','برج باجي مختار','أولاد جلال','بني عباس','عين صالح','عين قزام','تقرت','جانت','المغير','المنيعة'];
+const INTERESTS=['الفكر','المشاركة المدنية','السياسة','العلاقات الدولية','الدبلوماسية','المجتمع','الثقافة','العلوم','التكنولوجيا','البيئة','أخرى'];
+const VOL_FIELDS=['الإدارة','الموارد البشرية','أمانة السر','أمانة المال','الضبط','الأنشطة واللوجستيك','العلاقات العامة','الإعلام والرقمنة','أخرى'];
+const CELLS=['أمانة السر','خلية الموارد البشرية','أمانة المال','مصلحة الضبط','خلية الأنشطة واللوجستيك','خلية العلاقات العامة','خلية الإعلام والرقمنة'];
+const POSITIONS={
+  'أمانة السر':['أمين السر ونائب الرئيس','مسؤول المراسلات','مسؤول الوثائق الرسمية','مسؤول الأرشيف','مسؤول المواعيد والاستقبال'],
+  'خلية الموارد البشرية':['رئيس الموارد البشرية والمكلف بشؤون المتطوعين','مسؤول شؤون المنخرطين','مسؤول شؤون المؤطرين','مسؤول شؤون السفراء والانتشار','مسؤول التقييم والأداء','مسؤول التدريب والتطوير'],
+  'أمانة المال':['أمين المال','مسؤول المحاسبة','مسؤول تنمية الموارد والتمويل','مسؤول العمليات المالية والميدانية'],
+  'مصلحة الضبط':['رئيس المصلحة (المستشار القانوني)','مسؤول المتابعة التأديبية والطعون','مسؤول السياسات واللوائح والتدقيق'],
+  'خلية الأنشطة واللوجستيك':['رئيس الأنشطة واللوجستيك','مسؤول تخطيط الأنشطة','مسؤول تنفيذ الأنشطة','مسؤول البرامج','مسؤول اللوجستيك'],
+  'خلية العلاقات العامة':['رئيس العلاقات العامة','مسؤول العلاقات المؤسساتية','مسؤول العلاقات الجمعوية','مسؤول العلاقات الشبابية','مسؤول المراسم والبروتوكول'],
+  'خلية الإعلام والرقمنة':['رئيس خلية الإعلام والرقمنة','مسؤول إدارة المحتوى والتحرير','مسؤول التصميم','مسؤول التغطية والتصوير','مسؤول هندسة الفيديوهات','مسؤول الإنتاج الصوتي','مسؤول إدارة الصفحات وخدمة العملاء','مسؤول حماية وصيانة الأنظمة الرقمية']
+};
+
+let joinType=null, formStep=0, formMax=0;
+
+function selectJoinType(t){
+  joinType=t; formStep=0;
+  document.getElementById('joinOptionsWrap').style.display='none';
+  document.getElementById('joinFormWrap').style.display='block';
+  document.querySelectorAll('.join-card').forEach(c=>c.classList.toggle('selected',c.dataset.type===t));
+  buildFormSteps();
+  renderFormStep();
+}
+
+function cancelJoin(){
+  joinType=null;
+  document.getElementById('joinOptionsWrap').style.display='block';
+  document.getElementById('joinFormWrap').style.display='none';
+  document.getElementById('joinForm').reset();
+}
+
+function wilayaOptions(){return WILAYAS.map(w=>`<option value="${w}">${w}</option>`).join('');}
+
+function commonStep1(){
+  return `<div class="form-grid">
+    <div class="form-group full"><label><span class="req">*</span> الاسم الكامل</label><input name="fullName" required minlength="7" maxlength="80" pattern="[^0-9]*" placeholder="الاسم واللقب"></div>
+    <div class="form-group"><label><span class="req">*</span> تاريخ الميلاد</label><input name="birthDate" type="date" required></div>
+    <div class="form-group"><label><span class="req">*</span> الجنس</label><select name="gender" required><option value="">—</option><option>ذكر</option><option>أنثى</option></select></div>
+    <div class="form-group"><label><span class="req">*</span> الجنسية</label><select name="nationality" required id="natSelect"><option value="">—</option><option value="جزائرية">جزائرية</option><option value="تونسية">تونسية</option><option value="مغربية">مغربية</option><option value="أخرى">أخرى</option></select></div>
+    <div class="form-group"><label><span class="req">*</span> الولاية</label><select name="wilaya" required>${wilayaOptions()}</select></div>
+    <div class="form-group"><label><span class="req">*</span> البلدية</label><input name="commune" required minlength="2" maxlength="60"></div>
+    <div class="form-group full"><label><span class="req">*</span> الصورة الشخصية</label>
+      <div class="upload-zone" id="photoZone" onclick="document.getElementById('photoInput').click()">
+        <input type="file" name="photo" id="photoInput" accept="image/*" required style="display:none" onchange="previewPhoto(this)">
+        <i class="fas fa-camera" style="font-size:24px;color:var(--text-muted);margin-bottom:8px"></i>
+        <div style="font-size:13px;color:var(--text-muted)">اضغط لرفع صورة</div>
+      </div>
+    </div>
+  </div>
+  <div id="guardianBlock" style="display:none;margin-top:16px;padding:14px;background:var(--surface-alt);border-radius:12px">
+    <h4 style="font-size:14px;margin-bottom:10px">بيانات الولي (للقاصر 14–17)</h4>
+    <div class="form-grid">
+      <div class="form-group"><label><span class="req">*</span> اسم الولي</label><input name="guardianName"></div>
+      <div class="form-group"><label><span class="req">*</span> هاتف الولي</label><input name="guardianPhone" type="tel"></div>
+      <div class="form-group full"><label class="checkbox-row"><input type="checkbox" name="guardianConsent"> <span>موافقة الولي على التسجيل</span></label></div>
+    </div>
+  </div>`;
+}
+
+function commonStep2(){
+  return `<div class="form-grid">
+    <div class="form-group"><label><span class="req">*</span> البريد الإلكتروني</label><input name="email" type="email" required></div>
+    <div class="form-group"><label><span class="req">*</span> رقم الهاتف</label><input name="phone" type="tel" required placeholder="+213..."></div>
+    <div class="form-group"><label><span class="req">*</span> الصفة الحالية</label>
+      <select name="status" required><option value="">—</option><option>تلميذ</option><option>طالب جامعي</option><option>موظف</option><option>عامل حر</option><option>باحث عن عمل</option><option>أخرى</option></select>
+    </div>
+    <div class="form-group"><label><span class="req">*</span> المستوى الدراسي</label>
+      <select name="education" required><option value="">—</option><option>متوسط</option><option>ثانوي</option><option>جامعي</option><option>دراسات عليا</option><option>أخرى</option></select>
+    </div>
+    <div class="form-group full"><label><span class="req">*</span> التخصص</label><input name="specialty" required minlength="2" maxlength="100"></div>
+  </div>`;
+}
+
+function agreementsStep(withTashil){
+  return `${withTashil?`<div class="form-group" style="margin-bottom:14px"><label>مفتاح تسهيل (اختياري)</label><input name="tashilKey" placeholder="NZ-TASS-XXXXXX" pattern="NZ-TASS-[A-Z0-9]{6}" style="font-family:var(--font-mono)"><small style="font-size:11px;color:var(--text-muted)">إن وُجد وصلح → قبول فوري</small></div>`:''}
+  <div class="checkbox-row"><input type="checkbox" name="agreeDataAccuracy" required> <span><span class="req">*</span> أقر بدقة البيانات المقدمة</span></div>
+  <div class="checkbox-row"><input type="checkbox" name="agreeInternalPolicy" required> <span><span class="req">*</span> أوافق على النظام الداخلي</span></div>
+  <div class="checkbox-row"><input type="checkbox" name="agreePrivacyPolicy" required> <span><span class="req">*</span> أوافق على سياسة الخصوصية</span></div>`;
+}
+
+function buildFormSteps(){
+  const steps=[];
+  if(joinType==='partnership'){
+    steps.push(`<div class="form-grid">
+      <div class="form-group full"><label><span class="req">*</span> اسم الجهة</label><input name="orgName" required></div>
+      <div class="form-group"><label><span class="req">*</span> نوع الجهة</label><select name="orgType" required><option value="">—</option><option>جمعية</option><option>مؤسسة</option><option>شركة</option><option>نادي</option><option>جامعة</option><option>مؤسسة تعليمية</option><option>هيئة</option><option>مبادرة</option><option>أخرى</option></select></div>
+      <div class="form-group"><label><span class="req">*</span> مجال النشاط</label><input name="orgField" required></div>
+      <div class="form-group full"><label><span class="req">*</span> نبذة تعريفية</label><textarea name="orgBio" required></textarea></div>
+      <div class="form-group"><label><span class="req">*</span> هاتف الجهة</label><input name="orgPhone" required></div>
+      <div class="form-group"><label><span class="req">*</span> البريد الرسمي</label><input name="orgEmail" type="email" required></div>
+      <div class="form-group full"><label><span class="req">*</span> الموقع</label><input name="orgWebsite" type="url" required></div>
+    </div>`);
+    steps.push(`<div class="form-grid">
+      <div class="form-group full"><label><span class="req">*</span> اسم المسؤول</label><input name="fullName" required minlength="7" maxlength="80"></div>
+      <div class="form-group"><label><span class="req">*</span> المنصب</label><input name="position" required></div>
+      <div class="form-group"><label><span class="req">*</span> هاتف المسؤول</label><input name="phone" required></div>
+      <div class="form-group"><label><span class="req">*</span> بريد المسؤول</label><input name="email" type="email" required></div>
+      <div class="form-group full"><label><span class="req">*</span> حساب التواصل</label><input name="social" required></div>
+    </div>`);
+    steps.push(`<div class="form-grid">
+      <div class="form-group"><label><span class="req">*</span> نوع الشراكة</label><select name="partnershipType" required><option value="">—</option><option>إعلامية</option><option>تدريبية</option><option>لوجستية</option><option>تقنية</option><option>معرفية</option><option>تمويلية</option><option>استراتيجية</option><option>أخرى</option></select></div>
+      <div class="form-group"><label><span class="req">*</span> مجال التعاون</label><input name="cooperationField" required></div>
+      <div class="form-group full"><label><span class="req">*</span> أهداف الشراكة</label><textarea name="goals" required></textarea></div>
+      <div class="form-group full"><label><span class="req">*</span> مقترح الشراكة</label><textarea name="proposal" required></textarea></div>
+      <div class="form-group full"><label><span class="req">*</span> ما تقدمه الجهة</label><textarea name="offer" required></textarea></div>
+      <div class="form-group full"><label><span class="req">*</span> ما تتوقعه الجهة</label><textarea name="expectation" required></textarea></div>
+      <div class="form-group full"><label>ملاحظات</label><textarea name="notes"></textarea></div>
+    </div>`);
+    steps.push(agreementsStep(true));
+  } else {
+    steps.push(commonStep1());
+    steps.push(commonStep2());
+    if(joinType==='membership'){
+      steps.push(`<div class="form-grid">
+        <div class="form-group full"><label><span class="req">*</span> مجالات الاهتمام (متعدد)</label>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">${INTERESTS.map(i=>`<label style="font-size:12px;font-weight:500"><input type="checkbox" name="interest" value="${i}"> ${i}</label>`).join('')}</div>
+        </div>
+        <div class="form-group full"><label><span class="req">*</span> المهارات</label><textarea name="skills" required></textarea></div>
+        <div class="form-group"><label><span class="req">*</span> خبرة سابقة</label><select name="priorExperience" required><option value="">—</option><option>نعم</option><option>لا</option></select></div>
+        <div class="form-group full"><label><span class="req">*</span> سبب الانخراط</label><textarea name="motivation" required></textarea></div>
+        <div class="form-group full"><label><span class="req">*</span> ما يمكنك تقديمه</label><textarea name="contribution" required></textarea></div>
+        <div class="form-group full"><label><span class="req">*</span> حساب التواصل</label><input name="social" required placeholder="رابط أو معرّف"></div>
+      </div>`);
+      steps.push(agreementsStep(true));
+    } else if(joinType==='volunteer'){
+      steps.push(`<div class="form-grid">
+        <div class="form-group"><label><span class="req">*</span> المجال التطوعي</label><select name="volunteerField" required>${VOL_FIELDS.map(f=>`<option>${f}</option>`).join('')}</select></div>
+        <div class="form-group"><label><span class="req">*</span> الساعات أسبوعيًا</label><input name="hoursPerWeek" type="number" min="1" max="60" required></div>
+        <div class="form-group full"><label><span class="req">*</span> المهارات</label><textarea name="skills" required></textarea></div>
+        <div class="form-group full"><label><span class="req">*</span> الخبرات السابقة</label><textarea name="experience" required></textarea></div>
+        <div class="form-group full"><label><span class="req">*</span> الأيام المتاحة</label>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">${['السبت','الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','مرن'].map(d=>`<label style="font-size:12px"><input type="checkbox" name="availableDays" value="${d}"> ${d}</label>`).join('')}</div>
+        </div>
+        <div class="form-group"><label><span class="req">*</span> حاسوب</label><select name="hasComputer" required><option>نعم</option><option>لا</option></select></div>
+        <div class="form-group"><label><span class="req">*</span> إنترنت مناسب</label><select name="hasInternet" required><option>نعم</option><option>لا</option></select></div>
+        <div class="form-group"><label><span class="req">*</span> العمل عن بُعد</label><select name="remoteOk" required><option>نعم</option><option>لا</option></select></div>
+        <div class="form-group"><label><span class="req">*</span> العمل الميداني</label><select name="fieldOk" required><option>نعم</option><option>لا</option></select></div>
+        <div class="form-group full"><label><span class="req">*</span> سبب التطوع</label><textarea name="motivation" required></textarea></div>
+        <div class="form-group full"><label><span class="req">*</span> التوقعات</label><textarea name="expectation" required></textarea></div>
+        <div class="form-group full"><label><span class="req">*</span> حساب التواصل</label><input name="social" required></div>
+      </div>`);
+      steps.push(`<div class="form-grid">
+        <div class="form-group"><label><span class="req">*</span> الخلية</label><select name="cell" id="cellSelect" required onchange="updatePositions()">${CELLS.map(c=>`<option value="${c}">${c}</option>`).join('')}</select></div>
+        <div class="form-group"><label><span class="req">*</span> المنصب</label><select name="position" id="posSelect" required></select></div>
+      </div>`);
+      steps.push(agreementsStep(true));
+    } else if(joinType==='ambassador'){
+      steps.push(`<div class="form-grid">
+        <div class="form-group full"><label><span class="req">*</span> الولاية المراد تمثيلها</label><select name="representWilaya" required>${wilayaOptions()}</select></div>
+        <div class="form-group full"><label><span class="req">*</span> المهارات والخبرات القيادية</label><textarea name="leadershipSkills" required></textarea></div>
+        <div class="form-group full"><label><span class="req">*</span> العلاقات الجمعوية</label><textarea name="associationRelations" required></textarea></div>
+        <div class="form-group full"><label><span class="req">*</span> العلاقات المؤسساتية</label><textarea name="institutionRelations" required></textarea></div>
+        <div class="form-group"><label><span class="req">*</span> شبكة العلاقات المحلية</label><select name="localNetwork" required><option>قوية</option><option>جيدة</option><option>محدودة</option></select></div>
+        <div class="form-group full"><label><span class="req">*</span> رؤية التمثيل</label><textarea name="vision" required></textarea></div>
+        <div class="form-group full"><label><span class="req">*</span> القدرة على الاستقطاب</label><textarea name="recruitmentAbility" required></textarea></div>
+        <div class="form-group full"><label><span class="req">*</span> سبب الترشح</label><textarea name="motivation" required></textarea></div>
+        <div class="form-group full"><label class="checkbox-row"><input type="checkbox" name="publicConsent" required> <span><span class="req">*</span> الموافقة على نشر البيانات المعتمدة</span></label></div>
+      </div>`);
+      steps.push(agreementsStep(false));
+    } else if(joinType==='training'){
+      steps.push(`<div class="form-grid">
+        <div class="form-group"><label><span class="req">*</span> المهنة الحالية</label><input name="job" required></div>
+        <div class="form-group"><label><span class="req">*</span> مجال التأطير</label><input name="trainingField" required></div>
+        <div class="form-group"><label><span class="req">*</span> سنوات الخبرة</label><input name="yearsExp" type="number" min="0" max="50" required></div>
+        <div class="form-group"><label><span class="req">*</span> نمط التأطير</label><select name="trainingMode" required><option>حضوري</option><option>عن بُعد</option><option>كلاهما</option></select></div>
+        <div class="form-group"><label><span class="req">*</span> سبق له التأطير</label><select name="previousTraining" required><option>نعم</option><option>لا</option></select></div>
+        <div class="form-group full"><label><span class="req">*</span> الفئة المستهدفة</label>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">${['أطفال','مراهقون','شباب','طلبة','متطوعون','موظفون','جمهور عام'].map(a=>`<label style="font-size:12px"><input type="checkbox" name="trainingAudience" value="${a}"> ${a}</label>`).join('')}</div>
+        </div>
+        <div class="form-group full"><label><span class="req">*</span> نبذة الخبرة</label><textarea name="experience" required></textarea></div>
+        <div class="form-group full"><label><span class="req">*</span> اللغات</label><input name="languages" required placeholder="العربية، الفرنسية..."></div>
+        <div class="form-group full"><label><span class="req">*</span> سبب التأطير</label><textarea name="motivation" required></textarea></div>
+        <div class="form-group full"><label><span class="req">*</span> ما يقدمه للشباب</label><textarea name="offer" required></textarea></div>
+        <div class="form-group full"><label><span class="req">*</span> المواضيع</label><textarea name="topics" required></textarea></div>
+        <div class="form-group full"><label><span class="req">*</span> حساب التواصل</label><input name="social" required></div>
+      </div>`);
+      steps.push(agreementsStep(true));
+    }
+  }
+  formMax=steps.length-1;
+  const wrap=document.getElementById('formSteps');
+  wrap.innerHTML=steps.map((s,i)=>`<div class="form-step" data-step="${i}" style="display:${i===0?'block':'none'}">${s}</div>`).join('');
+  const dots=document.getElementById('stepDots');
+  dots.innerHTML=steps.map((_,i)=>`<div class="step-dot${i===0?' active':''}" data-i="${i}"></div>`).join('');
+  // birthDate listener for guardian
+  setTimeout(()=>{
+    const bd=document.querySelector('[name="birthDate"]');
+    if(bd) bd.addEventListener('change',()=>{
+      const age=ageFromBirth(bd.value);
+      const gb=document.getElementById('guardianBlock');
+      if(gb) gb.style.display=(age!==null && age>=14 && age<=17)?'block':'none';
+    });
+    if(joinType==='volunteer') updatePositions();
+    if(joinType==='ambassador'){
+      const nat=document.getElementById('natSelect');
+      if(nat){nat.value='جزائرية'; nat.querySelectorAll('option').forEach(o=>{if(o.value&&o.value!=='جزائرية')o.disabled=true;});}
+    }
+  },50);
+}
+
+function updatePositions(){
+  const cell=document.getElementById('cellSelect')?.value;
+  const pos=document.getElementById('posSelect');
+  if(!pos||!cell) return;
+  const list=POSITIONS[cell]||[];
+  pos.innerHTML=list.map(p=>`<option value="${p}">${p}</option>`).join('');
+}
+
+function previewPhoto(input){
+  if(!input.files||!input.files[0]) return;
+  const r=new FileReader();
+  r.onload=e=>{
+    const z=document.getElementById('photoZone');
+    z.innerHTML=`<img src="${e.target.result}" alt=""><div style="font-size:12px;color:var(--text-muted)">تغيير الصورة</div>`;
+    z.onclick=()=>document.getElementById('photoInput').click();
+  };
+  r.readAsDataURL(input.files[0]);
+}
+
+function renderFormStep(){
+  document.querySelectorAll('.form-step').forEach((s,i)=>s.style.display=i===formStep?'block':'none');
+  document.querySelectorAll('.step-dot').forEach((d,i)=>{
+    d.classList.toggle('active',i===formStep);
+    d.classList.toggle('done',i<formStep);
+  });
+  document.getElementById('btnPrev').style.display=formStep>0?'inline-flex':'none';
+  document.getElementById('btnNext').style.display=formStep<formMax?'inline-flex':'none';
+  document.getElementById('btnSubmit').style.display=formStep===formMax?'inline-flex':'none';
+}
+
+function validateStep(){
+  const step=document.querySelector(`.form-step[data-step="${formStep}"]`);
+  if(!step) return true;
+  let ok=true;
+  step.querySelectorAll('[required]').forEach(el=>{
+    if(el.type==='checkbox'){ if(!el.checked){ok=false; el.classList.add('field-error');} }
+    else if(el.type==='file'){ if(!el.files||!el.files.length){ok=false; document.getElementById('photoZone')?.classList.add('field-error');} }
+    else if(!el.value||!el.value.trim()){ok=false; el.classList.add('field-error');}
+    else el.classList.remove('field-error');
+  });
+  // multi-checkbox groups
+  if(joinType==='membership' && formStep===2){
+    const ints=step.querySelectorAll('[name="interest"]:checked');
+    if(!ints.length){ok=false; showToast('اختر مجال اهتمام واحد على الأقل','warning');}
+  }
+  if(joinType==='volunteer' && formStep===2){
+    const days=step.querySelectorAll('[name="availableDays"]:checked');
+    if(!days.length){ok=false; showToast('اختر يومًا واحدًا على الأقل','warning');}
+  }
+  if(joinType==='ambassador' && formStep===0){
+    const age=ageFromBirth(document.querySelector('[name="birthDate"]')?.value);
+    if(age!==null && (age<18||age>35)){ok=false; showToast('عمر السفير يجب أن يكون 18–35 سنة','error');}
+    const nat=document.querySelector('[name="nationality"]')?.value;
+    if(nat && nat!=='جزائرية'){ok=false; showToast('الجنسية يجب أن تكون جزائرية للسفير','error');}
+  }
+  if(!ok) showToast('أكمل الحقول المطلوبة','warning');
+  return ok;
+}
+
+function formNext(){ if(!validateStep()) return; formStep=Math.min(formStep+1,formMax); renderFormStep(); }
+function formPrev(){ formStep=Math.max(formStep-1,0); renderFormStep(); }
+
+async function submitRegistration(e){
+  e.preventDefault();
+  if(!validateStep()) return;
+  const btn=document.getElementById('btnSubmit');
+  btn.disabled=true; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> جاري الإرسال...';
+  try{
+    const fd=new FormData(e.target);
+    const data={};
+    fd.forEach((v,k)=>{
+      if(k==='photo'||k==='logo') return;
+      if(data[k]){ if(!Array.isArray(data[k])) data[k]=[data[k]]; data[k].push(sanitizeInput(v)); }
+      else data[k]=sanitizeInput(v);
+    });
+    data.interest=[].concat(data.interest||[]).filter(Boolean);
+    data.availableDays=[].concat(data.availableDays||[]).filter(Boolean);
+    data.trainingAudience=[].concat(data.trainingAudience||[]).filter(Boolean);
+    data.type=toArabicType(joinType);
+    data.joinType=joinType;
+    data.countryCode=data.nationality==='جزائرية'?'+213':(data.nationality==='تونسية'?'+216':data.nationality==='مغربية'?'+212':'+');
+    data.trackingCode=generateTrackingCode();
+    data.status='قيد الانتظار';
+    data.createdAt=new Date().toISOString();
+
+    // photo upload
+    var photoInput=e.target.querySelector('[name="photo"]');
+    if(photoInput&&photoInput.files&&photoInput.files[0]){
+      showToast('جاري رفع الصورة...','info');
+      data.photoUrl=await uploadImage(photoInput.files[0]);
+    }
+    var logoInput=e.target.querySelector('[name="logo"]');
+    if(logoInput&&logoInput.files&&logoInput.files[0]){
+      data.logoUrl=await uploadImage(logoInput.files[0]);
+    }
+
+    // tashil key → instant accept path
+    if(data.tashilKey){
+      var ok=await validateTashilKey(data.tashilKey);
+      if(ok) data.status='مقبول';
+      else if(data.tashilKey.trim()){ showToast('مفتاح التسهيل غير صالح','error'); btn.disabled=false; btn.innerHTML='<i class="fas fa-paper-plane"></i> إرسال الطلب'; return false; }
+    }
+
+    // volunteer position availability check (soft)
+    if(joinType==='volunteer' && data.cell && data.position && window.FirestoreAPI && window.firebaseDB){
+      try{
+        var FA=window.FirestoreAPI, db=window.firebaseDB;
+        var posSnap=await FA.getDocs(FA.query(FA.collection(db,'positions'), FA.where('title','==',data.position), FA.limit(1)));
+        if(!posSnap.empty){
+          var pos=posSnap.docs[0].data();
+          if(pos.available===false || pos.active===false){
+            showToast('المنصب لم يعد متاحًا','error');
+            btn.disabled=false; btn.innerHTML='<i class="fas fa-paper-plane"></i> إرسال الطلب'; return false;
+          }
+        }
+      }catch(_){}
+    }
+
+    // write Firestore
+    var written=false;
+    if(window.FirestoreAPI && window.firebaseDB){
+      try{
+        var FA=window.FirestoreAPI;
+        var payload=Object.assign({},data,{createdAt:FA.serverTimestamp(), createdAtISO:data.createdAt});
+        await FA.addDoc(FA.collection(window.firebaseDB,'registrations'), payload);
+        written=true;
+      }catch(err){ console.warn('Firestore write failed', err); }
+    }
+    // always localStorage backup
+    try{
+      const regs=JSON.parse(localStorage.getItem('nazaha_regs')||'[]');
+      regs.push(data);
+      localStorage.setItem('nazaha_regs',JSON.stringify(regs));
+    }catch(err){}
+
+    if(!written && !window.firebaseDB) showToast('حُفظ محليًا — تحقق من اتصال Firebase','warning');
+    showTrackingModal(data.trackingCode, data.status);
+    cancelJoin();
+  }catch(err){
+    console.error(err);
+    showToast('تعذّر إرسال الطلب','error');
+  }finally{
+    btn.disabled=false; btn.innerHTML='<i class="fas fa-paper-plane"></i> إرسال الطلب';
+  }
+  return false;
+}
+
+function showTrackingModal(code, status){
+  const ov=document.createElement('div'); ov.className='modal-overlay';
+  ov.onclick=e=>{if(e.target===ov)ov.remove();};
+  const badge=status==='مقبول'?'badge-accepted':status==='مرفوض'?'badge-rejected':'badge-pending';
+  ov.innerHTML=`<div class="modal-box" style="text-align:center">
+    <div style="font-size:40px;color:var(--primary-light);margin-bottom:12px"><i class="fas fa-check-circle"></i></div>
+    <h3 style="margin-bottom:8px">تم إرسال طلبك بنجاح</h3>
+    <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px">احتفظ برقم التتبع</p>
+    <div style="font-family:var(--font-mono);font-size:22px;font-weight:700;letter-spacing:2px;margin-bottom:12px">${esc(code)}</div>
+    <span class="${badge}">${esc(status)}</span>
+    <div style="margin-top:20px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+      <button class="btn-primary" onclick="navigator.clipboard.writeText('${esc(code)}');showToast('تم نسخ الرقم','success')">نسخ الرقم</button>
+      <button class="btn-secondary" onclick="this.closest('.modal-overlay').remove();navigate('/tracking')">تتبع الطلب</button>
+    </div>
+  </div>`;
+  document.body.appendChild(ov);
+}
+
+async function trackRequest(){
+  const code=(document.getElementById('trackCode').value||'').trim().toUpperCase();
+  const res=document.getElementById('trackResult');
+  if(!code){showToast('أدخل رقم التتبع','warning');return;}
+  res.style.display='block';
+  res.innerHTML='<div class="empty-state" style="padding:20px"><i class="fas fa-spinner fa-spin"></i></div>';
+  let found=null;
+  // Firestore first
+  if(window.FirestoreAPI && window.firebaseDB){
+    try{
+      var FA=window.FirestoreAPI, db=window.firebaseDB;
+      var snap=await FA.getDocs(FA.query(FA.collection(db,'registrations'), FA.where('trackingCode','==',code), FA.limit(1)));
+      if(snap.empty){
+        // try case variants
+        snap=await FA.getDocs(FA.query(FA.collection(db,'registrations'), FA.where('trackingCode','==',code.toLowerCase()), FA.limit(1)));
+      }
+      if(!snap.empty){
+        var d=snap.docs[0];
+        found=Object.assign({id:d.id}, d.data());
+      }
+      // also activityRegistrations
+      if(!found){
+        var snap2=await FA.getDocs(FA.query(FA.collection(db,'activityRegistrations'), FA.where('trackingCode','==',code), FA.limit(1)));
+        if(!snap2.empty){ var d2=snap2.docs[0]; found=Object.assign({id:d2.id}, d2.data()); }
+      }
+    }catch(e){ console.warn('track firestore',e); }
+  }
+  if(!found){
+    try{
+      const regs=JSON.parse(localStorage.getItem('nazaha_regs')||'[]');
+      found=regs.find(r=>String(r.trackingCode).toUpperCase()===code);
+      if(!found){
+        const acts=JSON.parse(localStorage.getItem('nazaha_act_regs')||'[]');
+        found=acts.find(r=>String(r.trackingCode).toUpperCase()===code);
+      }
+    }catch(e){}
+  }
+  if(!found){
+    res.innerHTML='<div class="empty-state" style="padding:20px"><p>لم يُعثر على الطلب</p></div>';
+    return;
+  }
+  const st=found.status||'قيد الانتظار';
+  const badge=st==='مقبول'||st==='مؤكد'||st==='accepted'?'badge-accepted':st==='مرفوض'||st==='rejected'?'badge-rejected':st==='مراجعة'||st==='review'?'badge-review':'badge-pending';
+  res.innerHTML='<div style="text-align:center">'+
+    '<div style="margin-bottom:8px"><span class="'+badge+'">'+esc(st)+'</span></div>'+
+    '<p style="font-size:14px"><strong>النوع:</strong> '+esc(found.type||found.joinType||found.activityTitle||'—')+'</p>'+
+    '<p style="font-size:13px;color:var(--text-muted)">'+esc(found.fullName||found.orgName||'')+'</p>'+
+    (found.paymentRef?'<p style="font-size:12px;font-family:var(--font-mono);margin-top:6px">'+esc(found.paymentRef)+'</p>':'')+
+    '<p style="font-size:12px;color:var(--text-muted);margin-top:8px">'+esc(found.createdAtISO||found.createdAt||'')+'</p>'+
+  '</div>';
+}
+
+/* Contact → contactMessages */
+async function submitContact(e){
+  e.preventDefault();
+  const fd=new FormData(e.target);
+  const data={status:'new'}; fd.forEach((v,k)=>data[k]=sanitizeInput(v));
+  data.createdAtISO=new Date().toISOString();
+  try{
+    if(window.FirestoreAPI && window.firebaseDB){
+      var FA=window.FirestoreAPI;
+      await FA.addDoc(FA.collection(window.firebaseDB,'contactMessages'), Object.assign({},data,{createdAt:FA.serverTimestamp()}));
+    }
+    const msgs=JSON.parse(localStorage.getItem('nazaha_contact')||'[]');
+    msgs.push(data); localStorage.setItem('nazaha_contact',JSON.stringify(msgs));
+    showToast('تم إرسال رسالتك بنجاح','success');
+    e.target.reset();
+  }catch(err){
+    showToast('تعذّر الإرسال','error');
+  }
+  return false;
+}
+
+/* ---------- Activities ---------- */
+const DEMO_ACTIVITIES=[
+  {id:'act1',title:'ورشة القيادة الشبابية',place:'الطارف',date:'قريبًا',price:0,paid:false,img:'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80'},
+  {id:'act2',title:'ندوة المواطنة الرقمية',place:'عن بُعد',date:'قريبًا',price:0,paid:false,img:'https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=600&q=80'},
+  {id:'act3',title:'حملة التطوع البيئي',place:'عدة ولايات',date:'مفتوح',price:500,paid:true,img:'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&q=80'}
+];
+async function loadActivities(){
+  const g=document.getElementById('activitiesGrid'); if(!g) return;
+  var list=await fetchCollection(['activities'], function(d){
+    return {
+      id:d.id, title:d.title||d.name||'نشاط', place:d.place||d.location||'', date:d.date||d.dateText||'',
+      price:Number(d.price)||0, paid:!!(d.paid||d.price>0),
+      img:d.image||d.img||d.cover||'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80'
+    };
+  }, 30);
+  window._activitiesList=list||DEMO_ACTIVITIES;
+  g.innerHTML=window._activitiesList.map(function(a){
+    return '<div class="item-card" onclick="openActivityReg(\''+esc(a.id)+'\')">'+
+      '<img src="'+esc(a.img)+'" alt="">'+
+      '<div class="body"><h3>'+esc(a.title)+'</h3>'+
+      '<div class="meta">'+esc(a.place)+' · '+esc(a.date)+' · '+(a.paid?('مدفوع '+a.price+' دج'):'مجاني')+'</div>'+
+      '<button class="btn-primary" style="margin-top:10px;padding:8px 14px;font-size:12px" onclick="event.stopPropagation();openActivityReg(\''+esc(a.id)+'\')">سجّل</button>'+
+      '</div></div>';
+  }).join('');
+}
+window.openActivityReg=function(id){
+  var a=(window._activitiesList||DEMO_ACTIVITIES).find(function(x){return x.id===id;});
+  if(!a) return;
+  document.getElementById('activityRegisterPanel').style.display='block';
+  document.getElementById('actRegTitle').textContent='تسجيل — '+a.title;
+  document.getElementById('actId').value=a.id;
+  document.getElementById('actTitle').value=a.title;
+  document.getElementById('actPrice').value=a.price||0;
+  var pb=document.getElementById('paymentBlock');
+  if(a.paid||a.price>0){
+    pb.style.display='block';
+    document.getElementById('priceDisplay').value=a.price+' دج';
+    document.getElementById('totalDisplay').value=a.price+' دج';
+  } else { pb.style.display='none'; }
+  var sel=document.getElementById('actWilaya');
+  if(sel && !sel.options.length){ sel.innerHTML=WILAYAS.map(function(w){return '<option value="'+w+'">'+w+'</option>';}).join(''); }
+  document.getElementById('activityRegisterPanel').scrollIntoView({behavior:'smooth'});
+};
+async function submitActivityReg(e){
+  e.preventDefault();
+  var form=e.target, btn=form.querySelector('[type="submit"]');
+  btn.disabled=true; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> ...';
+  try{
+    var fd=new FormData(form), data={};
+    fd.forEach(function(v,k){data[k]=sanitizeInput(v);});
+    var age=ageFromBirth(data.birthDate);
+    if(age!==null && (age<14||age>35)){ showToast('العمر المسموح 14–35 سنة','error'); btn.disabled=false; btn.innerHTML='<i class="fas fa-check"></i> تأكيد التسجيل'; return false; }
+    data.trackingCode=generateTrackingCode();
+    data.status='مؤكد';
+    data.createdAtISO=new Date().toISOString();
+    data.countryCode=data.nationality==='جزائرية'?'+213':'+';
+    var price=Number(data.activityPrice)||0;
+    if(price>0){
+      data.paymentRef=data.paymentRef||generatePayRef();
+      data.amount=price; data.paid=true;
+    } else { data.paid=false; data.amount=0; }
+    if(window.FirestoreAPI && window.firebaseDB){
+      try{
+        var FA=window.FirestoreAPI;
+        await FA.addDoc(FA.collection(window.firebaseDB,'activityRegistrations'), Object.assign({},data,{createdAt:FA.serverTimestamp()}));
+      }catch(err){ console.warn(err); }
+    }
+    try{
+      var acts=JSON.parse(localStorage.getItem('nazaha_act_regs')||'[]');
+      acts.push(data); localStorage.setItem('nazaha_act_regs',JSON.stringify(acts));
+    }catch(_){}
+    showPaymentReceipt(data);
+    form.reset();
+    document.getElementById('activityRegisterPanel').style.display='none';
+  }catch(err){ showToast('تعذّر التسجيل','error'); }
+  finally{ btn.disabled=false; btn.innerHTML='<i class="fas fa-check"></i> تأكيد التسجيل'; }
+  return false;
+}
+function showPaymentReceipt(data){
+  var ov=document.createElement('div'); ov.className='modal-overlay'; ov.id='receiptOverlay';
+  ov.onclick=function(e){if(e.target===ov)ov.remove();};
+  var verifyUrl=CANONICAL+'/tracking?code='+encodeURIComponent(data.trackingCode);
+  ov.innerHTML='<div class="modal-box" style="max-width:440px" id="receiptBox">'+
+    '<button class="modal-close" onclick="document.getElementById(\'receiptOverlay\').remove()"><i class="fas fa-times"></i></button>'+
+    '<div style="text-align:center;margin-bottom:12px"><img src="'+LOGO+'" style="height:48px;margin:0 auto" onerror="this.style.display=\'none\'"></div>'+
+    '<h3 style="text-align:center;font-size:16px;margin-bottom:4px">إثبات إتمام التسجيل'+(data.paid?' والدفع':'')+'</h3>'+
+    '<p style="text-align:center;font-size:12px;color:var(--text-muted);margin-bottom:14px">خلية الأنشطة واللوجستيك</p>'+
+    '<table style="width:100%;font-size:13px;margin-bottom:14px">'+
+      '<tr><td style="color:var(--text-muted);padding:4px 0">المشارك</td><td style="font-weight:600;text-align:left">'+esc(data.fullName)+'</td></tr>'+
+      '<tr><td style="color:var(--text-muted);padding:4px 0">النشاط</td><td style="font-weight:600;text-align:left">'+esc(data.activityTitle)+'</td></tr>'+
+      '<tr><td style="color:var(--text-muted);padding:4px 0">تاريخ التسجيل</td><td style="text-align:left">'+esc((data.createdAtISO||'').slice(0,10))+'</td></tr>'+
+      (data.paid?'<tr><td style="color:var(--text-muted);padding:4px 0">المبلغ</td><td style="text-align:left">'+esc(String(data.amount))+' دج</td></tr>'+
+      '<tr><td style="color:var(--text-muted);padding:4px 0">طريقة الدفع</td><td style="text-align:left">'+esc(data.paymentMethod||'')+'</td></tr>'+
+      '<tr><td style="color:var(--text-muted);padding:4px 0">مرجع الدفع</td><td style="font-family:var(--font-mono);text-align:left">'+esc(data.paymentRef||'')+'</td></tr>':'')+
+      '<tr><td style="color:var(--text-muted);padding:4px 0">الحالة</td><td style="text-align:left"><span class="badge-accepted">مؤكد</span></td></tr>'+
+      '<tr><td style="color:var(--text-muted);padding:4px 0">رقم التتبع</td><td style="font-family:var(--font-mono);text-align:left">'+esc(data.trackingCode)+'</td></tr>'+
+    '</table>'+
+    '<div id="receiptQR" style="display:flex;justify-content:center;margin:12px 0"></div>'+
+    '<p style="text-align:center;font-size:11px;color:var(--text-muted)">تاريخ الإصدار: '+new Date().toLocaleDateString('ar-DZ')+' · ختم المنتدى</p>'+
+    '<div style="display:flex;gap:8px;justify-content:center;margin-top:14px;flex-wrap:wrap">'+
+      '<button class="btn-primary" onclick="window.print()"><i class="fas fa-print"></i> طباعة</button>'+
+      '<button class="btn-secondary" onclick="navigator.clipboard.writeText(\''+esc(data.trackingCode)+'\');showToast(\'تم النسخ\',\'success\')">نسخ التتبع</button>'+
+    '</div></div>';
+  document.body.appendChild(ov);
+  try{
+    if(typeof QRCode!=='undefined'){
+      new QRCode(document.getElementById('receiptQR'),{text:verifyUrl,width:120,height:120});
+    } else {
+      document.getElementById('receiptQR').innerHTML='<img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data='+encodeURIComponent(verifyUrl)+'" alt="QR">';
+    }
+  }catch(_){
+    document.getElementById('receiptQR').innerHTML='<img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data='+encodeURIComponent(verifyUrl)+'" alt="QR">';
+  }
+}
+
+/* Library apps (9 from spec) */
+const APPS=[
+  {id:'intl',title:'الشؤون الدولية',desc:'دول ومؤشرات عالمية',icon:'fa-globe'},
+  {id:'wiki',title:'الموسوعة',desc:'بحث معرفي',icon:'fa-book'},
+  {id:'fx',title:'تحويل العملات',desc:'أسعار صرف',icon:'fa-coins'},
+  {id:'cv',title:'محلل السيرة',desc:'تحليل CV',icon:'fa-file-alt'},
+  {id:'fit',title:'تحدي لياقتي',desc:'تمارين يومية',icon:'fa-dumbbell'},
+  {id:'vitals',title:'مؤشري الحيوي',desc:'BMI وسعرات',icon:'fa-heartbeat'},
+  {id:'future',title:'مستقبلي',desc:'فرص عمل',icon:'fa-briefcase'},
+  {id:'cyber',title:'أمني الرقمي',desc:'فحص أمني',icon:'fa-shield-alt'},
+  {id:'mental',title:'صحتي النفسية',desc:'توعية ودعم',icon:'fa-brain'}
+];
+function renderApps(){
+  const g=document.getElementById('appsGrid');
+  if(!g) return;
+  g.innerHTML=APPS.map(a=>`<div class="item-card" style="padding:20px;text-align:center;cursor:pointer" onclick="showToast('قريبًا','info')">
+    <i class="fas ${a.icon}" style="font-size:28px;color:var(--primary-light);margin-bottom:10px"></i>
+    <h3 style="font-size:15px">${a.title}</h3>
+    <div class="meta">${a.desc}</div>
+  </div>`).join('');
+}
+
+async function loadNews(){
+  var g=document.getElementById('newsGrid'); if(!g) return;
+  var list=await fetchCollection(['news'], function(d){
+    return {id:d.id,title:d.title||d.name,img:d.image||d.cover||'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=80',meta:d.date||d.createdAt||''};
+  }, 12);
+  if(!list||!list.length) return;
+  g.innerHTML=list.map(function(n){return '<div class="item-card"><img src="'+esc(n.img)+'" alt=""><div class="body"><h3>'+esc(n.title)+'</h3><div class="meta">'+esc(String(n.meta).slice(0,16))+'</div></div></div>';}).join('');
+}
+async function loadProjects(){
+  var g=document.getElementById('projectsGrid'); if(!g) return;
+  var list=await fetchCollection(['projects'], function(d){
+    return {id:d.id,title:d.title||d.name,img:d.image||d.cover||'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80',meta:d.status||''};
+  }, 12);
+  if(!list||!list.length) return;
+  g.innerHTML=list.map(function(n){return '<div class="item-card"><img src="'+esc(n.img)+'" alt=""><div class="body"><h3>'+esc(n.title)+'</h3><div class="meta">'+esc(n.meta)+'</div></div></div>';}).join('');
+}
+async function loadHomeStats(){
+  if(!window.FirestoreAPI||!window.firebaseDB) return;
+  try{
+    var FA=window.FirestoreAPI, db=window.firebaseDB;
+    var counts={members:0,activities:0,projects:0,countries:0};
+    try{ var m=await FA.getDocs(FA.query(FA.collection(db,'members'),FA.limit(500))); counts.members=m.size||m.docs.length; }catch(_){}
+    try{ var a=await FA.getDocs(FA.query(FA.collection(db,'activities'),FA.limit(200))); counts.activities=a.size||a.docs.length; }catch(_){}
+    try{ var p=await FA.getDocs(FA.query(FA.collection(db,'projects'),FA.limit(100))); counts.projects=p.size||p.docs.length; }catch(_){}
+    try{ var amb=await FA.getDocs(FA.query(FA.collection(db,'ambassadors'),FA.limit(100))); counts.countries=amb.size||amb.docs.length; }catch(_){}
+    var els=document.querySelectorAll('[data-count]');
+    if(counts.members) els[0]&&els[0].setAttribute('data-count',counts.members);
+    if(counts.activities) els[1]&&els[1].setAttribute('data-count',counts.activities);
+    if(counts.projects) els[2]&&els[2].setAttribute('data-count',counts.projects);
+    if(counts.countries) els[3]&&els[3].setAttribute('data-count',counts.countries);
+    animateStats();
+  }catch(e){}
+}
+
+/* MZone basic auth (email/password Firebase) */
+function refreshMzone(){
+  var box=document.getElementById('mzoneBox'); if(!box) return;
+  var u=window.currentUser||window.mzoneCurrentUser;
+  if(u){
+    box.innerHTML='<img src="'+esc(u.photoUrl||u.photo||UNK)+'" style="width:72px;height:72px;border-radius:50%;margin:0 auto 10px;object-fit:cover" onerror="this.src=\''+UNK+'\'">'+
+      '<h3 style="margin-bottom:4px">'+esc(u.fullName||u.name||u.email||'عضو')+'</h3>'+
+      '<p style="font-size:13px;color:var(--text-muted);margin-bottom:12px">'+(u.username?'@'+esc(u.username):esc(u.email||''))+'</p>'+
+      '<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">'+
+        '<button class="btn-outline-dark" onclick="showToast(\'قريبًا\',\'info\')">تعديل الملف</button>'+
+        '<button class="btn-secondary" onclick="mzoneLogout()">خروج</button>'+
+      '</div>';
+  } else {
+    box.innerHTML='<i class="fas fa-user-circle" style="font-size:64px;color:var(--primary-light);margin-bottom:12px"></i>'+
+      '<p style="color:var(--text-secondary);margin-bottom:16px">سجّل الدخول للوصول إلى ملفك</p>'+
+      '<div class="form-group" style="text-align:right;margin-bottom:10px"><label>البريد</label><input id="mzEmail" type="email" placeholder="email@example.com"></div>'+
+      '<div class="form-group" style="text-align:right;margin-bottom:12px"><label>كلمة المرور</label><input id="mzPass" type="password"></div>'+
+      '<button class="btn-primary" style="width:100%" onclick="mzoneLogin()"><i class="fas fa-sign-in-alt"></i> تسجيل الدخول</button>'+
+      '<p style="font-size:12px;color:var(--text-muted);margin-top:12px">Firebase Auth · nazaha-b1c97</p>';
+  }
+}
+async function mzoneLogin(){
+  var email=document.getElementById('mzEmail')?.value?.trim();
+  var pass=document.getElementById('mzPass')?.value;
+  if(!email||!pass){showToast('أدخل البريد وكلمة المرور','warning');return;}
+  if(!window.firebaseAuth){showToast('المصادقة غير متاحة','error');return;}
+  try{
+    var cred=await window.firebaseAuth.signInWithEmailAndPassword(email,pass);
+    var user=cred.user;
+    window.currentUser={id:user.uid,email:user.email,fullName:user.displayName||user.email};
+    // enrich from mzoneAccounts / userProfiles
+    if(window.FirestoreAPI&&window.firebaseDB){
+      try{
+        var FA=window.FirestoreAPI, db=window.firebaseDB;
+        var ds=await FA.getDoc(FA.doc(db,'mzoneAccounts',user.uid));
+        if(ds.exists()) window.currentUser=Object.assign(window.currentUser,ds.data(),{id:user.uid});
+        else {
+          var ds2=await FA.getDoc(FA.doc(db,'userProfiles',user.uid));
+          if(ds2.exists()) window.currentUser=Object.assign(window.currentUser,ds2.data(),{id:user.uid});
+        }
+      }catch(_){}
+    }
+    window.mzoneCurrentUser=window.currentUser;
+    showToast('مرحبًا '+ (window.currentUser.fullName||''),'success');
+    refreshMzone();
+  }catch(err){
+    console.warn(err);
+    showToast('فشل الدخول — تحقق من البيانات','error');
+  }
+}
+function mzoneLogout(){
+  if(window.firebaseAuth) try{window.firebaseAuth.signOut();}catch(_){}
+  window.currentUser=null; window.mzoneCurrentUser=null;
+  showToast('تم تسجيل الخروج','info');
+  refreshMzone();
+}
+if(window.firebaseAuth){
+  window.firebaseAuth.onAuthStateChanged(function(user){
+    if(user){
+      window.currentUser=window.currentUser||{id:user.uid,email:user.email,fullName:user.displayName||user.email};
+      window.mzoneCurrentUser=window.currentUser;
+    } else {
+      window.currentUser=null; window.mzoneCurrentUser=null;
+    }
+  });
+}
+
+/* Init */
+(function init(){
+  const h=location.hash.replace(/^#/,'')||'/';
+  // support /tracking?code= or hash tracking
+  var params=new URLSearchParams(location.search);
+  if(params.get('code')){
+    navigate('/tracking', true);
+    setTimeout(function(){
+      var inp=document.getElementById('trackCode');
+      if(inp){inp.value=params.get('code'); trackRequest();}
+    },400);
+  } else {
+    navigate(h.charAt(0)==='/'?h:'/'+h, true);
+  }
+  animateStats();
+  // wait firebase then soft-load home stats
+  window.addEventListener('firebaseReady', function(){ loadHomeStats(); });
+  setTimeout(loadHomeStats, 1500);
+})();
+</script>
+</body>
+</html>
