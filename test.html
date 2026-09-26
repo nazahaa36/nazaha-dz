@@ -1,0 +1,3236 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1a6b2f">
+<meta name="description" content="انضم إلى جيل يصنع الفرق. نزاهة منصة شبابية وطنية تمكّنك من التعلم والقيادة والتطوع وبناء أثر حقيقي في الجزائر عبر برامج نوعية وشبكة سفراء وفرص مشاركة مدنية.">
+<meta name="keywords" content="نزاهة, المنتدى الشبابي للفكر والمشاركة المدنية, مشاركة مدنية, تمكين الشباب, شباب الجزائر, سفراء, تطوع, انخراط, ولاية الطارف">
+<meta name="author" content="المنتدى الشبابي للفكر والمشاركة المدنية">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="googlebot" content="index, follow">
+<meta name="bingbot" content="index, follow">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/logo-3.png">
+<meta name="application-name" content="نزاهة">
+<meta name="apple-mobile-web-app-title" content="نزاهة">
+<meta name="format-detection" content="telephone=no">
+<link rel="alternate" hreflang="ar-DZ" href="https://nazaha.site/">
+<link rel="alternate" hreflang="ar" href="https://nazaha.site/">
+
+<meta name="language" content="Arabic">
+<meta name="geo.region" content="DZ">
+<meta name="geo.placename" content="الطارف، الجزائر">
+<link rel="canonical" href="https://nazaha.site/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ar_DZ">
+<meta property="og:site_name" content="المنتدى الشبابي للفكر والمشاركة المدنية">
+<meta property="og:title" content="المنتدى الشبابي للفكر والمشاركة المدنية — نزاهة">
+<meta property="og:description" content="انضم إلى جيل يصنع الفرق. نزاهة منصة شبابية وطنية تمكّنك من التعلم والقيادة والتطوع وبناء أثر حقيقي في الجزائر.">
+<meta property="og:url" content="https://nazaha.site/">
+<meta property="og:image" content="https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/logo-3.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="نزاهة | المنتدى الشبابي للفكر والمشاركة المدنية">
+<meta name="twitter:description" content="انضم إلى جيل يصنع الفرق مع نزاهة.">
+<title>المنتدى الشبابي للفكر والمشاركة المدنية — نزاهة</title>
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/logo-3.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"المنتدى الشبابي للفكر والمشاركة المدنية","alternateName":"نزاهة","url":"https://nazaha.site/","logo":"https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/logo-3.png","description":"منتدى شبابي وطني غير ربحي مقره ولاية الطارف في الجزائر. نمكّن الشباب ونصنع القيادات ونعزز قيم النزاهة والشفافية والمواطنة الفاعلة.","email":"nzaha.dz@gmail.com","address":{"@type":"PostalAddress","addressLocality":"الطارف","addressCountry":"DZ"},"founder":{"@type":"Person","name":"نزيه عبدالله بومهني"},"sameAs":["https://www.facebook.com/nzaha.dz","https://www.instagram.com/nzaha.dz","https://youtube.com/@nzaha-dz","https://t.me/+qMBoS7tGvi1iZDBk"]}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<script src="https://www.gstatic.com/firebasejs/12.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.13.0/firebase-storage-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.13.0/firebase-analytics-compat.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+/* ===== Design tokens (spec §5) ===== */
+:root{
+  --primary:#1a6b2f;--primary-light:#2ECC5A;--primary-dark:#0f4a1e;--accent:#C8A84E;--danger:#e53935;
+  --bg:#FFFFFF;--surface:#fff;--surface-alt:#f4f7f5;--surface-glass:rgba(255,255,255,.88);
+  --text:#111A14;--text-secondary:#4a5c52;--text-muted:#8a9e92;--border:#d8e4db;--border-light:#eaf2ec;
+  --shadow-sm:0 2px 8px rgba(0,0,0,.06);--shadow:0 6px 24px rgba(0,0,0,.08);--shadow-lg:0 16px 48px rgba(0,0,0,.12);
+  --radius-sm:12px;--radius:18px;--radius-pill:50px;--transition:.28s cubic-bezier(.4,0,.2,1);
+  --font:'IBM Plex Sans Arabic','IBM Plex Sans',Arial,sans-serif;--font-mono:'IBM Plex Mono',monospace;
+  --header-h:100px;
+}
+body.dark{
+  --bg:#0a0f0c;--surface:#111a14;--surface-alt:#172019;--surface-glass:rgba(17,26,20,.92);
+  --text:#e8f0ea;--text-secondary:#9ab5a0;--text-muted:#5a7a62;--border:#243029;--border-light:#1c2820;
+  --shadow-sm:0 2px 8px rgba(0,0,0,.3);--shadow:0 6px 24px rgba(0,0,0,.45);--shadow-lg:0 16px 48px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;direction:rtl;background:var(--bg)}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.75;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+.fas,.far,.fab,.fa,[class^=fa-],[class*=" fa-"]{font-family:"Font Awesome 6 Free","Font Awesome 6 Brands"!important;font-weight:900;font-style:normal}
+h1,h2,h3,h4{font-weight:600;line-height:1.35}a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
+button,input,select,textarea{font-family:var(--font)}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:var(--primary-light);border-radius:3px}
+
+/* Header — مواصفات: hidr.png · ارتفاع 100px (90 على ≤480) */
+.site-header{
+  position:fixed;top:0;left:0;right:0;width:100%;
+  z-index:1000;height:var(--header-h);min-height:var(--header-h);
+  display:flex;align-items:center;justify-content:center;
+  padding:0 16px;margin:0;
+  background:var(--surface-glass);backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+  border-bottom:1px solid var(--border-light);
+  transform:none;
+}
+.header-brand{
+  position:absolute;left:50%;right:auto;transform:translateX(-50%);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:1;
+}
+.brand-logo{
+  width:240px;height:100px;max-width:70vw;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;background:transparent;border:none;padding:0;
+}
+.brand-logo img{
+  width:100%;height:100%;max-width:240px;max-height:100px;
+  object-fit:contain;object-position:center;display:block;
+  filter:drop-shadow(0 4px 12px rgba(26,107,47,.18));
+}
+.header-actions{
+  position:absolute;right:16px;left:auto;top:50%;transform:translateY(-50%);
+  display:flex;align-items:center;gap:8px;z-index:1002;
+}
+.btn-icon{
+  width:40px;height:40px;border-radius:50%;border:none;
+  background:var(--surface-alt);color:var(--text);cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;
+  transition:var(--transition);font-size:15px;
+}
+.btn-icon:hover{background:var(--primary);color:#fff}
+.hamburger{
+  width:44px;height:44px;border-radius:50%;border:none;
+  background:var(--primary);color:#fff;cursor:pointer;
+  display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+  box-shadow:0 4px 14px rgba(26,107,47,.35);z-index:1001;
+}
+.hamburger span{display:block;width:18px;height:2.5px;background:currentColor;border-radius:2px;transition:.25s}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+@media(max-width:480px){
+  :root{--header-h:96px}
+  .brand-logo{width:180px;height:82px}
+  .brand-logo img{max-width:180px;max-height:82px}
+  .header-actions{right:10px}
+}
+
+/* Side nav */
+.side-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:998;opacity:0;visibility:hidden;transition:.3s;backdrop-filter:blur(3px)}.side-overlay.open{opacity:1;visibility:visible}
+.side-nav{position:fixed;top:0;right:-320px;width:300px;max-width:88vw;height:100%;background:var(--surface);z-index:999;transition:right .35s cubic-bezier(.4,0,.2,1);padding:calc(var(--header-h) + 12px) 16px 24px;overflow-y:auto;display:flex;flex-direction:column;gap:2px;box-shadow:var(--shadow-lg);border-left:1px solid var(--border)}.side-nav.open{right:0}
+.side-nav a,.side-nav .nav-link{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--radius-sm);color:var(--text);font-weight:600;font-size:14px;border:1px solid transparent;cursor:pointer;transition:var(--transition);background:none;width:100%;text-align:right}
+.side-nav a i,.side-nav .nav-link i{width:16px;text-align:center;color:var(--primary-light);font-size:12px}
+.side-nav a:hover,.side-nav .nav-link:hover,.side-nav a.active,.side-nav .nav-link.active{background:rgba(46,204,90,.1);border-color:rgba(46,204,90,.2);color:var(--primary)}
+.nav-divider{height:1px;background:var(--border-light);margin:8px 0}
+.nav-social{display:flex;gap:6px;padding:12px 4px 0;margin-top:auto;flex-wrap:wrap}
+.nav-social a{width:28px;height:28px;border-radius:50%;background:var(--surface-alt);display:flex;align-items:center;justify-content:center;border:1px solid var(--border-light);color:var(--text-secondary);padding:0;font-size:12px}
+.nav-social a:hover{background:var(--primary);color:#fff}
+
+/* Pages */
+.page{display:none;padding-top:var(--header-h);min-height:100vh}.page.active{display:block;animation:pageIn .35s ease}
+@keyframes pageIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.content{max-width:1100px;margin:0 auto;padding:40px 20px}
+.section-header{text-align:center;margin-bottom:32px}
+.section-tag{display:inline-block;padding:4px 14px;background:rgba(46,204,90,.1);color:var(--primary);border-radius:50px;font-size:11px;font-weight:700;border:1px solid rgba(46,204,90,.2);margin-bottom:8px}
+.section-title{font-size:clamp(22px,4vw,30px);margin-bottom:8px}
+.section-sub{font-size:14px;color:var(--text-secondary);max-width:580px;margin:0 auto}
+.section-divider{width:48px;height:3px;background:linear-gradient(90deg,var(--primary-light),var(--accent));border-radius:3px;margin:14px auto}
+
+/* Buttons */
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;background:var(--primary-light);color:#fff;border:none;border-radius:var(--radius-pill);font-weight:700;font-size:14px;cursor:pointer;transition:var(--transition);box-shadow:0 6px 20px rgba(46,204,90,.35)}.btn-primary:hover{background:#25a84a;transform:translateY(-2px)}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;background:transparent;color:#fff;border:2px solid rgba(255,255,255,.55);border-radius:var(--radius-pill);font-weight:700;font-size:14px;cursor:pointer;transition:var(--transition)}.btn-outline:hover{background:rgba(255,255,255,.12);border-color:#fff}
+.btn-outline-dark{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;background:transparent;color:var(--primary);border:1.5px solid var(--primary-light);border-radius:var(--radius-pill);font-weight:700;font-size:13px;cursor:pointer;transition:var(--transition)}.btn-outline-dark:hover{background:rgba(46,204,90,.1)}
+.btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 22px;background:var(--surface-alt);color:var(--text);border:1.5px solid var(--border-light);border-radius:var(--radius-pill);font-weight:700;font-size:13px;cursor:pointer;transition:var(--transition)}.btn-secondary:hover{background:var(--border-light)}
+.card{background:var(--surface);border:1.5px solid var(--border-light);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow-sm);transition:var(--transition)}.card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+
+/* Hero */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden;padding:calc(var(--header-h) + 24px) 20px 80px}
+.hero-bg{position:absolute;inset:0;z-index:0;background:linear-gradient(160deg,rgba(8,20,10,.9),rgba(20,70,30,.72),rgba(8,20,10,.88)),url('https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1920&q=85') center/cover no-repeat;animation:kenBurns 22s ease-in-out infinite alternate}
+@keyframes kenBurns{0%{transform:scale(1)}100%{transform:scale(1.12) translate(-1%,-1%)}}
+.hero-content{position:relative;z-index:2;max-width:720px}
+.hero-logo{width:min(160px,38vw);height:auto;aspect-ratio:1;margin:0 auto 24px;filter:drop-shadow(0 8px 28px rgba(0,0,0,.4))}
+.hero-logo img{width:100%;height:100%;object-fit:contain}
+.hero-title{font-size:clamp(26px,5.5vw,44px);font-weight:700;margin-bottom:14px;text-shadow:0 2px 16px rgba(0,0,0,.4)}
+.hero-typewriter{font-size:clamp(15px,2.8vw,18px);opacity:.9;margin-bottom:28px;min-height:32px;font-weight:500}
+.hero-typewriter .cursor{display:inline-block;width:2px;height:1.1em;background:var(--primary-light);margin-right:2px;animation:blink .8s step-end infinite;vertical-align:text-bottom}
+@keyframes blink{50%{opacity:0}}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+
+/* Stats */
+.stats-strip{position:relative;z-index:3;margin:-48px auto 0;padding:0 20px;display:flex;flex-wrap:wrap;justify-content:center;gap:12px;max-width:900px}
+.stat-card{background:var(--surface);border-radius:16px;padding:18px 14px;text-align:center;flex:1;min-width:120px;border:1.5px solid var(--border-light);box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+.stat-card::before{content:'';position:absolute;top:0;inset-inline:0;height:3px;background:linear-gradient(90deg,var(--primary-light),var(--accent))}
+.stat-number{font-size:clamp(24px,4vw,36px);font-weight:800;color:var(--primary);font-family:var(--font-mono)}.stat-label{font-size:12px;font-weight:600;color:var(--text-secondary);margin-top:6px}.stat-icon{font-size:20px;color:var(--primary-light);margin-bottom:6px}
+
+/* Activity banner */
+.home-activity-banner{display:flex;align-items:center;gap:10px;height:52px;background:var(--surface);border:1.5px solid var(--border-light);border-radius:14px;box-shadow:var(--shadow-sm);overflow:hidden;padding-inline-start:14px;max-width:900px;margin:20px auto 0}
+.hab-icon{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-light));color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;animation:habPulse 2s ease-in-out infinite}
+@keyframes habPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+.hab-track-wrap{flex:1;min-width:0;overflow:hidden;height:100%;position:relative}
+.hab-track{position:absolute;white-space:nowrap;top:50%;transform:translateY(-50%);font-size:13px;font-weight:600;color:var(--text);animation:habScroll 28s linear infinite}
+.hab-track .hab-sep{color:var(--primary-light);margin:0 14px}
+@keyframes habScroll{from{right:0}to{right:-100%}}
+.hab-cta{flex-shrink:0;height:36px;padding:0 16px;border:none;border-radius:10px;background:var(--primary);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;gap:6px;cursor:pointer;white-space:nowrap}.hab-cta:hover{background:var(--primary-light)}
+
+/* Partners */
+.partners-wrap{overflow:hidden;padding:32px 0;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.partners-track{display:flex;align-items:center;gap:36px;width:max-content;animation:partnersScroll 40s linear infinite}
+.partners-track img{height:40px;width:auto;opacity:.7;filter:grayscale(40%);transition:.3s}.partners-track img:hover{opacity:1;filter:none}
+.reviews-scroller{overflow:hidden;padding:10px 0;mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);max-width:1000px;margin:0 auto}
+.reviews-track{display:flex;align-items:stretch;gap:16px;width:max-content;animation:reviewsScroll 32s linear infinite}
+.reviews-scroller:hover .reviews-track{animation-play-state:paused}
+.review-card{background:var(--surface);border:1px solid var(--border-light);border-radius:16px;padding:16px;width:240px;flex-shrink:0;box-shadow:var(--shadow-sm);transition:var(--transition)}
+.review-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.review-card .stars{color:#C8A84E;font-size:13px;margin-bottom:8px}
+.review-card p{font-size:13px;color:var(--text-secondary);line-height:1.7;margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.review-card .name{font-size:12px;font-weight:700;color:var(--primary-dark)}
+@keyframes reviewsScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes partnersScroll{from{transform:translateX(0)}to{transform:translateX(50%)}}
+
+/* ===== Team carousel — carosil.html حرفي (spec §6) ===== */
+#page-team{overflow-x:clip}
+#page-team .content{overflow:visible;max-width:100%;padding-left:0;padding-right:0}
+.team-section{max-width:1100px;margin:0 auto;padding:0 20px}
+.team-slider-wrap{
+  width:100%;max-width:1100px;margin:0 auto;
+  padding:24px 0 72px;direction:ltr;
+  overflow:visible;position:relative;
+}
+.team-swiper{
+  width:100%;
+  padding:50px 0 70px !important;
+  overflow:visible !important;
+  margin:0 auto;
+}
+.team-swiper .swiper-wrapper{align-items:stretch}
+.team-swiper .swiper-slide{
+  width:200px !important;
+  height:290px !important;
+  border-radius:20px;
+  overflow:hidden;
+  background:#fff;
+  border:1px solid rgba(17,26,20,.08);
+  box-shadow:
+    0 18px 40px -10px rgba(17,26,20,.14),
+    0 0 0 1px rgba(255,255,255,.8) inset;
+  cursor:grab;
+  user-select:none;
+  transition:border-color .25s ease, box-shadow .25s ease;
+  flex-shrink:0;
+}
+.team-swiper .swiper-slide-active{
+  border-color:rgba(46,204,90,.22);
+  box-shadow:
+    0 22px 48px -12px rgba(17,26,20,.18),
+    0 0 0 1px rgba(46,204,90,.08) inset;
+}
+.team-swiper .swiper-slide:active{cursor:grabbing}
+.team-card{
+  width:100%;height:100%;
+  display:flex;flex-direction:column;
+  background:#fff;direction:rtl;
+}
+.team-card-image-wrapper{
+  width:100%;height:57%;min-height:0;
+  overflow:hidden;background:#f7f8f7;
+  position:relative;flex-shrink:0;
+}
+.team-card-image{
+  width:100%;height:100%;display:block;
+  object-fit:cover;object-position:center 25%;
+  pointer-events:none;
+  transition:transform .45s ease;
+}
+.team-swiper .swiper-slide-active .team-card-image{transform:scale(1.015)}
+.team-card-content{
+  flex:1;min-height:0;
+  padding:18px 20px 24px;
+  display:flex;flex-direction:column;justify-content:flex-start;
+}
+.team-card-info{flex-shrink:0}
+.team-card-info h3{
+  font-size:1.2rem;font-weight:600;margin-bottom:6px;
+  line-height:1.35;color:var(--text);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.team-card-info p{
+  font-size:.9rem;color:rgba(17,26,20,.7);line-height:1.45;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.team-profile-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:100%;margin-top:auto;margin-bottom:2px;
+  padding:11px 16px;font-size:.9rem;font-weight:500;font-family:inherit;
+  color:#fff;background:var(--primary-light);
+  border:none;border-radius:12px;cursor:pointer;
+  transition:background .25s ease, transform .2s ease, box-shadow .25s ease;
+}
+.team-profile-btn:hover{background:#27ae4e;box-shadow:0 6px 16px rgba(46,204,90,.22)}
+.team-profile-btn:active{transform:scale(.97)}
+/* coverflow 3D shadows from Swiper */
+.team-swiper .swiper-slide-shadow-left,
+.team-swiper .swiper-slide-shadow-right{border-radius:20px}
+@media(max-width:768px){
+  .team-swiper .swiper-slide{width:180px !important;height:270px !important}
+  .team-swiper{padding:40px 0 60px !important}
+}
+@media(max-width:480px){
+  .team-swiper .swiper-slide{width:180px !important;height:270px !important}
+  .team-card-content{padding:16px 16px 20px}
+  .team-card-info h3{font-size:1.1rem}
+  .team-card-info p{font-size:.85rem}
+  .team-profile-btn{padding:10px 14px;font-size:.88rem}
+  .team-slider-wrap{padding:16px 0 36px}
+}
+body.dark .team-swiper .swiper-slide{background:var(--surface);border-color:var(--border)}
+body.dark .team-card{background:var(--surface)}
+body.dark .team-card-info h3{color:var(--text)}
+body.dark .team-card-info p{color:var(--text-secondary)}
+body.dark .team-card-image-wrapper{background:#0f1612}
+
+/* Goals list */
+.goals-list{list-style:none;counter-reset:g;display:grid;gap:12px;max-width:720px;margin:0 auto}
+.goals-list li{counter-increment:g;display:flex;gap:14px;align-items:flex-start;padding:14px 16px;background:var(--surface);border:1px solid var(--border-light);border-radius:14px}
+.goals-list li::before{content:counter(g);flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--primary-light);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}
+
+/* Join options */
+.join-options{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-bottom:28px}
+.join-card{background:var(--surface);border:1.5px solid var(--border-light);border-radius:var(--radius);padding:22px 18px;text-align:center;cursor:pointer;transition:var(--transition)}
+.join-card:hover,.join-card.selected{border-color:var(--primary-light);box-shadow:0 8px 24px rgba(46,204,90,.15);transform:translateY(-3px)}
+.join-card i{font-size:28px;color:var(--primary-light);margin-bottom:10px}
+.join-card h3{font-size:16px;margin-bottom:6px}.join-card p{font-size:12px;color:var(--text-secondary)}
+
+/* Forms */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:640px){.form-grid{grid-template-columns:1fr}}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group.full{grid-column:1/-1}
+.form-group label{font-size:13px;font-weight:600;color:var(--text)}
+.form-group label .req{color:var(--danger);margin-right:3px}
+.form-group input,.form-group select,.form-group textarea{padding:11px 14px;border:1.5px solid var(--border);border-radius:12px;background:var(--surface);color:var(--text);font-size:14px;transition:border-color .2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--primary-light);box-shadow:0 0 0 3px rgba(46,204,90,.15)}
+.form-group textarea{min-height:90px;resize:vertical}
+.field-error{border-color:var(--danger)!important;animation:fieldShake .4s}
+@keyframes fieldShake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-4px)}40%,80%{transform:translateX(4px)}}
+.step-dots{display:flex;gap:8px;justify-content:center;margin-bottom:20px}
+.step-dot{width:10px;height:10px;border-radius:50%;background:var(--border);transition:.25s}.step-dot.active{background:var(--primary-light);transform:scale(1.2)}.step-dot.done{background:var(--primary)}
+.form-actions{display:flex;gap:10px;justify-content:space-between;margin-top:20px;flex-wrap:wrap}
+.upload-zone{border:2px dashed var(--border);border-radius:14px;padding:24px;text-align:center;cursor:pointer;transition:.2s;background:var(--surface-alt)}
+.upload-zone:hover,.upload-zone.drag{border-color:var(--primary-light);background:rgba(46,204,90,.06)}
+.upload-zone img{max-width:100px;max-height:100px;border-radius:50%;margin:0 auto 8px;object-fit:cover}
+.checkbox-row{display:flex;align-items:flex-start;gap:10px;font-size:13px;margin-top:8px}
+.checkbox-row input{margin-top:4px;accent-color:var(--primary-light)}
+
+/* Status badges */
+.badge-pending{background:#fef3c7;color:#b45309;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700}
+.badge-review{background:#dbeafe;color:#1d4ed8;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700}
+.badge-accepted{background:#d1fae5;color:#047857;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700}
+.badge-rejected{background:#fee2e2;color:#b91c1c;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700}
+
+/* Ambassadors grid */
+.amb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.amb-card{background:var(--surface);border:1.5px solid var(--border-light);border-radius:var(--radius);padding:20px;text-align:center;transition:var(--transition)}
+.amb-card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.amb-card img{width:84px;height:84px;border-radius:50%;object-fit:cover;margin:0 auto 12px;border:3px solid var(--primary-light)}
+.amb-card h3{font-size:16px;margin-bottom:4px}.amb-card .wilaya{font-size:13px;color:var(--text-secondary);margin-bottom:12px}
+.amb-card .btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+
+/* Toast */
+.toast-container{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:100100;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none}
+.toast{padding:12px 20px;border-radius:12px;font-size:13px;font-weight:600;color:#fff;box-shadow:var(--shadow-lg);animation:toastIn .3s ease;pointer-events:auto;max-width:90vw}
+.toast.success{background:#059669}.toast.error{background:#dc2626}.toast.warning{background:#d97706}.toast.info{background:#2563eb}
+@keyframes toastIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* Offline banner */
+.offline-banner{display:none;position:fixed;top:var(--header-h);inset-inline:0;z-index:997;background:#b91c1c;color:#fff;text-align:center;padding:8px;font-size:13px;font-weight:600}
+.offline-banner.show{display:block}
+
+/* Footer */
+.site-footer{background:var(--surface-alt);border-top:1px solid var(--border-light);padding:40px 20px 24px;margin-top:48px}
+.footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px}
+.footer-col h4{font-size:14px;margin-bottom:12px;color:var(--primary)}.footer-col a,.footer-col p{font-size:13px;color:var(--text-secondary);display:block;margin-bottom:6px}.footer-col a:hover{color:var(--primary)}
+.footer-bottom{text-align:center;margin-top:28px;padding-top:16px;border-top:1px solid var(--border-light);font-size:12px;color:var(--text-muted)}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(10,20,14,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:100050;display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto;animation:modalFadeIn .22s ease}
+.modal-box{background:var(--surface);border:1px solid var(--border-light);border-radius:22px;padding:26px;max-width:480px;width:100%;position:relative;box-shadow:0 24px 70px rgba(0,0,0,.28),0 2px 10px rgba(0,0,0,.08);animation:modalPopIn .28s cubic-bezier(.34,1.3,.64,1)}
+.modal-box::before{content:"";position:absolute;top:0;right:0;left:0;height:4px;border-radius:22px 22px 0 0;background:linear-gradient(90deg,var(--primary),var(--primary-light),var(--accent))}
+.modal-box h3{display:flex;align-items:center;gap:8px;font-size:17px}
+@keyframes modalFadeIn{from{opacity:0}to{opacity:1}}
+@keyframes modalPopIn{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.star-picker{display:flex;gap:6px;font-size:26px;color:#d8e4db;justify-content:center;padding:6px 0}
+.star-picker i{cursor:pointer;transition:transform .15s,color .15s}
+.star-picker i.active{color:#C8A84E}
+.star-picker i:hover{transform:scale(1.15)}
+.filters-bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;background:var(--surface-alt);border:1px solid var(--border-light);border-radius:16px;padding:14px 16px;margin-bottom:22px}
+.filters-search{position:relative;flex:1 1 220px;min-width:180px}
+.filters-search i{position:absolute;top:50%;right:14px;transform:translateY(-50%);color:var(--text-secondary);font-size:13px}
+.filters-search input{width:100%;padding:10px 38px 10px 14px;border-radius:12px;border:1px solid var(--border-light);background:var(--surface);color:var(--text-primary);font-size:13px}
+.filters-selects{display:flex;flex-wrap:wrap;gap:10px}
+.filters-selects select{padding:9px 12px;border-radius:12px;border:1px solid var(--border-light);background:var(--surface);color:var(--text-primary);font-size:13px;cursor:pointer}
+.activity-status-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px}
+.activity-status-badge.open{background:rgba(46,139,87,.14);color:#2E8B57}
+.activity-status-badge.registered{background:rgba(37,99,235,.14);color:#2563eb}
+.activity-status-badge.closed{background:rgba(200,50,50,.14);color:#c83232}
+.activity-status-badge.restricted{background:rgba(200,140,20,.14);color:#c88c14}
+.role-badge{display:inline-block;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;background:var(--primary);color:#fff}
+.ticket-doc{background:#fff;color:#1a2e22}
+.ticket-head{display:flex;align-items:center;gap:12px;padding:18px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff}
+.ticket-head img{width:48px;height:48px;object-fit:contain;background:#fff;border-radius:10px;padding:4px}
+.ticket-head h4{font-size:15px;margin-bottom:2px}
+.ticket-head p{font-size:12px;opacity:.85}
+.ticket-body{padding:20px;text-align:center}
+.ticket-body h3{font-size:17px;margin-bottom:14px;color:var(--primary-dark)}
+.ticket-row{display:flex;justify-content:space-between;font-size:13px;padding:7px 0;border-bottom:1px dashed #dde5df;text-align:right}
+.ticket-qr{margin:16px auto 8px;width:128px}
+.ticket-note{font-size:11px;color:#7a8a80;margin-top:10px}
+.ticket-foot{padding:14px 20px 20px;display:flex;justify-content:flex-end}
+.official-stamp{position:relative;width:92px;height:92px;border-radius:50%;border:3px double #b4863a;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-14deg);color:#b4863a;opacity:.85;font-family:Georgia,serif}
+.official-stamp span{font-size:15px;font-weight:800;letter-spacing:1px}
+.official-stamp small{font-size:9px;margin-top:2px}
+@media print{ body>*:not(.modal-overlay){display:none!important} .modal-overlay{position:static!important;background:none!important;backdrop-filter:none!important} .modal-close, .modal-box>div:last-child{display:none!important} .modal-box{box-shadow:none!important;border:none!important} }
+.modal-close{position:absolute;top:14px;left:14px;width:34px;height:34px;border-radius:50%;border:none;background:var(--surface-alt);color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--transition);z-index:2}
+.modal-close:hover{background:var(--danger);color:#fff;transform:rotate(90deg)}
+
+/* Item cards */
+.item-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.item-card{background:var(--surface);border:1.5px solid var(--border-light);border-radius:var(--radius);overflow:hidden;transition:var(--transition);cursor:pointer}
+.item-card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.item-card img{width:100%;height:auto;max-height:280px;object-fit:contain;background:var(--surface-alt)}
+.item-card .body{padding:16px}.item-card .body p,.legal-block p,.card p{white-space:pre-wrap;line-height:1.85}.item-card h3{font-size:15px;margin-bottom:6px}.item-card .meta{font-size:12px;color:var(--text-muted)}
+
+/* Empty / loading */
+.empty-state{text-align:center;padding:48px 20px;color:var(--text-muted)}.empty-state i{font-size:40px;margin-bottom:12px;opacity:.4}
+.spinner{display:inline-block;width:24px;height:24px;border:3px solid var(--border);border-top-color:var(--primary-light);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Legal text */
+.legal-block{margin-bottom:24px}.legal-block h3{font-size:16px;margin-bottom:8px;color:var(--primary)}.legal-block p,.legal-block ul{font-size:14px;color:var(--text-secondary);line-height:1.8}.legal-block ul{padding-right:20px}
+
+@media(max-width:520px){
+  .home-activity-banner{height:46px;padding-inline-start:10px}.hab-cta{padding:0 12px;font-size:11px}
+  .content{padding:28px 14px}
+}
+
+.fab-track{position:fixed;bottom:24px;left:24px;z-index:900;display:inline-flex;align-items:center;gap:8px;padding:12px 18px;background:var(--primary);color:#fff;border:none;border-radius:50px;font-weight:700;font-size:13px;cursor:pointer;box-shadow:0 8px 24px rgba(26,107,47,.4);transition:var(--transition);font-family:inherit}
+.fab-track:hover{background:var(--primary-light);transform:translateY(-3px)}
+@media(max-width:480px){.fab-track{bottom:16px;left:16px;padding:10px 14px;font-size:12px}.fab-track span{display:none}}
+
+
+/* ===== 3D Professional effects site-wide ===== */
+.item-card,.amb-card,.stat-card,.join-card,.card{
+  transform-style:preserve-3d;
+  perspective:1000px;
+  transition:transform .35s cubic-bezier(.4,0,.2,1),box-shadow .35s ease,border-color .25s ease;
+}
+.item-card:hover,.amb-card:hover,.stat-card:hover,.join-card:hover{
+  transform:translateY(-6px) rotateX(2deg) scale(1.02);
+  box-shadow:0 20px 40px rgba(26,107,47,.15),0 0 0 1px rgba(46,204,90,.12);
+}
+.item-card img{transition:transform .5s ease}
+.item-card:hover img{transform:scale(1.06)}
+.btn-primary,.btn-outline-dark,.btn-secondary{
+  transition:transform .2s ease,box-shadow .25s ease,background .25s ease;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(46,204,90,.4)}
+.btn-primary:active,.btn-outline-dark:active{transform:scale(.97)}
+.modal-box{
+  animation:modalIn .35s cubic-bezier(.4,0,.2,1);
+  transform-origin:center;
+}
+@keyframes modalIn{
+  from{opacity:0;transform:translateY(24px) scale(.96)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+.page{animation:pageFade .4s ease}
+@keyframes pageFade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.team-swiper .swiper-slide{
+  transition:transform .4s ease,box-shadow .4s ease !important;
+}
+.team-swiper .swiper-slide-active{
+  transform:scale(1.05) !important;
+  z-index:2;
+}
+.prof-cover{position:relative;height:140px;background:linear-gradient(135deg,#1a6b2f 0%,#2ECC5A 50%,#C8A84E 100%);border-radius:18px 18px 0 0;overflow:hidden}
+.prof-cover img{width:100%;height:100%;object-fit:cover}
+.prof-avatar{width:96px;height:96px;border-radius:50%;border:4px solid var(--surface);object-fit:cover;margin-top:-48px;position:relative;z-index:2;box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.prof-tabs{display:flex;border-bottom:1.5px solid var(--border-light);margin:16px 0 0}
+.prof-tabs button{flex:1;padding:12px 4px;border:none;background:0;font-weight:600;font-size:13px;cursor:pointer;color:var(--text-muted);border-bottom:2px solid transparent;font-family:inherit;transition:.2s}
+.prof-tabs button.active{color:var(--primary);border-bottom-color:var(--primary-light)}
+.prof-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(0,0,0,.05);font-size:13px}
+.fab-track-panel{position:fixed;bottom:80px;left:24px;z-index:901;background:var(--surface);border:1.5px solid var(--border-light);border-radius:16px;padding:14px;box-shadow:var(--shadow-lg);min-width:240px;max-width:300px;display:none;animation:modalIn .3s ease}
+.fab-track-panel.show{display:block}
+.fab-track-panel h4{font-size:13px;margin-bottom:10px;color:var(--primary)}
+.fab-track-panel .recent-item{padding:8px 10px;border-radius:10px;font-size:12px;font-family:var(--font-mono);cursor:pointer;margin-bottom:4px;background:var(--surface-alt);transition:.2s}
+.fab-track-panel .recent-item:hover{background:rgba(46,204,90,.12)}
+
+
+/* Filter chips for activities */
+.filter-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;justify-content:center}
+.filter-chip{padding:8px 16px;border-radius:50px;border:1.5px solid var(--border-light);background:var(--surface);font-size:12px;font-weight:600;cursor:pointer;transition:var(--transition);font-family:inherit;color:var(--text)}
+.filter-chip:hover,.filter-chip.active{background:var(--primary-light);color:#fff;border-color:var(--primary-light)}
+/* Team carousel button spacing */
+.team-slider-wrap{padding-bottom:56px}
+.team-swiper{margin-bottom:8px}
+/* Full image display */
+.item-card img.full-img{height:auto!important;max-height:320px;object-fit:contain!important;background:var(--surface-alt)}
+/* Legal cards */
+.legal-block{background:var(--surface);border:1.5px solid var(--border-light);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--shadow-sm);margin-bottom:16px}
+.legal-block h3{display:flex;align-items:center;gap:8px}
+.legal-block h3::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--primary-light);flex-shrink:0}
+/* OG/SEO helper */
+
+</style>
+</head>
+<body>
+
+<div class="offline-banner" id="offlineBanner">أنت غير متصل بالإنترنت</div>
+
+<!-- Header — شعار hidr.png الرسمي فقط -->
+<header class="site-header">
+  <div class="header-brand" onclick="navigate('/')" title="نزاهة — الرئيسية">
+    <div class="brand-logo">
+      <img src="https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/hidr.png" alt="شعار نزاهة"
+           onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/logo-3.png'">
+    </div>
+  </div>
+  <div class="header-actions">
+    <button type="button" class="hamburger" id="hamburger" aria-label="القائمة"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="side-overlay" id="sideOverlay"></div>
+<nav class="side-nav" id="sideNav">
+  <a href="#/" class="nav-link" data-path="/"><i class="fas fa-home"></i> الرئيسية</a>
+  <a href="#/about" class="nav-link" data-path="/about"><i class="fas fa-info-circle"></i> من نحن</a>
+  <a href="#/team" class="nav-link" data-path="/team"><i class="fas fa-users"></i> فريقنا</a>
+  <a href="#/ambassadors" class="nav-link" data-path="/ambassadors"><i class="fas fa-map-marker-alt"></i> سفراؤنا</a>
+  <a href="#/join" class="nav-link" data-path="/join"><i class="fas fa-user-plus"></i> انضم إلينا</a>
+  <a href="#/activities" class="nav-link" data-path="/activities"><i class="fas fa-calendar-alt"></i> أنشطتنا</a>
+  <a href="#/news" class="nav-link" data-path="/news"><i class="fas fa-newspaper"></i> أخبارنا</a>
+  <a href="#/projects" class="nav-link" data-path="/projects"><i class="fas fa-project-diagram"></i> مشاريعنا</a>
+  <a href="#/library" class="nav-link" data-path="/library"><i class="fas fa-book"></i> الموارد</a>
+  <div class="nav-divider"></div>
+  <a href="#/profile" class="nav-link" data-path="/profile"><i class="fas fa-user"></i> حسابي</a>
+  <a href="#/contact" class="nav-link" data-path="/contact"><i class="fas fa-envelope"></i> تواصل معنا</a>
+  <a href="#/legal" class="nav-link" data-path="/legal"><i class="fas fa-balance-scale"></i> الشؤون القانونية</a>
+  <div class="nav-social">
+    <a href="https://www.facebook.com/nzaha.dz" target="_blank" rel="noopener" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.instagram.com/nzaha.dz" target="_blank" rel="noopener" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
+    <a href="https://youtube.com/@nzaha-dz" target="_blank" rel="noopener" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
+    <a href="https://t.me/+qMBoS7tGvi1iZDBk" target="_blank" rel="noopener" aria-label="تيليجرام"><i class="fab fa-telegram-plane"></i></a>
+  </div>
+</nav>
+
+
+<button type="button" class="fab-track" id="fabTrack" onclick="toggleTrackPanel()" title="تتبع الطلب">
+  <i class="fas fa-search-location"></i> <span>تتبع</span>
+</button>
+<div class="fab-track-panel" id="fabTrackPanel">
+  <h4><i class="fas fa-history"></i> آخر طلباتي</h4>
+  <div id="fabRecentList"><p style="font-size:12px;color:var(--text-muted)">لا طلبات محفوظة</p></div>
+  <button type="button" class="btn-primary" style="width:100%;margin-top:10px;padding:8px;font-size:12px" onclick="navigate('/tracking');document.getElementById('fabTrackPanel').classList.remove('show')">تتبع برقم</button>
+</div>
+
+<main id="app">
+
+<!-- ===== HOME ===== -->
+<section class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-logo" style="margin-top:-18px;margin-bottom:12px"><img src="https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/logo-3.png" alt="المنتدى الشبابي للفكر والمشاركة المدنية" onerror="this.style.display='none'"></div>
+      <div class="hero-typewriter" id="typewriter"><span id="twText"></span><span class="cursor"></span></div>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="navigate('/join')"><i class="fas fa-user-plus"></i> انضم إلينا</button>
+        <button class="btn-outline" onclick="navigate('/about')"><i class="fas fa-info-circle"></i> تعرّف علينا</button>
+      </div>
+    </div>
+  </div>
+  <div class="stats-strip">
+    <div class="stat-card"><div class="stat-icon"><i class="fas fa-users"></i></div><div class="stat-number" data-count="0">0</div><div class="stat-label">عضو</div></div>
+    <div class="stat-card"><div class="stat-icon"><i class="fas fa-calendar-check"></i></div><div class="stat-number" data-count="0">0</div><div class="stat-label">نشاط</div></div>
+    <div class="stat-card"><div class="stat-icon"><i class="fas fa-project-diagram"></i></div><div class="stat-number" data-count="0">0</div><div class="stat-label">مشروع</div></div>
+    <div class="stat-card"><div class="stat-icon"><i class="fas fa-map"></i></div><div class="stat-number" data-count="0">0</div><div class="stat-label">ولاية</div></div>
+  </div>
+  <div class="content" style="padding-top:28px">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap;max-width:900px;margin-left:auto;margin-right:auto">
+      <h3 style="font-size:16px">تقييمات الأعضاء</h3>
+      <button type="button" class="btn-primary" style="padding:8px 16px;font-size:13px" onclick="openRateModal()"><i class="fas fa-star"></i> قيّم الآن</button>
+    </div>
+    <div class="reviews-scroller" id="reviewsScroller">
+      <div class="reviews-track" id="reviewsGrid">
+        <div class="empty-state" style="padding:20px"><p>لا تقييمات بعد</p></div>
+      </div>
+    </div>
+    <div class="partners-wrap" id="partnersWrap" style="margin-top:20px;display:none">
+      <p style="text-align:center;font-size:13px;color:var(--text-secondary);margin-bottom:10px">شركاؤنا</p>
+      <div class="partners-track" id="partnersTrack"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="page" id="page-about">
+  <div class="content">
+    <div class="section-header">
+      <span class="section-tag">التعريف</span>
+      <h2 class="section-title">من نحن</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="card" style="margin-bottom:24px">
+      <p style="margin-bottom:14px">المنتدى الشبابي للفكر والمشاركة المدنية «نزاهة» مبادرة شبابية وطنية مستقلة وغير ربحية، ذات طابع فكري ومدني، تعمل رقميًا وميدانيًا على دعم الشباب وتنمية قدراتهم، وتعزيز مشاركتهم الفكرية والمدنية، وإتاحة فرص التعلم والتكوين والتجربة العملية والعمل الجماعي والمبادرة وتحمل المسؤولية، من خلال برامج وأنشطة ومبادرات ومشاريع وأطر منظمة للمشاركة.</p>
+    </div>
+
+    <div class="section-header" style="margin-top:36px">
+      <span class="section-tag">الرؤية</span>
+      <h2 class="section-title">رؤيتنا</h2>
+      <div class="section-divider"></div>
+      <p class="section-sub" style="max-width:680px">شباب يمتلك المعرفة والقدرة على التفكير والمبادرة والعمل وتحمل المسؤولية، ويشارك بوعي وفاعلية في مجتمعه، وقادر على تحويل ما يتعلمه إلى ممارسة وخبرة ومساهمة حقيقية.</p>
+    </div>
+
+    <div class="section-header" style="margin-top:32px">
+      <span class="section-tag">الرسالة</span>
+      <h2 class="section-title">رسالتنا</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="card" style="margin-bottom:24px">
+      <p style="margin-bottom:14px">يعمل «نزاهة» على توفير بيئة شبابية منظمة تجمع بين الفكر والمشاركة المدنية والتجربة العملية، وتمكّن الشباب من تطوير معارفهم ومهاراتهم، واكتشاف قدراتهم وتخصصاتهم، وخوض تجارب عملية في العمل الجماعي وإدارة المشاريع وتحمل المسؤوليات، ضمن إطار يقوم على النزاهة والشفافية والمواطنة والمسؤولية.</p>
+      <p>ولا يقتصر عمل المنتدى على تقديم المعرفة أو تنظيم الأنشطة، بل يسعى إلى إتاحة المجال أمام الشباب لتطبيق ما يتعلمونه، واكتساب الخبرة، والمشاركة في المبادرات والمشاريع، والتواصل مع المختصين والخبراء والمؤسسات، بما يساعدهم على بناء قدراتهم ومساراتهم بصورة عملية ومنظمة.</p>
+    </div>
+
+    <div class="section-header" style="margin-top:36px">
+      <span class="section-tag">الأهداف</span>
+      <h2 class="section-title">أهدافنا</h2>
+      <div class="section-divider"></div>
+    </div>
+    <ol class="goals-list">
+      <li>إعداد قيادات شبابية مؤهلة وقادرة على المبادرة والعمل الجماعي وإدارة المشاريع وتحمل المسؤوليات والمساهمة في صناعة القرار.</li>
+      <li>تنمية التفكير النقدي والابتكار والحوار وتبادل المعرفة، وتشجيع الشباب على تحليل القضايا والأفكار بصورة واعية وتطوير حلول ومبادرات جديدة.</li>
+      <li>تعزيز المشاركة المدنية والمواطنة الفاعلة والمسؤولية المجتمعية، وتمكين الشباب من فهم قضايا مجتمعهم والمشاركة في المبادرات والبرامج التي تخدم الصالح العام.</li>
+      <li>ترسيخ قيم النزاهة والشفافية والمسؤولية والحوكمة الرشيدة، ونشر الوعي بمخاطر الفساد وآثاره وتشجيع السلوك المسؤول.</li>
+      <li>توفير فرص للتكوين والتأطير والتجربة العملية، بما يساعد الشباب على الانتقال من المعرفة النظرية إلى التطبيق واكتساب الخبرة.</li>
+      <li>اكتشاف المواهب والتخصصات والمهارات الشبابية وتنميتها، وإتاحة المجال أمام أصحاب الكفاءات والخريجين لتوظيف معارفهم وقدراتهم في بيئة منظمة.</li>
+      <li>دعم المبادرات والحركات والمشاريع الشبابية، وإتاحة مساحة لأصحاب الأفكار لعرضها وتطويرها واختبارها وتنفيذها والاستفادة من الخبرات والموارد والشبكات المتاحة وفق الأطر المنظمة.</li>
+      <li>تشجيع البحث والدراسة وإنتاج المحتوى وتبادل المعرفة والخبرات في المجالات المرتبطة بأهداف المنتدى.</li>
+      <li>بناء جسور التواصل والتعاون بين الشباب والمؤسسات والهيئات والقطاعين العام والخاص ومؤسسات المجتمع المدني، والاستفادة من التجارب والخبرات الوطنية والدولية.</li>
+      <li>توسيع فرص مشاركة الشباب من خلال الجمع بين العمل الرقمي والحضوري والميداني والاستفادة من التكنولوجيا والتعليم الإلكتروني والوسائل الرقمية.</li>
+      <li>المساهمة في التنمية المجتمعية والتنمية المستدامة من خلال البرامج والمبادرات التي يقودها الشباب أو يشاركون فيها.</li>
+      <li>توفير بيئة شبابية منظمة وآمنة تساعد الشباب على التعلم والمشاركة وبناء قدراتهم ومساراتهم، مع توفير التوعية والدعم والتوجيه والإحالة إلى المختصين عند الحاجة، دون أن يحل المنتدى محل الجهات أو المختصين المعنيين.</li>
+    </ol>
+
+    <div class="section-header" style="margin-top:40px">
+      <span class="section-tag">الجوهر</span>
+      <h2 class="section-title">فكرتنا</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="card" style="margin-bottom:24px">
+      <p style="margin-bottom:14px">يواجه كثير من الشباب فجوة بين ما يتعلمونه وما يجدونه من فرص حقيقية لتطبيقه؛ فقد يمتلك الشاب معرفة أو مهارة أو فكرة، لكنه لا يجد دائمًا بيئة منظمة تتيح له أن يجرّب، ويعمل ضمن فريق، ويتولى مهمة، ويتعامل مع الإجراءات، ويتحمل مسؤولية، ويتعلم من التجربة والخطأ.</p>
+      <p style="margin-bottom:14px">من هنا تنطلق فكرة «نزاهة»: إنشاء بيئة شبابية عملية ومنظمة تجعل التعلم مرتبطًا بالممارسة، والممارسة طريقًا إلى الخبرة، والخبرة أساسًا لتحمل المسؤولية والقدرة على المبادرة.</p>
+      <p style="margin-bottom:14px">ولهذا يحاكي المنتدى، في حدود البيئة الشبابية، بعض جوانب واقع العمل المؤسسي من خلال التنظيم واحترام الإجراءات والآجال وإعداد الوثائق والمراسلات والعمل ضمن فريق وتسلسل المسؤوليات. وفي الوقت نفسه، يحرص على أن تكون بيئته الداخلية أكثر مرونة وتبسيطًا ورقمنة عندما تسمح طبيعة العمل بذلك، حتى لا تصبح التعقيدات الإدارية غير الضرورية عائقًا أمام التعلم والمشاركة.</p>
+      <p>وبذلك لا تقوم تجربة «نزاهة» على فكرة أن يكون الشاب متلقيًا للمعرفة فقط، ولا على المشاركة الشكلية في الأنشطة، وإنما على منحه مساحة حقيقية للتعلم والممارسة واكتساب الخبرة وتحمل المسؤولية والمبادرة. وهي الفكرة التي يعبّر عنها المنتدى في مساره العام: من التعلم إلى التطبيق، ومن التطبيق إلى الخبرة، ومن الخبرة إلى تحمل المسؤولية والقدرة على المبادرة.</p>
+    </div>
+
+    <div class="section-header" style="margin-top:36px">
+      <span class="section-tag">الأدوات</span>
+      <h2 class="section-title">كيف نحقق ذلك</h2>
+      <div class="section-divider"></div>
+      <p class="section-sub" style="max-width:680px">يحقق «نزاهة» أهدافه من خلال مجموعة متكاملة من الوسائل والأطر</p>
+    </div>
+    <ol class="goals-list">
+      <li>برامج القيادة والتكوين والتدريب والتأطير.</li>
+      <li>الأنشطة الفكرية والمدنية والتوعوية والتطبيقية.</li>
+      <li>التجارب العملية والعمل الجماعي وتولي المهام والمسؤوليات.</li>
+      <li>المبادرات والمشاريع الشبابية ودعم أصحاب الأفكار في تطويرها وتجربتها.</li>
+      <li>البحث والدراسة وإنتاج المحتوى وتبادل المعرفة والخبرات.</li>
+      <li>الإرشاد والتوجيه والاستفادة من المختصين والخبراء وأصحاب التجارب.</li>
+      <li>اللقاءات والحوارات وفرص التواصل بين الشباب والفاعلين والمؤسسات.</li>
+      <li>التعاون والشراكات وتبادل الخبرات داخل الجزائر وخارجها.</li>
+      <li>الأدوات والمنصات الرقمية لتسهيل التعلم والتواصل والتنظيم والعمل.</li>
+      <li>الجمع بين المشاركة الرقمية والحضورية والميدانية بحسب طبيعة النشاط أو المهمة.</li>
+      <li>الأطر التنظيمية والإجراءات والوثائق وآليات المتابعة والتقييم التي تساعد على تحويل المشاركة إلى تجربة عملية منظمة.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== TEAM ===== -->
+<section class="page" id="page-team">
+  <div class="content">
+    <div class="team-section">
+      <div class="section-header">
+        <span class="section-tag">الفريق</span>
+        <h2 class="section-title">مجلس الإدارة</h2>
+        <p class="section-sub">القادة الذين يقودون رؤية المنتدى</p>
+        <div class="section-divider"></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-bottom:16px"><button type="button" class="btn-outline-dark" onclick="showOrgPositions()"><i class="fas fa-sitemap"></i> عرض المناصب التنظيمية</button></div>
+<div class="team-slider-wrap">
+      <div class="swiper team-swiper" id="teamSwiperAdmin">
+        <div class="swiper-wrapper" id="teamAdminSlides"></div>
+      </div>
+    </div>
+    <div class="team-section">
+      <div class="section-header" style="margin-top:8px">
+        <span class="section-tag">المؤطرون</span>
+        <h2 class="section-title">المدربون والمؤطرون</h2>
+        <div class="section-divider"></div>
+      </div>
+    </div>
+    <div class="team-slider-wrap">
+      <div class="swiper team-swiper" id="teamSwiperExperts">
+        <div class="swiper-wrapper" id="teamExpertsSlides"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AMBASSADORS ===== -->
+<section class="page" id="page-ambassadors">
+  <div class="content">
+    <div class="section-header">
+      <span class="section-tag">السفراء</span>
+      <h2 class="section-title">سفراؤنا في الولايات</h2>
+      <p class="section-sub">شبكة التمثيل المحلي عبر الجزائر</p>
+      <div class="section-divider"></div>
+    </div>
+    <div class="dz-map-wrap" id="dzMapWrap" style="max-width:560px;margin:0 auto 24px;background:var(--surface);border:1.5px solid var(--border-light);border-radius:18px;padding:16px;box-shadow:var(--shadow-sm)">
+      <svg viewBox="0 0 400 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto" id="dzMapSvg">
+        <path d="M25,62 L55,42 L90,50 L125,38 L160,44 L185,36 L215,42 L250,36 L285,42 L305,55 L320,58 L300,90 L308,140 L290,195 L300,250 L265,300 L260,375 L60,375 L18,320 L10,220 L20,150 L14,95 Z"
+          fill="#d8e4db" stroke="#1a6b2f" stroke-width="1.5" stroke-linejoin="round"/>
+        <text x="150" y="215" text-anchor="middle" font-size="13" fill="#1a6b2f" font-weight="700" opacity="0.55">الصحراء الجزائرية</text>
+        <g id="dzWilayaDots"></g>
+      </svg>
+      <p style="text-align:center;font-size:11px;color:var(--text-muted);margin-top:8px">خريطة تقريبية معتمدة على الموقع الجغرافي الحقيقي لكل ولاية — انقر على أي نقطة لعرض سفيرها</p>
+    </div>
+    <div style="text-align:center;margin-bottom:16px">
+      <button type="button" class="btn-outline-dark" onclick="showAvailableWilayas()"><i class="fas fa-map"></i> عرض الولايات المعنية بالتمثيل</button>
+    </div>
+    <div class="amb-grid" id="ambGrid">
+      <div class="empty-state"><i class="fas fa-spinner fa-spin"></i><p>جاري التحميل...</p></div>
+    </div>
+    <div id="ambPager" class="pager-bar" style="display:flex;justify-content:center;gap:12px;margin-top:20px;align-items:center"></div>
+  </div>
+</section>
+
+<!-- ===== JOIN ===== -->
+<section class="page" id="page-join">
+  <div class="content">
+    <div class="section-header">
+      <span class="section-tag">الانضمام</span>
+      <h2 class="section-title">انضم إلينا</h2>
+      <p class="section-sub">اختر الصفة المناسبة واملأ الاستمارة الرسمية</p>
+      <div class="section-divider"></div>
+    </div>
+    <div id="joinOptionsWrap">
+      <div class="join-options">
+        <div class="join-card" data-type="membership" onclick="selectJoinType('membership')"><i class="fas fa-id-card"></i><h3>انخراط</h3><p>عضوية عامة — مشاركة في البرامج والأنشطة</p></div>
+        <div class="join-card" data-type="volunteer" onclick="selectJoinType('volunteer')"><i class="fas fa-hands-helping"></i><h3>تطوع</h3><p>منصب ومهام واضحة داخل خلية</p></div>
+        <div class="join-card" data-type="ambassador" onclick="selectJoinType('ambassador')"><i class="fas fa-flag"></i><h3>تمثيل / سفير</h3><p>تمثيل ولاية — 18–35 سنة، جزائري</p></div>
+        <div class="join-card" data-type="training" onclick="selectJoinType('training')"><i class="fas fa-chalkboard-teacher"></i><h3>تأطير</h3><p>تقديم دورات وورشات</p></div>
+        <div class="join-card" data-type="partnership" onclick="selectJoinType('partnership')"><i class="fas fa-handshake"></i><h3>شراكة</h3><p>للجهات والمؤسسات</p></div>
+      </div>
+    </div>
+    <div id="joinFormWrap" style="display:none">
+      <div class="step-dots" id="stepDots"></div>
+      <form id="joinForm" novalidate onsubmit="return submitRegistration(event)">
+        <div id="formSteps"></div>
+        <div class="form-actions">
+          <button type="button" class="btn-secondary" id="btnPrev" onclick="formPrev()" style="display:none"><i class="fas fa-arrow-right"></i> السابق</button>
+          <button type="button" class="btn-outline-dark" onclick="cancelJoin()">إلغاء</button>
+          <button type="button" class="btn-primary" id="btnNext" onclick="formNext()">التالي <i class="fas fa-arrow-left"></i></button>
+          <button type="submit" class="btn-primary" id="btnSubmit" style="display:none"><i class="fas fa-paper-plane"></i> إرسال الطلب</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRACKING ===== -->
+<section class="page" id="page-tracking">
+  <div class="content">
+    <div class="section-header">
+      <span class="section-tag">التتبع</span>
+      <h2 class="section-title">تتبع طلبك</h2>
+      <p class="section-sub">أدخل رقم التتبع للاطلاع على حالة الطلب</p>
+      <div class="section-divider"></div>
+    </div>
+    <div class="card" style="max-width:420px;margin:0 auto">
+      <div class="form-group">
+        <label>رقم التتبع</label>
+        <input type="text" id="trackCode" placeholder="NZ-XXXXXX" style="text-align:center;letter-spacing:1px;font-family:var(--font-mono)">
+      </div>
+      <button class="btn-primary" style="width:100%;margin-top:12px" onclick="trackRequest()"><i class="fas fa-search"></i> بحث</button>
+      <div id="trackResult" style="margin-top:20px;display:none"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ACTIVITIES ===== -->
+<section class="page" id="page-activities">
+  <div class="content">
+    <div class="section-header">
+      <span class="section-tag">الأنشطة</span>
+      <h2 class="section-title">أنشطتنا</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="filters-bar" id="actFiltersBar" style="flex-direction:column;align-items:stretch">
+      <div class="filters-search" style="width:100%">
+        <i class="fas fa-search"></i>
+        <input type="text" id="actSearch" placeholder="ابحث في الأنشطة بالعنوان أو الوصف..." oninput="applyActivityFilters()">
+      </div>
+      <div class="filter-chips" id="catChips">
+        <button type="button" class="filter-chip active" data-f="cat" data-v="" onclick="setFilterChip(this)">الكل</button>
+        <button type="button" class="filter-chip" data-f="cat" data-v="داخلية" onclick="setFilterChip(this)">داخلية</button>
+        <button type="button" class="filter-chip" data-f="cat" data-v="شمولية" onclick="setFilterChip(this)">شمولية</button>
+        <button type="button" class="filter-chip" data-f="cat" data-v="تشاركية" onclick="setFilterChip(this)">تشاركية</button>
+        <button type="button" class="filter-chip" data-f="cat" data-v="عمومية" onclick="setFilterChip(this)">عمومية</button>
+      </div>
+      <div class="filter-chips" id="priceChips">
+        <button type="button" class="filter-chip active" data-f="price" data-v="" onclick="setFilterChip(this)">مجانية ومدفوعة</button>
+        <button type="button" class="filter-chip" data-f="price" data-v="free" onclick="setFilterChip(this)">مجانية</button>
+        <button type="button" class="filter-chip" data-f="price" data-v="paid" onclick="setFilterChip(this)">مدفوعة</button>
+      </div>
+      <div class="filter-chips" id="fmtChips">
+        <button type="button" class="filter-chip active" data-f="fmt" data-v="" onclick="setFilterChip(this)">حضورية وإلكترونية</button>
+        <button type="button" class="filter-chip" data-f="fmt" data-v="حضورية" onclick="setFilterChip(this)">حضورية</button>
+        <button type="button" class="filter-chip" data-f="fmt" data-v="إلكترونية" onclick="setFilterChip(this)">إلكترونية</button>
+      </div>
+      <input type="hidden" id="actFilterCategory" value="">
+      <input type="hidden" id="actFilterPrice" value="">
+      <input type="hidden" id="actFilterFormat" value="">
+    </div>
+    <div class="item-grid" id="activitiesGrid"></div>
+    <div id="activitiesPager" class="pager-bar" style="display:flex;justify-content:center;gap:12px;margin-top:20px;align-items:center"></div>
+    <div id="activityRegisterPanel" style="display:none;margin-top:28px">
+      <div class="card" style="max-width:560px;margin:0 auto">
+        <h3 style="margin-bottom:14px;font-size:17px" id="actRegTitle">تسجيل في النشاط</h3>
+        <form id="activityRegForm" onsubmit="return submitActivityReg(event)">
+          <input type="hidden" name="activityId" id="actId">
+          <input type="hidden" name="activityTitle" id="actTitle">
+          <input type="hidden" name="activityPrice" id="actPrice" value="0">
+          <div class="form-grid">
+            <div class="form-group"><label><span class="req">*</span> الاسم واللقب</label><input name="fullName" required minlength="5"></div>
+            <div class="form-group"><label><span class="req">*</span> البريد الإلكتروني</label><input name="email" type="email" required></div>
+            <div class="form-group"><label><span class="req">*</span> تاريخ الميلاد</label><input name="birthDate" type="date" required></div>
+            <div class="form-group"><label><span class="req">*</span> الجنسية</label><select name="nationality" id="actNationality" required onchange="onActNationalityChange(this)"></select></div>
+            <div class="form-group" id="actWilayaWrap"><label><span class="req">*</span> الولاية / المنطقة</label><select name="wilaya" id="actWilaya" required></select></div>
+            <div class="form-group"><label><span class="req">*</span> رقم الهاتف</label><input name="phone" type="tel" required></div>
+            <div class="form-group"><label><span class="req">*</span> سبق المشاركة؟</label><select name="priorParticipation" required><option value="">—</option><option>لا</option><option>نعم</option></select></div>
+            <div class="form-group"><label><span class="req">*</span> علاقتك بمجال النشاط</label><input name="relation" required placeholder="مثال: طالب، مختص، مهتم..."></div>
+            <div class="form-group full"><label><span class="req">*</span> احتياجات تسهيل (إن وجدت)</label><select name="needsAssist" required onchange="toggleRequired('needsDetail', this.value==='نعم')"><option value="">—</option><option>لا</option><option>نعم</option></select>
+              <input name="needsDetail" id="needsDetail" style="display:none;margin-top:8px" placeholder="تفاصيل الاحتياج">
+            </div>
+          </div>
+          <div id="paymentBlock" style="display:none;margin-top:14px;padding:14px;background:var(--surface-alt);border-radius:12px">
+            <h4 style="font-size:14px;margin-bottom:10px">معلومات الدفع</h4>
+            <p style="font-size:12px;color:var(--text-secondary);margin-bottom:10px">أدخل رقم عملية الدفع بالصيغة NZ-PAY-XXXXXX، وسيُطبَّق الخصم المتاح (إن وجد) تلقائيًا على السعر لحساب المبلغ الصافي المستحق.</p>
+            <div class="form-grid">
+              <div class="form-group"><label><span class="req">*</span> طريقة الدفع</label><select name="paymentMethod"><option value="">—</option><option>تحويل بنكي</option><option>بريدي موب</option><option>نقدًا بالمقر</option><option>أخرى</option></select></div>
+              <div class="form-group"><label><span class="req">*</span> رقم عملية الدفع</label><input name="paymentRef" id="actPaymentRef" placeholder="NZ-PAY-XXXXXX" style="font-family:var(--font-mono)" pattern="NZ-PAY-[A-Za-z0-9]{6}" title="الصيغة المطلوبة: NZ-PAY-XXXXXX" oninput="this.value=this.value.toUpperCase();checkActivityDiscount(this.value)"></div>
+              <div class="form-group"><label>السعر الأصلي</label><input name="priceDisplay" id="priceDisplay" readonly></div>
+              <div class="form-group"><label>الخصم المطبّق</label><input id="discountDisplay" readonly value="0 دج"></div>
+              <div class="form-group full"><label>المبلغ الصافي المستحق</label><input name="totalDisplay" id="totalDisplay" readonly style="font-weight:700;color:var(--primary)"></div>
+            </div>
+          </div>
+          <div class="form-actions" style="margin-top:16px">
+            <button type="button" class="btn-secondary" onclick="document.getElementById('activityRegisterPanel').style.display='none'">إلغاء</button>
+            <button type="submit" class="btn-primary"><i class="fas fa-check"></i> تأكيد التسجيل</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NEWS ===== -->
+<section class="page" id="page-news">
+  <div class="content">
+    <div class="section-header"><span class="section-tag">الأخبار</span><h2 class="section-title">أخبارنا</h2><div class="section-divider"></div></div>
+    <div class="item-grid" id="newsGrid"></div>
+    <div id="newsPager" class="pager-bar" style="display:flex;justify-content:center;gap:12px;margin-top:20px;align-items:center"></div>
+  </div>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+<section class="page" id="page-projects">
+  <div class="content">
+    <div class="section-header"><span class="section-tag">المشاريع</span><h2 class="section-title">مشاريعنا</h2><div class="section-divider"></div></div>
+    <div class="item-grid" id="projectsGrid"></div>
+    <div id="projectsPager" class="pager-bar" style="display:flex;justify-content:center;gap:12px;margin-top:20px;align-items:center"></div>
+  </div>
+</section>
+
+<!-- ===== LIBRARY ===== -->
+<section class="page" id="page-library">
+  <div class="content">
+    <div class="section-header"><span class="section-tag">الموارد</span><h2 class="section-title">المكتبة والموارد</h2><div class="section-divider"></div></div>
+    <div class="lib-tabs" style="display:flex;gap:8px;justify-content:center;margin-bottom:24px;flex-wrap:wrap">
+      <button type="button" class="lib-tab active" data-lib="posts" onclick="switchLibTab('posts')" style="padding:10px 20px;border-radius:50px;border:1.5px solid var(--border-light);background:var(--primary-light);color:#fff;font-weight:600;font-size:13px;cursor:pointer">المنشورات</button>
+      <button type="button" class="lib-tab" data-lib="books" onclick="switchLibTab('books')" style="padding:10px 20px;border-radius:50px;border:1.5px solid var(--border-light);background:var(--surface);font-weight:600;font-size:13px;cursor:pointer">الكتب</button>
+      <button type="button" class="lib-tab" data-lib="apps" onclick="switchLibTab('apps')" style="padding:10px 20px;border-radius:50px;border:1.5px solid var(--border-light);background:var(--surface);font-weight:600;font-size:13px;cursor:pointer">التطبيقات</button>
+    </div>
+    <div id="libPosts" class="item-grid"></div>
+    <div id="postsPager" class="pager-bar" style="display:none;justify-content:center;gap:12px;margin-top:20px;align-items:center"></div>
+    <div id="libBooks" class="item-grid" style="display:none"></div>
+    <div id="booksPager" class="pager-bar" style="display:none;justify-content:center;gap:12px;margin-top:20px;align-items:center"></div>
+    <div id="libApps" class="item-grid" style="display:none"></div>
+  </div>
+</section>
+
+<!-- ===== PROFILE / MZONE ===== -->
+<section class="page" id="page-mzone">
+  <div class="content">
+    <div class="section-header"><span class="section-tag">الحساب</span><h2 class="section-title">حسابي (MZone)</h2><div class="section-divider"></div></div>
+    <div class="card" style="max-width:400px;margin:0 auto;text-align:center" id="mzoneBox">
+      <div style="text-align:center;margin-bottom:12px"><i class="fas fa-user-circle" style="font-size:56px;color:var(--primary-light)"></i></div>
+      <div class="form-group" style="text-align:right;margin-bottom:10px"><label>اسم المستخدم أو رقم العضوية</label><input id="mzUser" autocomplete="username"></div>
+      <div class="form-group" style="text-align:right;margin-bottom:12px"><label>كلمة المرور</label><input id="mzPass" type="password" autocomplete="current-password"></div>
+      <button type="button" class="btn-primary" style="width:100%" onclick="mzoneLogin()">تسجيل الدخول</button>
+      <div style="display:flex;justify-content:space-between;margin-top:12px;gap:8px;flex-wrap:wrap">
+        <button type="button" class="btn-ghost" onclick="openForgotModal()">نسيت كلمة المرور؟</button>
+        <button type="button" class="btn-ghost" onclick="navigate('/join')">انضم إلينا</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="page" id="page-contact">
+  <div class="content">
+    <div class="section-header"><span class="section-tag">تواصل</span><h2 class="section-title">تواصل معنا</h2><div class="section-divider"></div></div>
+    <div class="card" style="max-width:520px;margin:0 auto">
+      <form id="contactForm" onsubmit="return submitContact(event)">
+        <div class="form-grid">
+          <div class="form-group"><label><span class="req">*</span> الاسم الكامل</label><input name="name" required minlength="3"></div>
+          <div class="form-group"><label><span class="req">*</span> البريد الإلكتروني</label><input name="email" type="email" required></div>
+          <div class="form-group"><label><span class="req">*</span> رقم الهاتف</label><input name="phone" type="tel" required></div>
+          <div class="form-group"><label><span class="req">*</span> نوع الشخص</label>
+            <select name="personType" required><option value="">—</option><option>زائر</option><option>عضو</option><option>مؤسسة</option><option>إعلام</option></select>
+          </div>
+          <div class="form-group full"><label><span class="req">*</span> الموضوع</label>
+            <select name="subjectType" required><option value="">—</option><option>استفسار عام</option><option>شراكة</option><option>شكوى</option><option>اقتراح</option><option>أخرى</option></select>
+          </div>
+          <div class="form-group full"><label><span class="req">*</span> الرسالة</label><textarea name="message" required minlength="10"></textarea></div>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;margin-top:16px"><i class="fas fa-paper-plane"></i> إرسال</button>
+      </form>
+      <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border-light)">
+        <h4 style="font-size:14px;margin-bottom:12px;color:var(--primary)"><i class="fas fa-map-marker-alt"></i> معلومات التواصل</h4>
+        <p style="font-size:13px;color:var(--text-secondary);margin-bottom:8px"><i class="fas fa-envelope" style="width:18px;color:var(--primary-light)"></i> <a href="mailto:nzaha.dz@gmail.com">nzaha.dz@gmail.com</a></p>
+        <p style="font-size:13px;color:var(--text-secondary);margin-bottom:8px"><i class="fas fa-map-marker-alt" style="width:18px;color:var(--primary-light)"></i> ولاية الطارف — الجزائر</p>
+        <p style="font-size:13px;color:var(--text-secondary);margin-bottom:8px"><i class="fas fa-globe" style="width:18px;color:var(--primary-light)"></i> <a href="https://nazaha.site" target="_blank" rel="noopener">nazaha.site</a></p>
+        <div style="display:flex;gap:10px;margin-top:14px;justify-content:center;flex-wrap:wrap">
+          <a href="https://www.facebook.com/nzaha.dz" target="_blank" rel="noopener" style="width:36px;height:36px;border-radius:50%;background:var(--surface-alt);display:flex;align-items:center;justify-content:center;color:var(--primary)"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/nzaha.dz" target="_blank" rel="noopener" style="width:36px;height:36px;border-radius:50%;background:var(--surface-alt);display:flex;align-items:center;justify-content:center;color:var(--primary)"><i class="fab fa-instagram"></i></a>
+          <a href="https://youtube.com/@nzaha-dz" target="_blank" rel="noopener" style="width:36px;height:36px;border-radius:50%;background:var(--surface-alt);display:flex;align-items:center;justify-content:center;color:var(--primary)"><i class="fab fa-youtube"></i></a>
+          <a href="https://t.me/+qMBoS7tGvi1iZDBk" target="_blank" rel="noopener" style="width:36px;height:36px;border-radius:50%;background:var(--surface-alt);display:flex;align-items:center;justify-content:center;color:var(--primary)"><i class="fab fa-telegram-plane"></i></a>
+        </div>
+        <div style="margin-top:16px;border-radius:12px;overflow:hidden;border:1.5px solid var(--border-light)">
+          <iframe title="الموقع" src="https://www.openstreetmap.org/export/embed.html?bbox=8.25%2C36.70%2C8.40%2C36.82&amp;layer=mapnik&amp;marker=36.767%2C8.314" style="width:100%;height:180px;border:0" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LEGAL ===== -->
+<section class="page" id="page-legal">
+  <div class="content">
+    <div class="section-header"><span class="section-tag">قانونية</span><h2 class="section-title">الشؤون القانونية</h2><div class="section-divider"></div></div>
+    <div class="legal-block">
+      <h3><i class="fas fa-landmark" style="color:var(--primary-light)"></i> طبيعة المنتدى</h3>
+      <p>المنتدى الشبابي للفكر والمشاركة المدنية «نزاهة» مبادرة شبابية وطنية مستقلة وغير ربحية، ذات طابع فكري ومدني. تنشط رقميًا وميدانيًا ريثما استكمال تأسيس جمعية وطنية وفق التشريع الجزائري المعمول به. السفراء يمثلون المنتدى ميدانيًا في الولايات بالتنسيق مع الإدارة المركزية، وبالتعاون مع دور الشباب والجامعات والمخابر ومؤسسات المجتمع المدني.</p>
+    </div>
+    <div class="legal-block">
+      <h3><i class="fas fa-balance-scale" style="color:var(--primary-light)"></i> الثوابت والمبادئ</h3>
+      <ul>
+        <li>حياد سياسي تام واستقلالية عن الأحزاب والتيارات السياسية</li>
+        <li>احترام الدستور الجزائري والوحدة الترابية والسيادة الوطنية</li>
+        <li>دعم تمكين الشباب ومكافحة الفساد وتعزيز قيم المواطنة</li>
+        <li>الالتزام بسلامة وأمن وصحة ونظافة المشاركين في الأنشطة</li>
+        <li>ترسيخ النزاهة والشفافية والحوكمة الرشيدة في جميع الممارسات</li>
+      </ul>
+    </div>
+    <div class="legal-block">
+      <h3><i class="fas fa-shield-alt" style="color:var(--primary-light)"></i> حماية البيانات الشخصية (قانون 18-07)</h3>
+      <p>يجمع المنتدى البيانات الشخصية للغرض المعلن وبموافقة صريحة من المعني. يشمل النطاق: الاسم، الصورة، الولاية، وسائل التواصل، والبيانات المهنية أو الدراسية ذات الصلة. تُنشر بيانات التواصل الرسمية للإدارة. بالنسبة للسفراء المعتمدين: يُنشر الاسم والصورة والولاية ورقم الهاتف والبريد وحسابات التواصل بعد إقرارهم. باقي الحسابات محمية مع إمكانية التحكم في إعدادات الخصوصية. يحق لكل شخص الاطلاع على بياناته وتصحيحها وسحب موافقته وطلب الحذف مع إثبات الهوية. لا تُنقل البيانات إلى طرف ثالث إلا بموافقة أو بموجب القانون أو إلى جهة مختصة.</p>
+    </div>
+    <div class="legal-block">
+      <h3><i class="fas fa-file-contract" style="color:var(--primary-light)"></i> شروط الاستخدام</h3>
+      <p>باستخدام المنصة أو تقديم طلب انضمام أو تسجيل في نشاط، يقرّ المستخدم بصحة المعلومات المقدمة ويوافق على الالتزام بقيم المنتدى ولوائحه الداخلية. يحتفظ المنتدى بحق رفض أو تعليق أي مشاركة تتعارض مع الثوابت أو تنتهك الآداب العامة أو التشريع الجزائري.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer" style="background:#0f4a1e;color:#e8f0ea">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4 style="color:#2ECC5A">نزاهة</h4>
+      <p style="color:#c5d9cb">المنتدى الشبابي للفكر والمشاركة المدنية</p>
+      <p style="color:#c5d9cb">ولاية الطارف، الجزائر</p>
+      <div style="display:flex;gap:10px;margin-top:12px">
+        <a href="https://www.facebook.com/nzaha.dz" target="_blank" rel="noopener" aria-label="فيسبوك" style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:#fff"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/nzaha.dz" target="_blank" rel="noopener" aria-label="إنستغرام" style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:#fff"><i class="fab fa-instagram"></i></a>
+        <a href="https://youtube.com/@nzaha-dz" target="_blank" rel="noopener" aria-label="يوتيوب" style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:#fff"><i class="fab fa-youtube"></i></a>
+        <a href="https://t.me/+qMBoS7tGvi1iZDBk" target="_blank" rel="noopener" aria-label="تيليجرام" style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:#fff"><i class="fab fa-telegram-plane"></i></a>
+        <a href="mailto:nzaha.dz@gmail.com" aria-label="بريد" style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:#fff"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4 style="color:#2ECC5A">روابط</h4>
+      <a href="#/" onclick="navigate('/')" style="color:#c5d9cb">الرئيسية</a>
+      <a href="#/about" onclick="navigate('/about')" style="color:#c5d9cb">من نحن</a>
+      <a href="#/join" onclick="navigate('/join')" style="color:#c5d9cb">انضم إلينا</a>
+      <a href="#/legal" onclick="navigate('/legal')" style="color:#c5d9cb">الشؤون القانونية</a>
+    </div>
+    <div class="footer-col">
+      <h4 style="color:#2ECC5A">تواصل</h4>
+      <a href="mailto:nzaha.dz@gmail.com" style="color:#c5d9cb">nzaha.dz@gmail.com</a>
+      <a href="#/contact" onclick="navigate('/contact')" style="color:#c5d9cb">نموذج التواصل</a>
+      <p style="color:#c5d9cb;margin-top:8px">ولاية الطارف — الجزائر</p>
+    </div>
+  </div>
+  <div class="footer-bottom" style="border-top-color:rgba(255,255,255,.12);color:#9ab5a0">© ٢٠٢٦ نزاهة — جميع الحقوق محفوظة</div>
+</footer>
+
+<div class="toast-container" id="toastContainer"></div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+/* ============================================================
+   نزاهة — تطبيق SPA كامل من الجذور
+   مشروع: nazaha-b1c97
+   بدون تكديس · بدون بيانات وهمية · Firebase فقط
+   ============================================================ */
+
+const UNK = 'https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/unk.png';
+const LOGO = 'https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/logo-3.png';
+const CANONICAL = 'https://nazaha.site';
+const CLOUDINARY_CLOUD = 'dlb1tvpms';
+const CLOUDINARY_PRESET = 'nazaha_unsigned';
+const IMGBB_API_KEY = '2495c2f02cb55d8de7ce909d5b63b044';
+const PAGE_SIZE = 3;
+
+const ARAB_NATIONALITIES = [
+  'جزائرية','تونسية','مغربية','ليبية','مصرية','سودانية','موريتانية',
+  'أردنية','فلسطينية','سورية','لبنانية','عراقية','سعودية','يمنية',
+  'عُمانية','إماراتية','قطرية','بحرينية','كويتية','صومالية','جيبوتية','جزر القمر','أخرى'
+];
+
+const PHONE_RULES = {
+  'جزائرية':{code:'+213',re:/^(?:\+213|00213|0)?[567]\d{8}$/,hint:'05xxxxxxxx أو +2135xxxxxxxx'},
+  'تونسية':{code:'+216',re:/^(?:\+216|00216|0)?[2459]\d{7}$/,hint:'+2162xxxxxxx'},
+  'مغربية':{code:'+212',re:/^(?:\+212|00212|0)?[67]\d{8}$/,hint:'+2126xxxxxxxx'},
+  'ليبية':{code:'+218',re:/^(?:\+218|00218|0)?9\d{8}$/,hint:'+2189xxxxxxxx'},
+  'مصرية':{code:'+20',re:/^(?:\+20|0020|0)?1[0125]\d{8}$/,hint:'+201xxxxxxxxx'},
+  'سودانية':{code:'+249',re:/^(?:\+249|00249|0)?[19]\d{8}$/,hint:'+2491xxxxxxxx'},
+  'موريتانية':{code:'+222',re:/^(?:\+222|00222)?[2-4]\d{7}$/,hint:'+2222xxxxxxx'},
+  'أردنية':{code:'+962',re:/^(?:\+962|00962|0)?7\d{8}$/,hint:'+9627xxxxxxxx'},
+  'فلسطينية':{code:'+970',re:/^(?:\+970|00970|0)?5\d{8}$/,hint:'+9705xxxxxxxx'},
+  'سورية':{code:'+963',re:/^(?:\+963|00963|0)?9\d{8}$/,hint:'+9639xxxxxxxx'},
+  'لبنانية':{code:'+961',re:/^(?:\+961|00961|0)?[37]\d{7}$/,hint:'+9613xxxxxx'},
+  'عراقية':{code:'+964',re:/^(?:\+964|00964|0)?7\d{9}$/,hint:'+9647xxxxxxxxx'},
+  'سعودية':{code:'+966',re:/^(?:\+966|00966|0)?5\d{8}$/,hint:'+9665xxxxxxxx'},
+  'يمنية':{code:'+967',re:/^(?:\+967|00967|0)?7\d{8}$/,hint:'+9677xxxxxxxx'},
+  'عُمانية':{code:'+968',re:/^(?:\+968|00968)?9\d{7}$/,hint:'+9689xxxxxxx'},
+  'إماراتية':{code:'+971',re:/^(?:\+971|00971|0)?5\d{8}$/,hint:'+9715xxxxxxxx'},
+  'قطرية':{code:'+974',re:/^(?:\+974|00974)?[3567]\d{7}$/,hint:'+9743xxxxxxx'},
+  'بحرينية':{code:'+973',re:/^(?:\+973|00973)?[36]\d{7}$/,hint:'+9733xxxxxxx'},
+  'كويتية':{code:'+965',re:/^(?:\+965|00965)?[569]\d{7}$/,hint:'+9655xxxxxxx'},
+  'صومالية':{code:'+252',re:/^(?:\+252|00252)?[67]\d{7,8}$/,hint:'+2526xxxxxxx'},
+  'جيبوتية':{code:'+253',re:/^(?:\+253|00253)?[77]\d{6}$/,hint:'+25377xxxxxx'},
+  'جزر القمر':{code:'+269',re:/^(?:\+269|00269)?[3]\d{6}$/,hint:'+2693xxxxxx'},
+  'default':{code:'+',re:/^\+?\d{8,15}$/,hint:'مع رمز الدولة'}
+};
+
+const WILAYAS = [
+  'أدرار','الشلف','الأغواط','أم البواقي','باتنة','بجاية','بسكرة','بشار','البليدة','البويرة',
+  'تمنراست','تبسة','تلمسان','تيارت','تيزي وزو','الجزائر','الجلفة','جيجل','سطيف','سعيدة',
+  'سكيكدة','سيدي بلعباس','عنابة','قالمة','قسنطينة','المدية','مستغانم','المسيلة','معسكر','ورقلة',
+  'وهران','البيض','إليزي','برج بوعريريج','بومرداس','الطارف','تندوف','تيسمسيلت','الوادي','خنشلة',
+  'سوق أهراس','تيبازة','ميلة','عين الدفلى','النعامة','عين تموشنت','غرداية','غليزان','تيميمون',
+  'برج باجي مختار','أولاد جلال','بني عباس','عين صالح','عين قزام','تقرت','جانت','المغير','المنيعة'
+];
+
+/* إحداثيات تقريبية لكل ولاية داخل viewBox الخريطة (0-400 × 0-380)، مبنية على الموقع الجغرافي
+   الحقيقي النسبي لكل ولاية (الساحل شمالًا، الصحراء جنوبًا، من الغرب تلمسان إلى الشرق الطارف).
+   هذه إحداثيات تقريبية وليست بيانات مساحية دقيقة (GIS) — تكفي لعرض توزيع السفراء فعليًا حسب الولاية. */
+const WILAYA_COORDS = {
+  'تلمسان':[30,60],'عين تموشنت':[45,55],'وهران':[60,50],'مستغانم':[80,48],'غليزان':[95,62],
+  'الشلف':[112,50],'تيبازة':[140,45],'الجزائر':[160,42],'بومرداس':[176,43],'تيزي وزو':[192,48],
+  'بجاية':[212,45],'جيجل':[236,42],'سكيكدة':[260,40],'عنابة':[290,38],'الطارف':[306,42],
+  'قسنطينة':[270,60],'ميلة':[254,62],'قالمة':[282,58],'سوق أهراس':[300,60],
+  'سيدي بلعباس':[55,76],'سعيدة':[75,90],'معسكر':[85,72],'تيارت':[105,85],'تيسمسيلت':[116,70],
+  'عين الدفلى':[130,62],'المدية':[150,65],'البليدة':[155,55],'البويرة':[180,60],
+  'برج بوعريريج':[210,65],'سطيف':[230,65],'أم البواقي':[270,78],'خنشلة':[282,88],
+  'النعامة':[60,125],'البيض':[92,130],'الجلفة':[140,120],'المسيلة':[190,100],'باتنة':[250,100],'تبسة':[297,100],
+  'بشار':[55,170],'الأغواط':[130,150],'غرداية':[170,175],'بسكرة':[225,125],'الوادي':[262,155],
+  'ورقلة':[210,190],'تقرت':[227,175],'أولاد جلال':[205,140],'المغير':[236,160],'المنيعة':[155,195],
+  'أدرار':[110,230],'تيميمون':[125,210],'بني عباس':[75,210],'تندوف':[25,210],
+  'برج باجي مختار':[90,310],'عين صالح':[155,260],'إليزي':[270,250],'جانت':[245,310],
+  'تمنراست':[180,340],'عين قزام':[175,370]
+};
+
+const INTERESTS = ['الفكر','المشاركة المدنية','السياسة','العلاقات الدولية','الدبلوماسية','المجتمع','الثقافة','العلوم','التكنولوجيا','البيئة','أخرى'];
+const CELLS = ['أمانة السر','خلية الموارد البشرية','أمانة المال','مصلحة الضبط','خلية الأنشطة واللوجستيك','خلية العلاقات العامة','خلية الإعلام والرقمنة'];
+const POSITIONS = {
+  'أمانة السر':['مسؤول المراسلات','مسؤول الوثائق الرسمية','مسؤول الأرشيف','مسؤول المواعيد والاستقبال'],
+  'خلية الموارد البشرية':['مسؤول شؤون المنخرطين','مسؤول شؤون المؤطرين','مسؤول شؤون السفراء والانتشار','مسؤول التقييم والأداء','مسؤول التدريب والتطوير'],
+  'أمانة المال':['مسؤول المحاسبة','مسؤول تنمية الموارد والتمويل','مسؤول العمليات المالية والميدانية'],
+  'مصلحة الضبط':['مسؤول المتابعة التأديبية والطعون','مسؤول السياسات واللوائح والتدقيق'],
+  'خلية الأنشطة واللوجستيك':['مسؤول تخطيط الأنشطة','مسؤول تنفيذ الأنشطة','مسؤول البرامج','مسؤول اللوجستيك'],
+  'خلية العلاقات العامة':['مسؤول العلاقات المؤسساتية','مسؤول العلاقات الجمعوية','مسؤول العلاقات الشبابية','مسؤول المراسم والبروتوكول'],
+  'خلية الإعلام والرقمنة':['مسؤول إدارة المحتوى والتحرير','مسؤول التصميم','مسؤول التغطية والتصوير','مسؤول هندسة الفيديوهات','مسؤول الإنتاج الصوتي','مسؤول إدارة الصفحات وخدمة العملاء','مسؤول حماية وصيانة الأنظمة الرقمية']
+};
+
+const APPS = [
+  {id:'wiki',title:'الموسوعة',desc:'بحث في ويكيبيديا العربية',icon:'fa-book'},
+  {id:'fx',title:'تحويل العملات',desc:'أسعار صرف تقريبية',icon:'fa-coins'},
+  {id:'bmi',title:'مؤشر كتلة الجسم',desc:'حساب BMI',icon:'fa-heartbeat'},
+  {id:'age',title:'حاسبة العمر',desc:'من تاريخ الميلاد',icon:'fa-calendar'},
+  {id:'pass',title:'مولّد كلمات المرور',desc:'كلمة مرور قوية',icon:'fa-key'},
+  {id:'notes',title:'ملاحظاتي',desc:'تُحفظ في الجلسة فقط',icon:'fa-sticky-note'}
+];
+
+const ROUTES = {
+  '/':'page-home','/about':'page-about','/team':'page-team','/ambassadors':'page-ambassadors',
+  '/join':'page-join','/tracking':'page-tracking','/activities':'page-activities',
+  '/news':'page-news','/projects':'page-projects','/library':'page-library',
+  '/profile':'page-mzone','/contact':'page-contact','/legal':'page-legal'
+};
+
+
+const PAGE_META = {
+  '/':{title:'المنتدى الشبابي للفكر والمشاركة المدنية — نزاهة',desc:'انضم إلى جيل يصنع الفرق. نزاهة منصة شبابية وطنية تمكّنك من التعلم والقيادة والتطوع وبناء أثر حقيقي في الجزائر.'},
+  '/about':{title:'من نحن — نزاهة',desc:'تعرف على رؤية ورسالة وأهداف المنتدى الشبابي للفكر والمشاركة المدنية نزاهة في الجزائر.'},
+  '/team':{title:'فريقنا — نزاهة',desc:'مجلس الإدارة والمدربون والمؤطرون في المنتدى الشبابي نزاهة.'},
+  '/ambassadors':{title:'سفراؤنا — نزاهة',desc:'شبكة سفراء نزاهة في ولايات الجزائر — تمثيل محلي للشباب.'},
+  '/join':{title:'انضم إلينا — نزاهة',desc:'انخراط، تطوع، تمثيل، تأطير أو شراكة مع المنتدى الشبابي نزاهة.'},
+  '/activities':{title:'أنشطتنا — نزاهة',desc:'برامج وأنشطة فكرية ومدنية وتدريبية للشباب في الجزائر.'},
+  '/news':{title:'أخبارنا — نزاهة',desc:'آخر أخبار ومبادرات المنتدى الشبابي للفكر والمشاركة المدنية.'},
+  '/projects':{title:'مشاريعنا — نزاهة',desc:'مشاريع تنموية ومدنية يقودها الشباب ضمن نزاهة.'},
+  '/library':{title:'الموارد — نزاهة',desc:'مكتبة منشورات وكتب وتطبيقات مفيدة للشباب.'},
+  '/profile':{title:'حسابي — نزاهة',desc:'منطقة الأعضاء MZone في منصة نزاهة.'},
+  '/contact':{title:'تواصل معنا — نزاهة',desc:'تواصل مع المنتدى الشبابي نزاهة — ولاية الطارف، الجزائر.'},
+  '/legal':{title:'الشؤون القانونية — نزاهة',desc:'الطبيعة القانونية، الثوابت، وحماية البيانات وفق قانون 18-07.'},
+  '/tracking':{title:'تتبع الطلب — نزاهة',desc:'تتبع حالة طلب الانضمام أو التسجيل في نشاط نزاهة.'}
+};
+function updatePageMeta(path){
+  var m = PAGE_META[path] || PAGE_META['/'];
+  document.title = m.title;
+  var set = function(sel, attr, val){
+    var el = document.querySelector(sel);
+    if(el) el.setAttribute(attr, val);
+  };
+  set('meta[name="description"]','content', m.desc);
+  set('meta[property="og:title"]','content', m.title);
+  set('meta[property="og:description"]','content', m.desc);
+  set('meta[property="og:url"]','content', CANONICAL + (path==='/'?'':('/#'+path)));
+  set('meta[name="twitter:title"]','content', m.title);
+  set('meta[name="twitter:description"]','content', m.desc);
+  var link = document.querySelector('link[rel="canonical"]');
+  if(link) link.href = CANONICAL + (path==='/'?'':('/#'+path));
+}
+
+const PAGE_TITLES = {
+  '/':'الرئيسية','/about':'من نحن','/team':'فريقنا','/ambassadors':'سفراؤنا',
+  '/join':'انضم','/activities':'أنشطة','/news':'أخبار','/projects':'مشاريع',
+  '/library':'موارد','/profile':'حسابي','/contact':'تواصل','/legal':'قانونية','/tracking':'تتبع'
+};
+
+
+/* ---------- Firebase ---------- */
+(function initFirebase(){
+  var cfg = {
+    apiKey: "AIzaSyBWGPKwCiEDVu4Qe_REnZUGc0w6cmxG9Xk",
+    authDomain: "nazaha-b1c97.firebaseapp.com",
+    projectId: "nazaha-b1c97",
+    storageBucket: "nazaha-b1c97.firebasestorage.app",
+    messagingSenderId: "718233504902",
+    appId: "1:718233504902:web:fa830f7f199d360be49507",
+    measurementId: "G-S1WE1ES684"
+  };
+  try {
+    if (!firebase.apps.length) firebase.initializeApp(cfg);
+    window.firebaseDB = firebase.firestore();
+    try { window.firebaseStorage = firebase.storage(); } catch(e) { window.firebaseStorage = null; }
+    try { window.firebaseAuth = firebase.auth(); } catch(e) { window.firebaseAuth = null; }
+    try { firebase.analytics(); } catch(e) {}
+    window.FirestoreAPI = {
+      collection: function(db, path){ return db.collection(path); },
+      doc: function(db, path, id){ return id != null ? db.collection(path).doc(id) : db.doc(path); },
+      getDoc: function(ref){ return ref.get().then(function(s){ return { exists: function(){ return s.exists; }, id: s.id, data: function(){ return s.data(); } }; }); },
+      getDocs: function(q){ return q.get ? q.get() : q; },
+      query: function(col){
+        var args=[].slice.call(arguments,1), q=col;
+        args.forEach(function(a){
+          if(a && a._type==='where') q=q.where(a.f,a.op,a.v);
+          if(a && a._type==='limit') q=q.limit(a.n);
+          if(a && a._type==='orderBy') q=q.orderBy(a.f,a.dir||'asc');
+        });
+        return q;
+      },
+      where: function(f,op,v){ return {_type:'where',f:f,op:op,v:v}; },
+      limit: function(n){ return {_type:'limit',n:n}; },
+      orderBy: function(f,dir){ return {_type:'orderBy',f:f,dir:dir}; },
+      addDoc: function(col, data){ return col.add(data); },
+      setDoc: function(ref, data, opts){ return opts&&opts.merge ? ref.set(data,{merge:true}) : ref.set(data); },
+      updateDoc: function(ref, data){ return ref.update(data); },
+      serverTimestamp: function(){ return firebase.firestore.FieldValue.serverTimestamp(); },
+      increment: function(n){ return firebase.firestore.FieldValue.increment(n); }
+    };
+    window.dispatchEvent(new Event('firebaseReady'));
+  } catch(err) {
+    window.firebaseDB = null;
+  }
+})();
+
+/* ---------- أدوات ---------- */
+function esc(s){
+  return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function sanitizeInput(s){ return String(s||'').trim().replace(/[<>]/g,''); }
+function toggleRequired(fieldId, on){
+  var el = document.getElementById(fieldId);
+  if(!el) return;
+  el.style.display = on ? 'block' : 'none';
+  el.required = !!on;
+  if(!on) el.value = '';
+}
+window.toggleRequired = toggleRequired;
+
+/* التحقق من الخصم الحقيقي من قاعدة البيانات حسب رقم عملية الدفع */
+async function checkActivityDiscount(payRef){
+  var priceEl = document.getElementById('priceDisplay');
+  var discEl = document.getElementById('discountDisplay');
+  var totalEl = document.getElementById('totalDisplay');
+  if(!priceEl || !totalEl) return;
+  var price = Number(String(priceEl.value).replace(/[^\d.]/g,'')) || 0;
+  var discountAmount = 0;
+  var code = String(payRef||'').trim().toUpperCase();
+  if(code && window.FirestoreAPI && window.firebaseDB){
+    try {
+      var FA = window.FirestoreAPI, db = window.firebaseDB;
+      var snap = await FA.getDocs(FA.query(FA.collection(db,'discounts'), FA.where('code','==',code), FA.limit(1)));
+      if(!snap.empty){
+        var d = snap.docs[0].data() || {};
+        if(d.type === 'percent') discountAmount = Math.round(price * (Number(d.value)||0) / 100);
+        else discountAmount = Number(d.value) || 0;
+      }
+    } catch(_) {}
+  }
+  discountAmount = Math.min(discountAmount, price);
+  if(discEl) discEl.value = discountAmount + ' دج';
+  totalEl.value = Math.max(price - discountAmount, 0) + ' دج';
+}
+window.checkActivityDiscount = checkActivityDiscount;
+function showToast(msg, kind){
+  kind = kind || 'info';
+  var c = document.getElementById('toastContainer');
+  if(!c) return;
+  var t = document.createElement('div');
+  t.className = 'toast ' + kind;
+  t.textContent = msg;
+  c.appendChild(t);
+  if(kind === 'success' || kind === 'error') { try { playFeedback(kind); } catch(_) {} }
+  setTimeout(function(){ t.style.opacity='0'; setTimeout(function(){ t.remove(); }, 300); }, 3200);
+}
+function generateTrackingCode(){
+  var y = new Date().getFullYear(), chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789', code = '';
+  for(var i=0;i<8;i++) code += chars[Math.floor(Math.random()*chars.length)];
+  return 'NZ-'+y+'-'+code;
+}
+function toArabicType(t){
+  var m = {membership:'انخراط',member:'انخراط',volunteer:'تطوع',ambassador:'تمثيل',representation:'تمثيل',training:'تأطير',partnership:'شراكة'};
+  return m[t] || t;
+}
+function ageFromBirth(d){
+  if(!d) return null;
+  var b = new Date(d), now = new Date();
+  var a = now.getFullYear() - b.getFullYear();
+  var m = now.getMonth() - b.getMonth();
+  if(m<0 || (m===0 && now.getDate()<b.getDate())) a--;
+  return a;
+}
+function phoneRuleFor(nat){ return PHONE_RULES[nat] || PHONE_RULES['default']; }
+function validatePhone(phone, nat){
+  var r = phoneRuleFor(nat);
+  var p = String(phone||'').replace(/[\s-]/g,'');
+  return r.re.test(p);
+}
+function nationalityOptions(selected){
+  var list = (window.siteConfig && Array.isArray(window.siteConfig.allowedNationalities) && window.siteConfig.allowedNationalities.length)
+    ? window.siteConfig.allowedNationalities : ARAB_NATIONALITIES;
+  return list.map(function(n){
+    return '<option value="'+n+'"'+(n===(selected||'جزائرية')?' selected':'')+'>'+n+'</option>';
+  }).join('');
+}
+function wilayaOptions(){
+  return WILAYAS.map(function(w){ return '<option value="'+w+'">'+w+'</option>'; }).join('');
+}
+
+/* حقل الولاية/المنطقة يتغيّر جذريًا حسب الجنسية المختارة:
+   - جزائرية: قائمة الولايات الـ58 الحقيقية.
+   - غير ذلك: لا تتوفر لدينا تقسيمات إدارية موثوقة لكل دولة عربية، فنعرض حقل نصي حر "المنطقة/المدينة"
+     تفاديًا لعرض بيانات غير دقيقة أو مختلقة. */
+function regionFieldHTML(nationality, selectId){
+  if(nationality === 'جزائرية'){
+    return '<select name="wilaya" id="'+selectId+'" required><option value="">—</option>'+wilayaOptions()+'</select>';
+  }
+  return '<input name="wilaya" id="'+selectId+'" required placeholder="اكتب المنطقة/المدينة/المحافظة">';
+}
+
+/* ---------- رفع الصور ---------- */
+async function uploadImage(file){
+  if(!file) return null;
+  if(file.size > 3*1024*1024){ showToast('حجم الصورة يتجاوز 3 ميغابايت','warning'); return null; }
+  var type = file.type || '';
+  if(type && !/^image\/(jpeg|jpg|png|webp|gif)$/i.test(type)){ showToast('نوع الصورة غير مدعوم','warning'); return null; }
+  showToast('جاري رفع الصورة...','info');
+  try {
+    var fd = new FormData();
+    fd.append('file', file);
+    fd.append('upload_preset', CLOUDINARY_PRESET);
+    var res = await fetch('https://api.cloudinary.com/v1_1/'+CLOUDINARY_CLOUD+'/image/upload', {method:'POST', body:fd});
+    var data = await res.json();
+    if(data && data.secure_url){ showToast('تم رفع الصورة','success'); return data.secure_url; }
+  } catch(e) {}
+  try {
+    var fd2 = new FormData();
+    fd2.append('image', file);
+    var res2 = await fetch('https://api.imgbb.com/1/upload?key='+IMGBB_API_KEY, {method:'POST', body:fd2});
+    var data2 = await res2.json();
+    if(data2 && data2.data && data2.data.url){ showToast('تم رفع الصورة','success'); return data2.data.url; }
+  } catch(e) {}
+  try {
+    if(window.firebaseStorage){
+      var safe = (file.name||'photo').replace(/[^a-zA-Z0-9._-]/g,'_');
+      var ref = window.firebaseStorage.ref('uploads/'+Date.now()+'_'+safe);
+      var snap = await ref.put(file, {contentType: file.type||'image/jpeg'});
+      var url = await snap.ref.getDownloadURL();
+      if(url){ showToast('تم رفع الصورة','success'); return url; }
+    }
+  } catch(e) {}
+  return await new Promise(function(resolve){
+    var r = new FileReader();
+    r.onload = function(){ showToast('تم حفظ الصورة','success'); resolve(r.result); };
+    r.onerror = function(){ resolve(null); };
+    r.readAsDataURL(file);
+  });
+}
+
+/* ---------- جلب من Firebase ---------- */
+async function fetchCollection(cols, mapFn, limitN){
+  if(!window.FirestoreAPI || !window.firebaseDB) return [];
+  var FA = window.FirestoreAPI, db = window.firebaseDB, out = [];
+  for(var i=0;i<cols.length;i++){
+    try {
+      var q = FA.query(FA.collection(db, cols[i]), FA.limit(limitN||300));
+      var snap = await FA.getDocs(q);
+      (snap.docs||[]).forEach(function(d){
+        var data = Object.assign({id:d.id}, d.data ? d.data() : {});
+        if(mapFn) data = mapFn(data);
+        if(data) out.push(data);
+      });
+    } catch(e) {}
+  }
+  return out;
+}
+
+/* ---------- إعدادات الموقع ---------- */
+window.siteConfig = {
+  allowedNationalities: null,
+  joinEnabled: true,
+  joinMaxClicks: 0,
+  joinEndDate: null,
+  activityRegEnabled: true,
+  activityEndDate: null
+};
+window._joinClickCount = 0;
+
+async function loadSiteConfig(){
+  if(!window.FirestoreAPI || !window.firebaseDB) return;
+  try {
+    var FA = window.FirestoreAPI, db = window.firebaseDB;
+    var cols = ['config','siteConfig','settings'];
+    for(var i=0;i<cols.length;i++){
+      try {
+        var snap = await FA.getDocs(FA.query(FA.collection(db, cols[i]), FA.limit(5)));
+        if(snap.empty) continue;
+        snap.docs.forEach(function(doc){
+          var d = doc.data() || {};
+          if(d.allowedNationalities) window.siteConfig.allowedNationalities = d.allowedNationalities;
+          if(d.nationalities) window.siteConfig.allowedNationalities = d.nationalities;
+          if(typeof d.joinEnabled === 'boolean') window.siteConfig.joinEnabled = d.joinEnabled;
+          if(d.joinMaxClicks != null) window.siteConfig.joinMaxClicks = Number(d.joinMaxClicks)||0;
+          if(d.joinEndDate) window.siteConfig.joinEndDate = d.joinEndDate;
+          if(typeof d.activityRegEnabled === 'boolean') window.siteConfig.activityRegEnabled = d.activityRegEnabled;
+          if(d.activityEndDate) window.siteConfig.activityEndDate = d.activityEndDate;
+        });
+        break;
+      } catch(_) {}
+    }
+  } catch(e) {}
+  applyJoinAvailability();
+}
+
+function applyJoinAvailability(){
+  var cfg = window.siteConfig || {};
+  var disabled = false, reason = '';
+  if(cfg.joinEnabled === false){ disabled = true; reason = 'التسجيل مغلق حاليًا'; }
+  if(cfg.joinEndDate){
+    try {
+      var end = new Date(cfg.joinEndDate);
+      if(!isNaN(end.getTime()) && new Date() > end){ disabled = true; reason = 'انتهت فترة التسجيل'; }
+    } catch(_) {}
+  }
+  if(cfg.joinMaxClicks > 0 && window._joinClickCount >= cfg.joinMaxClicks){
+    disabled = true; reason = 'تم الوصول للحد الأقصى من الطلبات';
+  }
+  document.querySelectorAll('.join-card').forEach(function(c){
+    if(disabled){
+      c.style.opacity = '0.5';
+      c.style.pointerEvents = 'none';
+      c.setAttribute('title', reason);
+    } else {
+      c.style.opacity = '';
+      c.style.pointerEvents = '';
+      c.removeAttribute('title');
+    }
+  });
+  var wrap = document.getElementById('joinOptionsWrap');
+  var msg = document.getElementById('joinClosedMsg');
+  if(disabled){
+    if(!msg && wrap){
+      msg = document.createElement('div');
+      msg.id = 'joinClosedMsg';
+      msg.style.cssText = 'text-align:center;padding:16px;background:rgba(229,57,53,.08);border-radius:12px;color:var(--danger);font-size:14px;margin-bottom:16px';
+      msg.textContent = reason;
+      wrap.insertBefore(msg, wrap.firstChild);
+    } else if(msg) msg.textContent = reason;
+  } else if(msg) msg.remove();
+}
+
+/* ---------- التوجيه ---------- */
+function navigate(path, replace){
+  path = path || '/';
+  if(path.charAt(0) !== '/') path = '/' + path;
+  var base = path.split('?')[0];
+  var pageId = ROUTES[base];
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  var page = pageId ? document.getElementById(pageId) : null;
+  if(page) page.classList.add('active');
+  else {
+    var home = document.getElementById('page-home');
+    if(home) home.classList.add('active');
+    base = '/';
+  }
+  document.querySelectorAll('.nav-link').forEach(function(a){
+    a.classList.toggle('active', a.getAttribute('data-path') === base);
+  });
+  try {
+    if(replace) history.replaceState(null, '', '#'+base);
+    else history.pushState(null, '', '#'+base);
+  } catch(e) {}
+  updatePageMeta(base);
+  closeNav();
+  window.scrollTo(0, 0);
+  if(base === '/team') setTimeout(bootTeam, 80);
+  if(base === '/ambassadors') setTimeout(loadAmbassadors, 80);
+  if(base === '/activities') setTimeout(loadActivities, 80);
+  if(base === '/news') setTimeout(loadNews, 80);
+  if(base === '/projects') setTimeout(loadProjects, 80);
+  if(base === '/library') setTimeout(function(){ switchLibTab('posts'); }, 80);
+  if(base === '/profile') setTimeout(refreshMzone, 80);
+  if(base === '/') setTimeout(function(){ loadHomeStats(); loadReviews(); }, 80);
+}
+window.navigate = navigate;
+/* تمت إزالة شريط "التالي/السابق" بين الصفحات العادية نهائيًا — التنقل التسلسلي غير مطلوب،
+   ويبقى التالي/السابق فقط داخل صفحات البطاقات (عبر renderPager) وداخل خطوات استمارة الانضمام. */
+
+/* ---------- القائمة والسمة ---------- */
+var sideNav, sideOverlay, hamburger;
+function openNav(){
+  if(sideNav) sideNav.classList.add('open');
+  if(sideOverlay) sideOverlay.classList.add('open');
+  if(hamburger) hamburger.classList.add('active');
+}
+function closeNav(){
+  if(sideNav) sideNav.classList.remove('open');
+  if(sideOverlay) sideOverlay.classList.remove('open');
+  if(hamburger) hamburger.classList.remove('active');
+}
+function toggleTheme(){
+  document.body.classList.toggle('dark');
+  try { sessionStorage.setItem('nz-theme', document.body.classList.contains('dark') ? 'dark' : 'light'); } catch(e) {}
+  showToast(document.body.classList.contains('dark') ? 'الوضع الداكن' : 'الوضع الفاتح', 'info');
+}
+window.toggleTheme = toggleTheme;
+
+/* ---------- صوت الكاروسيل ---------- */
+var audioCtx = null, lastSound = 0;
+function initAudio(){
+  try {
+    if(!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)();
+    if(audioCtx.state === 'suspended') audioCtx.resume();
+  } catch(e) {}
+}
+function playNavSound(){
+  try {
+    initAudio();
+    if(!audioCtx) return;
+    var now = audioCtx.currentTime;
+    var o1 = audioCtx.createOscillator(), g1 = audioCtx.createGain();
+    o1.type = 'triangle';
+    o1.frequency.setValueAtTime(950, now);
+    o1.frequency.exponentialRampToValueAtTime(420, now+0.045);
+    g1.gain.setValueAtTime(0.0001, now);
+    g1.gain.exponentialRampToValueAtTime(0.055, now+0.004);
+    g1.gain.exponentialRampToValueAtTime(0.0001, now+0.065);
+    o1.connect(g1); g1.connect(audioCtx.destination);
+    o1.start(now); o1.stop(now+0.07);
+  } catch(e) {}
+}
+
+/* صوت واهتزاز حقيقيان عند النجاح/الخطأ في أي استمارة بالموقع */
+function playFeedback(type){
+  try {
+    initAudio();
+    if(audioCtx){
+      var now = audioCtx.currentTime;
+      var o = audioCtx.createOscillator(), g = audioCtx.createGain();
+      o.type = type === 'success' ? 'sine' : 'sawtooth';
+      if(type === 'success'){
+        o.frequency.setValueAtTime(520, now);
+        o.frequency.exponentialRampToValueAtTime(880, now+0.14);
+      } else {
+        o.frequency.setValueAtTime(300, now);
+        o.frequency.exponentialRampToValueAtTime(140, now+0.18);
+      }
+      g.gain.setValueAtTime(0.0001, now);
+      g.gain.exponentialRampToValueAtTime(0.09, now+0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, now+0.22);
+      o.connect(g); g.connect(audioCtx.destination);
+      o.start(now); o.stop(now+0.24);
+    }
+  } catch(e) {}
+  try {
+    if(navigator.vibrate) navigator.vibrate(type === 'success' ? [30] : [40,60,40]);
+  } catch(e) {}
+}
+window.playFeedback = playFeedback;
+
+/* ---------- الفريق ---------- */
+function buildSlide(p){
+  return '<div class="swiper-slide"><div class="team-card">'+
+    '<div class="team-card-image-wrapper"><img class="team-card-image" src="'+esc(p.photo||UNK)+'" alt="" loading="lazy" onerror="this.src=\''+UNK+'\'"></div>'+
+    '<div class="team-card-content"><div class="team-card-info"><h3>'+esc(p.name)+'</h3><p>'+esc(p.role||'')+'</p></div>'+
+    '<button type="button" class="team-profile-btn" onclick="openProfile(\''+esc(p.id)+'\')">عرض الملف الشخصي</button></div></div></div>';
+}
+
+function bootSwiper(el){
+  if(!el || typeof Swiper === 'undefined') return null;
+  if(el.swiper){ try { el.swiper.destroy(true, true); } catch(_) {} }
+  var slideCount = el.querySelectorAll('.swiper-slide').length;
+  var enableLoop = slideCount >= 3;
+  if(slideCount > 0 && slideCount < 5){
+    var wrap = el.querySelector('.swiper-wrapper');
+    if(wrap){
+      var html = wrap.innerHTML;
+      while(wrap.querySelectorAll('.swiper-slide').length < 6) wrap.insertAdjacentHTML('beforeend', html);
+      enableLoop = true;
+    }
+  }
+  if(slideCount === 0) return null;
+  return new Swiper(el, {
+    effect: 'coverflow',
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: 'auto',
+    spaceBetween: 20,
+    loop: enableLoop,
+    loopAdditionalSlides: 2,
+    speed: 500,
+    coverflowEffect: { rotate: 10, stretch: 0, depth: 90, modifier: 1, slideShadows: true },
+    on: {
+      slideChangeTransitionStart: function(){ playNavSound(); },
+      init: function(){
+        var self = this;
+        requestAnimationFrame(function(){
+          self.update();
+          if(self.slideToLoop) self.slideToLoop(0, 0);
+          else self.slideTo(0, 0);
+        });
+      }
+    }
+  });
+}
+
+async function bootTeam(){
+  var a = document.getElementById('teamAdminSlides');
+  var e = document.getElementById('teamExpertsSlides');
+  if(!a) return;
+  var admin = await fetchCollection(['adminMembers','teams','team','siteTeam'], function(d){
+    var st = String(d.status||'').toLowerCase();
+    if(st && st !== 'مقبول' && st !== 'accepted' && st !== 'approved') return null;
+    var role = d.position || d.title || d.role || d.job || '';
+    if(/^(admin|user|member)$/i.test(role)) role = '';
+    return { id: d.id||d.username, name: d.fullName||d.name||'عضو', role: role, photo: d.photoUrl||d.photo||d.avatar||UNK };
+  }, 300);
+  var experts = await fetchCollection(['trainers','experts'], function(d){
+    var st = String(d.status||'').toLowerCase();
+    if(st && st !== 'مقبول' && st !== 'accepted') return null;
+    return { id: d.id||d.username, name: d.fullName||d.name||'مؤطر', role: d.position||d.trainingField||d.title||'مؤطر', photo: d.photoUrl||d.photo||UNK };
+  }, 300);
+
+  admin.sort(function(x, y){
+    var rx = String(x.role||''), ry = String(y.role||'');
+    var px = /رئيس المنتدى|الرئيس|president/i.test(rx) ? 0 : /نائب/i.test(rx) ? 1 : 2;
+    var py = /رئيس المنتدى|الرئيس|president/i.test(ry) ? 0 : /نائب/i.test(ry) ? 1 : 2;
+    return px - py;
+  });
+
+  window._teamAdminList = admin;
+  window._teamExpertsList = experts;
+  a.innerHTML = admin.map(buildSlide).join('') || '<div class="empty-state"><p>لا أعضاء في المجلس حاليًا</p></div>';
+  requestAnimationFrame(function(){ bootSwiper(document.getElementById('teamSwiperAdmin')); });
+  if(e){
+    e.innerHTML = experts.map(buildSlide).join('');
+    requestAnimationFrame(function(){ bootSwiper(document.getElementById('teamSwiperExperts')); });
+  }
+}
+
+function showOrgPositions(){
+  var html = '';
+  Object.keys(POSITIONS).forEach(function(cell){
+    html += '<div style="margin-bottom:16px"><h4 style="color:var(--primary);font-size:14px;margin-bottom:8px">'+esc(cell)+'</h4><ul style="padding-right:18px;font-size:13px;color:var(--text-secondary)">';
+    POSITIONS[cell].forEach(function(p){ html += '<li style="margin-bottom:4px">'+esc(p)+'</li>'; });
+    html += '</ul></div>';
+  });
+  html += '<p style="font-size:12px;color:var(--text-muted);margin-top:12px">رؤساء الخلايا والمصالح يُرشَّحون عبر بوابة منفصلة.</p>';
+  var ov = document.createElement('div');
+  ov.className = 'modal-overlay';
+  ov.onclick = function(e){ if(e.target === ov) ov.remove(); };
+  ov.innerHTML = '<div class="modal-box" style="max-width:520px"><button class="modal-close" onclick="this.closest(\'.modal-overlay\').remove()"><i class="fas fa-times"></i></button><h3 style="margin-bottom:16px">المناصب التنظيمية</h3>'+html+'</div>';
+  document.body.appendChild(ov);
+}
+window.showOrgPositions = showOrgPositions;
+
+/* ---------- الملف الشخصي ---------- */
+async function openProfile(id){
+  if(window.__profLock) return;
+  window.__profLock = true;
+  setTimeout(function(){ window.__profLock = false; }, 800);
+  var key = String(id||'').trim().replace(/^@/,'');
+  if(!key) return;
+  var existing = document.getElementById('fbProfileOverlay');
+  if(existing) existing.remove();
+  var loading = document.createElement('div');
+  loading.id = 'fbProfileOverlay';
+  loading.className = 'modal-overlay';
+  loading.innerHTML = '<div class="modal-box" style="padding:28px;text-align:center"><i class="fas fa-spinner fa-spin" style="font-size:22px;color:var(--primary-light)"></i></div>';
+  document.body.appendChild(loading);
+
+  var data = null;
+  var caches = [].concat(window._teamAdminList||[], window._teamExpertsList||[], window.ambassadorsCache||[]);
+  data = caches.find(function(p){ return String(p.id)===key || String(p.username||'')===key; }) || null;
+
+  if(!data && window.FirestoreAPI && window.firebaseDB){
+    var FA = window.FirestoreAPI, D = window.firebaseDB;
+    var cols = ['userProfiles','mzoneAccounts','ambassadors','members','volunteers','adminMembers','trainers','experts','teams','team'];
+    for(var i=0;i<cols.length && !data;i++){
+      try {
+        var ds = await FA.getDoc(FA.doc(D, cols[i], key));
+        if(ds && ds.exists()) data = Object.assign({id:ds.id}, ds.data());
+      } catch(_) {}
+    }
+    if(!data){
+      for(var i=0;i<cols.length && !data;i++){
+        try {
+          var q = await FA.getDocs(FA.query(FA.collection(D, cols[i]), FA.where('username','==',key), FA.limit(1)));
+          if(!q.empty){ var d0 = q.docs[0]; data = Object.assign({id:d0.id}, d0.data()); }
+        } catch(_) {}
+      }
+    }
+  }
+  if(!data){
+    loading.innerHTML = '<div class="modal-box" style="padding:24px;text-align:center"><div style="font-weight:700;margin-bottom:10px">لم يُعثر على الحساب</div><button class="btn-primary" onclick="document.getElementById(\'fbProfileOverlay\').remove()">إغلاق</button></div>';
+    return;
+  }
+
+  var name = data.fullName || data.name || 'عضو';
+  var photo = data.photoUrl || data.photo || data.avatar || data.image || UNK;
+  var cover = data.coverUrl || data.cover || data.banner || '';
+  var role = data.position || data.title || data.role || data.job || '';
+  if(/^(admin|user|member)$/i.test(String(role))) role = '';
+  var wilaya = data.wilaya || data.representWilaya || '';
+  var commune = data.commune || data.city || '';
+  var bio = data.bio || data.about || data.description || '';
+  var education = data.education || data.study || data.university || '';
+  var email = (data.privacyEmail===false || data.showEmail===false) ? '' : (data.email||'');
+  var phone = (data.privacyPhone===false || data.showPhone===false) ? '' : (data.phone||'');
+  var social = data.social || data.socialLink || '';
+
+  var infoHTML = '';
+  if(role) infoHTML += '<div class="prof-row"><span style="color:var(--text-muted)">المنصب</span><span style="font-weight:600">'+esc(role)+'</span></div>';
+  if(education) infoHTML += '<div class="prof-row"><span style="color:var(--text-muted)">التعليم</span><span style="font-weight:600">'+esc(education)+'</span></div>';
+  if(wilaya) infoHTML += '<div class="prof-row"><span style="color:var(--text-muted)">السكن / الولاية</span><span style="font-weight:600">'+esc(wilaya+(commune?' — '+commune:''))+'</span></div>';
+  if(data.nationality) infoHTML += '<div class="prof-row"><span style="color:var(--text-muted)">الجنسية</span><span style="font-weight:600">'+esc(data.nationality)+'</span></div>';
+  if(data.membershipNumber) infoHTML += '<div class="prof-row"><span style="color:var(--text-muted)">رقم العضوية</span><span style="font-weight:600;font-family:var(--font-mono)">'+esc(data.membershipNumber)+'</span></div>';
+  if(!infoHTML) infoHTML = '<p style="color:var(--text-muted);font-size:13px;padding:12px 0">لا توجد معلومات إضافية</p>';
+
+  var contactHTML = '';
+  if(email) contactHTML += '<div class="prof-row"><span style="color:var(--text-muted)">البريد</span><a href="mailto:'+esc(email)+'" style="font-weight:600;color:var(--primary)">'+esc(email)+'</a></div>';
+  if(phone) contactHTML += '<div class="prof-row"><span style="color:var(--text-muted)">الهاتف</span><a href="tel:'+esc(phone)+'" style="font-weight:600;direction:ltr">'+esc(phone)+'</a></div>';
+  if(social) contactHTML += '<div class="prof-row"><span style="color:var(--text-muted)">التواصل</span><a href="'+esc(social)+'" target="_blank" rel="noopener" style="font-weight:600;color:var(--primary)">رابط</a></div>';
+  if(!contactHTML) contactHTML = '<p style="color:var(--text-muted);font-size:13px;padding:12px 0">لا توجد بيانات تواصل عامة</p>';
+
+  loading.innerHTML = '<div class="modal-box" style="max-width:480px;padding:0;overflow:hidden">'+
+    '<button class="modal-close" onclick="document.getElementById(\'fbProfileOverlay\').remove()"><i class="fas fa-times"></i></button>'+
+    '<div class="prof-cover">'+(cover?'<img src="'+esc(cover)+'" alt="" onerror="this.style.display=\'none\'">':'')+'</div>'+
+    '<div style="padding:0 20px 20px;text-align:center">'+
+      '<img class="prof-avatar" src="'+esc(photo)+'" onerror="this.src=\''+UNK+'\'" alt="">'+
+      '<h2 style="font-size:18px;margin:10px 0 4px">'+esc(name)+'</h2>'+
+      (role?'<p style="font-size:13px;color:var(--primary);font-weight:600;margin-bottom:6px">'+esc(role)+'</p>':'')+
+      (bio?'<p style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin:8px 0 12px;text-align:right">'+esc(bio)+'</p>':'')+
+      '<div style="display:flex;gap:8px;justify-content:center;margin-bottom:8px;flex-wrap:wrap">'+
+        '<button type="button" class="btn-outline-dark" style="padding:8px 14px;font-size:12px" onclick="shareItem(\'profile\',\''+esc(data.id||key)+'\',\''+esc(name)+'\')"><i class="fas fa-share-alt"></i> مشاركة</button>'+
+        '<button type="button" class="btn-ghost" style="padding:8px 14px;font-size:12px" onclick="reportItem(\'profile\',\''+esc(data.id||key)+'\')"><i class="fas fa-flag"></i> إبلاغ</button>'+
+      '</div>'+
+      '<div class="prof-tabs">'+
+        '<button type="button" class="active" data-pt="info" onclick="switchProfTab(this,\'info\')">المعلومات</button>'+
+        '<button type="button" data-pt="posts" onclick="switchProfTab(this,\'posts\')">المنشورات</button>'+
+        '<button type="button" data-pt="contact" onclick="switchProfTab(this,\'contact\')">التواصل</button>'+
+      '</div>'+
+      '<div id="profTabInfo" style="text-align:right;padding-top:8px">'+infoHTML+'</div>'+
+      '<div id="profTabPosts" style="display:none;text-align:center;padding:16px;color:var(--text-muted);font-size:13px">لا توجد منشورات عامة</div>'+
+      '<div id="profTabContact" style="display:none;text-align:right;padding-top:8px">'+contactHTML+'</div>'+
+    '</div></div>';
+  loading.onclick = function(e){ if(e.target === loading) loading.remove(); };
+}
+window.openProfile = openProfile;
+
+function switchProfTab(btn, tab){
+  var box = btn.closest('.modal-box');
+  if(!box) return;
+  box.querySelectorAll('.prof-tabs button').forEach(function(b){ b.classList.toggle('active', b === btn); });
+  var info = box.querySelector('#profTabInfo');
+  var posts = box.querySelector('#profTabPosts');
+  var contact = box.querySelector('#profTabContact');
+  if(info) info.style.display = tab==='info' ? 'block' : 'none';
+  if(posts) posts.style.display = tab==='posts' ? 'block' : 'none';
+  if(contact) contact.style.display = tab==='contact' ? 'block' : 'none';
+}
+window.switchProfTab = switchProfTab;
+
+/* ---------- السفراء ---------- */
+async function loadAmbassadors(){
+  var g = document.getElementById('ambGrid');
+  if(!g) return;
+  g.innerHTML = '<div class="empty-state"><i class="fas fa-spinner fa-spin"></i><p>جاري التحميل...</p></div>';
+  var list = await fetchCollection(['ambassadors'], function(d){
+    var st = String(d.status||d.verificationStatus||'').toLowerCase();
+    if(st && st !== 'مقبول' && st !== 'accepted' && st !== 'approved' && st !== '') return null;
+    return {
+      id: d.id||d.username,
+      name: d.fullName||d.name||'سفير',
+      wilaya: d.representWilaya||d.wilaya||'',
+      photo: d.photoUrl||d.photo||UNK,
+      hqAddress: d.hqAddress||'', hqPhone: d.hqPhone||'', hqHours: d.hqHours||'', hqUrl: d.hqUrl||d.mapsUrl||''
+    };
+  }, 300);
+  window.ambassadorsCache = list;
+  var available = {};
+  list.forEach(function(a){ if(a.wilaya) available[a.wilaya] = true; });
+  var dotsG = document.getElementById('dzWilayaDots');
+  if(dotsG){
+    dotsG.innerHTML = WILAYAS.map(function(w){
+      var xy = WILAYA_COORDS[w];
+      if(!xy) return '';
+      var has = !!available[w];
+      return '<circle class="amb-dot" data-wilaya="'+w+'" cx="'+xy[0]+'" cy="'+xy[1]+'" r="'+(has?7:5)+'" '+
+        'fill="'+(has?'#2ECC5A':'#9ab5a0')+'" stroke="#fff" stroke-width="1.5" style="cursor:pointer;opacity:'+(has?'1':'.45')+'"><title>'+w+(has?' — يوجد سفير':' — شاغرة')+'</title></circle>';
+    }).join('');
+  }
+  document.querySelectorAll('.amb-dot').forEach(function(dot){
+    var w = dot.getAttribute('data-wilaya');
+    dot.onclick = function(){
+      var a = list.find(function(x){ return x.wilaya === w; });
+      if(a) openProfile(a.id);
+      else showToast('لا يوجد سفير معتمد في '+w+' حاليًا', 'info');
+    };
+  });
+  renderAmbassadorsPage(0);
+}
+function renderAmbassadorsPage(page){
+  var g = document.getElementById('ambGrid');
+  if(!g) return;
+  var list = window.ambassadorsCache || [];
+  if(!list.length){
+    g.innerHTML = '<div class="empty-state"><i class="fas fa-map"></i><p>لا يوجد سفراء معتمدون حاليًا</p></div>';
+    renderPager('ambPager', 0, 0, renderAmbassadorsPage);
+    return;
+  }
+  var slice = list.slice(page*PAGE_SIZE, page*PAGE_SIZE+PAGE_SIZE);
+  g.innerHTML = slice.map(function(a){
+    return '<div class="amb-card">'+
+      '<img src="'+esc(a.photo)+'" onerror="this.src=\''+UNK+'\'" alt="">'+
+      '<h3>'+esc(a.name)+'</h3>'+
+      '<div class="wilaya"><i class="fas fa-map-marker-alt"></i> '+esc(a.wilaya)+'</div>'+
+      '<div class="btns">'+
+        '<button class="btn-outline-dark" style="padding:8px 14px;font-size:12px" onclick="openProfile(\''+esc(a.id)+'\')"><i class="fas fa-user"></i> الملف</button>'+
+        (a.hqAddress ? '<button class="btn-primary" style="padding:8px 14px;font-size:12px" onclick="openHQ(\''+esc(a.id)+'\')"><i class="fas fa-map-marker-alt"></i> المقر</button>' : '')+
+      '</div></div>';
+  }).join('');
+  renderPager('ambPager', list.length, page, renderAmbassadorsPage);
+}
+window.loadAmbassadors = loadAmbassadors;
+
+
+function openHQ(id){
+  var a = (window.ambassadorsCache||[]).find(function(x){ return x.id === id; });
+  if(!a) return;
+  var ov = document.createElement('div');
+  ov.className = 'modal-overlay';
+  ov.onclick = function(e){ if(e.target === ov) ov.remove(); };
+  ov.innerHTML = '<div class="modal-box"><button class="modal-close" onclick="this.closest(\'.modal-overlay\').remove()"><i class="fas fa-times"></i></button>'+
+    '<h3 style="margin-bottom:12px">مقر السفير — '+esc(a.wilaya)+'</h3>'+
+    '<p style="font-size:14px;margin-bottom:8px"><strong>العنوان:</strong> '+esc(a.hqAddress||'غير متوفر')+'</p>'+
+    '<p style="font-size:14px;margin-bottom:8px"><strong>الهاتف:</strong> '+esc(a.hqPhone||'—')+'</p>'+
+    (a.hqHours ? '<p style="font-size:14px;margin-bottom:8px"><strong>الساعات:</strong> '+esc(a.hqHours)+'</p>' : '')+
+    (a.hqUrl ? '<p style="font-size:14px"><a href="'+esc(a.hqUrl)+'" target="_blank" rel="noopener" style="color:var(--primary)">فتح الخريطة</a></p>' : '')+
+  '</div>';
+  document.body.appendChild(ov);
+}
+window.openHQ = openHQ;
+
+async function showAvailableWilayas(){
+  var occupied = {};
+  (window.ambassadorsCache||[]).forEach(function(a){ if(a.wilaya) occupied[a.wilaya] = true; });
+  var blocked = {};
+  if(window.FirestoreAPI && window.firebaseDB){
+    try {
+      var FA = window.FirestoreAPI, db = window.firebaseDB;
+      var snap = await FA.getDocs(FA.query(FA.collection(db, 'blockedWilayas'), FA.limit(100)));
+      snap.docs.forEach(function(d){
+        var w = (d.data()||{}).wilaya || (d.data()||{}).name || d.id;
+        if(w) blocked[w] = true;
+      });
+    } catch(_) {}
+    try {
+      var snap2 = await FA.getDocs(FA.query(FA.collection(db, 'config'), FA.limit(5)));
+      snap2.docs.forEach(function(d){
+        var arr = (d.data()||{}).blockedWilayas || (d.data()||{}).reservedWilayas || [];
+        if(Array.isArray(arr)) arr.forEach(function(w){ blocked[w] = true; });
+      });
+    } catch(_) {}
+  }
+  var available = WILAYAS.filter(function(w){ return !occupied[w] && !blocked[w]; });
+  var ov = document.createElement('div');
+  ov.className = 'modal-overlay';
+  ov.onclick = function(e){ if(e.target === ov) ov.remove(); };
+  var listHtml = available.length
+    ? available.map(function(w){ return '<span style="display:inline-block;padding:6px 12px;margin:4px;background:rgba(46,204,90,.1);border:1px solid rgba(46,204,90,.25);border-radius:50px;font-size:12px">'+esc(w)+'</span>'; }).join('')
+    : '<p style="color:var(--text-muted)">لا توجد ولايات متاحة حالياً</p>';
+  ov.innerHTML = '<div class="modal-box" style="max-width:520px"><button class="modal-close" onclick="this.closest(\'.modal-overlay\').remove()"><i class="fas fa-times"></i></button>'+
+    '<h3 style="margin-bottom:8px">الولايات المتاحة للتمثيل</h3>'+
+    '<p style="font-size:12px;color:var(--text-muted);margin-bottom:14px">غير المحجوزة وغير المحظورة</p>'+
+    '<div style="max-height:320px;overflow-y:auto">'+listHtml+'</div></div>';
+  document.body.appendChild(ov);
+}
+window.showAvailableWilayas = showAvailableWilayas;
+
+/* ---------- ترقيم الصفحات ---------- */
+function renderPager(pagerId, total, page, onPage){
+  var el = document.getElementById(pagerId);
+  if(!el) return;
+  var pages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+  if(total <= PAGE_SIZE){ el.innerHTML = ''; el.style.display = 'none'; return; }
+  el.style.display = 'flex';
+  el.innerHTML =
+    '<button type="button" class="btn-outline-dark" style="padding:8px 14px;font-size:12px" '+(page<=0?'disabled':'')+' data-pg="prev">السابق</button>'+
+    '<span style="font-size:13px;color:var(--text-muted)">'+(page+1)+' / '+pages+'</span>'+
+    '<button type="button" class="btn-outline-dark" style="padding:8px 14px;font-size:12px" '+(page>=pages-1?'disabled':'')+' data-pg="next">التالي</button>';
+  var prevBtn = el.querySelector('[data-pg="prev"]');
+  var nextBtn = el.querySelector('[data-pg="next"]');
+  if(prevBtn) prevBtn.onclick = function(){ if(page > 0) onPage(page-1); };
+  if(nextBtn) nextBtn.onclick = function(){ if(page < pages-1) onPage(page+1); };
+}
+
+function cardActions(type, id, title){
+  return '<div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap">'+
+    '<button type="button" class="btn-outline-dark" style="padding:6px 10px;font-size:11px" onclick="event.stopPropagation();shareItem(\''+esc(type)+'\',\''+esc(id)+'\',\''+esc(title||'')+'\')"><i class="fas fa-share-alt"></i> مشاركة</button>'+
+    '<button type="button" class="btn-ghost" style="padding:6px 10px;font-size:11px" onclick="event.stopPropagation();reportItem(\''+esc(type)+'\',\''+esc(id)+'\')"><i class="fas fa-flag"></i> إبلاغ</button>'+
+  '</div>';
+}
+
+function shareItem(type, id, title){
+  var url = CANONICAL + '/#/' + type + '?id=' + encodeURIComponent(id);
+  if(navigator.share){
+    navigator.share({ title: title||'نزاهة', url: url }).catch(function(){});
+  } else {
+    try { navigator.clipboard.writeText(url); showToast('تم نسخ الرابط','success'); }
+    catch(e){ showToast(url,'info'); }
+  }
+}
+window.shareItem = shareItem;
+
+function reportItem(type, id){
+  var ov = document.createElement('div');
+  ov.className = 'modal-overlay';
+  ov.onclick = function(e){ if(e.target === ov) ov.remove(); };
+  ov.innerHTML = '<div class="modal-box"><button class="modal-close" onclick="this.closest(\'.modal-overlay\').remove()"><i class="fas fa-times"></i></button>'+
+    '<h3 style="margin-bottom:12px">إبلاغ عن محتوى</h3>'+
+    '<div class="form-group"><label>السبب</label><select id="repReason"><option>محتوى غير لائق</option><option>معلومات خاطئة</option><option>انتهاك</option><option>أخرى</option></select></div>'+
+    '<div class="form-group"><label>تفاصيل</label><textarea id="repDetail" rows="3"></textarea></div>'+
+    '<button type="button" class="btn-primary" style="width:100%" id="repGo">إرسال الإبلاغ</button></div>';
+  document.body.appendChild(ov);
+  document.getElementById('repGo').onclick = async function(){
+    var reason = document.getElementById('repReason').value;
+    var detail = sanitizeInput(document.getElementById('repDetail').value);
+    try {
+      if(window.FirestoreAPI && window.firebaseDB){
+        await window.FirestoreAPI.addDoc(window.FirestoreAPI.collection(window.firebaseDB, 'reports'), {
+          type: type, targetId: id, reason: reason, detail: detail,
+          createdAt: window.FirestoreAPI.serverTimestamp()
+        });
+      }
+      showToast('تم إرسال الإبلاغ','success');
+      ov.remove();
+    } catch(e) {
+      showToast('تعذّر الإرسال','error');
+    }
+  };
+}
+window.reportItem = reportItem;
+
+function openDetail(item){
+  var ov = document.createElement('div');
+  ov.className = 'modal-overlay';
+  ov.onclick = function(e){ if(e.target === ov) ov.remove(); };
+  ov.innerHTML = '<div class="modal-box" style="max-width:560px;padding:0;overflow:hidden">'+
+    '<button class="modal-close" onclick="this.closest(\'.modal-overlay\').remove()"><i class="fas fa-times"></i></button>'+
+    (item.img ? '<img src="'+esc(item.img)+'" style="width:100%;height:200px;object-fit:cover" alt="">' : '')+
+    '<div style="padding:20px">'+
+      '<h2 style="font-size:18px;margin-bottom:8px">'+esc(item.title||'')+'</h2>'+
+      (item.meta||item.date||item.place ? '<p style="font-size:12px;color:var(--text-muted);margin-bottom:12px">'+esc([item.meta,item.date,item.place].filter(Boolean).join(' · '))+'</p>' : '')+
+      '<div style="font-size:14px;line-height:1.8;color:var(--text-secondary)">'+esc(item.body||item.desc||'لا توجد تفاصيل إضافية.')+'</div>'+
+      cardActions(item._type||'content', item.id, item.title)+
+      (item.paid !== undefined ? '<div style="margin-top:16px"><button class="btn-primary" onclick="this.closest(\'.modal-overlay\').remove();openActivityReg(\''+esc(item.id)+'\')">سجّل في النشاط</button></div>' : '')+
+    '</div></div>';
+  document.body.appendChild(ov);
+}
+window.openDetail = openDetail;
+
+/* ---------- الأخبار ---------- */
+async function loadNews(){
+  var g = document.getElementById('newsGrid');
+  if(!g) return;
+  g.innerHTML = '<div class="empty-state"><i class="fas fa-spinner fa-spin"></i></div>';
+  var list = await fetchCollection(['news'], function(d){
+    return {
+      id: d.id,
+      title: d.title||d.name||'خبر',
+      img: d.image||d.cover||'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=80',
+      meta: d.date||d.createdAt||'',
+      body: d.body||d.content||d.description||'',
+      _type: 'news'
+    };
+  }, 300);
+  window._newsList = list;
+  renderNewsPage(0);
+}
+function renderNewsPage(page){
+  var g = document.getElementById('newsGrid');
+  if(!g) return;
+  var list = window._newsList || [];
+  if(!list.length){
+    g.innerHTML = '<div class="empty-state"><i class="fas fa-newspaper"></i><p>لا توجد أخبار حاليًا</p></div>';
+    renderPager('newsPager', 0, 0, renderNewsPage);
+    return;
+  }
+  var slice = list.slice(page*PAGE_SIZE, page*PAGE_SIZE+PAGE_SIZE);
+  g.innerHTML = slice.map(function(n){
+    return '<div class="item-card" onclick=\'openDetail('+JSON.stringify(n).replace(/'/g,"&#39;")+')\'>'+
+      '<img src="'+esc(n.img)+'" alt=""><div class="body"><h3>'+esc(n.title)+'</h3>'+
+      '<div class="meta">'+esc(String(n.meta).slice(0,16))+'</div>'+
+      cardActions('news', n.id, n.title)+
+      '</div></div>';
+  }).join('');
+  renderPager('newsPager', list.length, page, renderNewsPage);
+}
+window.loadNews = loadNews;
+
+/* ---------- المشاريع ---------- */
+async function loadProjects(){
+  var g = document.getElementById('projectsGrid');
+  if(!g) return;
+  g.innerHTML = '<div class="empty-state"><i class="fas fa-spinner fa-spin"></i></div>';
+  var list = await fetchCollection(['projects'], function(d){
+    return {
+      id: d.id,
+      title: d.title||d.name||'مشروع',
+      img: d.image||d.cover||'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80',
+      meta: d.status||'',
+      body: d.body||d.description||'',
+      _type: 'projects'
+    };
+  }, 300);
+  window._projectsList = list;
+  renderProjectsPage(0);
+}
+function renderProjectsPage(page){
+  var g = document.getElementById('projectsGrid');
+  if(!g) return;
+  var list = window._projectsList || [];
+  if(!list.length){
+    g.innerHTML = '<div class="empty-state"><i class="fas fa-project-diagram"></i><p>لا توجد مشاريع حاليًا</p></div>';
+    renderPager('projectsPager', 0, 0, renderProjectsPage);
+    return;
+  }
+  var slice = list.slice(page*PAGE_SIZE, page*PAGE_SIZE+PAGE_SIZE);
+  g.innerHTML = slice.map(function(n){
+    return '<div class="item-card" onclick=\'openDetail('+JSON.stringify(n).replace(/'/g,"&#39;")+')\'>'+
+      '<img src="'+esc(n.img)+'" alt=""><div class="body"><h3>'+esc(n.title)+'</h3>'+
+      '<div class="meta">'+esc(n.meta)+'</div>'+
+      cardActions('projects', n.id, n.title)+
+      '</div></div>';
+  }).join('');
+  renderPager('projectsPager', list.length, page, renderProjectsPage);
+}
+window.loadProjects = loadProjects;
+
+/* ---------- الأنشطة ---------- */
+async function loadActivities(){
+  var g = document.getElementById('activitiesGrid');
+  if(!g) return;
+  g.innerHTML = '<div class="empty-state"><i class="fas fa-spinner fa-spin"></i></div>';
+  var list = await fetchCollection(['activities'], function(d){
+    return {
+      id: d.id,
+      title: d.title||d.name||'نشاط',
+      place: d.place||d.location||'',
+      date: d.date||d.dateText||'',
+      price: Number(d.price)||0,
+      paid: !!(d.paid || d.price > 0),
+      regOpen: d.regOpen !== false,
+      regEnd: d.regEnd||d.endDate||'',
+      img: d.image||d.img||d.cover||'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80',
+      body: d.body||d.description||'',
+      category: d.category || 'عمومية',
+      format: d.format || 'حضورية',
+      _type: 'activities'
+    };
+  }, 300);
+  window._activitiesList = list;
+  window._myActivityRegs = [];
+  var u = window.mzoneCurrentUser;
+  if(u && u.email && window.FirestoreAPI && window.firebaseDB){
+    try {
+      var FA = window.FirestoreAPI, db = window.firebaseDB;
+      var snap = await FA.getDocs(FA.query(FA.collection(db,'activityRegistrations'), FA.where('email','==', u.email)));
+      window._myActivityRegs = snap.docs.map(function(d){ return d.data().activityId; });
+    } catch(_) {}
+  }
+  applyActivityFilters();
+}
+
+function setFilterChip(btn){
+  var f = btn.getAttribute('data-f');
+  var v = btn.getAttribute('data-v') || '';
+  var group = btn.parentElement;
+  if(group) group.querySelectorAll('.filter-chip').forEach(function(c){ c.classList.remove('active'); });
+  btn.classList.add('active');
+  if(f==='cat'){ var el=document.getElementById('actFilterCategory'); if(el) el.value=v; }
+  if(f==='price'){ var el=document.getElementById('actFilterPrice'); if(el) el.value=v; }
+  if(f==='fmt'){ var el=document.getElementById('actFilterFormat'); if(el) el.value=v; }
+  applyActivityFilters();
+}
+window.setFilterChip = setFilterChip;
+
+function applyActivityFilters(){
+  var list = window._activitiesList || [];
+  var term = (document.getElementById('actSearch')||{}).value || '';
+  term = term.trim().toLowerCase();
+  var cat = (document.getElementById('actFilterCategory')||{}).value || '';
+  var price = (document.getElementById('actFilterPrice')||{}).value || '';
+  var fmt = (document.getElementById('actFilterFormat')||{}).value || '';
+  window._activitiesFiltered = list.filter(function(a){
+    if(term && (a.title+' '+a.body).toLowerCase().indexOf(term) === -1) return false;
+    if(cat && a.category !== cat) return false;
+    if(price === 'free' && a.paid) return false;
+    if(price === 'paid' && !a.paid) return false;
+    if(fmt && a.format !== fmt) return false;
+    return true;
+  });
+  renderActivitiesPage(0);
+}
+window.applyActivityFilters = applyActivityFilters;
+
+function activityStatus(a){
+  var now = new Date();
+  var ended = false;
+  if(a.regEnd){ try { var e = new Date(a.regEnd); if(!isNaN(e.getTime()) && now > e) ended = true; } catch(_) {} }
+  if(a.regOpen === false) ended = true;
+  var registered = (window._myActivityRegs||[]).indexOf(a.id) !== -1;
+  var eligible = userCanRegisterCategory(a.category);
+  if(registered) return { state:'registered', label:'أنت مسجل بالفعل', badge:'registered', disabled:true };
+  if(ended) return { state:'closed', label:'انتهى التسجيل', badge:'closed', disabled:true };
+  if(!eligible) return { state:'restricted', label:'مخصص لـ: '+categoryEligibilityLabel(a.category), badge:'restricted', disabled:true };
+  return { state:'open', label:'سجّل الآن', badge:'open', disabled:false };
+}
+function categoryEligibilityLabel(cat){
+  if(cat === 'داخلية') return 'المتطوعين والسفراء والمؤطرين';
+  if(cat === 'شمولية') return 'أعضاء المنتدى ومنتسبيه';
+  return 'الجميع';
+}
+function renderActivitiesPage(page){
+  window._activitiesPage = page;
+  var g = document.getElementById('activitiesGrid');
+  if(!g) return;
+  var list = window._activitiesFiltered || window._activitiesList || [];
+  if(!list.length){
+    g.innerHTML = '<div class="empty-state"><i class="fas fa-calendar-alt"></i><p>لا توجد أنشطة مطابقة</p></div>';
+    renderPager('activitiesPager', 0, 0, renderActivitiesPage);
+    return;
+  }
+  var slice = list.slice(page*PAGE_SIZE, page*PAGE_SIZE+PAGE_SIZE);
+  g.innerHTML = slice.map(function(a){
+    var st = activityStatus(a);
+    var json = JSON.stringify(a).replace(/'/g,"&#39;");
+    return '<div class="item-card">'+
+      '<img src="'+esc(a.img)+'" alt="" onclick=\'openDetail('+json+')\'>'+
+      '<div class="body"><h3 onclick=\'openDetail('+json+')\'>'+esc(a.title)+'</h3>'+
+      '<div class="meta">'+esc(a.place)+' · '+esc(a.date)+' · '+(a.paid?('مدفوع '+a.price+' دج'):'مجاني')+' · '+esc(a.format)+'</div>'+
+      '<span class="activity-status-badge '+st.badge+'">'+esc(a.category)+'</span> '+
+      '<div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">'+
+        '<button class="btn-outline-dark" style="padding:8px 12px;font-size:12px" onclick=\'event.stopPropagation();openDetail('+json+')\'>التفاصيل</button>'+
+        '<button class="btn-primary" style="padding:8px 12px;font-size:12px" '+(st.disabled?'disabled title="'+esc(st.label)+'"':'')+' onclick="event.stopPropagation();openActivityReg(\''+esc(a.id)+'\')">'+esc(st.label)+'</button>'+
+      '</div>'+
+      cardActions('activities', a.id, a.title)+
+      '</div></div>';
+  }).join('');
+  renderPager('activitiesPager', list.length, page, renderActivitiesPage);
+}
+window.loadActivities = loadActivities;
+
+function openActivityReg(id){
+  var cfg = window.siteConfig || {};
+  if(cfg.activityRegEnabled === false){ showToast('التسجيل في الأنشطة مغلق حاليًا','warning'); return; }
+  if(cfg.activityEndDate){
+    try {
+      var end = new Date(cfg.activityEndDate);
+      if(!isNaN(end.getTime()) && new Date() > end){ showToast('انتهت فترة التسجيل في الأنشطة','warning'); return; }
+    } catch(_) {}
+  }
+  var a = (window._activitiesList||[]).find(function(x){ return x.id === id; });
+  if(!a){ showToast('النشاط غير متاح','warning'); return; }
+  var st = activityStatus(a);
+  if(st.disabled){ showToast(st.state==='registered' ? 'أنت مسجل بالفعل في هذا النشاط' : (st.state==='closed' ? 'انتهى التسجيل في هذا النشاط' : 'هذا النشاط مخصص لـ: '+categoryEligibilityLabel(a.category)), 'warning'); return; }
+  var panel = document.getElementById('activityRegisterPanel');
+  if(!panel) return;
+  panel.style.display = 'block';
+  document.getElementById('actRegTitle').textContent = 'تسجيل — ' + a.title;
+  document.getElementById('actId').value = a.id;
+  document.getElementById('actTitle').value = a.title;
+  document.getElementById('actPrice').value = a.price || 0;
+  var pb = document.getElementById('paymentBlock');
+  var form = document.getElementById('activityRegForm');
+  if(a.paid || a.price > 0){
+    pb.style.display = 'block';
+    document.getElementById('priceDisplay').value = a.price + ' دج';
+    document.getElementById('discountDisplay').value = '0 دج';
+    document.getElementById('totalDisplay').value = a.price + ' دج';
+    if(form){
+      form.querySelector('[name="paymentMethod"]').required = true;
+      form.querySelector('[name="paymentRef"]').required = true;
+    }
+  } else {
+    pb.style.display = 'none';
+    if(form){
+      form.querySelector('[name="paymentMethod"]').required = false;
+      form.querySelector('[name="paymentRef"]').required = false;
+      form.querySelector('[name="paymentRef"]').value = '';
+    }
+  }
+  var natWrap = document.getElementById('actWilayaWrap');
+  if(natWrap){
+    var lbl = natWrap.querySelector('label');
+    natWrap.innerHTML = (lbl ? lbl.outerHTML : '<label><span class="req">*</span> الولاية / المنطقة</label>') + regionFieldHTML('جزائرية','actWilaya');
+  }
+  var nat = document.getElementById('actNationality');
+  if(nat) nat.innerHTML = nationalityOptions('جزائرية');
+  panel.scrollIntoView({behavior:'smooth'});
+}
+window.openActivityReg = openActivityReg;
+
+async function submitActivityReg(e){
+  e.preventDefault();
+  var form = e.target, btn = form.querySelector('[type="submit"]');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ...';
+  try {
+    var fd = new FormData(form), data = {};
+    fd.forEach(function(v,k){ data[k] = sanitizeInput(v); });
+    var age = ageFromBirth(data.birthDate);
+    if(age !== null && (age < 14 || age > 35)){ showToast('العمر المسموح 14–35 سنة','error'); btn.disabled=false; btn.innerHTML='<i class="fas fa-check"></i> تأكيد التسجيل'; return false; }
+    if(data.phone && data.nationality && !validatePhone(data.phone, data.nationality)){
+      showToast('رقم الهاتف غير صالح لهذه الجنسية','error');
+      btn.disabled=false; btn.innerHTML='<i class="fas fa-check"></i> تأكيد التسجيل'; return false;
+    }
+    var a = (window._activitiesList||[]).find(function(x){ return x.id === data.activityId; }) || {};
+    if(a.category === 'عمومية' && data.nationality && ARAB_NATIONALITIES.indexOf(data.nationality) === -1 && data.nationality !== 'أخرى'){
+      showToast('التسجيل في هذا النشاط متاح للجنسيات العربية فقط','error');
+      btn.disabled=false; btn.innerHTML='<i class="fas fa-check"></i> تأكيد التسجيل'; return false;
+    }
+    var price = Number(data.activityPrice) || 0;
+    if(price > 0){
+      if(!data.paymentRef || !/^NZ-PAY-[A-Za-z0-9]{6}$/i.test(data.paymentRef)){
+        showToast('أدخل رقم عملية دفع صحيح بالصيغة NZ-PAY-XXXXXX','error');
+        btn.disabled=false; btn.innerHTML='<i class="fas fa-check"></i> تأكيد التسجيل'; return false;
+      }
+      var netEl = document.getElementById('totalDisplay');
+      data.amountDue = netEl ? netEl.value : (price+' دج');
+    }
+    data.trackingCode = generateTrackingCode();
+    data.status = 'مؤكد';
+    data.createdAtISO = new Date().toISOString();
+    if(window.FirestoreAPI && window.firebaseDB){
+      await window.FirestoreAPI.addDoc(
+        window.FirestoreAPI.collection(window.firebaseDB, 'activityRegistrations'),
+        Object.assign({}, data, { createdAt: window.FirestoreAPI.serverTimestamp() })
+      );
+    }
+    saveRecentTrack(data.trackingCode);
+    window._myActivityRegs = window._myActivityRegs || [];
+    window._myActivityRegs.push(data.activityId);
+    showToast('تم التسجيل بنجاح','success');
+    form.reset();
+    document.getElementById('activityRegisterPanel').style.display = 'none';
+    openActivityTicket(data, a);
+    if(window._activitiesList) renderActivitiesPage(window._activitiesPage||0);
+  } catch(err) {
+    showToast('تعذّر التسجيل','error');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-check"></i> تأكيد التسجيل';
+  }
+  return false;
+}
+window.submitActivityReg = submitActivityReg;
+
+/* ---------- تذكرة التسجيل في النشاط (QR حقيقي + هيدر بالشعار الرسمي + ختم) ---------- */
+function openActivityTicket(data, activity){
+  var ov = document.createElement('div');
+  ov.className = 'modal-overlay';
+  ov.onclick = function(e){ if(e.target === ov) ov.remove(); };
+  ov.innerHTML = '<div class="modal-box" style="max-width:420px;padding:0;overflow:hidden">'+
+    '<button class="modal-close" style="background:rgba(255,255,255,.85)" onclick="this.closest(\'.modal-overlay\').remove()"><i class="fas fa-times"></i></button>'+
+    '<div class="ticket-doc" id="ticketDoc">'+
+      '<div class="ticket-head">'+
+        '<img src="https://raw.githubusercontent.com/nazahaa36/nazaha-dz/main/hidr.png" onerror="this.src=\''+UNK+'\'" alt="شعار نزاهة">'+
+        '<div><h4>المنتدى الشبابي «نزاهة»</h4><p>تذكرة تسجيل في نشاط</p></div>'+
+      '</div>'+
+      '<div class="ticket-body">'+
+        '<h3>'+esc(activity.title||data.activityTitle||'')+'</h3>'+
+        '<div class="ticket-row"><span>الاسم</span><b>'+esc(data.fullName||'')+'</b></div>'+
+        '<div class="ticket-row"><span>المكان</span><b>'+esc(activity.place||'')+'</b></div>'+
+        '<div class="ticket-row"><span>التاريخ</span><b>'+esc(activity.date||'')+'</b></div>'+
+        '<div class="ticket-row"><span>رقم التتبع</span><b style="font-family:var(--font-mono)">'+esc(data.trackingCode||'')+'</b></div>'+
+        '<div class="ticket-row"><span>الحالة</span><b style="color:#2E8B57">مؤكد ✓</b></div>'+
+        '<div class="ticket-qr" id="ticketQR"></div>'+
+        '<p class="ticket-note">تُثبت هذه الوثيقة إتمام التسجيل في النشاط أعلاه. يُرجى إبرازها عند الحضور.</p>'+
+      '</div>'+
+      '<div class="ticket-foot"><div class="official-stamp"><span>نزاهة</span><small>ختم رسمي</small></div></div>'+
+    '</div>'+
+    '<div style="padding:16px;display:flex;gap:10px"><button type="button" class="btn-outline-dark" style="flex:1" onclick="window.print()"><i class="fas fa-print"></i> طباعة</button><button type="button" class="btn-primary" style="flex:1" onclick="this.closest(\'.modal-overlay\').remove()"><i class="fas fa-check"></i> تم</button></div>'+
+    '</div>';
+  document.body.appendChild(ov);
+  try {
+    new QRCode(document.getElementById('ticketQR'), {
+      text: (data.trackingCode||'')+' | '+(activity.title||''),
+      width: 128, height: 128,
+      colorDark: '#0f3d24', colorLight: '#ffffff'
+    });
+  } catch(_) {}
+}
+window.openActivityTicket = openActivityTicket;
+
+/* ---------- المكتبة ---------- */
+function switchLibTab(tab){
+  document.querySelectorAll('.lib-tab').forEach(function(b){
+    var on = b.getAttribute('data-lib') === tab;
+    b.classList.toggle('active', on);
+    b.style.background = on ? 'var(--primary-light)' : 'var(--surface)';
+    b.style.color = on ? '#fff' : 'var(--text)';
+  });
+  var posts = document.getElementById('libPosts');
+  var books = document.getElementById('libBooks');
+  var apps = document.getElementById('libApps');
+  if(posts) posts.style.display = tab==='posts' ? 'grid' : 'none';
+  if(books) books.style.display = tab==='books' ? 'grid' : 'none';
+  if(apps) apps.style.display = tab==='apps' ? 'grid' : 'none';
+  var pp = document.getElementById('postsPager');
+  var bp = document.getElementById('booksPager');
+  if(pp) pp.style.display = tab==='posts' ? 'flex' : 'none';
+  if(bp) bp.style.display = tab==='books' ? 'flex' : 'none';
+  if(tab === 'posts') loadLibPosts();
+  if(tab === 'books') loadLibBooks();
+  if(tab === 'apps') loadLibApps();
+}
+window.switchLibTab = switchLibTab;
+
+async function loadLibPosts(){
+  var g = document.getElementById('libPosts');
+  if(!g) return;
+  var list = await fetchCollection(['posts','libraryPosts','publications'], function(d){
+    return { id:d.id, title:d.title||d.name, img:d.image||d.cover||'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80', meta:d.category||'منشور', body:d.body||d.content||'', _type:'posts' };
+  }, 300);
+  window._postsList = list;
+  renderPostsPage(0);
+}
+function renderPostsPage(page){
+  var g = document.getElementById('libPosts');
+  if(!g) return;
+  var list = window._postsList || [];
+  var pp = document.getElementById('postsPager');
+  if(pp) pp.style.display = list.length > PAGE_SIZE ? 'flex' : 'none';
+  if(!list.length){
+    g.innerHTML = '<div class="empty-state"><i class="fas fa-file-alt"></i><p>لا توجد منشورات حاليًا</p></div>';
+    renderPager('postsPager', 0, 0, renderPostsPage);
+    return;
+  }
+  var slice = list.slice(page*PAGE_SIZE, page*PAGE_SIZE+PAGE_SIZE);
+  g.innerHTML = slice.map(function(n){
+    return '<div class="item-card" onclick=\'openDetail('+JSON.stringify(n).replace(/'/g,"&#39;")+')\'><img src="'+esc(n.img)+'" alt=""><div class="body"><h3>'+esc(n.title)+'</h3><div class="meta">'+esc(n.meta||'')+'</div>'+cardActions('posts',n.id,n.title)+'</div></div>';
+  }).join('');
+  renderPager('postsPager', list.length, page, renderPostsPage);
+}
+
+async function loadLibBooks(){
+  var g = document.getElementById('libBooks');
+  if(!g) return;
+  var list = await fetchCollection(['books'], function(d){
+    return { id:d.id, title:d.title||d.name, img:d.cover||d.image||'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&q=80', meta:d.author||'كتاب', body:d.description||d.body||'', _type:'books' };
+  }, 300);
+  window._booksList = list;
+  renderBooksPage(0);
+}
+function renderBooksPage(page){
+  var g = document.getElementById('libBooks');
+  if(!g) return;
+  var list = window._booksList || [];
+  var pp = document.getElementById('booksPager');
+  if(pp) pp.style.display = list.length > PAGE_SIZE ? 'flex' : 'none';
+  if(!list.length){
+    g.innerHTML = '<div class="empty-state"><i class="fas fa-book"></i><p>لا توجد كتب حاليًا</p></div>';
+    renderPager('booksPager', 0, 0, renderBooksPage);
+    return;
+  }
+  var slice = list.slice(page*PAGE_SIZE, page*PAGE_SIZE+PAGE_SIZE);
+  g.innerHTML = slice.map(function(n){
+    return '<div class="item-card" onclick=\'openDetail('+JSON.stringify(n).replace(/'/g,"&#39;")+')\'><img src="'+esc(n.img)+'" alt="" style="height:200px;object-fit:contain;background:#f7f8f7;padding:12px"><div class="body"><h3>'+esc(n.title)+'</h3><div class="meta">'+esc(n.meta||'')+'</div>'+cardActions('books',n.id,n.title)+'</div></div>';
+  }).join('');
+  renderPager('booksPager', list.length, page, renderBooksPage);
+}
+
+function loadLibApps(){
+  window._appsList = APPS.slice();
+  renderAppsPage(0);
+}
+function renderAppsPage(page){
+  var g = document.getElementById('libApps');
+  if(!g) return;
+  var list = window._appsList || APPS;
+  var pager = document.getElementById('appsPager');
+  if(!pager){
+    pager = document.createElement('div');
+    pager.id = 'appsPager';
+    pager.className = 'pager-bar';
+    pager.style.cssText = 'display:flex;justify-content:center;gap:12px;margin-top:20px;align-items:center';
+    g.parentNode.insertBefore(pager, g.nextSibling);
+  }
+  if(!list.length){
+    g.innerHTML = '<div class="empty-state"><i class="fas fa-mobile-alt"></i><p>لا توجد تطبيقات</p></div>';
+    renderPager('appsPager', 0, 0, renderAppsPage);
+    return;
+  }
+  var slice = list.slice(page*PAGE_SIZE, page*PAGE_SIZE+PAGE_SIZE);
+  g.innerHTML = slice.map(function(a){
+    return '<div class="item-card" style="padding:20px;text-align:center;cursor:pointer" onclick="openApp(\''+a.id+'\')">'+
+      '<i class="fas '+a.icon+'" style="font-size:28px;color:var(--primary-light);margin-bottom:10px"></i>'+
+      '<h3 style="font-size:15px">'+a.title+'</h3><div class="meta">'+a.desc+'</div>'+
+      cardActions('apps', a.id, a.title)+
+    '</div>';
+  }).join('');
+  renderPager('appsPager', list.length, page, renderAppsPage);
+}
+window.renderAppsPage = renderAppsPage;
+
+window.openApp = openApp;
+
+
+/* ---------- التقييمات ---------- */
+async function loadReviews(){
+  var g = document.getElementById('reviewsGrid');
+  if(!g) return;
+  var list = [];
+  if(window.FirestoreAPI && window.firebaseDB){
+    try {
+      var FA = window.FirestoreAPI, db = window.firebaseDB;
+      var snap = await FA.getDocs(FA.query(FA.collection(db, 'reviews'), FA.limit(20)));
+      snap.docs.forEach(function(doc){
+        var d = doc.data() || {};
+        if(d.status === 'مرفوض' || d.status === 'rejected') return;
+        list.push({ name: d.name||'عضو', rating: Number(d.rating)||5, comment: d.comment||'' });
+      });
+    } catch(_) {}
+  }
+  if(!list.length){
+    g.style.animation = 'none';
+    g.innerHTML = '<div style="text-align:center;color:var(--text-muted);font-size:13px;padding:12px;width:100%">كن أول من يقيّم تجربته</div>';
+    loadPartners();
+    return;
+  }
+  window._reviewsList = list;
+  window._reviewIdx = 0;
+  function renderOneReview(){
+    var r = window._reviewsList[window._reviewIdx % window._reviewsList.length];
+    var stars = '';
+    for(var i=0;i<5;i++) stars += '<i class="fas fa-star" style="color:'+(i<r.rating?'#C8A84E':'#d8e4db')+'"></i>';
+    g.style.animation = 'none';
+    g.innerHTML = '<div class="review-card" style="width:min(320px,90vw);margin:0 auto;transition:opacity .4s">'+
+      '<div class="stars">'+stars+'</div>'+
+      '<p style="white-space:pre-wrap">'+esc(r.comment||'')+'</p>'+
+      '<div class="name">'+esc(r.name)+'</div></div>';
+    window._reviewIdx++;
+  }
+  renderOneReview();
+  if(window._reviewTimer) clearInterval(window._reviewTimer);
+  if(list.length > 1){
+    window._reviewTimer = setInterval(renderOneReview, 4500);
+  }
+  loadPartners();
+}
+
+/* ---------- شريط الشركاء الحقيقي ---------- */
+async function loadPartners(){
+  var wrap = document.getElementById('partnersWrap');
+  var track = document.getElementById('partnersTrack');
+  if(!wrap || !track) return;
+  var list = [];
+  if(window.FirestoreAPI && window.firebaseDB){
+    try {
+      var FA = window.FirestoreAPI, db = window.firebaseDB;
+      var snap = await FA.getDocs(FA.query(FA.collection(db, 'partners'), FA.limit(30)));
+      snap.docs.forEach(function(doc){
+        var d = doc.data() || {};
+        var logo = d.logo || d.logoUrl || d.image;
+        if(logo) list.push({ name: d.name||'شريك', logo: logo, url: d.url||d.link||'' });
+      });
+    } catch(_) {}
+  }
+  if(!list.length){ wrap.style.display = 'none'; return; }
+  var itemsHTML = list.map(function(p){
+    var img = '<img src="'+esc(p.logo)+'" alt="'+esc(p.name)+'" title="'+esc(p.name)+'" loading="lazy">';
+    return p.url ? '<a href="'+esc(p.url)+'" target="_blank" rel="noopener">'+img+'</a>' : img;
+  }).join('');
+  track.innerHTML = itemsHTML + itemsHTML;
+  wrap.style.display = 'block';
+}
+window.loadPartners = loadPartners;
+
+function setRateStars(n){
+  var picker = document.getElementById('starPicker');
+  var val = document.getElementById('rateVal');
+  if(!picker || !val) return;
+  val.value = n;
+  picker.querySelectorAll('i').forEach(function(i){
+    i.classList.toggle('active', Number(i.getAttribute('data-v')) <= n);
+  });
+}
+window.setRateStars = setRateStars;
+
+function openRateModal(){
+  var ov = document.createElement('div');
+  ov.className = 'modal-overlay';
+  ov.onclick = function(e){ if(e.target === ov) ov.remove(); };
+  ov.innerHTML = '<div class="modal-box"><button class="modal-close" onclick="this.closest(\'.modal-overlay\').remove()"><i class="fas fa-times"></i></button>'+
+    '<h3 style="margin-bottom:14px"><i class="fas fa-star" style="color:#C8A84E"></i> قيّم تجربتك</h3>'+
+    '<div class="form-group"><label><span class="req">*</span> التقييم</label>'+
+      '<div class="star-picker" id="starPicker" dir="ltr">'+
+        [5,4,3,2,1].map(function(n){ return '<i class="fas fa-star" data-v="'+n+'" onclick="setRateStars('+n+')"></i>'; }).join('')+
+      '</div>'+
+      '<input type="hidden" id="rateVal" value="5">'+
+    '</div>'+
+    '<div class="form-group"><label><span class="req">*</span> الاسم الكامل</label><input id="rateName" required placeholder="اسمك"></div>'+
+    '<div class="form-group"><label><span class="req">*</span> تعليقك</label><textarea id="rateText" rows="3" required minlength="3" placeholder="شاركنا رأيك في تجربتك مع نزاهة"></textarea></div>'+
+    '<button type="button" class="btn-primary" style="width:100%" id="rateGo"><i class="fas fa-paper-plane"></i> إرسال التقييم</button></div>';
+  document.body.appendChild(ov);
+  setRateStars(5);
+  document.getElementById('rateGo').onclick = async function(){
+    var text = sanitizeInput(document.getElementById('rateText').value);
+    var name = sanitizeInput(document.getElementById('rateName').value);
+    if(!name){ showToast('أدخل اسمك','warning'); return; }
+    if(!text || text.length < 3){ showToast('اكتب تعليقًا','warning'); return; }
+    try {
+      if(window.firebaseDB){
+        await window.firebaseDB.collection('reviews').add({
+          rating: Number(document.getElementById('rateVal').value),
+          name: name,
+          comment: text,
+          status: 'مراجعة',
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+      }
+      showToast('شكرًا لتقييمك','success');
+      ov.remove();
+      loadReviews();
+    } catch(e) {
+      showToast('تعذّر الإرسال','error');
+    }
+  };
+}
+window.openRateModal = openRateModal;
+
+/* ---------- الإحصائيات ---------- */
+async function loadHomeStats(){
+  if(!window.FirestoreAPI || !window.firebaseDB) return;
+  try {
+    var FA = window.FirestoreAPI, db = window.firebaseDB;
+    var counts = { members:0, activities:0, projects:0, countries:0 };
+    try { var m = await FA.getDocs(FA.query(FA.collection(db,'members'), FA.limit(500))); counts.members = m.size||m.docs.length; } catch(_) {}
+    try { var a = await FA.getDocs(FA.query(FA.collection(db,'activities'), FA.limit(200))); counts.activities = a.size||a.docs.length; } catch(_) {}
+    try { var p = await FA.getDocs(FA.query(FA.collection(db,'projects'), FA.limit(100))); counts.projects = p.size||p.docs.length; } catch(_) {}
+    try { var amb = await FA.getDocs(FA.query(FA.collection(db,'ambassadors'), FA.limit(100))); counts.countries = amb.size||amb.docs.length; } catch(_) {}
+    var els = document.querySelectorAll('[data-count]');
+    if(counts.members) els[0] && els[0].setAttribute('data-count', counts.members);
+    if(counts.activities) els[1] && els[1].setAttribute('data-count', counts.activities);
+    if(counts.projects) els[2] && els[2].setAttribute('data-count', counts.projects);
+    if(counts.countries) els[3] && els[3].setAttribute('data-count', counts.countries);
+    animateStats();
+  } catch(e) {}
+}
+function animateStats(){
+  document.querySelectorAll('[data-count]').forEach(function(el){
+    var target = +el.getAttribute('data-count') || 0;
+    var n = 0;
+    var step = Math.max(1, Math.floor(target/40));
+    var t = setInterval(function(){
+      n += step;
+      if(n >= target){ n = target; clearInterval(t); }
+      el.textContent = n;
+    }, 30);
+  });
+}
+
+/* ---------- حسابي ---------- */
+function refreshMzone(){
+  var box = document.getElementById('mzoneBox');
+  if(!box) return;
+  var u = window.currentUser || window.mzoneCurrentUser;
+  if(u){
+    var rolesHTML = (window.mzoneUserRoles||[]).map(function(r){ return '<span class="role-badge">'+esc(r)+'</span>'; }).join('');
+    box.innerHTML = '<div style="text-align:center"><img src="'+esc(u.photoUrl||u.photo||UNK)+'" style="width:72px;height:72px;border-radius:50%;margin:0 auto 10px;object-fit:cover" onerror="this.src=\''+UNK+'\'">'+
+      '<h3 style="margin-bottom:4px">'+esc(u.fullName||u.name||u.username||'عضو')+'</h3>'+
+      '<p style="font-size:13px;color:var(--text-muted);margin-bottom:8px">'+(u.username?'@'+esc(u.username):'')+(u.membershipNumber?' · '+esc(u.membershipNumber):'')+'</p>'+
+      '<div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:14px">'+(rolesHTML||'<span class="role-badge">جارٍ التحقق...</span>')+'</div>'+
+      '<div style="display:flex;flex-direction:column;gap:8px">'+
+        '<button type="button" class="btn-outline-dark" onclick="openAccountSettings()">الإعدادات</button>'+
+        '<button type="button" class="btn-secondary" onclick="mzoneLogout()">خروج</button></div></div>';
+    if(!window.mzoneUserRoles){
+      determineUserRoles().then(function(){ refreshMzone(); if(window._activitiesList) renderActivitiesPage(window._activitiesPage||0); });
+    }
+  } else {
+    box.innerHTML = '<div style="text-align:center;margin-bottom:12px"><i class="fas fa-user-circle" style="font-size:56px;color:var(--primary-light)"></i></div>'+
+      '<div class="form-group" style="text-align:right;margin-bottom:10px"><label>اسم المستخدم أو رقم العضوية</label><input id="mzUser" autocomplete="username"></div>'+
+      '<div class="form-group" style="text-align:right;margin-bottom:12px"><label>كلمة المرور</label><input id="mzPass" type="password" autocomplete="current-password"></div>'+
+      '<button type="button" class="btn-primary" style="width:100%" onclick="mzoneLogin()">تسجيل الدخول</button>'+
+      '<div style="display:flex;justify-content:space-between;margin-top:12px;gap:8px;flex-wrap:wrap">'+
+        '<button type="button" class="btn-ghost" onclick="openForgotModal()">نسيت كلمة المرور؟</button>'+
+        '<button type="button" class="btn-ghost" onclick="navigate(\'/join\')">انضم إلينا</button></div>';
+  }
+}
+window.refreshMzone = refreshMzone;
+
+async function mzoneLogin(){
+  var login = (document.getElementById('mzUser')||{}).value;
+  var pass = (document.getElementById('mzPass')||{}).value;
+  login = sanitizeInput(login||'');
+  if(!login || !pass){ showToast('أدخل اسم المستخدم/رقم العضوية وكلمة المرور','warning'); return; }
+  if(login.indexOf('@') >= 0 && window.firebaseAuth){
+    try {
+      var cred = await window.firebaseAuth.signInWithEmailAndPassword(login, pass);
+      window.currentUser = { id: cred.user.uid, email: cred.user.email, fullName: cred.user.displayName||cred.user.email };
+      window.mzoneCurrentUser = window.currentUser;
+      try { sessionStorage.setItem('nz_user', JSON.stringify(window.currentUser)); } catch(e) {}
+      window.mzoneUserRoles = null;
+      showToast('مرحبًا','success');
+      refreshMzone();
+      return;
+    } catch(e) {}
+  }
+  if(window.FirestoreAPI && window.firebaseDB){
+    try {
+      var FA = window.FirestoreAPI, db = window.firebaseDB;
+      var found = null;
+      var fields = ['username','membershipNumber','memberId','memberNumber'];
+      for(var fi=0; fi<fields.length && !found; fi++){
+        try {
+          var snap = await FA.getDocs(FA.query(FA.collection(db,'mzoneAccounts'), FA.where(fields[fi],'==',login), FA.limit(1)));
+          if(!snap.empty) found = Object.assign({id: snap.docs[0].id}, snap.docs[0].data());
+        } catch(_) {}
+      }
+      if(!found){
+        try {
+          var snap2 = await FA.getDocs(FA.query(FA.collection(db,'userProfiles'), FA.where('username','==',login), FA.limit(1)));
+          if(!snap2.empty) found = Object.assign({id: snap2.docs[0].id}, snap2.docs[0].data());
+        } catch(_) {}
+      }
+      if(found && String(found.password||'') === String(pass)){
+        window.currentUser = found;
+        window.mzoneCurrentUser = found;
+        try { sessionStorage.setItem('nz_user', JSON.stringify({id:found.id, username:found.username, fullName:found.fullName||found.name})); } catch(e) {}
+        window.mzoneUserRoles = null;
+        showToast('مرحبًا '+(found.fullName||login),'success');
+        refreshMzone();
+        return;
+      }
+    } catch(e) {}
+  }
+  showToast('تعذّر تسجيل الدخول — تحقق من البيانات','error');
+}
+window.mzoneLogin = mzoneLogin;
+
+function mzoneLogout(){
+  window.currentUser = null;
+  window.mzoneCurrentUser = null;
+  window.mzoneUserRoles = null;
+  try { sessionStorage.removeItem('nz_user'); } catch(e) {}
+  if(window.firebaseAuth){ try { window.firebaseAuth.signOut(); } catch(e) {} }
+  refreshMzone();
+  showToast('تم الخروج','info');
+}
+window.mzoneLogout = mzoneLogout;
+
+/* ---------- تحديد دور المستخدم الحقيقي من قاعدة البيانات ----------
+   الأدوار الممكنة: زائر (غير مسجل دخول)، منخرط، متطوع، سفير، مؤطر، إداري.
+   التحديد يتم بمطابقة البريد الإلكتروني لحساب المستخدم مع سجلات القبول الحقيقية
+   في كل مجموعة (وليس بافتراض أو محاكاة). عضو واحد قد يجمع عدة أدوار. */
+async function determineUserRoles(){
+  var u = window.mzoneCurrentUser;
+  if(!u) return ['زائر'];
+  var roles = [];
+  var email = (u.email||'').toLowerCase();
+  if(!window.FirestoreAPI || !window.firebaseDB || !email) return ['منخرط'];
+  var FA = window.FirestoreAPI, db = window.firebaseDB;
+  var checks = [
+    { col:'adminMembers', role:'إداري' },
+    { col:'volunteers', role:'متطوع' },
+    { col:'ambassadors', role:'سفير' },
+    { col:'trainers', role:'مؤطر' }
+  ];
+  for(var i=0;i<checks.length;i++){
+    try {
+      var snap = await FA.getDocs(FA.query(FA.collection(db, checks[i].col), FA.where('email','==', u.email)));
+      var accepted = snap.docs.some(function(doc){
+        var st = (doc.data().status||'').toString();
+        return !st || st === 'مقبول' || st === 'accepted' || st === 'مفعل';
+      });
+      if(accepted) roles.push(checks[i].role);
+    } catch(_) {}
+  }
+  roles.push('منخرط'); // أي حساب مُفعّل في المنصة يُعتبر منخرطًا كحد أدنى
+  window.mzoneUserRoles = roles;
+  return roles;
+}
+window.determineUserRoles = determineUserRoles;
+
+function userCanRegisterCategory(category, roles){
+  roles = roles || window.mzoneUserRoles || ['زائر'];
+  if(category === 'تشاركية' || category === 'عمومية' || !category) return true;
+  if(category === 'داخلية') return roles.some(function(r){ return r==='متطوع'||r==='سفير'||r==='مؤطر'||r==='إداري'; });
+  if(category === 'شمولية') return roles.some(function(r){ return r==='متطوع'||r==='سفير'||r==='مؤطر'||r==='إداري'||r==='منخرط'; });
+  return true;
+}
+window.userCanRegisterCategory = userCanRegisterCategory;
+
+function openAccountSettings(){
+  var ov = document.createElement('div');
+  ov.className = 'modal-overlay';
+  var dark = document.body.classList.contains('dark');
+  ov.innerHTML = '<div class="modal-box"><button type="button" class="modal-close" onclick="this.closest(\'.modal-overlay\').remove()"><i class="fas fa-times"></i></button>'+
+    '<h3 style="margin-bottom:14px">الإعدادات</h3>'+
+    '<label style="display:flex;align-items:center;gap:10px;font-size:14px"><input type="checkbox" id="setDark" '+(dark?'checked':'')+'> الوضع الداكن</label>'+
+    '<button type="button" class="btn-primary" style="width:100%;margin-top:16px" id="setSave">حفظ</button></div>';
+  document.body.appendChild(ov);
+  document.getElementById('setSave').onclick = function(){
+    var on = document.getElementById('setDark').checked;
+    document.body.classList.toggle('dark', on);
+    try { sessionStorage.setItem('nz-theme', on?'dark':'light'); } catch(e) {}
+    showToast('تم الحفظ','success');
+    ov.remove();
+  };
+}
+window.openAccountSettings = openAccountSettings;
+
+function openForgotModal(){
+  var ov = document.createElement('div');
+  ov.className = 'modal-overlay';
+  ov.innerHTML = '<div class="modal-box"><button type="button" class="modal-close" onclick="this.closest(\'.modal-overlay\').remove()"><i class="fas fa-times"></i></button>'+
+    '<h3 style="margin-bottom:12px">استعادة كلمة المرور</h3>'+
+    '<div class="form-group"><label>اسم المستخدم أو المعرف</label><input id="fgUser"></div>'+
+    '<div class="form-group"><label>البريد الإلكتروني</label><input id="fgEmail" type="email"></div>'+
+    '<div class="form-group"><label>رقم التتبع</label><input id="fgTrack" style="font-family:var(--font-mono)"></div>'+
+    '<button type="button" class="btn-primary" style="width:100%;margin-top:10px" id="fgGo">تحقق</button>'+
+    '<div id="fgResult" style="margin-top:12px;font-size:13px;text-align:center"></div></div>';
+  document.body.appendChild(ov);
+  ov.onclick = function(e){ if(e.target === ov) ov.remove(); };
+  document.getElementById('fgGo').onclick = async function(){
+    var u = sanitizeInput(document.getElementById('fgUser').value);
+    var em = sanitizeInput(document.getElementById('fgEmail').value);
+    var tr = sanitizeInput(document.getElementById('fgTrack').value).toUpperCase();
+    var out = document.getElementById('fgResult');
+    if(!u || !em || !tr){ showToast('أكمل جميع الحقول','warning'); return; }
+    out.innerHTML = 'جاري التحقق...';
+    try {
+      if(!window.firebaseDB){ out.textContent = 'الخدمة غير متاحة'; return; }
+      var s = await window.firebaseDB.collection('registrations').where('trackingCode','==',tr).limit(1).get();
+      if(s.empty || String(s.docs[0].data().email||'').toLowerCase() !== em.toLowerCase()){
+        out.innerHTML = '<span style="color:var(--danger)">البيانات غير متطابقة</span>';
+        return;
+      }
+      var acc = null, cols = ['mzoneAccounts','userProfiles','members'];
+      for(var i=0;i<cols.length && !acc;i++){
+        try {
+          var q = await window.firebaseDB.collection(cols[i]).where('username','==',u).limit(1).get();
+          if(!q.empty) acc = q.docs[0].data();
+        } catch(e) {}
+        if(!acc){
+          try {
+            var q2 = await window.firebaseDB.collection(cols[i]).where('email','==',em).limit(1).get();
+            if(!q2.empty) acc = q2.docs[0].data();
+          } catch(e) {}
+        }
+      }
+      if(acc && acc.password){
+        out.innerHTML = '<div style="padding:10px;background:var(--surface-alt);border-radius:10px">كلمة المرور: <strong style="font-family:var(--font-mono);direction:ltr">'+esc(acc.password)+'</strong></div>';
+      } else if(acc && acc.email && window.firebaseAuth){
+        await window.firebaseAuth.sendPasswordResetEmail(acc.email);
+        out.innerHTML = '<span style="color:var(--primary)">تم إرسال رابط إعادة التعيين إلى بريدك</span>';
+      } else {
+        out.innerHTML = '<span style="color:var(--danger)">تعذّر الاستعادة بهذه البيانات</span>';
+      }
+    } catch(e) {
+      out.innerHTML = '<span style="color:var(--danger)">تعذّر التحقق</span>';
+    }
+  };
+}
+window.openForgotModal = openForgotModal;
+
+/* ---------- تتبع الطلبات ---------- */
+function toggleTrackPanel(){
+  var panel = document.getElementById('fabTrackPanel');
+  if(!panel){ navigate('/tracking'); return; }
+  panel.classList.toggle('show');
+  if(panel.classList.contains('show')) renderRecentTracks();
+}
+window.toggleTrackPanel = toggleTrackPanel;
+
+function renderRecentTracks(){
+  var box = document.getElementById('fabRecentList');
+  if(!box) return;
+  var list = [];
+  try { list = JSON.parse(sessionStorage.getItem('nz_recent_tracks')||'[]'); } catch(e) {}
+  if(!list.length){ box.innerHTML = '<p style="font-size:12px;color:var(--text-muted)">لا طلبات محفوظة</p>'; return; }
+  box.innerHTML = list.slice(0,5).map(function(c){
+    return '<div class="recent-item" onclick="document.getElementById(\'fabTrackPanel\').classList.remove(\'show\');navigate(\'/tracking\');setTimeout(function(){var i=document.getElementById(\'trackCode\');if(i){i.value=\''+esc(c)+'\';trackRequest();}},300)">'+esc(c)+'</div>';
+  }).join('');
+}
+
+function saveRecentTrack(code){
+  if(!code) return;
+  try {
+    var list = JSON.parse(sessionStorage.getItem('nz_recent_tracks')||'[]');
+    list = list.filter(function(c){ return c !== code; });
+    list.unshift(code);
+    sessionStorage.setItem('nz_recent_tracks', JSON.stringify(list.slice(0,8)));
+  } catch(e) {}
+}
+window.saveRecentTrack = saveRecentTrack;
+
+async function trackRequest(){
+  var code = (document.getElementById('trackCode').value||'').trim().toUpperCase();
+  var res = document.getElementById('trackResult');
+  if(!code){ showToast('أدخل رقم التتبع','warning'); return; }
+  res.style.display = 'block';
+  res.innerHTML = '<div class="empty-state" style="padding:20px"><i class="fas fa-spinner fa-spin"></i></div>';
+  var found = null;
+  if(window.FirestoreAPI && window.firebaseDB){
+    try {
+      var FA = window.FirestoreAPI, db = window.firebaseDB;
+      var snap = await FA.getDocs(FA.query(FA.collection(db,'registrations'), FA.where('trackingCode','==',code), FA.limit(1)));
+      if(snap.empty) snap = await FA.getDocs(FA.query(FA.collection(db,'registrations'), FA.where('trackingCode','==',code.toLowerCase()), FA.limit(1)));
+      if(!snap.empty){ var d = snap.docs[0]; found = Object.assign({id:d.id}, d.data()); }
+      if(!found){
+        var snap2 = await FA.getDocs(FA.query(FA.collection(db,'activityRegistrations'), FA.where('trackingCode','==',code), FA.limit(1)));
+        if(!snap2.empty){ var d2 = snap2.docs[0]; found = Object.assign({id:d2.id}, d2.data()); }
+      }
+    } catch(e) {}
+  }
+  if(!found){
+    res.innerHTML = '<div class="empty-state" style="padding:20px"><p>لم يُعثر على الطلب</p></div>';
+    return;
+  }
+  saveRecentTrack(code);
+  var st = found.status || 'قيد الانتظار';
+  var badge = (st==='مقبول'||st==='مؤكد'||st==='accepted') ? 'badge-accepted' :
+    (st==='مرفوض'||st==='rejected') ? 'badge-rejected' :
+    (st==='مراجعة'||st==='review') ? 'badge-review' : 'badge-pending';
+  res.innerHTML = '<div class="card" style="text-align:center">'+
+    '<div style="font-family:var(--font-mono);font-size:18px;font-weight:700;margin-bottom:8px">'+esc(found.trackingCode||code)+'</div>'+
+    '<span class="'+badge+'">'+esc(st)+'</span>'+
+    '<p style="margin-top:12px;font-size:13px;color:var(--text-secondary)">'+esc(found.type||found.activityTitle||'')+'</p>'+
+    (found.fullName ? '<p style="font-size:13px">'+esc(found.fullName)+'</p>' : '')+
+  '</div>';
+}
+window.trackRequest = trackRequest;
+
+function showTrackingModal(code, status){
+  var ov = document.createElement('div');
+  ov.className = 'modal-overlay';
+  ov.onclick = function(e){ if(e.target === ov) ov.remove(); };
+  var badge = status==='مقبول'?'badge-accepted':status==='مرفوض'?'badge-rejected':'badge-pending';
+  ov.innerHTML = '<div class="modal-box" style="text-align:center">'+
+    '<div style="font-size:40px;color:var(--primary-light);margin-bottom:12px"><i class="fas fa-check-circle"></i></div>'+
+    '<h3 style="margin-bottom:8px">تم إرسال طلبك بنجاح</h3>'+
+    '<p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px">احتفظ برقم التتبع</p>'+
+    '<div style="font-family:var(--font-mono);font-size:22px;font-weight:700;letter-spacing:2px;margin-bottom:12px">'+esc(code)+'</div>'+
+    '<span class="'+badge+'">'+esc(status)+'</span>'+
+    '<div style="margin-top:20px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">'+
+      '<button class="btn-primary" onclick="navigator.clipboard.writeText(\''+esc(code)+'\');showToast(\'تم نسخ الرقم\',\'success\')">نسخ الرقم</button>'+
+      '<button class="btn-secondary" onclick="this.closest(\'.modal-overlay\').remove();navigate(\'/tracking\')">تتبع الطلب</button>'+
+    '</div></div>';
+  document.body.appendChild(ov);
+}
+
+/* ---------- استمارات الانضمام ---------- */
+var joinType = null, formStep = 0, formMax = 0;
+
+function selectJoinType(t){
+  joinType = t;
+  formStep = 0;
+  document.getElementById('joinOptionsWrap').style.display = 'none';
+  document.getElementById('joinFormWrap').style.display = 'block';
+  document.querySelectorAll('.join-card').forEach(function(c){ c.classList.toggle('selected', c.dataset.type === t); });
+  buildFormSteps();
+  renderFormStep();
+}
+window.selectJoinType = selectJoinType;
+
+function cancelJoin(){
+  joinType = null;
+  document.getElementById('joinOptionsWrap').style.display = 'block';
+  document.getElementById('joinFormWrap').style.display = 'none';
+  var f = document.getElementById('joinForm');
+  if(f) f.reset();
+}
+window.cancelJoin = cancelJoin;
+
+function onNationalityChange(sel){
+  var rule = phoneRuleFor(sel.value);
+  var form = sel.closest('form') || document;
+  var phone = form.querySelector('[name="phone"]');
+  if(phone && rule){ phone.placeholder = rule.hint || ''; phone.title = rule.hint || ''; }
+  var isJoinForm = sel.id === 'natSelect';
+  var wrapId = isJoinForm ? 'wilayaWrap' : 'actWilayaWrap';
+  var selectId = isJoinForm ? 'wilayaSelect' : 'actWilaya';
+  var wrap = document.getElementById(wrapId);
+  if(wrap){
+    var label = wrap.querySelector('label');
+    wrap.innerHTML = (label ? label.outerHTML : '<label><span class="req">*</span> الولاية / المنطقة</label>') + regionFieldHTML(sel.value, selectId);
+  }
+}
+window.onNationalityChange = onNationalityChange;
+window.onActNationalityChange = onNationalityChange;
+
+function agreementsStep(needPhoto){
+  return '<div class="form-grid">'+
+    (needPhoto ? '<div class="form-group full"><label><span class="req">*</span> صورة شخصية</label><input name="photo" type="file" accept="image/*" required></div>' : '')+
+    '<div class="form-group full"><label class="checkbox-row"><input type="checkbox" name="agreeTerms" required> <span><span class="req">*</span> أوافق على الشروط والأحكام</span></label></div>'+
+    '<div class="form-group full"><label class="checkbox-row"><input type="checkbox" name="agreePrivacy" required> <span><span class="req">*</span> أوافق على سياسة الخصوصية</span></label></div>'+
+  '</div>';
+}
+
+function commonStep1(){
+  return '<div class="form-grid">'+
+    '<div class="form-group full"><label><span class="req">*</span> الاسم الكامل</label><input name="fullName" required minlength="7" maxlength="80" pattern="[^0-9]*" placeholder="الاسم الأول واللقب كما في البطاقة"></div>'+
+    '<div class="form-group"><label><span class="req">*</span> تاريخ الميلاد</label><input name="birthDate" type="date" required></div>'+
+    '<div class="form-group"><label><span class="req">*</span> الجنس</label><select name="gender" required><option value="">—</option><option>ذكر</option><option>أنثى</option></select></div>'+
+    '<div class="form-group"><label><span class="req">*</span> الجنسية</label><select name="nationality" required id="natSelect" onchange="onNationalityChange(this)">'+nationalityOptions('جزائرية')+'</select></div>'+
+    '<div class="form-group" id="wilayaWrap"><label><span class="req">*</span> الولاية / المنطقة</label>'+regionFieldHTML('جزائرية','wilayaSelect')+'</div>'+
+    '<div class="form-group"><label><span class="req">*</span> البلدية / المدينة</label><input name="commune" required></div>'+
+    '<div class="form-group"><label><span class="req">*</span> البريد الإلكتروني</label><input name="email" type="email" required></div>'+
+    '<div class="form-group"><label><span class="req">*</span> رقم الهاتف</label><input name="phone" type="tel" required placeholder="مثال: 05xxxxxxxx أو +2135xxxxxxxx"></div>'+
+    '<div id="guardianBlock" style="display:none;grid-column:1/-1"><div class="form-grid">'+
+      '<div class="form-group full"><label><span class="req">*</span> اسم الولي</label><input name="guardianName" id="guardianName"></div>'+
+      '<div class="form-group"><label><span class="req">*</span> هاتف الولي</label><input name="guardianPhone" id="guardianPhone" type="tel"></div>'+
+    '</div></div>'+
+  '</div>';
+}
+
+function commonStep2(){
+  return '<div class="form-grid">'+
+    '<div class="form-group"><label><span class="req">*</span> المستوى الدراسي</label><select name="education" required><option value="">—</option><option>ثانوي</option><option>جامعي</option><option>دراسات عليا</option><option>أخرى</option></select></div>'+
+    '<div class="form-group"><label><span class="req">*</span> التخصص</label><input name="specialty" required></div>'+
+    '<div class="form-group full"><label><span class="req">*</span> المهنة الحالية</label><input name="job" required></div>'+
+  '</div>';
+}
+
+function buildFormSteps(){
+  var steps = [];
+  if(joinType === 'partnership'){
+    steps.push('<div class="form-grid">'+
+      '<div class="form-group full"><label><span class="req">*</span> اسم الجهة</label><input name="orgName" required></div>'+
+      '<div class="form-group"><label><span class="req">*</span> نوع الجهة</label><select name="orgType" required><option value="">—</option><option>جمعية</option><option>مؤسسة</option><option>شركة</option><option>جامعة</option><option>أخرى</option></select></div>'+
+      '<div class="form-group"><label><span class="req">*</span> مجال النشاط</label><input name="orgField" required></div>'+
+      '<div class="form-group"><label><span class="req">*</span> البريد الإلكتروني</label><input name="email" type="email" required></div>'+
+      '<div class="form-group"><label><span class="req">*</span> رقم الهاتف</label><input name="phone" type="tel" required></div>'+
+      '<div class="form-group full"><label><span class="req">*</span> ممثل الجهة</label><input name="fullName" required></div>'+
+      '<div class="form-group full"><label><span class="req">*</span> أهداف الشراكة</label><textarea name="goals" required></textarea></div>'+
+      '<div class="form-group full"><label><span class="req">*</span> مقترح الشراكة</label><textarea name="proposal" required></textarea></div>'+
+      '<div class="form-group full"><label><span class="req">*</span> شعار الجهة</label><input name="logo" type="file" accept="image/*" required></div>'+
+    '</div>');
+    steps.push(agreementsStep(false));
+  } else {
+    steps.push(commonStep1());
+    steps.push(commonStep2());
+    if(joinType === 'membership'){
+      steps.push('<div class="form-grid">'+
+        '<div class="form-group full"><label><span class="req">*</span> مجالات الاهتمام</label><div style="display:flex;flex-wrap:wrap;gap:8px">'+
+          INTERESTS.map(function(i){ return '<label style="font-size:12px"><input type="checkbox" name="interest" value="'+i+'"> '+i+'</label>'; }).join('')+
+        '</div></div>'+
+        '<div class="form-group full"><label><span class="req">*</span> المهارات</label><textarea name="skills" required></textarea></div>'+
+        '<div class="form-group full"><label><span class="req">*</span> سبب الانخراط</label><textarea name="motivation" required></textarea></div>'+
+        '<div class="form-group full"><label><span class="req">*</span> حساب التواصل</label><input name="social" required></div>'+
+      '</div>');
+      steps.push(agreementsStep(true));
+    } else if(joinType === 'volunteer'){
+      steps.push('<div class="form-grid">'+
+        '<div class="form-group"><label><span class="req">*</span> الساعات أسبوعيًا</label><input name="hoursPerWeek" type="number" min="1" max="60" required></div>'+
+        '<div class="form-group full"><label><span class="req">*</span> المهارات</label><textarea name="skills" required></textarea></div>'+
+        '<div class="form-group"><label><span class="req">*</span> الخلية</label><select name="cell" id="cellSelect" required onchange="updatePositions()">'+
+          CELLS.map(function(c){ return '<option value="'+c+'">'+c+'</option>'; }).join('')+
+        '</select></div>'+
+        '<div class="form-group"><label><span class="req">*</span> المنصب</label><select name="position" id="posSelect" required></select></div>'+
+        '<div class="form-group full"><label><span class="req">*</span> سبب التطوع</label><textarea name="motivation" required></textarea></div>'+
+      '</div>');
+      steps.push(agreementsStep(true));
+    } else if(joinType === 'ambassador'){
+      steps.push('<div class="form-grid">'+
+        '<div class="form-group full"><label><span class="req">*</span> الولاية المراد تمثيلها</label><select name="representWilaya" required>'+wilayaOptions()+'</select></div>'+
+        '<div class="form-group full"><label><span class="req">*</span> المهارات القيادية</label><textarea name="leadershipSkills" required></textarea></div>'+
+        '<div class="form-group full"><label><span class="req">*</span> رؤية التمثيل</label><textarea name="vision" required></textarea></div>'+
+        '<div class="form-group full"><label><span class="req">*</span> سبب الترشح</label><textarea name="motivation" required></textarea></div>'+
+      '</div>');
+      steps.push(agreementsStep(true));
+    } else if(joinType === 'training'){
+      steps.push('<div class="form-grid">'+
+        '<div class="form-group"><label><span class="req">*</span> المهنة</label><input name="job" required></div>'+
+        '<div class="form-group"><label><span class="req">*</span> مجال التأطير</label><input name="trainingField" required></div>'+
+        '<div class="form-group"><label><span class="req">*</span> سنوات الخبرة</label><input name="yearsExp" type="number" min="0" max="50" required></div>'+
+        '<div class="form-group full"><label><span class="req">*</span> نبذة الخبرة</label><textarea name="experience" required></textarea></div>'+
+        '<div class="form-group full"><label><span class="req">*</span> المواضيع</label><textarea name="topics" required></textarea></div>'+
+      '</div>');
+      steps.push(agreementsStep(true));
+    }
+  }
+  formMax = steps.length - 1;
+  var wrap = document.getElementById('formSteps');
+  wrap.innerHTML = steps.map(function(s,i){ return '<div class="form-step" data-step="'+i+'" style="display:'+(i===0?'block':'none')+'">'+s+'</div>'; }).join('');
+  var dots = document.getElementById('stepDots');
+  if(dots) dots.innerHTML = steps.map(function(_,i){ return '<div class="step-dot'+(i===0?' active':'')+'" data-i="'+i+'"></div>'; }).join('');
+  setTimeout(function(){
+    var bd = document.querySelector('[name="birthDate"]');
+    if(bd) bd.addEventListener('change', function(){
+      var age = ageFromBirth(bd.value);
+      var needsGuardian = (age !== null && age >= 14 && age <= 17);
+      var gb = document.getElementById('guardianBlock');
+      if(gb) gb.style.display = needsGuardian ? 'block' : 'none';
+      var gn = document.getElementById('guardianName'), gp = document.getElementById('guardianPhone');
+      if(gn) gn.required = needsGuardian;
+      if(gp) gp.required = needsGuardian;
+    });
+    if(joinType === 'volunteer') updatePositions();
+    if(joinType === 'ambassador'){
+      var nat = document.getElementById('natSelect');
+      if(nat){
+        nat.value = 'جزائرية';
+        nat.querySelectorAll('option').forEach(function(o){ if(o.value && o.value !== 'جزائرية') o.disabled = true; });
+      }
+    }
+  }, 50);
+}
+
+function updatePositions(){
+  var cell = (document.getElementById('cellSelect')||{}).value;
+  var pos = document.getElementById('posSelect');
+  if(!pos || !cell) return;
+  var list = POSITIONS[cell] || [];
+  pos.innerHTML = list.map(function(p){ return '<option value="'+p+'">'+p+'</option>'; }).join('');
+}
+window.updatePositions = updatePositions;
+
+function renderFormStep(){
+  document.querySelectorAll('.form-step').forEach(function(s,i){ s.style.display = i===formStep ? 'block' : 'none'; });
+  document.querySelectorAll('.step-dot').forEach(function(d,i){
+    d.classList.toggle('active', i === formStep);
+    d.classList.toggle('done', i < formStep);
+  });
+  var prev = document.getElementById('btnPrev');
+  var next = document.getElementById('btnNext');
+  var sub = document.getElementById('btnSubmit');
+  if(prev) prev.style.display = formStep > 0 ? 'inline-flex' : 'none';
+  if(next) next.style.display = formStep < formMax ? 'inline-flex' : 'none';
+  if(sub) sub.style.display = formStep === formMax ? 'inline-flex' : 'none';
+  // حفظ مسودة الجلسة
+  try {
+    var f = document.getElementById('joinForm');
+    if(f && joinType){
+      var fd = new FormData(f);
+      var draft = { type: joinType, step: formStep };
+      fd.forEach(function(v,k){ if(k!=='photo'&&k!=='logo') draft[k]=v; });
+      sessionStorage.setItem('nz_join_draft', JSON.stringify(draft));
+    }
+  } catch(e) {}
+}
+
+function validateStep(){
+  var step = document.querySelector('.form-step[data-step="'+formStep+'"]');
+  if(!step) return true;
+  var ok = true;
+  step.querySelectorAll('[required]').forEach(function(el){
+    var val = el.type === 'checkbox' ? el.checked : (el.value||'').trim();
+    var valid = !!val;
+    if(el.type === 'email' && val) valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+    if(el.minLength && val && val.length < el.minLength) valid = false;
+    el.classList.toggle('invalid', !valid);
+    var g = el.closest('.form-group');
+    if(g){ g.classList.toggle('has-error', !valid); g.classList.toggle('is-valid', valid); }
+    if(!valid) ok = false;
+  });
+  var phoneEl = step.querySelector('[name="phone"]');
+  var natEl = document.querySelector('[name="nationality"]') || document.getElementById('natSelect');
+  if(phoneEl && phoneEl.value && natEl && !validatePhone(phoneEl.value, natEl.value)){
+    showToast('رقم الهاتف غير صالح لهذه الجنسية','warning');
+    ok = false;
+  }
+  if(joinType === 'membership' && formStep === 2){
+    var ints = document.querySelectorAll('[name="interest"]:checked');
+    if(!ints.length){ ok = false; showToast('اختر مجال اهتمام واحد على الأقل','warning'); }
+  }
+  if(!ok) showToast('أكمل الحقول المطلوبة','warning');
+  return ok;
+}
+
+function formNext(){ if(!validateStep()) return; formStep = Math.min(formStep+1, formMax); renderFormStep(); }
+function formPrev(){ formStep = Math.max(formStep-1, 0); renderFormStep(); }
+window.formNext = formNext;
+window.formPrev = formPrev;
+
+async function isDuplicateRegistration(email, phone){
+  if(!email && !phone) return false;
+  if(window.FirestoreAPI && window.firebaseDB){
+    try {
+      var FA = window.FirestoreAPI, db = window.firebaseDB;
+      if(email){
+        var snap = await FA.getDocs(FA.query(FA.collection(db,'registrations'), FA.where('email','==',email), FA.limit(1)));
+        if(!snap.empty) return true;
+      }
+      if(phone){
+        var snap2 = await FA.getDocs(FA.query(FA.collection(db,'registrations'), FA.where('phone','==',phone), FA.limit(1)));
+        if(!snap2.empty) return true;
+      }
+    } catch(_) {}
+  }
+  return false;
+}
+
+async function submitRegistration(e){
+  e.preventDefault();
+  if(!validateStep()) return false;
+  var btn = document.getElementById('btnSubmit');
+  if(btn){ btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الإرسال...'; }
+  try {
+    var fd = new FormData(e.target);
+    var data = {};
+    fd.forEach(function(v,k){
+      if(k==='photo'||k==='logo') return;
+      if(data[k]){ if(!Array.isArray(data[k])) data[k]=[data[k]]; data[k].push(sanitizeInput(v)); }
+      else data[k] = sanitizeInput(v);
+    });
+    data.interest = [].concat(data.interest||[]).filter(Boolean);
+    data.type = toArabicType(joinType);
+    data.joinType = joinType;
+    data.trackingCode = generateTrackingCode();
+    data.status = 'قيد الانتظار';
+    data.createdAtISO = new Date().toISOString();
+
+    if(await isDuplicateRegistration(data.email, data.phone)){
+      showToast('يوجد تسجيل مسبق بنفس البريد أو الهاتف','error');
+      if(btn){ btn.disabled=false; btn.innerHTML='<i class="fas fa-paper-plane"></i> إرسال الطلب'; }
+      return false;
+    }
+    if(data.phone && data.nationality && !validatePhone(data.phone, data.nationality)){
+      showToast('رقم الهاتف غير صالح','error');
+      if(btn){ btn.disabled=false; btn.innerHTML='<i class="fas fa-paper-plane"></i> إرسال الطلب'; }
+      return false;
+    }
+
+    var photoInput = e.target.querySelector('[name="photo"]');
+    if(photoInput && photoInput.files && photoInput.files[0]){
+      data.photoUrl = await uploadImage(photoInput.files[0]);
+    }
+    var logoInput = e.target.querySelector('[name="logo"]');
+    if(logoInput && logoInput.files && logoInput.files[0]){
+      data.logoUrl = await uploadImage(logoInput.files[0]);
+    }
+
+    var written = false;
+    if(window.FirestoreAPI && window.firebaseDB){
+      await window.FirestoreAPI.addDoc(
+        window.FirestoreAPI.collection(window.firebaseDB, 'registrations'),
+        Object.assign({}, data, { createdAt: window.FirestoreAPI.serverTimestamp() })
+      );
+      written = true;
+    }
+    if(!written) showToast('الخدمة غير متاحة حاليًا','error');
+    else {
+      window._joinClickCount = (window._joinClickCount||0) + 1;
+      applyJoinAvailability();
+      saveRecentTrack(data.trackingCode);
+      try { sessionStorage.removeItem('nz_join_draft'); } catch(e) {}
+      showTrackingModal(data.trackingCode, data.status);
+      cancelJoin();
+    }
+  } catch(err) {
+    showToast('تعذّر إرسال الطلب','error');
+  } finally {
+    if(btn){ btn.disabled = false; btn.innerHTML = '<i class="fas fa-paper-plane"></i> إرسال الطلب'; }
+  }
+  return false;
+}
+window.submitRegistration = submitRegistration;
+
+/* ---------- تواصل ---------- */
+async function submitContact(e){
+  e.preventDefault();
+  var form = e.target, btn = form.querySelector('[type="submit"]');
+  btn.disabled = true;
+  try {
+    var fd = new FormData(form), data = {};
+    fd.forEach(function(v,k){ data[k] = sanitizeInput(v); });
+    if(window.FirestoreAPI && window.firebaseDB){
+      await window.FirestoreAPI.addDoc(
+        window.FirestoreAPI.collection(window.firebaseDB, 'contactMessages'),
+        Object.assign({}, data, { createdAt: window.FirestoreAPI.serverTimestamp() })
+      );
+    }
+    showToast('تم إرسال الرسالة','success');
+    form.reset();
+  } catch(err) {
+    showToast('تعذّر الإرسال','error');
+  } finally {
+    btn.disabled = false;
+  }
+  return false;
+}
+window.submitContact = submitContact;
+
+/* ---------- كتابة متحركة ---------- */
+var TW_PHRASES = ['تمكين الشباب · صناعة القيادات','نزاهة · شفافية · مواطنة فاعلة','انضم إلى جيل يصنع الفرق'];
+var twI = 0, twJ = 0, twDel = false;
+function typeTick(){
+  var el = document.getElementById('twText');
+  if(!el) return;
+  var p = TW_PHRASES[twI];
+  if(!twDel){
+    el.textContent = p.slice(0, ++twJ);
+    if(twJ === p.length){ twDel = true; setTimeout(typeTick, 1800); return; }
+  } else {
+    el.textContent = p.slice(0, --twJ);
+    if(twJ === 0){ twDel = false; twI = (twI+1) % TW_PHRASES.length; }
+  }
+  setTimeout(typeTick, twDel ? 40 : 70);
+}
+
+/* ---------- تهيئة ---------- */
+(function init(){
+  sideNav = document.getElementById('sideNav');
+  sideOverlay = document.getElementById('sideOverlay');
+  hamburger = document.getElementById('hamburger');
+  if(hamburger) hamburger.onclick = function(){ sideNav && sideNav.classList.contains('open') ? closeNav() : openNav(); };
+  if(sideOverlay) sideOverlay.onclick = closeNav;
+
+  try {
+    if(sessionStorage.getItem('nz-theme') === 'dark') document.body.classList.add('dark');
+  } catch(e) {}
+  try {
+    var u = sessionStorage.getItem('nz_user');
+    if(u){ window.currentUser = JSON.parse(u); window.mzoneCurrentUser = window.currentUser; determineUserRoles(); }
+  } catch(e) {}
+
+  window.addEventListener('online', function(){ var b=document.getElementById('offlineBanner'); if(b) b.classList.remove('show'); });
+  window.addEventListener('offline', function(){ var b=document.getElementById('offlineBanner'); if(b) b.classList.add('show'); });
+  if(!navigator.onLine){ var b=document.getElementById('offlineBanner'); if(b) b.classList.add('show'); }
+
+  document.addEventListener('click', initAudio, {once:true, passive:true});
+  document.addEventListener('touchstart', initAudio, {once:true, passive:true});
+
+  typeTick();
+
+  var h = location.hash.replace(/^#/,'') || '/';
+  var params = new URLSearchParams(location.search);
+  if(params.get('code')){
+    navigate('/tracking', true);
+    setTimeout(function(){
+      var inp = document.getElementById('trackCode');
+      if(inp){ inp.value = params.get('code'); trackRequest(); }
+    }, 400);
+  } else {
+    navigate(h.charAt(0)==='/' ? h : '/'+h, true);
+  }
+
+  window.addEventListener('hashchange', function(){
+    var p = location.hash.replace(/^#/,'') || '/';
+    navigate(p.charAt(0)==='/' ? p : '/'+p, true);
+  });
+
+  window.addEventListener('firebaseReady', function(){
+    loadHomeStats();
+    loadSiteConfig();
+    loadReviews();
+  });
+  setTimeout(function(){
+    loadHomeStats();
+    loadSiteConfig();
+    loadReviews();
+  }, 1500);
+})();
+
+</script>
+</body>
+</html>
