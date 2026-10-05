@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>أداة إدارة NFC - Web NFC</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Tahoma, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #e2e8f0;
+      min-height: 100vh;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      background: #1e293b;
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.5);
+      border: 1px solid #334155;
+    }
+    h1 {
+      text-align: center;
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+      color: #38bdf8;
+    }
+    .subtitle {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      margin-bottom: 24px;
+    }
+    .status {
+      background: #0f172a;
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+      border-right: 4px solid #38bdf8;
+      min-height: 48px;
+    }
+    .status.error { border-color: #f87171; color: #fca5a5; }
+    .status.success { border-color: #4ade80; color: #86efac; }
+    .status.warning { border-color: #fbbf24; color: #fde68a; }
+
+    .section {
+      margin-bottom: 24px;
+      background: #0f172a;
+      border-radius: 16px;
+      padding: 16px;
+    }
+    .section h2 {
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+      color: #94a3b8;
+    }
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid #334155;
+      background: #1e293b;
+      color: #e2e8f0;
+      font-size: 1rem;
+      margin-bottom: 12px;
+      outline: none;
+    }
+    input:focus, textarea:focus {
+      border-color: #38bdf8;
+    }
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    button {
+      flex: 1;
+      min-width: 120px;
+      padding: 14px 16px;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .btn-read {
+      background: #0ea5e9;
+      color: white;
+    }
+    .btn-write {
+      background: #22c55e;
+      color: white;
+    }
+    .btn-lock {
+      background: #ef4444;
+      color: white;
+    }
+    .btn-clear {
+      background: #64748b;
+      color: white;
+    }
+    button:not(:disabled):active {
+      transform: scale(0.97);
+    }
+    #result {
+      background: #0f172a;
+      border-radius: 12px;
+      padding: 14px;
+      font-family: monospace;
+      font-size: 0.9rem;
+      white-space: pre-wrap;
+      word-break: break-all;
+      max-height: 280px;
+      overflow-y: auto;
+      border: 1px solid #334155;
+      min-height: 80px;
+    }
+    .note {
+      font-size: 0.8rem;
+      color: #64748b;
+      margin-top: 16px;
+      text-align: center;
+    }
+    .support-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      margin-top: 8px;
+    }
+    .supported { background: #166534; color: #86efac; }
+    .not-supported { background: #7f1d1d; color: #fca5a5; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📡 أداة إدارة NFC</h1>
+    <p class="subtitle">قراءة وكتابة وإدارة وسوم NFC عبر المتصفح</p>
+
+    <div id="status" class="status">جارٍ التحقق من الدعم...</div>
+
+    <!-- قراءة -->
+    <div class="section">
+      <h2>📖 قراءة وسم NFC</h2>
+      <div class="btn-group">
+        <button id="btnRead" class="btn-read" disabled>بدء القراءة</button>
+        <button id="btnStop" class="btn-clear" disabled>إيقاف</button>
+      </div>
+    </div>
+
+    <!-- كتابة -->
+    <div class="section">
+      <h2>✍️ كتابة على وسم NFC</h2>
+      <input type="text" id="writeText" placeholder="النص أو الرابط الذي تريد كتابته">
+      <div class="btn-group">
+        <button id="btnWriteText" class="btn-write" disabled>كتابة نص</button>
+        <button id="btnWriteUrl" class="btn-write" disabled>كتابة رابط</button>
+      </div>
+    </div>
+
+    <!-- قفل -->
+    <div class="section">
+      <h2>🔒 جعل الوسم للقراءة فقط</h2>
+      <p style="font-size:0.85rem;color:#94a3b8;margin-bottom:12px;">
+        تحذير: هذه العملية <strong>غير قابلة للعكس</strong>
+      </p>
+      <button id="btnLock" class="btn-lock" disabled style="width:100%">جعل للقراءة فقط</button>
+    </div>
+
+    <!-- النتائج -->
+    <div class="section">
+      <h2>📋 النتيجة / السجل</h2>
+      <div id="result">اضغط على زر وقرّب الوسم من الهاتف...</div>
+      <button id="btnClearLog" class="btn-clear" style="margin-top:12px;width:100%">مسح السجل</button>
+    </div>
+
+    <p class="note">
+      يعمل فقط على Chrome / Samsung Internet على Android مع تفعيل NFC.<br>
+      يحتاج اتصال HTTPS.
+    </p>
+  </div>
+
+  <script>
+    const statusEl = document.getElementById('status');
+    const resultEl = document.getElementById('result');
+    const writeTextInput = document.getElementById('writeText');
+
+    const btnRead = document.getElementById('btnRead');
+    const btnStop = document.getElementById('btnStop');
+    const btnWriteText = document.getElementById('btnWriteText');
+    const btnWriteUrl = document.getElementById('btnWriteUrl');
+    const btnLock = document.getElementById('btnLock');
+    const btnClearLog = document.getElementById('btnClearLog');
+
+    let ndef = null;
+    let abortController = null;
+
+    function log(msg, type = '') {
+      const time = new Date().toLocaleTimeString('ar-EG');
+      resultEl.textContent = `[${time}] ${msg}\n` + resultEl.textContent;
+    }
+
+    function setStatus(msg, type = '') {
+      statusEl.textContent = msg;
+      statusEl.className = 'status ' + type;
+    }
+
+    // التحقق من الدعم
+    if (!('NDEFReader' in window)) {
+      setStatus('❌ Web NFC غير مدعوم في هذا المتصفح. استخدم Chrome على Android.', 'error');
+      log('المتصفح لا يدعم NDEFReader');
+    } else {
+      setStatus('✅ Web NFC مدعوم. جاهز للاستخدام.', 'success');
+      btnRead.disabled = false;
+      btnWriteText.disabled = false;
+      btnWriteUrl.disabled = false;
+      btnLock.disabled = false;
+      log('الجهاز يدعم Web NFC');
+    }
+
+    // قراءة
+    btnRead.addEventListener('click', async () => {
+      try {
+        if (abortController) abortController.abort();
+        abortController = new AbortController();
+
+        ndef = new NDEFReader();
+        await ndef.scan({ signal: abortController.signal });
+
+        setStatus('🔍 جاري الاستماع... قرّب الوسم من الهاتف', 'warning');
+        log('بدأ المسح. قرّب الوسم...');
+        btnStop.disabled = false;
+        btnRead.disabled = true;
+
+        ndef.addEventListener('reading', event => {
+          const { serialNumber, message } = event;
+          let output = `✅ تم قراءة الوسم\nالرقم التسلسلي: ${serialNumber || 'غير متوفر'}\n`;
+          output += `عدد السجلات: ${message.records.length}\n\n`;
+
+          for (const record of message.records) {
+            output += `نوع السجل: ${record.recordType}\n`;
+            if (record.mediaType) output += `MIME: ${record.mediaType}\n`;
+            if (record.id) output += `ID: ${record.id}\n`;
+
+            if (record.recordType === 'text') {
+              const decoder = new TextDecoder(record.encoding || 'utf-8');
+              output += `النص: ${decoder.decode(record.data)}\n`;
+              if (record.lang) output += `اللغة: ${record.lang}\n`;
+            } else if (record.recordType === 'url') {
+              const decoder = new TextDecoder();
+              output += `الرابط: ${decoder.decode(record.data)}\n`;
+            } else if (record.recordType === 'empty') {
+              output += `سجل فارغ\n`;
+            } else {
+              // بيانات خام
+              const decoder = new TextDecoder();
+              try {
+                output += `البيانات: ${decoder.decode(record.data)}\n`;
+              } catch {
+                output += `بيانات ثنائية (طول: ${record.data.byteLength} بايت)\n`;
+              }
+            }
+            output += '----------------\n';
+          }
+
+          log(output);
+          setStatus('✅ تم قراءة الوسم بنجاح', 'success');
+        });
+
+        ndef.addEventListener('readingerror', () => {
+          log('❌ فشل في قراءة الوسم. جرب وسماً آخر.');
+          setStatus('فشل القراءة', 'error');
+        });
+
+      } catch (err) {
+        log('خطأ في بدء المسح: ' + err.message);
+        setStatus('خطأ: ' + err.message, 'error');
+        btnRead.disabled = false;
+        btnStop.disabled = true;
+      }
+    });
+
+    // إيقاف المسح
+    btnStop.addEventListener('click', () => {
+      if (abortController) {
+        abortController.abort();
+        abortController = null;
+      }
+      setStatus('تم إيقاف المسح', 'warning');
+      log('تم إيقاف المسح');
+      btnRead.disabled = false;
+      btnStop.disabled = true;
+    });
+
+    // كتابة نص
+    btnWriteText.addEventListener('click', async () => {
+      const text = writeTextInput.value.trim();
+      if (!text) {
+        alert('أدخل نصاً أولاً');
+        return;
+      }
+      try {
+        setStatus('✍️ قرّب الوسم للكتابة...', 'warning');
+        log('جاري كتابة النص: ' + text);
+        const writer = new NDEFReader();
+        await writer.write({
+          records: [{ recordType: 'text', data: text }]
+        });
+        setStatus('✅ تم الكتابة بنجاح', 'success');
+        log('تمت الكتابة بنجاح');
+      } catch (err) {
+        setStatus('فشل الكتابة: ' + err.message, 'error');
+        log('خطأ في الكتابة: ' + err.message);
+      }
+    });
+
+    // كتابة رابط
+    btnWriteUrl.addEventListener('click', async () => {
+      let url = writeTextInput.value.trim();
+      if (!url) {
+        alert('أدخل رابطاً أولاً');
+        return;
+      }
+      if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        url = 'https://' + url;
+      }
+      try {
+        setStatus('✍️ قرّب الوسم لكتابة الرابط...', 'warning');
+        log('جاري كتابة الرابط: ' + url);
+        const writer = new NDEFReader();
+        await writer.write({
+          records: [{ recordType: 'url', data: url }]
+        });
+        setStatus('✅ تم كتابة الرابط بنجاح', 'success');
+        log('تم كتابة الرابط بنجاح');
+      } catch (err) {
+        setStatus('فشل الكتابة: ' + err.message, 'error');
+        log('خطأ في الكتابة: ' + err.message);
+      }
+    });
+
+    // جعل للقراءة فقط
+    btnLock.addEventListener('click', async () => {
+      if (!confirm('هل أنت متأكد؟ هذه العملية غير قابلة للعكس ولن تتمكن من الكتابة على الوسم بعد الآن.')) {
+        return;
+      }
+      try {
+        setStatus('🔒 قرّب الوسم لجعله للقراءة فقط...', 'warning');
+        log('جاري جعل الوسم للقراءة فقط...');
+        const writer = new NDEFReader();
+        await writer.makeReadOnly();
+        setStatus('✅ تم جعل الوسم للقراءة فقط', 'success');
+        log('تم قفل الوسم بنجاح (للقراءة فقط)');
+      } catch (err) {
+        setStatus('فشل القفل: ' + err.message, 'error');
+        log('خطأ في القفل: ' + err.message);
+      }
+    });
+
+    // مسح السجل
+    btnClearLog.addEventListener('click', () => {
+      resultEl.textContent = 'تم مسح السجل...';
+    });
+  </script>
+</body>
+</html>
