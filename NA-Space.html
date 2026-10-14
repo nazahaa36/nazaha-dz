@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <title>نزاهة - NA-Space | منصة الأعضاء والموظفين</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Noto+Kufi+Arabic:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.5/JsBarcode.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', 'Noto Kufi Arabic', sans-serif; }
+        :root {
+            --primary-green: #2ecc71;
+            --accent-red: #e74c3c;
+            --ios-bg: #f2f2f7;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --text-main: #1c1c1e;
+            --tab-bar-bg: rgba(255, 255, 255, 0.9);
+        }
+        body.dark {
+            --ios-bg: #000000;
+            --glass-bg: rgba(28, 28, 30, 0.9);
+            --text-main: #ffffff;
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --tab-bar-bg: rgba(28, 28, 30, 0.95);
+        }
+        body { background: var(--ios-bg); color: var(--text-main); transition: 0.3s; }
+        .loading-screen {
+            position: fixed; top:0; left:0; width:100%; height:100%; background: var(--ios-bg); z-index: 10000;
+            display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 20px;
+            transition: 0.5s;
+        }
+        .loading-screen.hide { opacity: 0; visibility: hidden; }
+        .spinner { width: 50px; height: 50px; border: 5px solid rgba(46,204,113,0.2); border-top: 5px solid var(--primary-green); border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0); } 100% { transform: rotate(360deg); } }
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0f3b2c, #1a5f3a);
+            padding: 20px;
+        }
+        .login-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 48px;
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        .login-logo { width: 80px; height: 80px; margin: 0 auto 20px; background: var(--primary-green); border-radius: 20px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .animated-text { font-size: 24px; font-weight: 800; margin: 20px 0; min-height: 80px; color: var(--primary-green); }
+        .form-input { width: 100%; padding: 14px; margin-bottom: 15px; border-radius: 30px; border: 1px solid var(--glass-border); background: var(--glass-bg); font-size: 16px; color: var(--text-main); }
+        .btn-submit { background: var(--primary-green); color: white; padding: 14px; border: none; border-radius: 30px; width: 100%; font-weight: bold; cursor: pointer; font-size: 16px; transition: 0.2s; }
+        .dashboard-container { display: none; max-width: 800px; margin: 0 auto; padding: 80px 16px 80px; }
+        .app-header {
+            position: fixed; top:0; left:0; right:0; background: var(--glass-bg); backdrop-filter: blur(20px);
+            padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .logout-btn { background: var(--accent-red); color: white; border: none; padding: 8px 16px; border-radius: 30px; cursor: pointer; }
+        .tab-bar {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: var(--tab-bar-bg);
+            backdrop-filter: blur(20px);
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 12px 20px;
+            border-top: 1px solid var(--glass-border);
+            z-index: 1000;
+        }
+        .tab-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: 0.2s;
+            font-size: 10px;
+            font-weight: 600;
+        }
+        .tab-item i { font-size: 22px; }
+        .tab-item.active { opacity: 1; color: var(--primary-green); }
+        .tab-pane { display: none; animation: fadeIn 0.3s; }
+        .tab-pane.active { display: block; }
+        @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+        .card-glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 28px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--glass-border);
+        }
+        .info-row { display: flex; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+        .info-label { font-weight: 600; opacity: 0.7; }
+        .badge-employee { background: #f39c12; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; display: inline-block; }
+        .badge-member { background: var(--primary-green); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; display: inline-block; }
+        .profile-img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; background: #ccc; margin-bottom: 10px; cursor: pointer; border: 2px solid var(--primary-green); }
+        .barcode-container { background: white; padding: 10px; border-radius: 16px; text-align: center; margin-top: 15px; direction: ltr; }
+        .btn-icon { background: rgba(46,204,113,0.15); border: none; padding: 10px 16px; border-radius: 30px; cursor: pointer; transition: 0.2s; margin: 5px; font-size: 14px; color: var(--text-main); }
+        .btn-icon:hover { background: var(--primary-green); color: white; }
+        .flex-buttons { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 15px; }
+        .initiative-item, .task-item { background: rgba(46,204,113,0.1); border-radius: 20px; padding: 12px; margin-bottom: 12px; }
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 15px 0; }
+        .stat-card { background: rgba(0,0,0,0.05); border-radius: 20px; padding: 12px; text-align: center; }
+        .stat-number { font-size: 28px; font-weight: 800; color: var(--primary-green); }
+        .modal-overlay {
+            position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px);
+            z-index: 10001; display: none; align-items: center; justify-content: center; padding:20px;
+        }
+        .modal-container { background: var(--glass-bg); border-radius: 32px; max-width: 500px; width:100%; padding: 24px; position: relative; }
+        .modal-close { position: absolute; top: 12px; left: 12px; background: var(--accent-red); border: none; width: 32px; height: 32px; border-radius: 50%; color: white; cursor: pointer; }
+        canvas#activityChart, canvas#recordsChart { max-height: 200px; margin-top: 15px; }
+        .stars { display: inline-flex; gap: 5px; direction: ltr; }
+        .stars i { font-size: 28px; color: #ffc107; cursor: pointer; transition: 0.1s; }
+        .stars i:hover { transform: scale(1.1); }
+        @media (max-width: 768px) { .dashboard-container { padding-top: 70px; padding-bottom: 70px; } }
+    </style>
+</head>
+<body>
+
+<div class="loading-screen" id="loadingScreen"><div class="spinner"></div><div style="color:var(--primary-green);">جاري تحميل NA-Space...</div></div>
+
+<div id="loginContainer" class="login-container">
+    <div class="login-card">
+        <div class="login-logo"><img src="logo.png" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2722%27 fill=%27%232ecc71%27/%3E%3Ctext x=%2750%27 y=%2768%27 font-size=%2750%27 text-anchor=%27middle%27 fill=%27white%27%3Eن%3C/text%3E%3C/svg%3E'"></div>
+        <div class="animated-text" id="loginAnimatedText">NA-Space</div>
+        <input type="text" id="loginId" class="form-input" placeholder="رقم التعريف" autocomplete="off">
+        <input type="password" id="loginPass" class="form-input" placeholder="كلمة السر">
+        <button class="btn-submit" onclick="performLogin()">دخول</button>
+    </div>
+</div>
+
+<div id="dashboardContainer" class="dashboard-container">
+    <div class="app-header">
+        <div class="logo"><img src="logo.png" style="width:40px;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2722%27 fill=%27%232ecc71%27/%3E%3Ctext x=%2750%27 y=%2768%27 font-size=%2750%27 text-anchor=%27middle%27 fill=%27white%27%3Eن%3C/text%3E%3C/svg%3E'"><span style="font-weight:800;">نزاهة - NA-Space</span></div>
+        <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> خروج</button>
+    </div>
+    <div class="tab-bar">
+        <div class="tab-item active" data-tab="home"><i class="fas fa-home"></i><span>الرئيسية</span></div>
+        <div class="tab-item" data-tab="services"><i class="fas fa-folder-open"></i><span>الخدمات</span></div>
+        <div class="tab-item" data-tab="records"><i class="fas fa-history"></i><span>السجل</span></div>
+        <div class="tab-item" data-tab="space"><i class="fas fa-feather-alt"></i><span>مساحة حرة</span></div>
+        <div class="tab-item" data-tab="profile"><i class="fas fa-user"></i><span>ملفي الشخصي</span></div>
+    </div>
+
+    <div id="homeTab" class="tab-pane active"><div id="homeContent" class="card-glass"></div></div>
+    <div id="servicesTab" class="tab-pane"><div class="card-glass" id="servicesContent"></div></div>
+    <div id="recordsTab" class="tab-pane"><div id="recordsContent" class="card-glass"></div></div>
+    <div id="spaceTab" class="tab-pane"><div id="spaceContent" class="card-glass"></div></div>
+    <div id="profileTab" class="tab-pane"><div id="profileContent" class="card-glass"></div></div>
+</div>
+
+<div id="serviceModal" class="modal-overlay"><div class="modal-container"><button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button><h3 id="modalTitle"></h3><div id="modalBody"></div></div></div>
+
+<script>
+    const MEMBER_URL = "https://raw.githubusercontent.com/nazahaa36/com/main/member.json";
+    let membersList = [];
+    let currentUser = null;
+    let chartRecords = null;
+    let spacePosts = [];
+
+    function showToast(msg, type='info') { let t=document.createElement('div'); t.className=`toast ${type}`; t.innerHTML=`<i class="fas ${type==='success'?'fa-check-circle':type==='error'?'fa-exclamation-triangle':'fa-info-circle'}"></i> ${msg}`; t.style.cssText='position:fixed; bottom:20px; right:20px; left:20px; max-width:400px; background:rgba(0,0,0,0.85); color:white; padding:12px 16px; border-radius:18px; z-index:10002; backdrop-filter:blur(10px);'; document.body.appendChild(t); setTimeout(()=>t.remove(),4000); }
+    function escapeHtml(str) { return str ? String(str).replace(/[&<>]/g, m => ({ '&':'&amp;','<':'&lt;','>':'&gt;' })[m]) : ''; }
+    
+    function sendFormalEmail(subject, bodyPlain) {
+        let emailBody = `بسم الله الرحمن الرحيم\n\n${bodyPlain}\n\n-- \nهذه رسالة رسمية من منصة نزاهة - NA-Space\nتاريخ الإرسال: ${new Date().toLocaleString('ar-EG')}\nالمرسل: ${currentUser?.fullName} (${currentUser?.id})\nنوع المستخدم: ${isEmployee() ? 'موظف' : 'عضو'}\nيرجى التعامل مع الطلب وفق الأنظمة المعمول بها.\n\nمع خالص الاحترام،\n${currentUser?.fullName}`;
+        window.location.href = `mailto:nazahaa36.inf@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+        showToast('تم فتح البريد الإلكتروني', 'success');
+    }
+    
+    function isEmployee() {
+        if(!currentUser) return false;
+        let cell = currentUser.cell;
+        let position = currentUser.position;
+        let hasValidCell = cell && cell !== "غير متوفر" && cell !== "لا يوجد" && cell !== "null" && cell.trim() !== "";
+        let hasValidPosition = position && position !== "غير متوفر" && position !== "لا يوجد" && position !== "null" && position.trim() !== "";
+        return hasValidCell || hasValidPosition;
+    }
+    
+    async function fetchMembers() {
+        try {
+            const res = await fetch(MEMBER_URL);
+            if (!res.ok) throw new Error();
+            membersList = await res.json();
+            return true;
+        } catch(e) { showToast('خطأ في تحميل البيانات', 'error'); return false; }
+    }
+    
+    async function downloadCardPNG() {
+        if(!currentUser) return;
+        const emp = isEmployee();
+        const cardDiv = document.createElement('div');
+        cardDiv.style.cssText = 'direction:rtl; background:linear-gradient(145deg,#ffffff,#f0f2f5); padding:25px; border-radius:32px; width:550px; margin:auto; font-family:sans-serif; box-shadow:0 20px 35px rgba(0,0,0,0.2); border:1px solid #2ecc71;';
+        const now = new Date().toLocaleDateString('ar-EG');
+        cardDiv.innerHTML = `
+            <div style="text-align:center; border-bottom:2px solid #2ecc71; padding-bottom:10px;"><img src="logo.png" style="width:70px;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2722%27 fill=%27%232ecc71%27/%3E%3Ctext x=%2750%27 y=%2768%27 font-size=%2750%27 text-anchor=%27middle%27 fill=%27white%27%3Eن%3C/text%3E%3C/svg%3E'"><h2 style="color:#2ecc71;">المنتدى الشبابي للفكر والمشاركة المدنية</h2><h3>${emp ? 'بطاقة توظيف رسمية' : 'بطاقة عضوية رسمية'}</h3></div>
+            <div style="display:flex; gap:20px; margin:20px 0;"><div style="flex:1; text-align:center;"><img src="${currentUser.profileImage || 'data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ccircle cx=%2750%27 cy=%2750%27 r=%2745%27 fill=%27%23ccc%27/%3E%3Ctext x=%2750%27 y=%2765%27 text-anchor=%27middle%27 fill=%27white%27 font-size=%2740%27%3E👤%3C/text%3E%3C/svg%3E'}" style="width:110px; height:110px; border-radius:50%; border:3px solid #2ecc71; object-fit:cover;"></div><div style="flex:2;"><div><strong>الاسم الكامل:</strong> ${escapeHtml(currentUser.fullName)}</div><div><strong>رقم التعريف:</strong> ${currentUser.id}</div><div><strong>تاريخ الميلاد:</strong> ${currentUser.birthDate || 'غير محدد'}</div><div><strong>تاريخ التسجيل:</strong> ${currentUser.hiringDate || 'غير محدد'}</div><div><strong>تاريخ الانتهاء:</strong> ${currentUser.expiryDate || 'غير محدد'}</div>${emp ? `<div><strong>الخلية:</strong> ${escapeHtml(currentUser.cell)}</div><div><strong>المنصب:</strong> ${escapeHtml(currentUser.position)}</div>` : ''}<div><strong>تاريخ الإصدار:</strong> ${now}</div></div></div>
+            <div style="text-align:center; border-top:1px solid #ddd; padding-top:15px;"><div id="tempBarcodeCard"></div><p style="font-size:12px;">بطاقة رسمية معتمدة - نزاهة</p></div>
+        `;
+        document.body.appendChild(cardDiv);
+        const canvasBc = document.createElement('canvas');
+        cardDiv.querySelector('#tempBarcodeCard').appendChild(canvasBc);
+        JsBarcode(canvasBc, currentUser.id, { format: "CODE128", width: 2, height: 45, displayValue: true });
+        await new Promise(r => setTimeout(r, 100));
+        html2canvas(cardDiv, { scale: 3, backgroundColor: '#ffffff' }).then(canvas => {
+            let link = document.createElement('a');
+            link.download = `nazaha_card_${currentUser.id}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            document.body.removeChild(cardDiv);
+            showToast('تم تحميل البطاقة', 'success');
+        }).catch(() => { document.body.removeChild(cardDiv); showToast('خطأ', 'error'); });
+    }
+    
+    function addNewRecord() {
+        const emp = isEmployee();
+        const title = prompt(emp ? 'عنوان المهمة الجديدة:' : 'عنوان النشاط الجديد:');
+        if(!title) return;
+        const details = prompt('تفاصيل إضافية:') || '';
+        if(emp) {
+            if(!currentUser.tasks) currentUser.tasks = [];
+            currentUser.tasks.push({ title, details, date: new Date().toLocaleDateString('ar-EG'), completed: false });
+            if(!currentUser.performanceStats) currentUser.performanceStats = { tasksLastWeek: [2,3,4,5,6,5,4], efficiency: 85 };
+            currentUser.performanceStats.tasksLastWeek[6] += 1;
+        } else {
+            if(!currentUser.activityLog) currentUser.activityLog = [];
+            currentUser.activityLog.push({ action: title, details, date: new Date().toLocaleDateString('ar-EG') });
+            if(!currentUser.activityData) currentUser.activityData = [3,5,2,8,4,6,7];
+            currentUser.activityData[6] = Math.min(10, currentUser.activityData[6] + 1);
+        }
+        localStorage.setItem('nazaha_user', JSON.stringify(currentUser));
+        renderAllTabs();
+        showToast('تمت الإضافة', 'success');
+    }
+    
+    function openRatingModal() {
+        let starsHtml = `<div class="stars" id="dynamicStars">`;
+        for(let i=1;i<=5;i++) starsHtml += `<i class="far fa-star" data-val="${i}"></i>`;
+        starsHtml += `</div><input type="hidden" id="ratingVal"><textarea id="ratingComment" class="form-input" rows="3" placeholder="تعليقك..."></textarea><button class="btn-submit" onclick="submitRating()">إرسال التقييم</button>`;
+        document.getElementById('modalTitle').innerText = 'تقييم المنتدى';
+        document.getElementById('modalBody').innerHTML = starsHtml;
+        document.getElementById('serviceModal').style.display = 'flex';
+        setTimeout(() => {
+            document.querySelectorAll('#dynamicStars i').forEach(star => {
+                star.onclick = function() {
+                    let val = parseInt(this.dataset.val);
+                    document.getElementById('ratingVal').value = val;
+                    document.querySelectorAll('#dynamicStars i').forEach((s,idx) => {
+                        if(idx < val) s.className = 'fas fa-star';
+                        else s.className = 'far fa-star';
+                    });
+                };
+            });
+        }, 50);
+    }
+    window.submitRating = () => {
+        let val = document.getElementById('ratingVal').value;
+        let comment = document.getElementById('ratingComment').value;
+        if(!val) { showToast('اختر تقييم', 'error'); return; }
+        sendFormalEmail(`تقييم المنتدى من ${currentUser.id}`, `التقييم: ${val} نجوم\nالتعليق: ${comment}`);
+        closeModal();
+    };
+    
+    function renderAllTabs() {
+        if(!currentUser) return;
+        const emp = isEmployee();
+        // الرئيسية
+        const homeDiv = document.getElementById('homeContent');
+        if(emp) {
+            let tasksCount = currentUser.tasks?.length || 0;
+            let completed = currentUser.tasks?.filter(t=>t.completed).length || 0;
+            homeDiv.innerHTML = `<h3><i class="fas fa-chart-line"></i> لوحة تحكم الموظف</h3><div class="stats-grid"><div class="stat-card"><div class="stat-number">${tasksCount}</div><div>المهام</div></div><div class="stat-card"><div class="stat-number">${completed}</div><div>منجزة</div></div></div><canvas id="empHomeChart"></canvas><div class="flex-buttons"><button class="btn-icon" onclick="addNewRecord()"><i class="fas fa-plus"></i> مهمة جديدة</button></div>`;
+            let ctx = document.getElementById('empHomeChart')?.getContext('2d');
+            if(ctx) new Chart(ctx, { type: 'line', data: { labels: ['أسبوع1','أسبوع2','أسبوع3','أسبوع4','أسبوع5','أسبوع6','أسبوع7'], datasets: [{ label: 'المهام', data: currentUser.performanceStats?.tasksLastWeek || [2,3,4,5,6,5,4], borderColor: '#f39c12' }] } });
+        } else {
+            homeDiv.innerHTML = `<h3><i class="fas fa-bullhorn"></i> مرحباً بك في المنتدى</h3><div class="initiative-item"><i class="fas fa-calendar-alt"></i> يمكنك الاطلاع على المبادرات قريباً</div><div class="flex-buttons"><button class="btn-icon" onclick="openIdeaModal()"><i class="fas fa-lightbulb"></i> اقتراح فكرة</button></div>`;
+        }
+        // الخدمات
+        const servicesDiv = document.getElementById('servicesContent');
+        let common = `<div class="section-title"><i class="fas fa-share-alt"></i> خدمات مشتركة</div><div class="flex-buttons"><button class="btn-icon" onclick="openIdeaModal()"><i class="fas fa-lightbulb"></i> اقترح</button><button class="btn-icon" onclick="openRatingModal()"><i class="fas fa-star"></i> تقييم</button><button class="btn-icon" onclick="renewMembership()"><i class="fas fa-sync-alt"></i> تجديد</button><button class="btn-icon" onclick="openUpdateDataModal()"><i class="fas fa-edit"></i> تعديل</button><button class="btn-icon" onclick="openDonationModal()"><i class="fas fa-hand-holding-heart"></i> تبرع</button><button class="btn-icon" onclick="changePassword()"><i class="fas fa-key"></i> تغيير كلمة السر</button></div>`;
+        let specific = emp ? `<div class="section-title"><i class="fas fa-user-tie"></i> خدمات الموظف</div><div class="flex-buttons"><button class="btn-icon" onclick="downloadCardPNG()"><i class="fas fa-id-card"></i> شهادة التوظيف</button><button class="btn-icon" onclick="uploadReport()"><i class="fas fa-file-pdf"></i> رفع تقرير</button><button class="btn-icon" onclick="requestTransfer()"><i class="fas fa-exchange-alt"></i> تحويل خلية</button><button class="btn-icon" onclick="resignEmployee()"><i class="fas fa-sign-out-alt"></i> استقالة</button></div>` : `<div class="section-title"><i class="fas fa-users"></i> خدمات العضو</div><div class="flex-buttons"><button class="btn-icon" onclick="downloadCardPNG()"><i class="fas fa-id-card"></i> بطاقة العضوية</button><button class="btn-icon" onclick="participateContest()"><i class="fas fa-trophy"></i> مسابقة</button><button class="btn-icon" onclick="resignMember()"><i class="fas fa-user-slash"></i> تخلي عن العضوية</button></div>`;
+        servicesDiv.innerHTML = common + specific;
+        // السجل
+        const recordsDiv = document.getElementById('recordsContent');
+        let records = emp ? (currentUser.tasks || []) : (currentUser.activityLog || []);
+        let recHtml = `<div class="section-title"><i class="fas fa-chart-line"></i> المنحنى</div><canvas id="recordsChart"></canvas><div class="section-title"><i class="fas fa-list"></i> السجل</div><div id="recordsList">`;
+        if(!records.length) recHtml += `<p>لا توجد سجلات</p>`;
+        else records.forEach(r => { recHtml += `<div class="task-item"><i class="fas ${emp ? 'fa-tasks' : 'fa-running'}"></i> ${emp ? r.title : r.action}<br><small>${r.date}</small></div>`; });
+        recHtml += `</div><div class="flex-buttons"><button class="btn-icon" onclick="addNewRecord()"><i class="fas fa-plus"></i> إضافة ${emp ? 'مهمة' : 'نشاط'}</button></div>`;
+        recordsDiv.innerHTML = recHtml;
+        let data = emp ? (currentUser.performanceStats?.tasksLastWeek || [2,3,4,5,6,5,4]) : (currentUser.activityData || [3,5,2,8,4,6,7]);
+        let ctxRec = document.getElementById('recordsChart')?.getContext('2d');
+        if(ctxRec) { if(chartRecords) chartRecords.destroy(); chartRecords = new Chart(ctxRec, { type: 'line', data: { labels: ['أسبوع1','أسبوع2','أسبوع3','أسبوع4','أسبوع5','أسبوع6','أسبوع7'], datasets: [{ label: emp ? 'المهام' : 'النشاط', data: data, borderColor: '#2ecc71', fill: true }] } }); }
+        // الملف الشخصي
+        const profileDiv = document.getElementById('profileContent');
+        profileDiv.innerHTML = `<div style="text-align:center;"><div id="profImg"></div><div id="profInfo"></div><div id="profBarcode"></div><div class="flex-buttons"><button class="btn-icon" id="upImgBtn"><i class="fas fa-camera"></i> تغيير الصورة</button></div></div>`;
+        document.getElementById('profImg').innerHTML = currentUser.profileImage ? `<img src="${currentUser.profileImage}" class="profile-img">` : `<div class="profile-img"><i class="fas fa-user fa-3x"></i></div>`;
+        let info = `<div class="info-row"><span class="info-label"><i class="fas fa-user"></i> الاسم:</span><span>${escapeHtml(currentUser.fullName)}</span></div><div class="info-row"><span class="info-label"><i class="fas fa-id-badge"></i> النوع:</span><span class="${emp ? 'badge-employee' : 'badge-member'}">${emp ? 'موظف' : 'عضو'}</span></div><div class="info-row"><span class="info-label"><i class="fas fa-qrcode"></i> رقم التعريف:</span><span>${currentUser.id}</span></div><div class="info-row"><span class="info-label"><i class="fas fa-envelope"></i> البريد:</span><span>${escapeHtml(currentUser.email)}</span></div><div class="info-row"><span class="info-label"><i class="fas fa-phone"></i> الهاتف:</span><span>${escapeHtml(currentUser.phone)}</span></div><div class="info-row"><span class="info-label"><i class="fas fa-map-marker-alt"></i> العنوان:</span><span>${escapeHtml(currentUser.address)}</span></div>`;
+        if(emp) info += `<div class="info-row"><span class="info-label"><i class="fas fa-building"></i> الخلية:</span><span>${escapeHtml(currentUser.cell)}</span></div><div class="info-row"><span class="info-label"><i class="fas fa-briefcase"></i> المنصب:</span><span>${escapeHtml(currentUser.position)}</span></div>`;
+        else info += `<div class="info-row"><span class="info-label"><i class="fas fa-heart"></i> الاهتمامات:</span><span>${escapeHtml(currentUser.interests)}</span></div><div class="info-row"><span class="info-label"><i class="fas fa-users"></i> المؤسسات:</span><span>${escapeHtml(currentUser.youthOrg)}</span></div>`;
+        document.getElementById('profInfo').innerHTML = info;
+        let bcId = 'bprof_' + Date.now();
+        document.getElementById('profBarcode').innerHTML = `<canvas id="${bcId}" class="barcode-container"></canvas>`;
+        setTimeout(() => JsBarcode(`#${bcId}`, currentUser.id, { format: "CODE128", width: 2, height: 40 }), 50);
+        document.getElementById('upImgBtn').onclick = () => { let inp=document.createElement('input'); inp.type='file'; inp.accept='image/png'; inp.onchange=e=>{ let f=e.target.files[0]; if(f){ let r=new FileReader(); r.onload=ev=>{ currentUser.profileImage=ev.target.result; localStorage.setItem('nazaha_user',JSON.stringify(currentUser)); renderAllTabs(); showToast('تم تحديث الصورة','success'); }; r.readAsDataURL(f); } }; inp.click(); };
+    }
+    
+    function openIdeaModal() { let idea = prompt('شارك فكرتك:'); if(idea) sendFormalEmail(`فكرة من ${currentUser.id}`, idea); }
+    function renewMembership() { sendFormalEmail(`تجديد العهدة - ${currentUser.id}`, `أطلب تجديد عهدتي.`); }
+    function openUpdateDataModal() { let newName = prompt('الاسم الجديد:', currentUser.fullName); if(newName) sendFormalEmail(`تحديث بيانات`, `الاسم الجديد: ${newName}`); }
+    function openDonationModal() { let amt = prompt('مبلغ التبرع:'); if(amt) sendFormalEmail(`تبرع`, `مبلغ ${amt} دينار`); }
+    function changePassword() { let pwd = prompt('كلمة السر الجديدة:'); if(pwd) sendFormalEmail(`تغيير كلمة السر`, `طلب تغيير`); }
+    function participateContest() { let name = prompt('اسم المسابقة:'); if(name) sendFormalEmail(`مشاركة في مسابقة`, `المسابقة: ${name}`); }
+    function resignMember() { if(confirm('تأكيد؟')) sendFormalEmail(`طلب تخلي عن العضوية`, `أطلب إنهاء عضويتي.`); }
+    function resignEmployee() { if(confirm('تأكيد الاستقالة؟')) sendFormalEmail(`طلب استقالة`, `استقالتي من منصبي.`); }
+    function requestTransfer() { let newCell = prompt('الخلية الجديدة:'); if(newCell) sendFormalEmail(`طلب تحويل خلية`, `إلى الخلية: ${newCell}`); }
+    function uploadReport() { let inp=document.createElement('input'); inp.type='file'; inp.accept='.pdf'; inp.onchange=e=>{ if(e.target.files[0]) sendFormalEmail(`تقرير`, `تم رفع ملف: ${e.target.files[0].name}`); }; inp.click(); }
+    function closeModal() { document.getElementById('serviceModal').style.display = 'none'; }
+    
+    window.performLogin = async function() {
+        let id = document.getElementById('loginId').value.trim();
+        let pwd = document.getElementById('loginPass').value.trim();
+        if(membersList.length === 0 && !(await fetchMembers())) return;
+        let user = membersList.find(m => m.id === id && m.password === pwd);
+        if(user) {
+            currentUser = JSON.parse(JSON.stringify(user));
+            if(!currentUser.activityLog) currentUser.activityLog = [];
+            if(!currentUser.tasks) currentUser.tasks = [];
+            if(!currentUser.activityData) currentUser.activityData = [3,5,2,8,4,6,7];
+            localStorage.setItem('nazaha_user', JSON.stringify(currentUser));
+            document.getElementById('loginContainer').style.display = 'none';
+            document.getElementById('dashboardContainer').style.display = 'block';
+            renderAllTabs();
+            showToast(`مرحباً ${currentUser.fullName}`, 'success');
+        } else showToast('بيانات غير صحيحة', 'error');
+    };
+    function logout() { localStorage.removeItem('nazaha_user'); currentUser=null; document.getElementById('loginContainer').style.display='flex'; document.getElementById('dashboardContainer').style.display='none'; showToast('تم الخروج','info'); }
+    document.querySelectorAll('.tab-item').forEach(tab => tab.addEventListener('click', () => { document.querySelectorAll('.tab-item').forEach(t=>t.classList.remove('active')); tab.classList.add('active'); document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active')); document.getElementById(tab.dataset.tab+'Tab').classList.add('active'); if(currentUser) renderAllTabs(); }));
+    window.addEventListener('load', () => { document.getElementById('loadingScreen').classList.add('hide'); let saved = localStorage.getItem('nazaha_user'); if(saved) { currentUser = JSON.parse(saved); document.getElementById('loginContainer').style.display='none'; document.getElementById('dashboardContainer').style.display='block'; renderAllTabs(); } });
+</script>
+</body>
+</html>
