@@ -9168,6 +9168,7 @@ function navigate(path, replace){
   if(path.charAt(0) !== '/') path = '/' + path;
   var base = path.split('?')[0];
   var profileKey = null;
+  if(base === '/fingerprint' || base === '/services/pointage'){ window._nzPendingFingerprint = true; base = '/'; setTimeout(runPendingFingerprint, 350); }
   /* ملفات عامة: /profile/@username أو /profile/username أو /member/... */
   if(base.indexOf('/profile/') === 0){
     var rest = base.replace(/^\/profile\//,'').replace(/^@/,'');
@@ -13795,7 +13796,7 @@ async function refreshMzone(options){
                     '<button type="button" data-mtab="settings" onclick="switchMzoneMain(this,\'settings\')">الإعدادات</button>'+
           '<div class="mzone-tab-actions">'+
             (typeof isSovereignUser==='function' && isSovereignUser(u) ? '' : '<button type="button" class="mz-act-btn" title="الخدمات الإدارية" onclick="navigate(\'/services\')"><i class="fas fa-briefcase"></i></button>')+
-            (canShowAttendance(u)?('<button type="button" class="mz-act-btn" title="حضور / انصراف" onclick="navigate(\'/services/pointage\')"><i class="fas fa-fingerprint"></i></button>'):'')+
+            (canShowAttendance(u)?('<button type="button" class="mz-act-btn" title="حضور / انصراف" onclick="openAttendanceModal()"><i class="fas fa-fingerprint"></i></button>'):'')+
             '<button type="button" class="mz-act-btn wrap" id="mzNotifBtn" title="الإشعارات" onclick="openAccountNotifications(event)"><i class="fas fa-bell"></i><span class="mz-notif-dot" id="mzNotifDot" style="display:none"></span></button>'+
             '<button type="button" class="mz-act-btn wrap" id="mzUserSearchBtn" title="بحث عن مستخدم" onclick="toggleUserSearch(event)"><i class="fas fa-search"></i></button>'+
           '</div>'+
@@ -18305,7 +18306,7 @@ function typeTick(){
 
   function pathFromLocation(){
     var p = (location.pathname||'/').replace(/\/index\.html?$/i,'') || '/';
-    if(p === '/' && location.hash){
+    if((p === '/' || /^\/servic\/?$/i.test(p)) && location.hash){
       p = location.hash.replace(/^#/,'') || '/';
     }
     if(p.charAt(0) !== '/') p = '/' + p;
@@ -18349,9 +18350,18 @@ function typeTick(){
   
 /* ---------- نظام الإشعارات ---------- */
 
+function runPendingFingerprint(){
+  if(!window._nzPendingFingerprint) return;
+  var u = window.mzoneCurrentUser || window.currentUser;
+  if(!u) return;
+  window._nzPendingFingerprint = false;
+  openAttendanceModal();
+}
+window.runPendingFingerprint = runPendingFingerprint;
+
 /** إقلاع موثوق لكل الميزات — يُستدعى عند الجاهزية وتسجيل الدخول */
 function bootstrapNzFeatures(reason){
-  try {
+  try { runPendingFingerprint();
     var u = window.mzoneCurrentUser || window.currentUser;
     if(u){
       try { if(typeof determineUserRoles==='function') determineUserRoles(); } catch(_){}
@@ -19681,7 +19691,7 @@ function openMzoneActionsMenu(ev){
     '<button type="button" class="btn-ghost" style="width:100%;justify-content:flex-start;margin:2px 0" onclick="document.getElementById(\'mzActionsPop\').remove();openEditProfile()"><i class="fas fa-pen"></i> تعديل الملف</button>'+
     '<button type="button" class="btn-ghost" style="width:100%;justify-content:flex-start;margin:2px 0" onclick="document.getElementById(\'mzActionsPop\').remove();shareMyProfile()"><i class="fas fa-share-alt"></i> مشاركة الملف</button>'+
     ((typeof isSovereignUser==='function' && isSovereignUser()) ? '' : '<button type="button" class="btn-ghost" style="width:100%;justify-content:flex-start;margin:2px 0" onclick="document.getElementById(\'mzActionsPop\').remove();navigate(\'/services\')"><i class="fas fa-briefcase"></i> الخدمات الإدارية</button>')+
-    (canShowAttendance()?'<button type="button" class="btn-ghost" style="width:100%;justify-content:flex-start;margin:2px 0" onclick="document.getElementById(\'mzActionsPop\').remove();navigate(\'/services/pointage\')"><i class="fas fa-fingerprint"></i> حضور / انصراف</button>':'')+
+    (canShowAttendance()?'<button type="button" class="btn-ghost" style="width:100%;justify-content:flex-start;margin:2px 0" onclick="document.getElementById(\'mzActionsPop\').remove();openAttendanceModal()"><i class="fas fa-fingerprint"></i> حضور / انصراف</button>':'')+
     '<button type="button" class="btn-ghost" style="width:100%;justify-content:flex-start;margin:2px 0" onclick="document.getElementById(\'mzActionsPop\').remove();switchMzoneMain(document.querySelector(\'[data-mtab=settings]\'),\'settings\')"><i class="fas fa-cog"></i> الإعدادات</button>';
   document.body.appendChild(pop);
   setTimeout(function(){
@@ -20207,6 +20217,20 @@ function defaultMemberSchedule(){
  * يبني جدولاً شخصياً من وثيقة المستخدم / جدول المناصب / الإعدادات
  * الأولوية: user.workSchedule > user.shift > positionSchedules[position] > لا شيء موحّد للخلية
  */
+function normPosKey(x){
+  return String(x||'').replace(/[\u064B-\u065F\u0640]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه').replace(/\s+/g,' ').trim().toLowerCase();
+}
+function findPositionSchedule(pos, u){
+  var map = window._positionSchedules || {};
+  if(!pos) return null;
+  if(map[pos]) return map[pos];
+  var want = normPosKey(pos);
+  var keys = Object.keys(map);
+  for(var i=0;i<keys.length;i++){ if(normPosKey(keys[i]) === want) return map[keys[i]]; }
+  var pid = u && (u.positionId || u.positionKey);
+  if(pid && map[pid]) return map[pid];
+  return null;
+}
 function buildMemberSchedule(u, extra){
   u=u||{}; extra=extra||{};
   var base=defaultMemberSchedule(), src=null;
@@ -20226,8 +20250,8 @@ function buildMemberSchedule(u, extra){
   }
   applyObj(window._resourceScheduleSettings,'إعدادات الموارد');
   var pos=String(u.position||u.roleTitle||u.jobTitle||u.responsibility||'').trim();
-  var posMap=(window._positionSchedules||{});
-  if(pos&&posMap[pos]) applyObj(posMap[pos],'جدول المنصب');
+  var posSched=findPositionSchedule(pos,u);
+  if(posSched) applyObj(posSched,'جدول المنصب');
   applyObj(u.shift||u.workHours||u.attendanceHours,'جدول العضو');
   applyObj(u.workSchedule||u.attendanceSchedule||u.personalSchedule,'جدول العضو');
   if(typeof u.workStart==='string') base.openTime=u.workStart;
